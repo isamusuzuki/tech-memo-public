@@ -4,9 +4,9 @@
 
 ## ListMarketplaceParticipations
 
-もっとも簡単なAPI
+seller.py - もっとも簡単なAPI
 
-```python:sellers.py
+```python
 import base64
 import datetime
 import hashlib

@@ -4,7 +4,9 @@
 
 ## ListMatchingProducts
 
-```python:products1.py
+products1.py
+
+```python
 import base64
 import datetime
 import hashlib
@@ -86,9 +88,9 @@ if __name__ == "__main__":
     products1('Python データ分析')
 ```
 
-出力結果をパースする
+xml1.py - 出力結果をパースする
 
-```python:xml1.py
+```python
 import xml.etree.ElementTree as ET
 
 TEMP_FILE = '../temp/products1.xml'
@@ -116,9 +118,9 @@ for p in root[0][0]:
 
 ## GetLowestPricedOffersForASIN
 
-要注意：パラメーターは、POSTボディに入れる
+products2.py - !!!注意!!! パラメーターはPOSTボディに入れる
 
-```python:products2.py
+```python
 import base64
 import datetime
 import hashlib
@@ -207,9 +209,9 @@ if __name__ == "__main__":
             print('tempフォルダに結果ファイルを作成しました')
 ```
 
-出力結果をパースする
+xml2.py - 出力結果をパースする
 
-```python:xml2.py
+```python
 import xml.etree.ElementTree as ET
 
 TEMP_FILE = '../temp/products2.xml'
