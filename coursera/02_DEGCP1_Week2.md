@@ -146,10 +146,6 @@ Visualizing data at a minute-level granularity is currently not supported in Dat
 
 [Data Portal Report Gallery](https://datastudiogallery.appspot.com/gallery)
 
----
-
-## tags: coursera
-
 ## Classify Images with Pre-Built Modedls using Vision API and Cloud AutoML
 
 ### Learning Objectives

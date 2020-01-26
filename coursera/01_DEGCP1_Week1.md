@@ -34,13 +34,13 @@ SparkML jobs on Hadoop Clusters\
 => オンプレではリソースの配分が難しい\
 Job1 50%, Job2 50%, Job3 starved, Job4 starved
 
-Cloud DataProcの特徴
+Cloud DataProc の特徴
 
 - Hadoop Yarn Metrics
 - Store data off cluster
 - Preemptive VMs (80% cheaper)
 
-データをCloud Storageに置くのは簡単\
+データを Cloud Storage に置くのは簡単\
 `hdfs://` => `gs://`
 
 HBase = BigTable
@@ -73,8 +73,8 @@ BigQuery Storage Service = Colossus File System
 - Cloud DataPrep
 - Cloud DataFlow
 
-BigQueryはArrayとStructを持つ\
-JOINさせたデータをひとつのテーブルにまとめて保存できる
+BigQuery は Array と Struct を持つ\
+JOIN させたデータをひとつのテーブルにまとめて保存できる
 
 ## Apply machine learning using SQL with BigQuery ML
 
@@ -117,7 +117,7 @@ CREATE MODEL numbikes.model
 OPTIONS
   (model_type='linear_reg', labels=[`num_trips`]) AS WITH bike_data AS
  (
- SELECT 
+ SELECT
    COUNT(*) as num_trips,
  )
 ```
@@ -137,17 +137,17 @@ FROM
   ))
 ```
 
-#### BigQueryMLとは
+#### BigQueryML とは
 
 ドキュメント => [BigQuery ML の概要](https://cloud.google.com/bigquery-ml/docs/bigqueryml-intro?hl=ja)
 
 サポートされるモデル
 
 - 線形回帰（予測） ... ラベルは実数値
-- 2項ロジスティック回帰（分類） ... ラベルの値は2つだけ
+- 2 項ロジスティック回帰（分類） ... ラベルの値は 2 つだけ
 - 多孔ロジスティック回帰（分類）... 複数の考えうる値を予測する
-- K平均法クラスタリング（データセグメンテーション） ... K平均法は教師なし学習
-- TensorFlowモデルのインポート ... トレーニング済みのTensorFlowモデルからBigQueryMLモデルを作成する
+- K 平均法クラスタリング（データセグメンテーション） ... K 平均法は教師なし学習
+- TensorFlow モデルのインポート ... トレーニング済みの TensorFlow モデルから BigQueryML モデルを作成する
 
 ### ML projects phases
 
@@ -155,11 +155,11 @@ FROM
 2. Preprocess Features
 3. "CREATE MODEL name OPTION () AS query"
 4. "SELECT column1, column2 ... FROM ML.EVALUATE(MODEL name)"
-5. "SELECT * FROM ML.PREDICT(name)"
+5. "SELECT \* FROM ML.PREDICT(name)"
 
-#### ETLとは
+#### ETL とは
 
-ETLとは、Extract（抽出）・Transform（変換）・Load（格納）の略で、\
+ETL とは、Extract（抽出）・Transform（変換）・Load（格納）の略で、\
 データ統合時に発生する各プロセスの頭文字をとったもの
 
 ### BigQuery ML key features
@@ -180,13 +180,13 @@ OPTION
 ### BigQuery ML Cheatsheet
 
 - Label ... specify column in OPTIONS using input_label_cols
-- Feature ... SELECT * FROM ML.FEATURE_INFO(MODEL `mydataset.mymode`)
+- Feature ... SELECT \* FROM ML.FEATURE_INFO(MODEL `mydataset.mymode`)
 - Model ... resides in BigQuery dataset
 - ModelType ... Linear Regression, Logistic Regression
-- TrainingProgress ... SELECT * FROM ML.TRAINING_INFO(MODEL `mydataset.mymode`)
-- Inspect Weights ... SELECT * FROM ML.WEIGHTS(Model `mydataset.mymodel`, (query))
-- Evaluation ... SELECT * FROM ML.EVALUATE(model `mydatasets.mymodel`)
-- Prediction ... SELECT * FROM ML.PREDICT(MODEL `mydataset.mymodel`, (query))
+- TrainingProgress ... SELECT \* FROM ML.TRAINING_INFO(MODEL `mydataset.mymode`)
+- Inspect Weights ... SELECT \* FROM ML.WEIGHTS(Model `mydataset.mymodel`, (query))
+- Evaluation ... SELECT \* FROM ML.EVALUATE(model `mydatasets.mymodel`)
+- Prediction ... SELECT \* FROM ML.PREDICT(MODEL `mydataset.mymodel`, (query))
 
 ## Lab: Predict Visitor Purchases with BigQuery ML
 
@@ -204,19 +204,19 @@ Create a classification model (logistic regression) in BigQuery ML
 
 [Google Analytics - BigQuery Export schema](https://support.google.com/analytics/answer/3437719?hl=en)
 
-Field Name | Data Type | Description
------------|-----------|------------
-fullVisitorId | STRING | The unique visitor ID
-totals | RECORD | aggregate values across the session
-totals.transactions | INTEGER | Total number of ecommerse transactions within the session.
-totals.newVisit | INTEGER | Total number of new users in session. If this is the first, this values is 1, otherwise it is null
-totals.bounces | INTEGER | Total bounces. For a bounced session, the value is 1, otherwise it is null
-totals.timeOnSite | INTEGER | Total time of the session expressed in seconds
-hits | RECORD | populated for any and all types of hits
-hits.product.v2ProductName | STRING | Product Name
-hits.product.v2ProductCategory | STRING | Product Category
-hits.product.productQuantity | INTEGER | The quantity of the product purchased
-hits.product.localProductRevenue | INTEGER | The revenue of the product in local currency
+| Field Name                       | Data Type | Description                                                                                        |
+| -------------------------------- | --------- | -------------------------------------------------------------------------------------------------- |
+| fullVisitorId                    | STRING    | The unique visitor ID                                                                              |
+| totals                           | RECORD    | aggregate values across the session                                                                |
+| totals.transactions              | INTEGER   | Total number of ecommerse transactions within the session.                                         |
+| totals.newVisit                  | INTEGER   | Total number of new users in session. If this is the first, this values is 1, otherwise it is null |
+| totals.bounces                   | INTEGER   | Total bounces. For a bounced session, the value is 1, otherwise it is null                         |
+| totals.timeOnSite                | INTEGER   | Total time of the session expressed in seconds                                                     |
+| hits                             | RECORD    | populated for any and all types of hits                                                            |
+| hits.product.v2ProductName       | STRING    | Product Name                                                                                       |
+| hits.product.v2ProductCategory   | STRING    | Product Category                                                                                   |
+| hits.product.productQuantity     | INTEGER   | The quantity of the product purchased                                                              |
+| hits.product.localProductRevenue | INTEGER   | The revenue of the product in local currency                                                       |
 
 ### Explore ecommerce data
 
@@ -243,10 +243,10 @@ blank
 
 ### Select a BQML model type and specify options
 
-Model Type Label Example
------|----|-----|-------
-Forecasting | linear_reg | Numeric value | sales for next year
-Classification | logistic_reg | 0 or 1 | an email as spam or not spam
+| Model          | Type         | Label         | Example                      |
+| -------------- | ------------ | ------------- | ---------------------------- |
+| Forecasting    | linear_reg   | Numeric value | sales for next year          |
+| Classification | logistic_reg | 0 or 1        | an email as spam or not spam |
 
 create a model and specify model options
 
@@ -291,18 +291,18 @@ minimize the False Positive Rate\
 maximize the True Positive Rate
 
 ROC (Receiver Operating Charastristic) curve\
-ROC曲線とは、FPRを横軸、TPRを縦軸にプロットしたもの\
-理想的な予測ができていると、(FPR, TPR) = (0, 1) 左上の点を通る 
-分類の性能が悪いと、ROC曲線は直線に近づいていく
+ROC 曲線とは、FPR を横軸、TPR を縦軸にプロットしたもの\
+理想的な予測ができていると、(FPR, TPR) = (0, 1) 左上の点を通る\
+分類の性能が悪いと、ROC 曲線は直線に近づいていく
 
 AUC ... Area under the curve
 
-ROC_AUC ... Area under an ROC curve ROC曲線下の面積（評価指標）\
-理想的な分類がでできるモデルのROC_AUCスコアは1.0\
-ROC_AUCスコアが0.5を下回る場合は、予測スコアを反転すると0.5を上回るようになる\
-そのため、最低スコアは0.5である
+ROC_AUC ... Area under an ROC curve ROC 曲線下の面積（評価指標）\
+理想的な分類がでできるモデルの ROC_AUC スコアは 1.0\
+ROC_AUC スコアが 0.5 を下回る場合は、予測スコアを反転すると 0.5 を上回るようになる\
+そのため、最低スコアは 0.5 である
 
-[scikit\-learnでROC曲線とそのAUCを算出 \| note\.nkmk\.me](https://note.nkmk.me/python-sklearn-roc-curve-auc-score/)
+[scikit\-learn で ROC 曲線とその AUC を算出 \| note\.nkmk\.me](https://note.nkmk.me/python-sklearn-roc-curve-auc-score/)
 
 Evaluate query
 
@@ -343,7 +343,7 @@ FROM
 ));
 ```
 
-=> 0.72 not greatという結果になった
+=> 0.72 not great という結果になった
 
 ### Improve model performance with Feature Engineering
 
@@ -413,7 +413,7 @@ SELECT * EXCEPT(unique_session_id) FROM (
 );
 ```
 
-=> 改良版のroc_aucは、0.91になった
+=> 改良版の roc_auc は、0.91 になった
 
 ### Predict which new visitors will come back and purchase
 
@@ -491,17 +491,14 @@ ORDER BY
 - predicted_will_buy_on_return_visit_probs.label ... binary classifier for yes/no
 - predicted_will_buy_on_return_visit.prob ... confidence in it's prediction (1 = 100%)
 
-labelが事象、すなわち1と0。probは、それぞれの事象の確かさ。probは合計すると1になる。
+label が事象、すなわち 1 と 0。prob は、それぞれの事象の確かさ。prob は合計すると 1 になる。
 
 [Precision and recall \- Wikipedia](https://en.wikipedia.org/wiki/Precision_and_recall)
 
 ### おまけ
 
-Google Sheetsは、BigQueryから直接読み込めるらしい
+Google Sheets は、BigQuery から直接読み込めるらしい
 
 [Connecting BigQuery and Google Sheets to help with hefty data analysis \| Google Cloud Blog](https://cloud.google.com/blog/products/g-suite/connecting-bigquery-and-google-sheets-to-help-with-hefty-data-analysis)
 
 > With the Sheets data connector for BigQuery, you can analyze and share large datasets from BigQuery right from within your spreadsheet. Connect up to 10,000 rows of data from BigQuery into Sheets (with a simple SQL statement that you can get from a data analyst), and analyze it using the Explore feature, or by creating charts or pivot tables, in your spreadsheet.
-> 
-
-

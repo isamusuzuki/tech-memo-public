@@ -1,7 +1,3 @@
----
-tags: kubernetes
----
-
 # Kubernetes とは
 
 作成日 2019/11/17
