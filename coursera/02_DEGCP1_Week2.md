@@ -156,21 +156,21 @@ Visualizing data at a minute-level granularity is currently not supported in Dat
 
 ### Machine Learning on Unstructured Datasets
 
-#### Video1: Deriving Insights from Unstructured Data using Machine Learning
+#### Deriving Insights from Unstructured Data using Machine Learning
 
 => 非構造データから洞察を導き出す
 
-#### Video2: How does ML on unstructured data work?
+#### How does ML on unstructured data work
 
 Use Deep Learning when you can't explain the labeling rules
 
-#### Video3: Demo ML built into Google Photos
+#### Demo ML built into Google Photos
 
-#### Video4: Comparing approaches to ML
+#### Comparing approaches to ML
 
 Good Machine Learning models require lots of high-quality trainig data
 
-#### Video5: Demo Using ML building blocks
+#### Demo Using ML building blocks
 
 Google Translate ができること
 
@@ -178,7 +178,7 @@ Google Translate ができること
 
 Google Spreadsheet からも使える
 
-```
+```text
 =googletranslate(B3, "en", "ja")
 ```
 
@@ -191,7 +191,7 @@ Vison API ができること
 - Landmark Detection
 - Logo Detection
 
-#### Video6: Using pre-built AI to create a chatbot
+#### Using pre-built AI to create a chatbot
 
 Dialogflow <- rebrand of "api.ai" which Google acquired
 
@@ -199,11 +199,11 @@ sentiment analysis
 
 Dialogflow benefits: pre-built agents, one-click integrations
 
-#### Video7: Customizing Pre-built models with AutoML
+#### Customizing Pre-built models with AutoML
 
 Vision API add your uploaded image several labels.
 
-```
+```text
 --AutoML Vision's menu
     |--IMAGES (1000 images needs longer hour than 1 node hour)
     |--TRAIN (1 node hour is free)
@@ -320,13 +320,7 @@ Click EVALUATE tab
 - Precision ... 適合率、正と予測したデータのうち、実際に正であるものの割合
 - Recall ... 再現率、実際に正であるもののうち、正であると予測されたものの割合
 
-$$
-Precision=\frac{TP}{TP+FP}
-$$
-
-$$
-Recall=\frac{TP}{TP+FN}
-$$
+![Precision and Recall](https://imgur.com/CcNjv35.png)
 
 自分なりの理解\
 Precision の足りない％は、間違えて含めちゃったものの割合\

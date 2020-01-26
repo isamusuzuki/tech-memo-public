@@ -80,7 +80,7 @@ JOIN させたデータをひとつのテーブルにまとめて保存できる
 
 ### Choose the right model type for your structured data use case
 
-```
+```text
 ------Supervided ML 教師あり学習
     |    |--forecast 予測（数値を予測する）
     |    |    `--Linear Regression 線形回帰

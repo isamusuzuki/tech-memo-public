@@ -15,7 +15,7 @@
 
 ## Introduction to Data Engineering
 
-### Video: Explore the role of a data engineer 6min
+### Explore the role of a data engineer 6min
 
 A data engineer builds data pipelines to enable data-driven decisions
 
@@ -30,15 +30,15 @@ ETL (Extract, Transform, Load) with Cloud DataProc and Cloud Dataflow
 Real-time analytics with Cloud Pub/Sub, Cloud Dataflow and\
 stream into BigQuery
 
-### Video: Analyze data engineering challenges 8min
+### Analyze data engineering challenges 8min
 
 Data is often siled in many upstream source systems
 
-### Video: Intro to BigQuery 3min
+### Intro to BigQuery 3min
 
 Blank
 
-### Video: Data Lakes and Data Warehouses 5min
+### Data Lakes and Data Warehouses 5min
 
 ```mermaid
 graph LR;
@@ -54,7 +54,7 @@ BigQuery is a modern data warehouse that changes the conventional mode of data w
 - Fully managed
 - Simplify dta operations
 
-### Video: Demo: Federated Queries with BigQuery 6min
+### Demo: Federated Queries with BigQuery 6min
 
 [GoogleCloudPlatform/training\-data\-analyst: Labs and demos for courses for GCP Training \(http://cloud\.google\.com/training\)\.](https://github.com/GoogleCloudPlatform/training-data-analyst)
 
@@ -74,19 +74,19 @@ BigQuery is a modern data warehouse that changes the conventional mode of data w
 BigQuery は、Google Spreadsheet を外部データソースとして使える。\
 いったんテーブルを作成した後は、更新作業は不要で、クエリーを投げるごとに新しいデータが使われる
 
-### Video: Transactional Databases vs Data Warehouses 4min
+### Transactional Databases vs Data Warehouses 4min
 
 Cloud SQL is fully managed SQL Server, Postgres, or MySQL for your Relational Database (transactional RDBMS)
 
 RDBMS are optimized for data from a signle source and high-throughput writes vs. high-read data warehouses
 
-### Video: Partner effectively with other data teams 6min
+### Partner effectively with other data teams 6min
 
 - Machine Learning Engineer needs to capture new features in a stable pipeline
 - Data Analyst relys on showcase the latest insights
 - Other Data Engineer relys on timely and error free pipline
 
-### Video: Manage data access and governance 2min
+### Manage data access and governance 2min
 
 Cloud Data Catalog is guarding PII
 
@@ -94,7 +94,7 @@ PII = Personally Identifiable Information
 
 DLP API = Data Loss Prevention API
 
-### Video: Demo: Finding PII in your dataset with DLP API
+### Demo: Finding PII in your dataset with DLP API
 
 training-data analyst / courses / data-engineering / demos / cloud_dlp.md
 
@@ -102,7 +102,7 @@ training-data analyst / courses / data-engineering / demos / cloud_dlp.md
 
 [Data Loss Prevention Demo](https://cloud.google.com/dlp/demo/#!/)
 
-### Video: Build production-ready pipelines 2min
+### Build production-ready pipelines 2min
 
 Cloud Composer (managed Apache Airflow) is used to orchestrate production workflows
 
@@ -119,11 +119,11 @@ Cloud Composer は、GCP コンソールのビッグデータの一番上にあ�
 
 [Integration — Airflow Documentation](https://airflow.apache.org/docs/stable/integration.html)
 
-### Video: Review GCP customer case study 3min
+### Review GCP customer case study 3min
 
 Blank
 
-### Video: Recap 1min
+### Recap 1min
 
 [gregsramblings/google\-cloud\-4\-words: The Google Cloud Developer's Cheat Sheet](https://github.com/gregsramblings/google-cloud-4-words)
 
@@ -254,17 +254,17 @@ New Yorkers ride the bicycle 47% fewer times when it rains.
 - Learn how to use Google Cloud Storage as you data lake on GCP
 - Use Cloud SQL for a relational data lake
 
-### Video: Introduction to Data Lakes 10min
+### Introduction to Data Lakes 10min
 
 Data Lake vs. Data Warehouse
 
-### Video: Data Storage and ETL options on GCP 4min
+### Data Storage and ETL options on GCP 4min
 
 - EL ... Extract and Load for mini-size
 - ELT ... Extract, Load, and Transform for mid-size
 - ETL ... Extract, Transform, and Load for large-size
 
-### Video: Building a Data Lake using Cloud Storage 10min
+### Building a Data Lake using Cloud Storage 10min
 
 Bucket properties depend on your requirements
 
@@ -278,11 +278,11 @@ Bucket properties depend on your requirements
 
 Cloud Storage simulates a file system
 
-### Video: Demo: Optimizing cost with Google Cloud Sotrage classes and Cloud Functions 7min
+### Demo: Optimizing cost with Google Cloud Sotrage classes and Cloud Functions 7min
 
 Blank
 
-### Video: Securing Cloud Storage 5min
+### Securing Cloud Storage 5min
 
 Data encryption options
 
@@ -290,7 +290,7 @@ Data encryption options
 - CMEK ... Customer-managed encyption keys
 - CSEK ... Customer-supplied encryption keys
 
-### Video: Storing All Sorts of Data Types 5min
+### Storing All Sorts of Data Types 5min
 
 Transactional vs. Analytical
 
@@ -298,26 +298,26 @@ Transactional systems are 80% writes and 20% reads
 
 Data engineers build the pipeliness between the sytems
 
-### Video: Demo: Running federated queries on Parquet and ORC files in BigQuery 4min
+### Demo: Running federated queries on Parquet and ORC files in BigQuery 4min
 
-Google Cloud Storageにあがっている、3.5テラバイトの、Parquet形式の、WebクロールデータをBigQueryに移行する。サブディレクトリが "key=value" の構造になっている
+Google Cloud Storage にあがっている、3.5 テラバイトの、Parquet 形式の、Web クロールデータを BigQuery に移行する。サブディレクトリが "key=value" の構造になっている
 
-BigQuery managed storageという新機能は。データをコピーしつつ、きちっと列をチェックしている
+BigQuery managed storage という新機能は。データをコピーしつつ、きちっと列をチェックしている
 
-### Video: Storing Relational Data in the Cloud 1min
+### Storing Relational Data in the Cloud 1min
 
-Cloud Spannerは分散RDB。地理的に離れた場所で使う時やギガバイトを超える量があるときはこちらを選択
+Cloud Spanner は分散 RDB。地理的に離れた場所で使う時やギガバイトを超える量があるときはこちらを選択
 
-分析ワークロードには、BigQueryが一番だが、1秒間で百万行のようなハイスループットのインサートや、ミリセカンドの低遅延が求められるときは、BigTableを選択
+分析ワークロードには、BigQuery が一番だが、1 秒間で百万行のようなハイスループットのインサートや、ミリセカンドの低遅延が求められるときは、BigTable を選択
 
-### Video: Cloud SQL as a relational Data Lake
+### Cloud SQL as a relational Data Lake
 
 OLTP = Online Transaction Processing workloads
 
 Advantages of Cloud SQL
 
 - Google grade security
-- Managed backups（各インスタンスが7バックアップを保持する）
+- Managed backups（各インスタンスが 7 バックアップを保持する）
 - Vertical scaling (read and write)
 - Horizontal scaling (read, suports 3 replica scinarios)
 - Automatic replication in different zone (failover replica)
@@ -331,7 +331,7 @@ Objectives
 - Import text data into Cloud SQL
 - Check the data for integrity
 
-Cloud Shellを使う
+Cloud Shell を使う
 
 ```bash
 gcloud auth list # => credential Accountsを表示
@@ -362,7 +362,7 @@ MYSQLIP=$(gcloud sql instances describe taxi --format='value(ipAddresses.ipAddre
 mysql --host=$MYSQLIP --user=root --password
 ```
 
-以下はmysql コマンドラインの中で行う
+以下は mysql コマンドラインの中で行う
 
 ```sql
 create database if not exists bts;
@@ -372,7 +372,7 @@ use bts;
 drop table if exists trips;
 
 create table trips (
-  vendor_id VARCHAR(16),		
+  vendor_id VARCHAR(16),
   pickup_datetime DATETIME,
   dropoff_datetime DATETIME,
   passenger_count INT,
@@ -408,9 +408,3 @@ mysqlimport --local --host=$MYSQLIP --user=root --password --ignore-lines=1 --fi
 # ログイン
 mysql --host=$MYSQLIP --user=root --password
 ```
-
-
-
-
-
-
