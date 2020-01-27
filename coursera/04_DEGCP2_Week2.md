@@ -1,6 +1,6 @@
 # DEGCP2 Week1
 
-作成日 2020/01/26
+作成日 2020/01/26、更新日 2020/01/27
 
 ## Building a data warehouse
 
@@ -49,4 +49,64 @@ SQL はケースセンシティブなので、もし大文字小文字含めて�
 
 ### Getting Started 9min
 
-TODO
+BigQuery organizes data tables into units called datasets\
+BigQuery datasets belong to a project\
+Access control to run a query is via Cloud IAM\
+BigQuery datasets can be regional or multi-regional\
+The table schema provides structure to the data
+
+You can separate cost of storage and cost of queries\
+Project A pays for queries against data stored in project B\
+Project B pays for storage and queries from Prject B
+
+With the BigQuery Data Transfer Service, you can copy large datasets\
+from different projects to yours in seconds
+
+### Loading Data 11min
+
+Batch load supports different file formats\
+CSV, NEWLINE_DELIMITED_JSON, AVRO, DATASTORE_BACKUP, PARQUET, ORC
+
+DTS (Data Transfer Service) provides SaaS connectors\
+(Cloud Storage, S3, YouTube, Google Ads, Salesforce)
+
+Modify table data with standard DML statements\
+INSERT,UPDATE,DELETE,MERGE records into tables
+
+```sql
+UPDATE table_A
+SET
+  y = table_B.y,
+  z = table_B.z +1
+FROM
+  table_B
+WHERE table_A.x = table_B.x
+  AND table_A.y IS NULL;
+
+INSERT INTO table VALUES (1,2,3),(4,5,6),(7,8,9);
+
+DELETE FROM table WHERE TRUE;
+```
+
+Note: You are limited to 1,000 DML updates per table per day.
+
+
+[データ定義言語ステートメントの使用  \|  BigQuery  \|  Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language?hl=ja)
+
+- CREATE TABLE ... 新しいテーブルを作成します
+- CREATE TABLE IF NOT EXISTS ... 指定されたデータセットにテーブルが存在しない場合にのみ新しいテーブルを作成します
+- CREATE OR REPLACE TABLE ... テーブルを作成し、既存のテーブルを指定されたデータセット内の同じ名前に置き換えます
+
+BigQueryは外部のMySQLに接続できる\
+左枠 ＞ Recources ＞ +ADD DATA ＞ Create connection\
+BigQueryとエクスターナルデータの間のJOINも可能
+
+```sql
+FROM
+  EXTERNAL_QUERY('bigquery-federation-text.vs.demo_mysql_connection',
+  'SELECT customer_id, SUM(amount) as current_spend FROM orders GROPU BY customer_id') AS extable
+```
+
+UDF = User Defined Functions
+
+[bigquery\-utils/udfs/community at master · GoogleCloudPlatform/bigquery\-utils](https://github.com/GoogleCloudPlatform/bigquery-utils/tree/master/udfs/community)
