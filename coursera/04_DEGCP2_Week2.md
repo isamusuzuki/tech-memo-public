@@ -1,6 +1,6 @@
 # DEGCP2 Week1
 
-作成日 2020/01/26、更新日 2020/01/29
+作成日 2020/01/26、更新日 2020/01/30
 
 ## Building a data warehouse
 
@@ -198,9 +198,30 @@ Normalized data => Denormalized flattened data
 Netsted and repeated columns improve the efficieny of BiqQuery\
 with relational source data
 
+### Nested and Repeated Fields 8min
+
+Reporting Approach: Should we normalize of denormalize?
+
+- normalize => Many tables => JOINs are costly
+- denormalize => One big table => Data is repeated
+
+Nested and Repeated Fields allow you to have\
+multiple levels of data granularity
+
+テーブルのSchemaを見て、TypeがRECORDであるならば、それはSTRUCTSである\
+RECORDに続くカラムは、Field nameが、Recordと同じ名前で始まる\
+STRUCTSはJOINしたテーブルそのものである\
+ひとつのテーブルにいくつSTRUCTSがあってもかまわない
+
+テーブルのSchemaを見て、ModeがREPEATEDであるならば、それはARRAYSである\
+ARRAYSは、通常のフィールドかもしくはSTRUCTSの一部となりうる
+
+BigQuery stores repeated, nested fields in a columner format
+
+
 ---
-以下はちょっと先のラボの話
----
+
+*以下はちょっと先のラボの話*
 
 ラボのタイトルは「Working with JSON and Array data in BigQuery」
 
