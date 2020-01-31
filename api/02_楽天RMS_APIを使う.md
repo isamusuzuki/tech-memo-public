@@ -1,10 +1,8 @@
-# 楽天RMS APIを利用する
+# 楽天 RMS API を利用する
 
 作成日 2019/11/20
 
-## 注文情報を取得する
-
-get_order.py
+## 01. 注文情報を取得する
 
 ```python
 import base64
@@ -58,12 +56,9 @@ except urllib.error.HTTPError as err:
 # HTTP通信に失敗したとき
 except urllib.error.URLError as err:
     print(f'error! {err.reason}')
-
 ```
 
-## 注文をキャンセルする
-
-cancel_order.py
+## 02. 注文をキャンセルする
 
 ```python
 import base64

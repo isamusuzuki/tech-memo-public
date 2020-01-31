@@ -1,10 +1,8 @@
-# CROSSMALL APIを利用する
+# CROSSMALL API を利用する
 
 作成日 2019/11/20
 
-## 注文データを取得する
-
-get_order.py
+## 01. 注文データを取得する
 
 ```python
 import hashlib
@@ -47,9 +45,7 @@ except urllib.error.URLError as err:
     print(f'ERROR => {err.reason}')
 ```
 
-## 商品属性情報を取得する
-
-get_item_attr.py
+## 02. 商品属性情報を取得する
 
 ```python
 import hashlib
@@ -95,4 +91,3 @@ except urllib.error.HTTPError as err:
 except urllib.error.URLError as err:
     print(f'ERROR => {err.reason}')
 ```
-

@@ -2,9 +2,7 @@
 
 作成日 2019/11/20
 
-## 指定したフォルダにあるファイル名を取得する
-
-list.py
+## 01. 指定したフォルダにあるファイル名を取得する
 
 ```python
 import os
@@ -23,12 +21,9 @@ for entry in res.entries:
         print(f'name={entry.name}, id={entry.id}')
 
 print('done')
-
 ```
 
-## 指定したファイルをダウンロードする
-
-download.py
+## 02. 指定したファイルをダウンロードする
 
 ```python
 import os
@@ -56,9 +51,7 @@ for entry in res.entries:
 print('done')
 ```
 
-## 指定したファイルをアップロードする
-
-upload.py
+## 03. 指定したファイルをアップロードする
 
 ```python
 import os
