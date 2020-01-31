@@ -1,6 +1,6 @@
 # DEGCP2 Week1
 
-作成日 2020/01/26、更新日 2020/01/28
+作成日 2020/01/26、更新日 2020/01/30
 
 ## Building a data warehouse
 
@@ -138,7 +138,6 @@ Input "nyctaxi" as Dataset ID > Click "Create dataset" button
 #### Ingest a new Dataset from a CSV
 
 ```sql
-#standardSQL
 SELECT
   *
 FROM
@@ -162,7 +161,6 @@ gs://cloud-training/OCBL013/nyc_tlc_yellow_trips_2018_subset_2.csv
 #### Create tables from other tables with DDL
 
 ```sql
-#standardSQL
 CREATE TABLE
   nyctaxi.january_trips AS
 SELECT
@@ -175,8 +173,55 @@ WHERE
     pickup_datetime)=1;
 ```
 
-----
-以下はちょっと先のラボの話
+## BigQuery as a data warehousing solution
+
+### Exploring Schemas 24sec
+
+Let's explore BigQuery Public Dataset schemas
+
+[BigQuery public datasets  \|  Google Cloud](https://cloud.google.com/bigquery/public-data)
+
+### Demo: Exploring Schemas 10min
+
+[training\-data\-analyst/information\_schema\.md at master · GoogleCloudPlatform/training\-data\-analyst](https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/data-engineering/demos/information_schema.md)
+
+`bigquery-public-data.baseball.__TABLES__` => これでテーブルのメタデータ（サイズ、更新日など）を得ることができる
+
+`bigquery-public-data.basebasll.INFORMATION_SCHEMA.COLUMNS` => これでカラムについてのメタデータを得ることができる
+
+### Schema Design 3min
+
+Denormalize before loading into a data warehouse
+
+Normalized data => Denormalized flattened data
+
+Netsted and repeated columns improve the efficieny of BiqQuery\
+with relational source data
+
+### Nested and Repeated Fields 8min
+
+Reporting Approach: Should we normalize of denormalize?
+
+- normalize => Many tables => JOINs are costly
+- denormalize => One big table => Data is repeated
+
+Nested and Repeated Fields allow you to have\
+multiple levels of data granularity
+
+テーブルのSchemaを見て、TypeがRECORDであるならば、それはSTRUCTSである\
+RECORDに続くカラムは、Field nameが、Recordと同じ名前で始まる\
+STRUCTSはJOINしたテーブルそのものである\
+ひとつのテーブルにいくつSTRUCTSがあってもかまわない
+
+テーブルのSchemaを見て、ModeがREPEATEDであるならば、それはARRAYSである\
+ARRAYSは、通常のフィールドかもしくはSTRUCTSの一部となりうる
+
+BigQuery stores repeated, nested fields in a columner format
+
+
+---
+
+*以下はちょっと先のラボの話*
 
 ラボのタイトルは「Working with JSON and Array data in BigQuery」
 
