@@ -1,4 +1,4 @@
-# Amazon MWS APIを利用する
+# Amazon MWS APIを勉強する
 
 作成日 2019/11/12
 
