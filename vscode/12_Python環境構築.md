@@ -1,7 +1,3 @@
----
-tags: vscode, python
----
-
 # vscode の Python 環境構築
 
 作成日 2019/11/21
