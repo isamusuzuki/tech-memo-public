@@ -1,20 +1,27 @@
 # vscode の Node.js 環境構築
 
-作成日 2019/11/27
+作成日 2019/11/27、更新日 2020/01/31
 
-## 01. 新規プロジェクトの作成
+## 01. Node.js をインストールする
 
-Node.js はインストール済みであるとする
+Windows の場合は、Chocolatey を使ってインストールする => `choco install nodejs-lts`
+
+[Chocolatey Software \| Node\.js LTS \(Install\) 12\.14\.1](https://chocolatey.org/packages/nodejs-lts)
 
 ```bash
-# Git Bashを開く
-cd ~/YOUR-PROJECT
-
 # Node.jsのバージョン番号を確認する
 node -v
 # => v12.13.0
 npm -v
 # => 6.12.0
+```
+
+## 02. 新規プロジェクトを作成する
+
+Git Bashを開く
+
+```bash
+cd ~/YOUR-PROJECT
 
 # package.jsonファイルを生成する
 npm init -y
@@ -46,7 +53,7 @@ npm init -y
 }
 ```
 
-## 02. 必須の拡張機能
+## 03. Prettier は、必須の vscode 拡張機能
 
 [Prettier \- Code formatter \- Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
@@ -64,7 +71,7 @@ JavaScript を自動で修正・整形してくれる便利ツールだが、
 }
 ```
 
-## 03. require 構文に、サジェスチョンが表示するのを止める
+## 04. require 構文に、サジェスチョンが表示するのを止める
 
 以下のようなサジェスチョンが、require 構文に表示される
 
