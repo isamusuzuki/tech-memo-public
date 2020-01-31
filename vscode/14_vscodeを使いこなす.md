@@ -76,20 +76,12 @@
 }
 ```
 
-## 08. 設定ファイルで使える定義済みの変数
-
-```bash
-${workspaceFolder}
-```
-
-[Visual Studio Code Variables Reference](https://code.visualstudio.com/docs/editor/variables-reference)
-
-## 09. 設定ファイルの格納場所
+## 08. 設定ファイルの格納場所
 
 - Windows 10 ... `C:\Users\YOUR-NAME\AppData\Roaming\Code\User`
 - Linux ... `$HOME/.config/Code/User`
 
-## 10. 拡張子に基づいたおすすめをポップアップさせない
+## 09. 拡張子に基づいたおすすめをポップアップさせない
 
 ```json
 {

@@ -50,14 +50,14 @@ flake8-import-order
 
 ```json
 {
-  "python.pythonPath": "C:\\Users\\YOUR-NAME\\YOUR-PROJECT\\Scripts\\python.exe",
+  "python.pythonPath": "${workspaceFolder}\\Scripts\\python.exe",
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
-  "python.linting.flake8Path": "C:\\Users\\YOUR-NAME\\YOUR-PROJECT\\Scripts\\flake8.exe",
+  "python.linting.flake8Path": "${workspaceFolder}\\Scripts\\flake8.exe",
   "python.linting.lintOnSave": true,
   "python.formatting.provider": "autopep8",
-  "python.formatting.autopep8Path": "C:\\Users\\YOUR-NAME\\YOUR-PROJECT\\Scripts\\autopep8.exe",
+  "python.formatting.autopep8Path": "${workspaceFolder}\\Scripts\\autopep8.exe",
   "editor.formatOnSave": true
 }
 ```
