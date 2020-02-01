@@ -1,4 +1,4 @@
-# Visual Studio Code を使いこなす
+# Visual Studio Code を使う
 
 作成日 2020/01/29、更新日 2020/01/31
 

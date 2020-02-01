@@ -1,4 +1,4 @@
-# Bash を使いこなす
+# Bash を使う
 
 作成日 2020/01/31
 
@@ -35,7 +35,7 @@ crontab で実行させるスクリプトは、非インタラクティブシェ
 `.bashrc`と`.bash_profile`のどちらに書き込んでも、環境変数には組み込まれない
 解決方法のひとつとしては、crontab ファイルに直接書き込む方法がある
 
-```bash
+```text
 DB_HOST_NAME=abcdefg
 DB_USER_NAME=abcdefg
 DB_PASSWORD=abcdefg

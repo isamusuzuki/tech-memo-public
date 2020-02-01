@@ -1,4 +1,4 @@
-# Matplotlib を勉強する
+# Matplotlib を学ぶ
 
 作成日 2020/01/08
 
