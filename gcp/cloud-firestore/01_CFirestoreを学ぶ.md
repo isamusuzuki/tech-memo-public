@@ -1,4 +1,4 @@
-# Cloud Firestore を勉強する
+# Cloud Firestore を学ぶ
 
 作成日 2019/11/13、更新日 2019/12/06
 

@@ -1,4 +1,4 @@
-# Google Home でメモを取る方法
+# Google Home でメモを取る
 
 作成日 2020/01/25
 
