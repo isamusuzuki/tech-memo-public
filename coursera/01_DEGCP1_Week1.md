@@ -2,11 +2,11 @@
 
 作成日 2020/01/05、更新日 2020/01/12
 
-## Recommending Products using Cloud SQL and Spark
+## 01. ecommending Products using Cloud SQL and Spark
 
-- Apache Spark ML
-- Cloud DataProc
-- Cloud SQL
+-   Apache Spark ML
+-   Cloud DataProc
+-   Cloud SQL
 
 Recommendation system = data, model, training infra
 
@@ -36,9 +36,9 @@ Job1 50%, Job2 50%, Job3 starved, Job4 starved
 
 Cloud DataProc の特徴
 
-- Hadoop Yarn Metrics
-- Store data off cluster
-- Preemptive VMs (80% cheaper)
+-   Hadoop Yarn Metrics
+-   Store data off cluster
+-   Preemptive VMs (80% cheaper)
 
 データを Cloud Storage に置くのは簡単\
 `hdfs://` => `gs://`
@@ -47,11 +47,11 @@ HBase = BigTable
 
 DEMO: Cloud SQL - Spark
 
-- Create Cloud SQL Instance
-- Create table with SQL file
-- Populate table from CSV file
-- Accomodation table, Rating table
-- Allow access to Cloud SQL
+-   Create Cloud SQL Instance
+-   Create table with SQL file
+-   Populate table from CSV file
+-   Accomodation table, Rating table
+-   Allow access to Cloud SQL
 
 Create Cluster on Cloud DataProc
 
@@ -62,7 +62,7 @@ rentals-m: 130.211.127.217\
 rentals-w-0: 34.67.220.181\
 rentals-w-1: 104.154.165.245
 
-## Predict Visitor Purchases with BigQuery ML
+## 02. Predict Visitor Purchases with BigQuery ML
 
 Introduction to BigQuery
 
@@ -70,13 +70,13 @@ DEMO
 
 BigQuery Storage Service = Colossus File System
 
-- Cloud DataPrep
-- Cloud DataFlow
+-   Cloud DataPrep
+-   Cloud DataFlow
 
 BigQuery は Array と Struct を持つ\
 JOIN させたデータをひとつのテーブルにまとめて保存できる
 
-## Apply machine learning using SQL with BigQuery ML
+## 03. Apply machine learning using SQL with BigQuery ML
 
 ### Choose the right model type for your structured data use case
 
@@ -102,9 +102,9 @@ LTV ... Life time value
 
 ### データサイエンティストや機械学習のプロが使う専門用語
 
-- レコードもしくは行 ... インスタンス, オブザベーション
-- Label ... 正しい答え、アウトプット
-- Feature Column ... インプットされるデータ
+-   レコードもしくは行 ... インスタンス, オブザベーション
+-   Label ... 正しい答え、アウトプット
+-   Feature Column ... インプットされるデータ
 
 ### BigQueryML: Create models with SQL
 
@@ -143,11 +143,11 @@ FROM
 
 サポートされるモデル
 
-- 線形回帰（予測） ... ラベルは実数値
-- 2 項ロジスティック回帰（分類） ... ラベルの値は 2 つだけ
-- 多孔ロジスティック回帰（分類）... 複数の考えうる値を予測する
-- K 平均法クラスタリング（データセグメンテーション） ... K 平均法は教師なし学習
-- TensorFlow モデルのインポート ... トレーニング済みの TensorFlow モデルから BigQueryML モデルを作成する
+-   線形回帰（予測） ... ラベルは実数値
+-   2 項ロジスティック回帰（分類） ... ラベルの値は 2 つだけ
+-   多孔ロジスティック回帰（分類）... 複数の考えうる値を予測する
+-   K 平均法クラスタリング（データセグメンテーション） ... K 平均法は教師なし学習
+-   TensorFlow モデルのインポート ... トレーニング済みの TensorFlow モデルから BigQueryML モデルを作成する
 
 ### ML projects phases
 
@@ -179,16 +179,16 @@ OPTION
 
 ### BigQuery ML Cheatsheet
 
-- Label ... specify column in OPTIONS using input_label_cols
-- Feature ... SELECT \* FROM ML.FEATURE_INFO(MODEL `mydataset.mymode`)
-- Model ... resides in BigQuery dataset
-- ModelType ... Linear Regression, Logistic Regression
-- TrainingProgress ... SELECT \* FROM ML.TRAINING_INFO(MODEL `mydataset.mymode`)
-- Inspect Weights ... SELECT \* FROM ML.WEIGHTS(Model `mydataset.mymodel`, (query))
-- Evaluation ... SELECT \* FROM ML.EVALUATE(model `mydatasets.mymodel`)
-- Prediction ... SELECT \* FROM ML.PREDICT(MODEL `mydataset.mymodel`, (query))
+-   Label ... specify column in OPTIONS using input_label_cols
+-   Feature ... SELECT \* FROM ML.FEATURE_INFO(MODEL `mydataset.mymode`)
+-   Model ... resides in BigQuery dataset
+-   ModelType ... Linear Regression, Logistic Regression
+-   TrainingProgress ... SELECT \* FROM ML.TRAINING_INFO(MODEL `mydataset.mymode`)
+-   Inspect Weights ... SELECT \* FROM ML.WEIGHTS(Model `mydataset.mymodel`, (query))
+-   Evaluation ... SELECT \* FROM ML.EVALUATE(model `mydatasets.mymodel`)
+-   Prediction ... SELECT \* FROM ML.PREDICT(MODEL `mydataset.mymodel`, (query))
 
-## Lab: Predict Visitor Purchases with BigQuery ML
+## 04. Lab: Predict Visitor Purchases with BigQuery ML
 
 Classify returning customers with BigQuery ML
 
@@ -232,8 +232,8 @@ blank
 
 ### Select features and create your training dataset
 
-- feature = input ... bounces, time_on_site
-- label = output ... will_buy_on_return_visit
+-   feature = input ... bounces, time_on_site
+-   label = output ... will_buy_on_return_visit
 
 Question: do you think time_on_site and bounces will be a good indicator?
 
@@ -487,9 +487,9 @@ ORDER BY
   predicted_will_buy_on_return_visit DESC;
 ```
 
-- predicted_will_buy_on_return_visit ... whether the visitor will buy later (1=yes)
-- predicted_will_buy_on_return_visit_probs.label ... binary classifier for yes/no
-- predicted_will_buy_on_return_visit.prob ... confidence in it's prediction (1 = 100%)
+-   predicted_will_buy_on_return_visit ... whether the visitor will buy later (1=yes)
+-   predicted_will_buy_on_return_visit_probs.label ... binary classifier for yes/no
+-   predicted_will_buy_on_return_visit.prob ... confidence in it's prediction (1 = 100%)
 
 label が事象、すなわち 1 と 0。prob は、それぞれの事象の確かさ。prob は合計すると 1 になる。
 

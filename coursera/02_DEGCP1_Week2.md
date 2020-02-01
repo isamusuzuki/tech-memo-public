@@ -1,8 +1,8 @@
-# DEGCP1 Week2 前半
+# DEGCP1 Week2
 
 作成日 2020/01/13、更新日 2020/01/18
 
-## Create Streaming Data Pipelines with Cloud Pub/Sub and Cloud Dataflow
+## 01. Create Streaming Data Pipelines with Cloud Pub/Sub and Cloud Dataflow
 
 勉強する目的
 
@@ -41,7 +41,7 @@ Start with provided templates and build from there
 
 Requirements: Java 8, Maven 3
 
-## Lab: Create a streaming data pipeline with Cloud Dataflow
+## 02. Lab: Create a streaming data pipeline with Cloud Dataflow
 
 ### Setup streaming Taxi topic in Pub/Sub
 
@@ -134,7 +134,7 @@ Sort: dashboard_sort Ascending
 Visualizing data at a minute-level granularity is currently not supported in Data Studio as a timestamp. This is why we created our own dashboard_sort dimension.\
 分レベルの粒度は現在のところサポートされていない。それゆえ我々は dashboad_sort というディメンションを作成したのである
 
-## Module Resources
+## 03. Module Resources
 
 [Cloud Pub/Sub ドキュメント  \|  Cloud Pub/Sub ドキュメント  \|  Google Cloud](https://cloud.google.com/pubsub/docs/)
 
@@ -146,7 +146,7 @@ Visualizing data at a minute-level granularity is currently not supported in Dat
 
 [Data Portal Report Gallery](https://datastudiogallery.appspot.com/gallery)
 
-## Classify Images with Pre-Built Modedls using Vision API and Cloud AutoML
+## 04. Classify Images with Pre-Built Modedls using Vision API and Cloud AutoML
 
 ### Learning Objectives
 
@@ -513,7 +513,7 @@ Vision API は、画像を与えるだけで、ラベルを割り当ててくれ
 animal や hat といったラベリングをして、まったく雲を認識できなかった\
 また、人の顔を検知するとその表情を分析しようとし、その他のことを認識しなかった
 
-## Course Summary
+## 05. Course Summary
 
 1 Petabit/sec of total bisection bandwidth\
 Google's data center network speed enables\

@@ -2,18 +2,12 @@
 
 作成日 2020/01/19、更新日 2020/01/25
 
-## Introduction
+## 00. コース概要
 
-コース概要\
 タイトル: Modernizing Data Lakes and Data Warehouses with GCP\
 位置づけ: Part of a 6-course series, Data Engineering with GCP
 
-- Data Lakes and data warehouses
-- Building batch data pipelines
-- Streaming systems and performance
-- Anaytics and AI
-
-## Introduction to Data Engineering
+## 01. Introduction to Data Engineering
 
 ### Explore the role of a data engineer 6min
 
@@ -249,7 +243,7 @@ GROUP BY wx.rainy
 
 New Yorkers ride the bicycle 47% fewer times when it rains.
 
-## Building a Data Lake
+## 02. Building a Data Lake
 
 - Learn how to use Google Cloud Storage as you data lake on GCP
 - Use Cloud SQL for a relational data lake

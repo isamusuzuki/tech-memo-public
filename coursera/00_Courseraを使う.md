@@ -1,14 +1,14 @@
-# Coursera
+# Courseraを使う
 
 作成日 2020/01/16
 
-## Courseraとは
+## 01. Courseraとは
 
 100%オンラインの教育コース
 
 [Coursera \| Online Courses & Credentials by Top Educators\. Join for Free](https://www.coursera.org/)
 
-## 受講中のコース
+## 02. 受講中のコース
 
 ### Data Engineering with GCP Professional Certificate
 
@@ -28,11 +28,10 @@
 受講履歴
 
 - 2020/01/04 受講開始
-- 2020/01/12 Course1 Week1完了
 - 2020/01/18 Course1完了
-- 2020/01/25 Course2 Week1完了
+- 2020/02/01 Course2完了
 
-## 次に受講してみたいコース
+## 03. 次に受講してみたいコース
 
 ### Google Cloudが提供しているコース
 

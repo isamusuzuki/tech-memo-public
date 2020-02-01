@@ -1,14 +1,14 @@
 # DEGCP2 Week1
 
-作成日 2020/01/26、更新日 2020/01/30
+作成日 2020/01/26、更新日 2020/02/01
 
-## Building a data warehouse
+## 01. Building a data warehouse
 
 Learning Objectives
 
-- Discuss requirements of a modern warehouse
-- Understand why BigQuery is the scalable data warehousing solution on GCP
-- Undersntad core concepts of BigQuery and review options of loading data into BigQuery
+-   Discuss requirements of a modern warehouse
+-   Understand why BigQuery is the scalable data warehousing solution on GCP
+-   Undersntad core concepts of BigQuery and review options of loading data into BigQuery
 
 ### The Modern Data Warehouse 3min
 
@@ -92,13 +92,13 @@ Note: You are limited to 1,000 DML updates per table per day.
 
 [データ定義言語ステートメントの使用  \|  BigQuery  \|  Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language?hl=ja)
 
-- CREATE TABLE ... 新しいテーブルを作成します
-- CREATE TABLE IF NOT EXISTS ... 指定されたデータセットにテーブルが存在しない場合にのみ新しいテーブルを作成します
-- CREATE OR REPLACE TABLE ... テーブルを作成し、既存のテーブルを指定されたデータセット内の同じ名前に置き換えます
+-   CREATE TABLE ... 新しいテーブルを作成します
+-   CREATE TABLE IF NOT EXISTS ... 指定されたデータセットにテーブルが存在しない場合にのみ新しいテーブルを作成します
+-   CREATE OR REPLACE TABLE ... テーブルを作成し、既存のテーブルを指定されたデータセット内の同じ名前に置き換えます
 
-BigQueryは外部のMySQLに接続できる\
+BigQuery は外部の MySQL に接続できる\
 左枠 ＞ Recources ＞ +ADD DATA ＞ Create connection\
-BigQueryとエクスターナルデータの間のJOINも可能
+BigQuery とエクスターナルデータの間の JOIN も可能
 
 ```sql
 FROM
@@ -110,24 +110,22 @@ UDF = User Defined Functions
 
 [bigquery\-utils/udfs/community at master · GoogleCloudPlatform/bigquery\-utils](https://github.com/GoogleCloudPlatform/bigquery-utils/tree/master/udfs/community)
 
-### Lab Loading Data into BigQuery
+### Lab: Loading Data into BigQuery
 
 ラボの目的
 
-- 各種ソースからBigQueryにデータをロードする
-- CLIとコンソールを使ってBigQueryにデータをロードする
-- DDLを使って、テーブルを作成する
+-   各種ソースから BigQuery にデータをロードする
+-   CLI とコンソールを使って BigQuery にデータをロードする
+-   DDL を使って、テーブルを作成する
 
 DDL (Data Definition Language) = データ定義言語\
-create文、drop文、alter文がDDLに相当する
+create 文、drop 文、alter 文が DDL に相当する
 
 DML (Data Manipulation Language) = データ操作言語\
-select文、insert文、update文、delete文がDMLに相当する
+select 文、insert 文、update 文、delete 文が DML に相当する
 
 DCL (Data Control Language) = データ制御言語\
-grant文、revoke文がDCLに相当する
-
-ラボのタイトルは「Loading Data into BigQuery」
+grant 文、revoke 文が DCL に相当する
 
 #### Create a new dataset to store our tables
 
@@ -173,7 +171,7 @@ WHERE
     pickup_datetime)=1;
 ```
 
-## BigQuery as a data warehousing solution
+## 02. BigQuery as a data warehousing solution
 
 ### Exploring Schemas 24sec
 
@@ -183,7 +181,7 @@ Let's explore BigQuery Public Dataset schemas
 
 ### Demo: Exploring Schemas 10min
 
-[training\-data\-analyst/information\_schema\.md at master · GoogleCloudPlatform/training\-data\-analyst](https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/data-engineering/demos/information_schema.md)
+[training\-data\-analyst/information_schema\.md at master · GoogleCloudPlatform/training\-data\-analyst](https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/data-engineering/demos/information_schema.md)
 
 `bigquery-public-data.baseball.__TABLES__` => これでテーブルのメタデータ（サイズ、更新日など）を得ることができる
 
@@ -202,38 +200,92 @@ with relational source data
 
 Reporting Approach: Should we normalize of denormalize?
 
-- normalize => Many tables => JOINs are costly
-- denormalize => One big table => Data is repeated
+-   normalize => Many tables => JOINs are costly
+-   denormalize => One big table => Data is repeated
 
 Nested and Repeated Fields allow you to have\
 multiple levels of data granularity
 
-テーブルのSchemaを見て、TypeがRECORDであるならば、それはSTRUCTSである\
-RECORDに続くカラムは、Field nameが、Recordと同じ名前で始まる\
-STRUCTSはJOINしたテーブルそのものである\
-ひとつのテーブルにいくつSTRUCTSがあってもかまわない
+テーブルの Schema を見て、Type が RECORD であるならば、それは STRUCTS である\
+RECORD に続くカラムは、Field name が、「Record と同じ名前.」で始まる\
+STRUCTS は JOIN したテーブルそのものである\
+ひとつのテーブルにいくつ STRUCTS があってもかまわない
 
-テーブルのSchemaを見て、ModeがREPEATEDであるならば、それはARRAYSである\
-ARRAYSは、通常のフィールドかもしくはSTRUCTSの一部となりうる
+テーブルの Schema を見て、Mode が REPEATED であるならば、それは ARRAYS である\
+ARRAYS は、通常のフィールドかもしくは STRUCTS の一部となりうる
 
 BigQuery stores repeated, nested fields in a columner format
 
+### Demo: Nested and Repeated Fields 15min
 
----
+[training\-data\-analyst/nested\.md at master · GoogleCloudPlatform/training\-data\-analyst](https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/data-engineering/demos/nested.md)
 
-*以下はちょっと先のラボの話*
+```sql
+SELECT
+  block_id,
+  MAX(i.input_sequence_number) AS max_seq_number,
+  COUNT(t.transaction_id) as num_transactions_in_block
+FROM `bigquery-public-data.bitcoin_blockchain.blocks` AS b
+  -- Use the nested STRUCT within BLOCKS table for transactions instead of a separate JOIN
+  , b.transactions AS t
+  , t.inputs as i
+GROUP BY block_id;
+```
 
-ラボのタイトルは「Working with JSON and Array data in BigQuery」
+-   FROM 句の中の","は、"CROSS JOIN" の省略形である
+-   Nested または Repeated されたフィールドを使うときは、自分に CROSS JOIN させてから使う
+
+```sql
+SELECT DISTINCT
+  block_id,
+  TIMESTAMP_MILLIS(timestamp) AS timestamp,
+  t.transaction_id,
+  t_outputs.output_satoshis AS satoshi_value,
+  t_outputs.output_satoshis * 0.00000001 AS btc_value
+FROM `bigquery-public-data.bitcoin_blockchain.blocks` AS b
+  , b.transactions AS t
+  , t.inputs as i
+  , UNNEST(t.outputs) AS t_outputs
+ORDER BY btc_value DESC
+LIMIT 10;
+```
+
+-   配列となっているフィールドは、使う前に分解する必要がある
+-   UNNEST()メソッドで囲ってから、自分に CROSS JOIN させる
+
+#### 自習: ネストされた列と繰り返し列を、もう一度、おさらしておく
+
+[ネストされた列と繰り返し列の指定  \|  BigQuery  \|  Google Cloud](https://cloud.google.com/bigquery/docs/nested-repeated?hl=ja#limitations)
+
+BigQuery は、データを非正規化して、ネストされた列と繰り返し列を利用します。\
+ネストされた列と繰り返し列は、リレーショナル（正規化）スキーマを維持することによる\
+パフォーマンスへの影響なしで、リレーションシップを維持できます。\
+ネストされた列と繰り返し列を指定するには、`RECORD` (`STRUCT`) データ型を使用します。
+
+### Lab: Working with JSON and Array Data in BigQuery
+
+目的
+
+-   半構造の JSON データを BigQuery にロードする
+-   Arrays を作成してクエリーする
+-   Structs を作成してクエリーする
+-   ネストされて繰り返しているフィールドをクエリーする
 
 #### Create a new dataset to store our tables
 
 GCP Console ＞ BIG DATA > BigQuery\
-Left pane > project name > Right pane > Click "+ CREATE DATASET"\
+Left pane > Resources > Click project name\
+Right pane > Click "+ CREATE DATASET"\
 Input "fruit_store" as Dataset ID > Click "Create dataset" button
 
 #### Practice working with Array in SQL
 
-配列に慣れよ
+正規化 normalization = going from one table to many\
+MySQL のようなデータベースではごく普通のアプローチ
+
+非正規化 denormalization = bring many separate tables\
+into one large table\
+データアナリストが行う逆方向の作業
 
 ```sql
 SELECT
@@ -243,45 +295,27 @@ SELECT
   'cherry'] AS fruit_array
 ```
 
-Query resultsをJSONで表示させることもできる
+Query results を JSON で表示させることもできる
 
 ```json
 [
-  {
-    "fruit_array": [
-      "raspberry",
-      "blackberry",
-      "strawberry",
-      "cherry"
-    ]
-  }
+    {
+        "fruit_array": ["raspberry", "blackberry", "strawberry", "cherry"]
+    }
 ]
 ```
 
-テーブルを作成したときに、ModeがREPEATEDになったものは、Arrayを意味する
+テーブルを作成したときに、Mode が REPEATED になったものは、Array を意味する
 
-Recap
+まとめ
 
-- BigQuery natively supports arrays
-- Array values must share a data type
-- Arrays are called REPEATED fields in BigQuery
+-   BigQuery natively supports arrays
+-   Array values must share a data type
+-   Arrays are called REPEATED fields in BigQuery
 
 ### Creating your own arrays with ARRAY_AGG()
 
-変更前
-
-```sql
-SELECT
-  fullVisitorId,
-  date,
-  v2ProductName,
-  pageTitle
-  FROM `data-to-insights.ecommerce.all_sessions`
-WHERE visitId = 1501570398
-ORDER BY date
-```
-
-変更後
+ARRAY_AGG()を使って、クエリー結果に配列をつくる
 
 ```sql
 SELECT
@@ -295,7 +329,7 @@ GROUP BY fullVisitorId, date
 ORDER BY date
 ```
 
-ARRAY_LENGTH()を使ったクエリー
+ARRAY_LENGTH()を使って配列の数を数える
 
 ```sql
 SELECT
@@ -311,7 +345,7 @@ GROUP BY fullVisitorId, date
 ORDER BY date
 ```
 
-DISTINCTを入れる
+DISTINCT を使って、重複をのぞいた配列をつくる
 
 ```sql
 SELECT
@@ -327,14 +361,14 @@ GROUP BY fullVisitorId, date
 ORDER BY date
 ```
 
-Recap
+まとめ
 
-- `ARRAY_LENGTH(<array>)` ... 要素の数を表示する
-- `ARRAY_AGG(DISTINCT <field>)` ... 重複を排除して要素を表示する
-- `ARRAY_AGG(<field> ORDER BY <field>)` ... 順番に表示する
-- `ARRAY_AGG(<field> LIMI 5)` ... 表示を制限する
+-   `ARRAY_LENGTH(<array>)` ... 配列の数を数える
+-   `ARRAY_AGG(DISTINCT <field>)` ... 重複を排除して配列をつくる
+-   `ARRAY_AGG(<field> ORDER BY <field>)` ... 順番に並べて配列をつくる
+-   `ARRAY_AGG(<field> LIMI 5)` ... 数を制限して配列をつくる
 
-de-duplication 重複排除
+de-duplication = 重複排除
 
 ### Querying datasets that already have ARRAYs
 
@@ -372,17 +406,92 @@ LIMIT
   10
 ```
 
-Recap
+まとめ
 
-- 配列を`UNNEST()`することで、配列要素を行に戻す
-- `UNNEST()`は、FROM句の中で使う
+-   配列を`UNNEST()`することで、配列要素を行に戻す
+-   `UNNEST()`は、FROM 句の中で使う
+-   `UNNEST()`の前の`,`が大事で、`CROSS JOIN`を意味している
 
 #### Introduction to STRUCTs
 
-STRUCTはジョイン済みの別テーブル
+STRUCT はジョイン済みの別テーブル
 
-- STRUCTは、TypeがRECORDになる
-- ARRAYは、ModeがREPEATEDになる
-- STRUCTを使うといは、SELECT文の中でCROSS JOINさせる
+-   STRUCT は、Type が RECORD になる
+-   ARRAY は、Mode が REPEATED になる
+-   STRUCT を使うといは、SELECT 文の中で CROSS JOIN させる
 
 [標準 SQL での配列の操作  \|  BigQuery  \|  Google Cloud](https://cloud.google.com/bigquery/docs/reference/standard-sql/arrays#flattening-arrays)
+
+#### Practice with STRUCTS and ARRAYs
+
+-   Type が RECORD の列は STRUCT
+-   Mode が REPEATED の列は ARRAY
+
+正しく動くクエリー
+
+```sql
+SELECT race, participants.name
+FROM racing.race_results
+CROSS JOIN
+race_results.participants
+```
+
+よりスマートな書き方
+
+```sql
+SELECT race, participants.name
+FROM racing.race_results AS r, r.participants
+```
+
+UNNEST を使ったクエリーの例
+
+```sql
+SELECT COUNT(p.name) AS racer_count
+FROM racing.race_results as r,
+UNNEST(r.participants) as p;
+
+SELECT
+  p.name,
+  SUM(split_times) as total_race_time
+FROM racing.race_results AS r
+, UNNEST(r.participants) AS p
+, UNNEST(p.splits) AS split_times
+WHERE p.name LIKE 'R%'
+GROUP BY p.name
+ORDER BY total_race_time ASC;
+
+SELECT
+  p.name,
+  split_time
+FROM racing.race_results AS r
+, r.participants AS p
+, p.splits AS split_time
+WHERE split_time = 23.2;
+```
+
+## 03. Partitioning and Clustering in BigQuery
+
+### Optimizing with Partitioning and Clustering 5min
+
+BigQuery supports three ways of partitioning tables
+
+- Ingestion time
+- Any column that is of type DATE or TIMESTAMP
+- integer-typed column
+
+BigQuery automatically sorts the data based on values in the clustering columns
+
+### Demo: Creating Partitioned Tables 7min
+
+[training\-data\-analyst/partition\.md at master · GoogleCloudPlatform/training\-data\-analyst](https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/data-engineering/demos/partition.md)
+
+### Demo: Partitioning and Clustering 6min
+
+[training\-data\-analyst/clustering\.md at master · GoogleCloudPlatform/training\-data\-analyst](https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/data-engineering/demos/clustering.md)
+
+### Preview: Transforming Batch and Streaming Data 2min
+
+endless streaming data => Cloud Pub/Sub, Cloud Dataflow and Cloud Bigtable
+
+BigQueryにはstreaming insertsという方法がある
+
