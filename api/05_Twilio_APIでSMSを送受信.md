@@ -1,26 +1,26 @@
-# TwilioでSMSを送受信する
+# Twilio で SMS を送受信する
 
 作成日 2019/11/17
 
-## 01. TwilioでSMSを送信する
+## 01. Twilio で SMS を送信する
 
 ### 解説記事を探す
 
-[SMSを送信するAlexaスキルを作る（ASK SDK v2 for Node\.js対応） \- Qiita](https://qiita.com/twilioforkwc/items/b82583de93a26a5f4f02)
+[SMS を送信する Alexa スキルを作る（ASK SDK v2 for Node\.js 対応） \- Qiita](https://qiita.com/twilioforkwc/items/b82583de93a26a5f4f02)
 
-> Twilioでは、SMSの送信は日本の番号からはできません。アメリカ番号（+1で始まる番号）を購入する必要があります。
+> Twilio では、SMS の送信は日本の番号からはできません。アメリカ番号（+1 で始まる番号）を購入する必要があります。
 
-[Twilioを使ったSMSの受信と送信元への返信 \- Qiita](https://qiita.com/you03/items/d3a9505894bb77285e68)
+[Twilio を使った SMS の受信と送信元への返信 \- Qiita](https://qiita.com/you03/items/d3a9505894bb77285e68)
 
 ### 公式ドキュメントを写経する
 
-[Programmable SMS: アプリケーション内でSMSを送受信する \- Twilio](https://jp.twilio.com/docs/sms)
+[Programmable SMS: アプリケーション内で SMS を送受信する \- Twilio](https://jp.twilio.com/docs/sms)
 
 「はじめてのメッセージを送信しましょう」ボタンをクリック
 
 [メッセージを送信する \- Twilio](https://jp.twilio.com/docs/sms/send-messages)
 
-左枠 ＞ Programmable SMS usage guides ＞ APIでメッセージを送信する ＞ Send an SMS with Twilio's API
+左枠 ＞ Programmable SMS usage guides ＞ API でメッセージを送信する ＞ Send an SMS with Twilio's API
 
 ```python
 # Download the helper library from https://jp.twilio.com/docs/python/install
@@ -71,11 +71,11 @@ message = client.messages.create(
 print(message.sid)
 ```
 
-## 02. TwilioでSMSを受信する
+## 02. Twilio で SMS を受信する
 
 ### 「SMS Python クイックスタート」を写経する
 
-[Twilio SMS Python クイックスタート \- SMSの送受信 \- Twilio](https://jp.twilio.com/docs/sms/quickstart/python)
+[Twilio SMS Python クイックスタート \- SMS の送受信 \- Twilio](https://jp.twilio.com/docs/sms/quickstart/python)
 
 ```python
 from flask import Flask, request
@@ -94,26 +94,25 @@ if __name__ = '__main__':
     app.run(debug=True)
 ```
 
-これは、XMLを返すURLでしかない \
-twilio cliは、ngrokトンネルを使って、\
+これは、XML を返す URL でしかない \
+twilio cli は、ngrok トンネルを使って、\
 開発サーバーにアクセスできるようにし、\
 メッセージを返すようになる\
 向こうがどんなメッセージを送ってきたかはまったく見られない
 
-### 「PythonでSMSやMMS（日本未対応）を受信、返信する」読む
+### 「Python で SMS や MMS（日本未対応）を受信、返信する」読む
 
-[PythonでSMSやMMS（日本未対応）を受信、返信する方法 \- Twilio](https://jp.twilio.com/docs/sms/tutorials/how-to-receive-and-reply-python)
+[Python で SMS や MMS（日本未対応）を受信、返信する方法 \- Twilio](https://jp.twilio.com/docs/sms/tutorials/how-to-receive-and-reply-python)
 
-#### Webhook URLには、どんなデータが来るのか
+#### Webhook URL には、どんなデータが来るのか
 
-開発者のアプリケーションへのTwilioからのリクエスト
+開発者のアプリケーションへの Twilio からのリクエスト
 
 [TwiML for Programmable SMS \- Twilio](https://jp.twilio.com/docs/sms/twiml)
 
-> Twilioは、`application/x-www-form-urlencoded`形式でHTTPリクエストをユーザーのアプリケーションに送信します。 （Twilioが）このリクエストにパラメーターと値を含めることで、Twilioはユーザーのアプリケーションにデータを送信し、これを使用してレスポンスの前に処理を行うことができます。
-> 
+> Twilio は、`application/x-www-form-urlencoded`形式で HTTP リクエストをユーザーのアプリケーションに送信します。 （Twilio が）このリクエストにパラメーターと値を含めることで、Twilio はユーザーのアプリケーションにデータを送信し、これを使用してレスポンスの前に処理を行うことができます。
 
-### Cloud FunctionsでTwilio Webhookを受ける
+### Cloud Functions で Twilio Webhook を受ける
 
 `main.py`
 
@@ -134,10 +133,10 @@ def sms_receive(request):
 twilio
 ```
 
-- Twilioは、フォームをPOST送信してくる
-- Flaskのrequest.formは、ImmutableMultiDictクラスである
-- From, To, Bodyの3つが取れればそれでいい
-- `resp.message()`を入れると返事をしてしまうが、抜けば何もしない
+-   Twilio は、フォームを POST 送信してくる
+-   Flask の request.form は、ImmutableMultiDict クラスである
+-   From, To, Body の 3 つが取れればそれでいい
+-   `resp.message()`を入れると返事をしてしまうが、抜けば何もしない
 
 ```python
 resp = MessagingResponse()
