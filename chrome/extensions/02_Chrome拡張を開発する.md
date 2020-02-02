@@ -1,0 +1,394 @@
+# Chrome拡張を開発する
+
+作成日 2019/06/27
+
+## 01. ドキュメントを写経する
+
+ドキュメント => [https://developer.chrome.com/extensions](https://developer.chrome.com/extensions)
+
+### Hello Extensionsをダウンロードする
+
+ダウンロード先 => [https://developer.chrome.com/extensions/samples#search:hello](https://developer.chrome.com/extensions/samples#search:hello)
+
+以下の3つのファイルを入手した
+
+- hello_extensions.png
+- hello.html
+- manifest.json
+
+`manifest.json`ファイル
+
+```json
+{
+  "name": "Hello Extensions",
+  "description": "Base Level Extension",
+  "version": "1.0",
+  "browser_action": {
+    "default_popup": "hello.html",
+    "default_icon": "hello_extensions.png"
+  },
+  "manifest_version": 2,
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+F",
+        "mac": "MacCtrl+Shift+F"
+      },
+      "description": "Opens hello.html"
+    }
+  }
+}
+```
+
+### Hello Extensionsを自分のChromeに組み込む
+
+1. `chrome://extensions`を開く
+1. 右上にあるデベロッパーモードをオンにする
+1. 「パッケージ化されていない拡張機能を読み込む」ボタンを押す
+1. `manifest.json`ファイルが入っているフォルダを選択する
+
+### ポップアップを登場させる
+
+Chromeの右上に登場した拡張ボタンをクリックすると、\
+ポップアップが登場する\
+`Ctrl+Shift+F`でもポップアップが登場する
+
+## 02. チュートリアルを写経する
+
+チュートリアル => [https://developer.chrome.com/extensions/getstarted](https://developer.chrome.com/extensions/getstarted)
+
+### Create Manifest
+
+- name, version, descriptionは、拡張機能ページのアプリ詳細に表示される
+- manifest_versionは、最終行につけておく
+
+```json
+{
+  "name": "Getting Started Example",
+  "version": "1.0",
+  "description": "Build an Extension!",
+  "manifest_version": 2
+}
+```
+
+### Add Instruction
+
+`background.js`を作成し、マニフェストに登録する
+
+```json
+{
+  "name": "Getting Started Example",
+  "version": "1.0",
+  "description": "Build an Extension!",
+  "permissions": ["storage"],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "manifest_version": 2
+}
+```
+
+拡張機能ページに表示されるアプリ詳細で、\
+「ビューを検証 バックグランドページ」をクリックすると、\
+Consoleにコメントがある
+
+### Introduce a User Interface
+
+- chrome.runtime ... 拡張機能自身？
+- chrome.declarativeContent ... ブラウザ自身？
+- chrome.storage ... 内部ストレージ
+
+`background.js`ファイル
+
+```javascript
+chrome.runtime.onInstalled.addListener(function() {
+  chrome.storage.sync.set({ color: "#3aa757" }, function() {
+    console.log("The color is green.");
+  });
+  chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
+    chrome.declarativeContent.onPageChanged.addRules([
+      {
+        conditions: [
+          new chrome.declarativeContent.PageStateMatcher({
+            pageUrl: { hostEquals: "developer.chrome.com" }
+          })
+        ],
+        actions: [new chrome.declarativeContent.ShowPageAction()]
+      }
+    ]);
+  });
+});
+```
+
+`popup.js`ファイル
+
+```javascript
+let changeColor = document.getElementById("changeColor");
+chrome.storage.sync.get("color", function(data) {
+  changeColor.style.backgroundColor = data.color;
+  changeColor.setAttribute("value", data.color);
+});
+```
+
+### Layer Logic
+
+- chrome.tabs ... タブ
+
+`popup.js`ファイル
+
+```javascript
+let changeColor = document.getElementById("changeColor");
+changeColor.onclick = function(element) {
+  let color = element.target.value;
+  chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+    chrome.tabs.executeScript(tabs[0].id, {
+      code: 'document.body.style.backgroundColor = "' + color + '";'
+    });
+  });
+};
+```
+
+## 03. 概要ページを読む
+
+概要ページ => [https://developer.chrome.com/extensions/overview](https://developer.chrome.com/extensions/overview)
+
+- background script ... 拡張のイベントハンドラー
+- popup.html, popup.js ... ポップアップ、ミニマムな UI 要素
+- contentscript.js ... 訪問したページの DOM を改造する
+
+## 04. 解説記事を読む
+
+[Chrome 拡張の開発方法まとめ　その 1：概念編 \- Qiita](https://qiita.com/k7a/items/26d7a22233ecdf48fed8)
+
+```json
+{
+  "content_scripts": [
+    {
+      "matches": ["http://www.google.com/*"],
+      "css": ["mystyles.css"],
+      "js": ["jquery.js", "myscript.js"]
+    }
+  ]
+}
+```
+
+Content Scriptの特殊な性質
+
+- chrome.\* APIが一部のものしか用いることができない
+- ページ内で定義されている変数や関数にはアクセスできない
+- ページ上のスクリプトから隔離されたスコープで実行されている (isolated world)
+- DOMの取得・操作はできる
+
+## 05. 解説記事を読む2
+
+[Chrome 拡張の作り方 \(超概要\) \- Qiita](https://qiita.com/RyBB/items/32b2a7b879f21b3edefc)
+
+```json
+{
+  "name": "Sample",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "description": "Sample Chrome Extension",
+  "content_scripts": [
+    {
+      "matches": ["https://{subdomain}.cybozu.com/k/{AppID}/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
+```
+
+`content.js`ファイル
+
+```javascript
+window.onload = function() {
+  var body = document.getElementsByClassName("body-top");
+  body[0].style.backgroundColor = "#000000";
+};
+```
+
+## 06. さっそく Chrome拡張を改善したい
+
+ever3 を止めたいときは、簡単に止められるようにしたい
+
+[For a Google Chrome extension, how can I create an on/off toggle in the browser icon? \- Stack Overflow](https://stackoverflow.com/questions/9593388/for-a-google-chrome-extension-how-can-i-create-an-on-off-toggle-in-the-browser)
+
+動的にアイコンを変更するにはどうすればいいか？
+
+[Updating an extension button dynamically \- inspiration required \- Stack Overflow](https://stackoverflow.com/questions/8894461/updating-an-extension-button-dynamically-inspiration-required)
+
+### browser_actionとpage_actionの違い
+
+[chrome\.browserAction \- Google Chrome](https://developer.chrome.com/extensions/browserAction)
+
+=> どのページを表示しているかと関係なく、表示させる
+
+[chrome\.pageAction \- Google Chrome](https://developer.chrome.com/extensions/pageAction)
+
+=> どのページを表示しているかに応じて、アイコンが活きになったり、死になったりする
+
+### content_script はchrome.storageにアクセスできるのか
+
+[Content Scripts \- Google Chrome](https://developer.chrome.com/extensions/content_scripts)
+
+[chrome\.storage \- Google Chrome](https://developer.chrome.com/extensions/storage)
+
+chrome.storage.syncを使うと、\
+同じアカウントでログインしているブラウザで\
+横断的に使えるようになる
+
+```javascript
+chrome.storage.sync.set({ key: value }, function() {
+  console.log("Value is set to " + value);
+});
+
+chrome.storage.sync.get(["key"], function(result) {
+  console.log("Value currently is " + result.key);
+});
+
+chrome.storage.local.set({ key: value }, function() {
+  console.log("Value is set to " + value);
+});
+
+chrome.storage.local.get(["key"], function(result) {
+  console.log("Value currently is " + result.key);
+});
+```
+
+## 07. Chrome機能拡張にAxiosモジュールを組み込む
+
+`axios.min.js`を入手して、一緒に組み込めばいいだけだった
+
+公式サイト => [axios/axios: Promise based HTTP client for the browser and node\.js](https://github.com/axios/axios)
+
+ダウンロード先 => [https://unpkg.com/axios/dist/axios.min.js](https://unpkg.com/axios/dist/axios.min.js)
+
+### テスト用のCrome拡張機能を作成する
+
+`manifest.json`ファイル
+
+```json
+{
+    "name": "sandbox1",
+    "version": "1.0",
+    "description": "実験用の砂場です",
+    "content_scripts": [
+      {
+        "matches": ["http://eg-wms.com/login"],
+        "js": ["axios.min.js", "test.js"]
+      }
+    ],
+    "manifest_version": 2
+}
+```
+
+`test.js`ファイル
+
+```javascript
+(function () {
+    "use strict";
+    // ページがロードされたら実行
+    window.addEventListener("load", function () {
+        console.log("user script starts...");
+        
+        // ボタンを追加する
+        var htmlDoc = '&nbsp;<button id="button_test">赤影参上</button>';
+        var titleElement = document.querySelectorAll("h2.login_title")[0];
+        titleElement.innerHTML += htmlDoc;
+
+        // ボタンにアクションを追加する
+        var buttonTest = document.getElementById("button_test");
+        buttonTest.addEventListener("click", function(e) {
+
+            // ユーザー名を取得する
+            var textBox = document.querySelectorAll('input[name="username"]')[0];
+            var username = textBox.value;
+
+            // ターゲット1 ---------------------------------------------
+            var url = 'http://35.196.227.65/test?itemCode=' + name; 
+
+            // GETメソッドでAjax送信する
+            // GETメソッドでも、ヘッダー情報を追加するときは、空のdataが必要
+            axios.get(url, {
+                headers: {"Host": "helloworld5.default.example.com"},
+                data: {}
+            }).then(function (response) {
+                window.alert(response.data)
+            });
+        });
+    });
+})();
+```
+
+## 08. Chrome警告問題
+
+### Chromeを起動する度にダイアログが表示される件
+
+デベロッパーモードで拡張機能をインストールすると、\
+Chromeを起動する度に「デベロッパーモードの拡張機能を無効にする」という\
+ダイアログが表示される。これが何気にうざい
+
+### トライアル1
+
+[Chrome『デベロッパーモードの拡張機能を無効にする』のポップアップを非表示にする方法](https://freepc.jp/gaibu)
+
+> Windows 10 グループポリシーを使う\
+> Chromeのポリシーをダウンロードする
+
+[管理対象パソコンに Chrome ブラウザのポリシーを設定する](https://support.google.com/chrome/a/answer/187202?hl=ja)
+
+Windowsをクリック ＞ 「Google ChromeテンプレートのZIPファイルドキュメント」をクリック ＞ policy_templates.zip (19.8MB) を入手する
+
+```text
+--policy_templates.zip
+    |--chromeos/
+    |--common/
+    |--windows/
+    |   |--adm/
+    |   |    `--ja-JP/
+    |   |         `--chrome.adm
+    |   `--admx
+    |        |--ja-JP/
+    |        |    `--chrome.adml
+    |        `--chrome.admx
+    `--VERSION
+```
+
+やるべきこと
+
+- chrome.admxを、C:\Windows\PolicyDefinitions\にコピーする
+- chrome.admlを、C:\Windows\PolicyDefinitions\ja-JP\にコピーする
+
+gpedit.mscを開く
+
+左枠 ＞ ユーザーの構成 ＞ 管理用テンプレート ＞ Google Chrome ＞ 拡張機能\
+右枠 ＞ 「拡張機能インストールのホワイトリストを設定する」をダブルクリック\
+「拡張機能インストールのホワイトリストを設定する」ウィンドウ登場\
+ホワイトリストを有効にして、\
+「ブラックリストから除外する拡張機能ID」表示ボタンをクリック\
+IDをコピペする ＞ 適用ボタン ＞ OKボタン
+
+まったく効果がない。何も変わらなかった
+
+### トライアル2
+
+manifest.jsonのpermissionsにbackgroundを追加する\
+朝PCを起動したときに、ブラウザも起動して、そのときにダイアログが表示されるが、\
+その1回だけとなり、そのあとは、ブラウザを再起動してもダイアログはでなくなる
+
+```json
+{
+    "name": "sandbox1",
+    "version": "1.0",
+    "description": "実験用の砂場です",
+    "permissions": ["background"],
+    "content_scripts": [
+      {
+        "matches": ["http://eg-wms.com/login"],
+        "js": ["axios.min.js", "test.js"]
+      }
+    ],
+    "manifest_version": 2
+  }
+```

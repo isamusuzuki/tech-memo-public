@@ -1,0 +1,36 @@
+# Chrome を使いこなす
+
+作成日 2019/09/24
+
+## 01. リリース予定を知る
+
+[Chrome Platform Status](https://www.chromestatus.com/features/schedule)
+
+## 02. Chrome DevTools
+
+Google が提供している開発者向けツール
+
+公式サイト => [https://developers.google.com/web/tools/](https://developers.google.com/web/tools/)
+
+> Chrome DevTools は、Google Chrome に組み込まれた\
+> ウェブ作成およびデバッグツールのセットです。\
+
+`Ctrl + Shift + I` で、デベロッパーツールが登場する
+
+## 03. ページ全体のスクリーンショットを撮る
+
+拡張機能は不要\
+デベロッパーツールの中に、コマンドメニューがあり\
+その中にスクリーンショットを撮るコマンドがある
+
+1. `Ctrl + Shift + I` ... デベロッパーツール登場
+1. `Ctrl + Shift + P` ... コマンドメニュー登場
+1. `capture`とタイプする
+1. `Capture full size screenshot`を選択する
+1. PNG 画像がダウンロードされる
+
+## 04. キャッシュを削除する
+
+1. `Ctrl + Shift + Delete` ... 設定ページに遷移して、\
+   「閲覧履歴データの削除」ダイアログが登場する
+1. 「データを削除」ボタンをクリックする
