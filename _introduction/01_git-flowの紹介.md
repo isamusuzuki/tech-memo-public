@@ -1,30 +1,26 @@
----
-tags: devtools
----
-
-# git-flow
+# git-flow の紹介
 
 作成日 2019/04/16
 
-## 01. git-flowチートシートを読む
+## 01. git-flow チートシートを読む
 
 [git\-flow cheatsheet](https://danielkummer.github.io/git-flow-cheatsheet/index.ja_JP.html)
 
-> git-flowはgitの拡張であり、高度なリポジトリ操作を提供する
+> git-flow は git の拡張であり、高度なリポジトリ操作を提供する
 >
-> Git flowはマージすることをベースとして考えるソリューションで、リベースは行わない
+> Git flow はマージすることをベースとして考えるソリューションで、リベースは行わない
 
 ## 02. Windows (Cygwin)にインストールする
 
-wgetとutil-linuxが必要
+wget と util-linux が必要
 
-```bash=
+```bash
 wget -q -O - --no-check-certificate https://raw.github.com/petervanderdoes/gitflow-avh/develop/contrib/gitflow-installer.sh install stable | bash
 ```
 
 ## 03. Getting Started（初期化）
 
-```bash=
+```bash
 # 通常のgitリポジトリの配下に移動した後、git-flow化する
 git flow init
 #=> 対話形式でいくつかの質問に答える、デフォルト値を推奨
@@ -32,7 +28,7 @@ git flow init
 
 ## 04. Features（通常の開発）
 
-```bash=
+```bash
 # developブランチから開発を開始
 git flow feature start MYFEATURE
 
@@ -48,7 +44,7 @@ git flow feature pull MYFEATURE
 
 ## 05. Make a release（リリース準備）
 
-```bash=
+```bash
 # developブランチからreleaseブランチを作成する
 git flow release start RELEASE [BASE]
 #=> BASEは指定しないとdevelopブランチのHEAD
@@ -66,7 +62,7 @@ git flow release finish RELEASE
 
 ## 06. Hotfixes （ホットフィックス）
 
-```bash=
+```bash
 # masterブランチのタグから緊急対応のブランチを作成
 git flow hotfix start VERSION [BASENAME]
 
