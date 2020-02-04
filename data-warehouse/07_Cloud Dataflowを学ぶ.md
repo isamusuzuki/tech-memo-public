@@ -1,22 +1,18 @@
----
-tags: gcp
----
+# Cloud Dataflow を学ぶ
 
-# Cloud Dataflow
+作成日 2019/12/16
 
-作成日 2019/12/11、更新日 2019/12/16
-
-## 01. Cloud Dataflowとは
+## 01. Cloud Dataflow とは
 
 バッチおよびストリーミングのデータ処理パイプライン
 
-Apache Beamでパイプラインを作成し、Cloud Dataflowで実行する
+Apache Beam でパイプラインを作成し、Cloud Dataflow で実行する
 
 公式トップ => [https://cloud.google.com/dataflow/](https://cloud.google.com/dataflow/)
 
 ドキュメント => [https://cloud.google.com/dataflow/docs/](https://cloud.google.com/dataflow/docs/)
 
-### Apache Beamとは
+### Apache Beam とは
 
 [Apache Beam](https://beam.apache.org/)
 
