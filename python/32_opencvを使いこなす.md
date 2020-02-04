@@ -1,12 +1,8 @@
----
-tags: python
----
-
-# opencvを使いこなす
+# opencv を使いこなす
 
 作成日 2019/11/20
 
-## 01. opencvとは
+## 01. opencv とは
 
 Open Source Computer Vision Library\
 インテルが開発・公開したオープンソースのコンピュータビジョン向けライブラリ
@@ -15,22 +11,21 @@ Open Source Computer Vision Library\
 
 日本語ドキュメント => [http://labs.eecs.tottori-u.ac.jp/sd/Member/oyamada/OpenCV/html/index.html](http://labs.eecs.tottori-u.ac.jp/sd/Member/oyamada/OpenCV/html/index.html)
 
-### opencvをインストールする
+### opencv をインストールする
 
-```bash=
+```bash
 pip install opencv-python-headless
 ```
 
-現時点では、python3.8に対応していない。python3.7の環境でインストールする必要がある
+現時点では、python3.8 に対応していない。python3.7 の環境でインストールする必要がある
 
-
-## 02. opencvで画像を読み込む
+## 02. opencv で画像を読み込む
 
 画像を読み込んだ後は`numpy.ndarray`が手に入る
 
-ndarryのリファレンス => [numpy\.ndarray — NumPy v1\.17 Manual](https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html)
+ndarry のリファレンス => [numpy\.ndarray — NumPy v1\.17 Manual](https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html)
 
-```python=
+```python
 import cv2
 
 # カラー画像として読み込む
@@ -51,14 +46,14 @@ print(f'im3.shape => {im3.shape}')  # => (32, 32, 4)
 
 ### 透過の扱い
 
-透過のあるPNG画像を、グレースケールで読むと、何もないところ（透過なところ）は`0`（黒）になる。\
+透過のある PNG 画像を、グレースケールで読むと、何もないところ（透過なところ）は`0`（黒）になる。\
 カラーとして読んでも、`[0 0 0]`（黒）になっている。\
 追加チャンネル含みで読むと、始めてアルファチャンネルが得られる。\
 アルファチャンネルの`0`は透明、`255`は完全な不透明である
 
 ## 03. 白い背景を切り落とすためにトライしたコード
 
-```python=
+```python
 import cv2
 
 # カラー画像をグレースケール画像として読み込む
@@ -105,14 +100,13 @@ print(
 
 ### ndarray をスライスする
 
-- `WHITES[:, 8]`は、左から8本目の、上から下に垂れている白い線
-- `WHITES[::-1, 8]`は、左から8本目の、下から上に上がっている白い線
-- `WHITES[8, :]`は、上から8本目の、左から右に引かれた白い線
-- `WHITES[8, ::-1]`は、上から8本目の、右から左に引かれた白い線
+-   `WHITES[:, 8]`は、左から 8 本目の、上から下に垂れている白い線
+-   `WHITES[::-1, 8]`は、左から 8 本目の、下から上に上がっている白い線
+-   `WHITES[8, :]`は、上から 8 本目の、左から右に引かれた白い線
+-   `WHITES[8, ::-1]`は、上から 8 本目の、右から左に引かれた白い線
 
-### 最初にFalseが登場したときのインデックスを知る
+### 最初に False が登場したときのインデックスを知る
 
-- `list.index('a')`は、リストの中で最初に登場した a のインデックスを返す
-- ndarray に`index()`メソッドはないが、`list(ndarray)`でリストに変換できる
-- Falseがないときは、最後まで白い線が引かれたとする
-
+-   `list.index('a')`は、リストの中で最初に登場した a のインデックスを返す
+-   ndarray に`index()`メソッドはないが、`list(ndarray)`でリストに変換できる
+-   False がないときは、最後まで白い線が引かれたとする

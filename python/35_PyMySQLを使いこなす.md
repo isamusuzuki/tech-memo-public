@@ -1,20 +1,16 @@
----
-tags: python
----
-
-# PyMySQLを使いこなす
+# PyMySQL を使いこなす
 
 作成日 2019/11/28
 
-## 01. PyMySQLとは
+## 01. PyMySQL とは
 
-MySQLデータベースに接続するライブラリ
+MySQL データベースに接続するライブラリ
 
 ドキュメント => [https://pymysql.readthedocs.io/en/latest/](https://pymysql.readthedocs.io/en/latest/)
 
 ## 02. データを読む
 
-```python=
+```python
 import os
 
 import pymysql
@@ -55,7 +51,7 @@ def select_data(item_code):
 
 ## 03. データを書き込む
 
-```python=
+```python
 import os
 
 import pymysql
@@ -90,38 +86,37 @@ def insert_data(no, code, status, message)):
         conn.close()
 ```
 
-
-## 04. pymysqlのエラーに対処する
+## 04. pymysql のエラーに対処する
 
 `pymysql.err.InternalError: (1046, 'No database selected')`
 
 解決方法: SQL 文のテーブルに、データベース名を指定する
 
-before | after
--------|------
-`INSERT temp_items` | `INSERT db.temp_items`
+| before              | after                  |
+| ------------------- | ---------------------- |
+| `INSERT temp_items` | `INSERT db.temp_items` |
 
-## 05. SQLクエリーに埋め込むパラメーターについて
+## 05. SQL クエリーに埋め込むパラメーターについて
 
 ドキュメント => [Cursor Objects — PyMySQL 0\.7\.2 documentation](https://pymysql.readthedocs.io/en/latest/modules/cursors.html)
 
-- 構文: execute(query, args=None)
-- 引数1: query ... str
-- 引数2: args ... tuple,list or dict
-- 戻り: 影響があった行の数 int
+-   構文: execute(query, args=None)
+-   引数 1: query ... str
+-   引数 2: args ... tuple,list or dict
+-   戻り: 影響があった行の数 int
 
 > If args is a list or tuple, %s can be used as a placeholder in the query.\
 > If args is a dict, %(name)s can be used as a placeholder in the query.
 
-%sしか使えないということがわかった\
+%s しか使えないということがわかった\
 整数をわざわざ文字列にしておく必要はない\
-文字列の場合は、SQLクエリーの中で括弧で囲まれる\
+文字列の場合は、SQL クエリーの中で括弧で囲まれる\
 整数の場合は、括弧がつかない\
-PyMySQLがよしなに、やってくれている
+PyMySQL がよしなに、やってくれている
 
-整数を埋め込みたいSQLクエリーの例
+整数を埋め込みたい SQL クエリーの例
 
-```sql=
+```sql
 select
   sku_code,
   zeinuki_genka,
@@ -136,16 +131,11 @@ limit
   %s offset %s
 ```
 
-このSQLクエリーを実行するときは、整数のタプルを与える
+この SQL クエリーを実行するときは、整数のタプルを与える
 
-```python=
+```python
 with conn.cursor() as cursor:
     cursor.execute(sql, (10, 400))
     result = cursor.fetchall()
     df = DataFrame(result)
 ```
-
-
-
-
-

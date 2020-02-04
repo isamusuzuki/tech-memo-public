@@ -1,16 +1,14 @@
----
-tags: python
----
-
-# JupyterLab
+# JupyterLab を使いこなす
 
 作成日 2019/10/06
 
-## 01. JupyterLabとは
+## 01. JupyterLab とは
 
 [JupyterLab のすゝめ \- Qiita](https://qiita.com/kirikei/items/a1639954ce5ccaf7ac3c)
 
-> JupyterLabとは，データ分析者に愛されているJupyter notebookの後継機であるWebアプリケーション的IDEのことです。ベータ版が今年リリースされました。Jupyter notebookの開発は一旦終了し，JupyterLabに移行すると公式アナウンスされています。
+> JupyterLab とは，データ分析者に愛されている Jupyter notebook の後継機である 
+> Web アプリケーション的 IDE のことです。ベータ版が今年リリースされました。
+> Jupyter notebook の開発は一旦終了し，JupyterLab に移行すると公式アナウンスされています。
 
 ### 公式ドキュメントを読む
 
@@ -18,17 +16,17 @@ tags: python
 
 Getting Started
 
-- [Overview](https://jupyterlab.readthedocs.io/en/stable/getting_started/overview.html)
-- [Installation](https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html)
-- [Starting JupyterLab](https://jupyterlab.readthedocs.io/en/stable/getting_started/starting.html)
+-   [Overview](https://jupyterlab.readthedocs.io/en/stable/getting_started/overview.html)
+-   [Installation](https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html)
+-   [Starting JupyterLab](https://jupyterlab.readthedocs.io/en/stable/getting_started/starting.html)
 
 User Guide
 
-- [The JupyterLab Interface](https://jupyterlab.readthedocs.io/en/stable/user/interface.html)
+-   [The JupyterLab Interface](https://jupyterlab.readthedocs.io/en/stable/user/interface.html)
 
 ## 02. JupyterLab を使えるようにする
 
-```bash=
+```bash
 # pip でインストールする
 pip3 install jupyterlab
 #=> 長い時間がかかる
@@ -39,7 +37,7 @@ pip3 install jupyterlab
 ドキュメントが言うとおりに`jupyter-lab`を実行しても、何も起こらなかった場合\
 `which jupyter-lab`を実行しても、返事がない場合
 
-```bash=
+```bash
 # インストール先を知る
 pip3 show jupyterlab
 #=> Location: /home/username/.local/lib/python3.6/site-packages
@@ -65,7 +63,7 @@ which jupyter-lab
 #=> /home/username/.local/bin/jupyter-lab
 ```
 
-### JupyterLabを起動する
+### JupyterLab を起動する
 
 ```bash
 jupyter-lab
@@ -76,15 +74,15 @@ jupyter-lab --ip=0.0.0.0 --no-browser
 #=> http://<IP Address>:8888/lab を開く
 ```
 
-## 03. JupyterLabを使ってみる
+## 03. JupyterLab を使ってみる
 
-### pipでインストールするとやたら遅い件
+### pip でインストールするとやたら遅い件
 
-pipはビルドが始まってしまって、ものすごく時間がかかることが多い
+pip はビルドが始まってしまって、ものすごく時間がかかることが多い
 
-aptでビルド済みのパッケージをインストールしたほうが断然早い
+apt でビルド済みのパッケージをインストールしたほうが断然早い
 
-```bash=
+```bash
 # パッケージがあるか調べる
 apt search python3-pandas
 
@@ -92,15 +90,15 @@ apt search python3-pandas
 sudo apt install python3-pandas
 ```
 
-その他、apt searchで見つかったパッケージ
+その他、apt search で見つかったパッケージ
 
-- python3-numpy
-- python3-imaging
-- python3-matlotlib
+-   python3-numpy
+-   python3-imaging
+-   python3-matlotlib
 
 ### 最初のサンプルコード
 
-```python=
+```python
 import pandas
 df = pandas.read_csv('iris.csv')
 df.head(20)

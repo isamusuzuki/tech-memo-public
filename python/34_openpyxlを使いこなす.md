@@ -1,12 +1,8 @@
----
-tags: python
----
-
-# openpyxlを使いこなす
+# openpyxl を使いこなす
 
 作成日 2019/11/28
 
-## 01. openpyxlとは
+## 01. openpyxl とは
 
 ドキュメント => [https://openpyxl.readthedocs.io/en/stable/](https://openpyxl.readthedocs.io/en/stable/)
 
@@ -14,12 +10,11 @@ tags: python
 
 最新バージョン => 3.0.1 (2019/11/14)
 
-
-## 02. openpyxlのサンプルコード
+## 02. openpyxl のサンプルコード
 
 `test1.py`
 
-```python=
+```python
 import openpyxl as excel
 
 wb = excel.Workbook()
@@ -31,7 +26,7 @@ wb.save(TEMP_FILE)
 
 `test2.py`
 
-```python=
+```python
 import openpyxl as excel
 
 wb = excel.Workbook()
@@ -45,7 +40,7 @@ wb.save(TEMP_FILE)
 
 `test3.py`
 
-```python=
+```python
 import openpyxl as excel
 from openpyxl.styles.alignment import Alignment
 
@@ -77,29 +72,29 @@ ws.cell(row=2, column=4).number_format = '#,##0'
 wb.save(TEMP_FILE)
 ```
 
-## 03. Cellモジュール
+## 03. Cell モジュール
 
 [openpyxl\.cell\.cell module — openpyxl 3\.0\.1 documentation](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.cell.cell.html)
 
-- cell.row ... セルの行番号を返す
-- cell.column ... セルの列番号を返す
-- cell.value ... セルに値を設定する、もしくは値を得る
-- cell.hyperlink ... セルにハイパーリンクを設定する、もしくは値を得る
+-   cell.row ... セルの行番号を返す
+-   cell.column ... セルの列番号を返す
+-   cell.value ... セルに値を設定する、もしくは値を得る
+-   cell.hyperlink ... セルにハイパーリンクを設定する、もしくは値を得る
 
-## 04. stylesパッケージ
+## 04. styles パッケージ
 
 [openpyxl\.styles package — openpyxl 3\.0\.1 documentation](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.styles.html)
 
-以下のCellモジュールのプロパティには、特定のsyltesパッケージを設定する
+以下の Cell モジュールのプロパティには、特定の syltes パッケージを設定する
 
-- cell.alignment
-- cell.border
-- cell.fill
-- cell.font
-- cell.number_format
-- cell.style
+-   cell.alignment
+-   cell.border
+-   cell.fill
+-   cell.font
+-   cell.number_format
+-   cell.style
 
-```python=
+```python
 from openpyxl.styles import Font, PatternFill
 from openpyxl.styles.alignment import Alignment
 
@@ -121,10 +116,9 @@ ws.cell(row=j, column=10).font = \
 
 ## 05. 計算式を入力する
 
-cellの指定は番号を使うが、計算式の中でのセルの指定は、A1形式を使う
+cell の指定は番号を使うが、計算式の中でのセルの指定は、A1 形式を使う
 
-```python=
+```python
 ws.cell(row=current, column=15).value = \
     f'=IF(M{current} < F{current}, TRUE, FALSE)'
 ```
-
