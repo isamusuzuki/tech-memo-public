@@ -1,10 +1,8 @@
-# ローカルで実行する Pyhon スクリプトを作る
+# ローカルで実行する Pyhon スクリプトを書く
 
-作成日 2019/12/04、更新日 2020/02/03
+作成日 2020/02/03
 
 ## 01. 直接実行したときだけスクリプトが動くようにする
-
-### `__name__`変数とは
 
 `apple.py` というファイルを作成し、`python apple.py` を実行する
 
@@ -19,7 +17,7 @@ print (__file__)
 -   結果が `__main__` になったのは、`apple.py` を直接実行したから
 -   別ファイルから `import apple` していたら、結果は `apple` になる
 
-この変数を利用して、直接実行したときだけ動くコードを書く
+この`__name__`変数を利用して、直接実行したときだけ動くコードを書く
 
 ```python
 def apple(name):
@@ -41,7 +39,7 @@ except IndexError:
     print('Please input report_type')
     exit()
 
-#　report_typeを何かに使う
+pass # => report_typeを使う
 ```
 
 ## 03. データをローカルディスクに保存する
@@ -64,7 +62,7 @@ if 'report_type' in shelf:
 shelf.close()
 
 if report_type:
-    #　report_typeを何かに使う
+    pass # => report_typeを使う
 else:
     print('Error => no report_type')
     exit()
@@ -102,7 +100,7 @@ proc = subprocess.Popen(cmd,shell=True)
 proc.wait()
 ```
 
-#### Popen()なら、できること
+#### Popen()メソッドなら、できること
 
 コンソールにプロセス ID を表示する
 
@@ -150,7 +148,7 @@ load_dotenv()
 ### 環境変数を読み込む
 
 load_dotenv()が実行されるまで、環境変数にはなにも入っていないので要注意\
-クラスやファンクションの中に書くことを習慣にすべし
+メソッドやクラスの中で、環境変数を読むことを習慣にすべし
 
 ```python
 import os
@@ -165,9 +163,8 @@ class CVG():
 
 ## 06. ネットワークドライブにローカルドライブを割り当てる
 
-Powershell ではなく、コマンドプロンプトならば、Git Bash の中からでも使用可能
-
-NET USE コマンドの使い方
+NET USEコマンドは、コマンドプロンプト、Powershell、Git Bash\
+いずれのシェルからでも使用可能
 
 ```bash
 # ネットワークドライブの接続を設定する
@@ -180,28 +177,41 @@ NET USE
 NET USE Z: /delete
 ```
 
-connect_x.bat
+conn.bat
 
 ```bash
 NET USE X: \\192.168.2.100\公開フォルダ
 ```
 
-script.py
+disconn.bat
+
+```bash
+NET USE X: /delete
+```
+
+main.py
 
 ```python
 import subprocess
 
-cmd = 'conn_x.bat'
+cmd = 'conn.bat'
 proc = subprocess.Popen(cmd, shell=True)
 print(f'process {proc.pid} starts: ネットワークドライブに接続しています')
 proc.wait()
+
+pass # => X:ドライブを使う
+
+cmd = 'disconn.bat'
+proc = subprocess.Popen(cmd, shell=True)
+print(f'process {proc.pid} starts: ネットワークドライブを切断しています')
+proc.wait()
 ```
 
-バッチファイルの中に日本語がある場合は、バッチファイルそのものをシフト JIS で保存すること
+**要注意** バッチファイルは、必ずシフト JIS で保存すること
 
 ## 07. スクリプトに「待たせる」
 
-sleep 関数の引数は秒数
+sleep 関数の引数は、秒数
 
 ```python
 from time import sleep
@@ -211,8 +221,6 @@ sleep(60)
 ```
 
 ## 08. メソッド・クラスを一発で CLI ツールに変換する
-
-Fire を使う
 
 ### Fire とは
 
