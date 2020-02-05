@@ -13,7 +13,7 @@ $Host.Version
 $OutputEncoding.EncodingName
 # => US_ASCII
 
-# 実行exeのありかを知る
+# 実行ファイルのありかを知る
 $PSHOME
 # => C:\Windows\System32\WindowsPowerShell\v1.0
 ```
@@ -28,6 +28,7 @@ get-childitem env:
 get-childitem env:NODE_ENV
 
 # セッションの環境変数を設定する（ウィンドウを閉じればなくなる）
+set-item env:NODE_ENV -value production
 set-item env:NODE_ENV -value production;node ./aihara.js
 ```
 
