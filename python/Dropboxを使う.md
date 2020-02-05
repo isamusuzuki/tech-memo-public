@@ -1,4 +1,4 @@
-# Dropbox API を使う
+# Dropbox を使う
 
 作成日 2019/11/20
 
