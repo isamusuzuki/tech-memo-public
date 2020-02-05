@@ -1,8 +1,14 @@
 # kintone API を使う
 
-作成日 2020/02/03
+作成日 2020/02/03、更新日 2020/02/05
 
 ## 01. データを読む
+
+ドキュメント => [レコードの取得（GET） – cybozu developer network](https://developer.cybozu.io/hc/ja/articles/202331474)
+
+> レコードの一括取得（クエリで条件を指定）\
+> 
+> 一度に取得できるレコードは 500件までです。
 
 ```python
 import datetime
@@ -65,38 +71,14 @@ finally:
     return response
 ```
 
-## 02. 認証に関する注意点
+## 02. データを更新する
 
-ローカルでテストしていた時は、何の問題もなかったのに、\
-Cloud Functions にデプロイした途端に`401 Unauthorized`ではじかれた\
-「アクセスするには認証が必要です」とのこと
+ドキュメント => [レコードの更新（PUT） – cybozu developer network](https://developer.cybozu.io/hc/ja/articles/201941784)
 
-kintone API は、IP アドレス制限がかかっている。\
-社内ネットワークのグルーバル IP は、登録済みだが、\
-それ以外からのアクセスの場合は、API トークンに加えて、\
-ベーシック認証を必要とする
-
-### API トークンとベーシック認証を使ったコード
-
-```python
-import base64
-
-KINTONE_API_TOKEN = os.environ.get('KINTONE_API_TOKEN')
-KINTONE_BASIC_USERNAME = os.environ.get('KINTONE_BASIC_USERNAME')
-KINTONE_BASIC_PASSWORD = os.environ.get('KINTONE_BASIC_PASSWORD')
-
-a = f'{KINTONE_BASIC_USERNAME}:{KINTONE_BASIC_PASSWORD}'
-b = base64.b64encode(a.encode('utf-8'))
-self.basic_account = f'Basic {b.decode("utf-8")}'
-
-headers = {
-    'Content-Type': 'application/json',
-    'Authorization': self.basic_account,
-    'X-Cybozu-API-Token': KINTONE_API_TOKEN
-}
-```
-
-## 03. データを更新する
+> レコードの一括更新\
+>
+> 一度に更新できるレコードは 100 件までです。\
+> 一括更新に失敗すると、リクエストに含まれるレコードの処理はすべてキャンセルされます。
 
 ```python
 import json
@@ -145,3 +127,35 @@ except urllib.error.URLError as err:
 finally:
     return response
 ```
+
+## 03. 認証に関する注意点
+
+ローカルでテストしていた時は、何の問題もなかったのに、\
+Cloud Functions にデプロイした途端に`401 Unauthorized`ではじかれた\
+「アクセスするには認証が必要です」とのこと
+
+kintone API は、IP アドレス制限がかかっている。\
+社内ネットワークのグルーバル IP は、登録済みだが、\
+それ以外からのアクセスの場合は、API トークンに加えて、\
+ベーシック認証を必要とする
+
+### API トークンとベーシック認証を使ったコード
+
+```python
+import base64
+
+KINTONE_API_TOKEN = os.environ.get('KINTONE_API_TOKEN')
+KINTONE_BASIC_USERNAME = os.environ.get('KINTONE_BASIC_USERNAME')
+KINTONE_BASIC_PASSWORD = os.environ.get('KINTONE_BASIC_PASSWORD')
+
+a = f'{KINTONE_BASIC_USERNAME}:{KINTONE_BASIC_PASSWORD}'
+b = base64.b64encode(a.encode('utf-8'))
+self.basic_account = f'Basic {b.decode("utf-8")}'
+
+headers = {
+    'Content-Type': 'application/json',
+    'Authorization': self.basic_account,
+    'X-Cybozu-API-Token': KINTONE_API_TOKEN
+}
+```
+
