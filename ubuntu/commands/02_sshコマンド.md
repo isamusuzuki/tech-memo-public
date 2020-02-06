@@ -1,6 +1,6 @@
 # ssh コマンド
 
-作成日 2019/09/28、更新日 2019/12/02
+作成日 2019/09/28、更新日 2020/02/05
 
 ## 01. ssh コマンドの基本
 
@@ -136,3 +136,7 @@ ssh user@vps
 # vps に入ったあと vps から nuc
 ssh user@localhost -p 22222
 ```
+
+## 07. w コマンド, tty コマンド
+
+[自分がどの IP アドレスで SSH 接続しているのかを確認する ｜ Developers\.IO](https://dev.classmethod.jp/cloud/aws/amazon-linux-2-ssh-ipaddress/)

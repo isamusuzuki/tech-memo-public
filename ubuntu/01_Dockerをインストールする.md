@@ -1,12 +1,8 @@
----
-tags: ubuntu
----
-
-# UbuntuにDockerをインストール
+# Dockerをインストールする
 
 作成日 2019/12/12
 
-## 公式ドキュメントを写経する 
+## 01. 公式ドキュメントを写経する 
 
 [Get Docker Engine \- Community for Ubuntu \| Docker Documentation](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 
@@ -14,7 +10,7 @@ tags: ubuntu
 
 SET UP THE REPOSITORY
 
-```bash=
+```bash
 # Update tha apt package index
 sudo apt update
 
@@ -34,7 +30,7 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 
 INSTALL DOCKER ENGINE - COMMUNITY
 
-```bash=
+```bash
 # Update tha apt package index
 sudo apt update
 
@@ -46,7 +42,7 @@ sudo apt install docker-ce docker-ce-cli containerd.io
 
 「dockerを起動できない」というメッセージだったので、ひとまず再起動した
 
-```bash=
+```bash
 # デーモンを確認する
 systemctl status docker
 systemctl status containerd
@@ -65,7 +61,7 @@ sudo docker run hello-world
 
 sudoなしでdockerコマンドを実行できるようにする
 
-```bash=
+```bash
 sudo groupadd docker
 # => group 'docker' already exists
 
@@ -74,7 +70,7 @@ sudo usermod -aG docker $USER
 
 いったんログアウトする必要あり
 
-```bash=
+```bash
 # sudoなしでdockerコマンドが実行できることを確認する
 docker run hello-world
 # => Hello from Docker!
@@ -87,7 +83,7 @@ Ubuntuの場合は、Dockerに含まれておらず、別途インストール�
 
 [Install Docker Compose \| Docker Documentation](https://docs.docker.com/compose/install/)
 
-```bash=
+```bash
 sudo curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
