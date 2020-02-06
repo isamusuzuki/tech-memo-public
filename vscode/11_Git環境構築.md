@@ -115,3 +115,14 @@ git clone git@github.com:<user-name>/<repository-name>.git
   "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe"
 }
 ```
+
+## 04. コミットメッセージには、プレフィックスをつける
+
+- `feat:` ... 新機能
+- `fix:` ... バグフィックス
+- `refactor:` ... 新機能でもバグフィックスでもないコード変更
+- `perf:` ... パフォーマンス向上
+- `test:` ... テストコードの追加・修正
+- `style:` ... コードの意味に影響しない変更（空白、フォーマット、セミコロン）
+- `docs:` ... ドキュメントだけの変更
+- `chore:` ... 雑用（ビルドプロセスの変更、ツールやライブラリの追加削除）
