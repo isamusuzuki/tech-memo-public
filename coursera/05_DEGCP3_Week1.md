@@ -1,6 +1,6 @@
 # DEGCP3 Week1
 
-作成日 2020/02/01、更新日 2020/02/04
+作成日 2020/02/01、更新日 2020/02/06
 
 ## 00. コース概要
 
@@ -144,3 +144,43 @@ Dataproc cluster can read/write to GCP storage products
 - HDFS connector (`htfs://`) ... Cloud Storage (`gs://`)
 - HBase connector ... Cloud Bigtable
 - BigQuery connector ... BigQuery
+
+### GCS instead of HDFS - 5min
+
+HDFS in the Cloud is a sub-par solution
+
+- Compute and storage are not independnet, adding to costs
+- If you use persistent disks, then data locality no longer holds
+- Lost of data replication makes this expensive
+
+Petabit bandwidth is a game-changer for big data
+
+Separation of computer and storage enables better options
+
+Cloud storage is a drop-in replacement for HDFS
+
+### Optimizing Dataproc - 5min
+
+Hadoop and Spark performance questions for all cluster architectures, Cloud Dataproc included
+
+### Optimizing Dataproc Storage - 9min
+
+- Persistent clusters are expensive
+- Your open-source-based tools may be insufficient
+- Persistent clusters are difficult to manager
+
+Cluster Scheduled Deletion ... Min 10 min, Max 14 days,  Granularity 1 second
+
+Persistent clusters <=> Ephemeral（儚い） clusters
+
+### Optimizing Dataproc Templates and Autoscaling - 4min
+
+```bash
+gcloud dataproc workflow-templates
+
+gcloud dataproc workflow-templates add-job
+```
+
+### Optimizing Dataproc Monitoring - 3min
+
+Use Stackdriver logging and performance monitoring
