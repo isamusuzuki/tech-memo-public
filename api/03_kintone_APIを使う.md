@@ -1,16 +1,17 @@
 # kintone API を使う
 
-作成日 2020/02/03、更新日 2020/02/05
+作成日 2020/02/03、更新日 2020/02/07
 
 ## 01. データを読む
 
 ドキュメント => [レコードの取得（GET） – cybozu developer network](https://developer.cybozu.io/hc/ja/articles/202331474)
 
-> レコードの一括取得（クエリで条件を指定）\
+> レコードの一括取得（クエリで条件を指定）
 > 
 > 一度に取得できるレコードは 500件までです。
 
 ```python
+import base64
 import datetime
 import json
 import os
@@ -20,10 +21,11 @@ import urllib.request
 import pytz
 
 KINTONE_API_TOKEN = os.environ.get('KINTONE_API_TOKEN')
+KINTONE_BASIC_USERNAME = os.environ.get('KINTONE_BASIC_USERNAME')
+KINTONE_BASIC_PASSWORD = os.environ.get('KINTONE_BASIC_PASSWORD')
 
 TODAY = datetime.datetime.now(pytz.timezone('Asia/Tokyo'))
 TODAY_STR = TODAY.strftime("%Y-%m-%d")
-
 base_url = 'https://abcdefg.cybozu.com/k/v1/records.json'
 params = {
     'app': 'nn',
@@ -42,9 +44,15 @@ params = {
     'fields[4]': 'imageCompletion_date',
     'TotalCount': False
 }
+
+a = f'{KINTONE_BASIC_USERNAME}:{KINTONE_BASIC_PASSWORD}'
+b = base64.b64encode(a.encode('utf-8'))
+basic_account = f'Basic {b.decode("utf-8")}'
 headers = {
+    'Authorization': basic_account,
     'X-Cybozu-API-Token': KINTONE_API_TOKEN
 }
+
 url = f'{base_url}?{urllib.parse.urlencode(params)}'
 req = urllib.request.Request(url, headers=headers)
 
@@ -75,19 +83,21 @@ finally:
 
 ドキュメント => [レコードの更新（PUT） – cybozu developer network](https://developer.cybozu.io/hc/ja/articles/201941784)
 
-> レコードの一括更新\
+> レコードの一括更新
 >
 > 一度に更新できるレコードは 100 件までです。\
 > 一括更新に失敗すると、リクエストに含まれるレコードの処理はすべてキャンセルされます。
 
 ```python
+import base64
 import json
 import os
 import urllib.error
 import urllib.request
 
-
 KINTONE_API_TOKEN = os.environ.get('KINTONE_API_TOKEN')
+KINTONE_BASIC_USERNAME = os.environ.get('KINTONE_BASIC_USERNAME')
+KINTONE_BASIC_PASSWORD = os.environ.get('KINTONE_BASIC_PASSWORD')
 
 records = []
 for id in id_list:
@@ -108,9 +118,13 @@ data = {
 }
 json_data = json.dumps(data).encode('utf-8')
 
+a = f'{KINTONE_BASIC_USERNAME}:{KINTONE_BASIC_PASSWORD}'
+b = base64.b64encode(a.encode('utf-8'))
+basic_account = f'Basic {b.decode("utf-8")}'
 headers = {
-    'X-Cybozu-API-Token': KINTONE_API_TOKEN,
     'Content-Type': 'application/json; charset=utf-8'
+    'Authorization': basic_account,
+    'X-Cybozu-API-Token': KINTONE_API_TOKEN
 }
 req = urllib.request.Request(
     url, data=json_data, method=method, headers=headers)
@@ -127,35 +141,3 @@ except urllib.error.URLError as err:
 finally:
     return response
 ```
-
-## 03. 認証に関する注意点
-
-ローカルでテストしていた時は、何の問題もなかったのに、\
-Cloud Functions にデプロイした途端に`401 Unauthorized`ではじかれた\
-「アクセスするには認証が必要です」とのこと
-
-kintone API は、IP アドレス制限がかかっている。\
-社内ネットワークのグルーバル IP は、登録済みだが、\
-それ以外からのアクセスの場合は、API トークンに加えて、\
-ベーシック認証を必要とする
-
-### API トークンとベーシック認証を使ったコード
-
-```python
-import base64
-
-KINTONE_API_TOKEN = os.environ.get('KINTONE_API_TOKEN')
-KINTONE_BASIC_USERNAME = os.environ.get('KINTONE_BASIC_USERNAME')
-KINTONE_BASIC_PASSWORD = os.environ.get('KINTONE_BASIC_PASSWORD')
-
-a = f'{KINTONE_BASIC_USERNAME}:{KINTONE_BASIC_PASSWORD}'
-b = base64.b64encode(a.encode('utf-8'))
-self.basic_account = f'Basic {b.decode("utf-8")}'
-
-headers = {
-    'Content-Type': 'application/json',
-    'Authorization': self.basic_account,
-    'X-Cybozu-API-Token': KINTONE_API_TOKEN
-}
-```
-
