@@ -2,6 +2,12 @@
 
 作成日 2019/11/20
 
+## 00. 公式ドキュメントに目を通す
+
+ドキュメントトップ => [Dropbox for Python Documentation — Dropbox for Python 0\.0\.0 documentation](https://dropbox-sdk-python.readthedocs.io/en/latest/)
+
+dropbox.dropbox => [dropbox\.dropbox – Dropbox — Dropbox for Python 0\.0\.0 documentation](https://dropbox-sdk-python.readthedocs.io/en/latest/api/dropbox.html)
+
 ## 01. 指定したフォルダにあるファイル名を取得する
 
 ```python
