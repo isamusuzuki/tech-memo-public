@@ -1,6 +1,6 @@
 # DEGCP3 Week1
 
-作成日 2020/02/01、更新日 2020/02/06
+作成日 2020/02/01、更新日 2020/02/09
 
 ## 00. コース概要
 
@@ -184,3 +184,204 @@ gcloud dataproc workflow-templates add-job
 ### Optimizing Dataproc Monitoring - 3min
 
 Use Stackdriver logging and performance monitoring
+
+### Lab: Running Apache Spark jobs on Cloud Dataproc - 1h30
+
+#### Objectives
+
+- Migrating existing Spark jobs to Cloud Dataproc
+- Modify Spark jobs to use Cloud Storage instead of HDFS
+- Optimize Spark jobs to run on Job specific clusters
+
+#### Lab setup
+
+```bash
+gcloud auth list
+gcloud config list project
+```
+
+#### Part1: Lift and Shift
+
+GCP Consle > Left pane > BIG DATA > Dataproc > Clusters\
+Click "Create Cluster" Button\
+Name: sparktodp\
+Component gateway: Enalble "access to the web interface ..."\
+Advanced Options > Change Image > Select "1.4"\
+Optional components > Click "Select component"\
+Select "Anaconda" and "Jupyter Notebook"\
+Click "Select" to close dialog\
+Click "Create"
+
+in Cloud Shell
+
+```bash
+git -C ~ clone https://github.com/GoogleCloudPlatform/training-data-analyst
+
+export DP_STORAGE="gs://$(gcloud dataproc clusters describe sparktodp --region=us-central1 --format=json | jq -r '.config.configBucket')"
+
+gsutil -m cp ~/training-data-analyst/quests/sparktobq/*.ipynb $DP_STORAGE/notebooks/jupyter
+```
+
+Login to the Jupyter Notebook
+
+Dataproc Cluster page > click your cluster > Cluster detail page\
+Click "Web Interfaces" > Click the jupyter link\
+Click "01_spark.ipynb" to open\
+Click Cell and run all
+
+```python
+# In [1]
+!wget http://kdd.ics.uci.edu/databases/kddcup99/kddcup.data_10_percent.gz
+
+# In [2]
+!hadoop fs -put kddcup* /
+
+# In [3]
+!hadoop fs -ls /
+```
+
+Reading in data
+
+```python
+# In[4]
+from pyspark.sql import SparkSession, SQLContext, Row
+
+spark = SparkSession.builder.appName("kdd").getOrCreate()
+sc = spark.sparkContext
+data_file = "hdfs:///kddcup.data_10_percent.gz"
+raw_rdd = sc.textFile(data_file).cache()
+raw_rdd.take(5)
+
+# In[5]
+csv_rdd = raw_rdd.map(lambda row: row.split(","))
+parsed_rdd = csv_rdd.map(lambda r: Row(
+    duration=int(r[0]),
+    protocol_type=r[1],
+    service=r[2],
+    flag=r[3],
+    src_bytes=int(r[4]),
+    dst_bytes=int(r[5]),
+    wrong_fragment=int(r[7]),
+    urgent=int(r[8]),
+    hot=int(r[9]),
+    num_failed_logins=int(r[10]),
+    num_compromised=int(r[12]),
+    su_attempted=r[14],
+    num_root=int(r[15]),
+    num_file_creations=int(r[16]),
+    label=r[-1]
+    )
+)
+parsed_rdd.take(5)
+```
+
+Spark analysis
+
+```python
+# In[6]
+# One Way to analyze data in Spark is to call methods on a dataframe.
+sqlContext = SQLContext(sc)
+df = sqlContext.createDataFrame(parsed_rdd)
+connections_by_protocol = df.groupBy('protocol_type').count().orderBy('count', ascending=False)
+connections_by_protocol.show()
+
+# In[7]
+# Another way is to use Spark SQL
+df.registerTempTable("connections")
+attack_stats = sqlContext.sql("""
+    SELECT
+      protocol_type,
+      CASE label
+        WHEN 'normal.' THEN 'no attack'
+        ELSE 'attack'
+      END AS state,
+      COUNT(*) as total_freq,
+      ROUND(AVG(src_bytes), 2) as mean_src_bytes,
+      ROUND(AVG(dst_bytes), 2) as mean_dst_bytes,
+      ROUND(AVG(duration), 2) as mean_duration,
+      SUM(num_failed_logins) as total_failed_logins,
+      SUM(num_compromised) as total_compromised,
+      SUM(num_file_creations) as total_file_creations,
+      SUM(su_attempted) as total_root_attempts,
+      SUM(num_root) as total_root_acceses
+    FROM connections
+    GROUP BY protocol_type, state
+    ORDER BY 3 DESC
+    """)
+attack_stats.show()
+
+# In[8]
+%matplotlib inline
+ax = attack_stats.toPandas().plot.bar(
+  x='protocol_type', subplots=True, figsize=(10,25))
+```
+
+#### Part2: Separate Compute and Storage
+
+In Cloud Shell
+
+```bash
+export PROJECT_ID=$(gcloud info --format='value(config.project)')
+gsutil mb gs://$PROJECT_ID
+
+wget http://kdd.ics.uci.edu/databases/kddcup99/kddcup.data_10_percent.gz
+gsutil cp kddcup.data_10_percent.gz gs://$PROJECT_ID/
+```
+
+switch back to `01_spark` jupyter notebook tab\
+Click File menu and Make a copy\
+Change title `01_spark-Copy1` to `De-couple-storage`\
+Save/Checkpoint and Close/Halt `01_spark`
+
+switch back to `De-couple-storage` jupyter notebook tab\
+Delete first three code cells\
+
+```python
+# Replace In[4]
+from pyspark.sql import SparkSession, SQLContext, Row
+
+gcs_bucket='[Your-Bucket-Name]'
+spark = SparkSession.builder.appName("kdd").getOrCreate()
+sc = spark.sparkContext
+data_file = "gs://"+gcs_bucket+"//kddcup.data_10_percent.gz"
+raw_rdd = sc.textFile(data_file).cache()
+raw_rdd.take(5)
+```
+
+#### Part3: Deploy Spark Jobs
+
+> You now create a standalone Python file, \
+> that can be deployed as a Cloud Dataproc Job,\
+> that will perform the same functions as this notebook. 
+
+Click File menu and Make a copy\
+Change title `De-couple-storage-Copy1` to `PySpark-analysis-file`\
+Save/Checkpoint and Close/Halt `De-couple-storage`
+
+switch back to `PySpark-analysis-file` jupyter notebook tab\
+Click first cell and click Insert menu > Insert Cell Above
+
+```python
+%%writefile spark_analysis.py
+
+import matplotlib
+matplotlib.use('agg')
+
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument("--bucket", help="bucket for input and output")
+args = parser.parse_args()
+
+BUCKET = args.bucket
+```
+
+For the remaining cells insert `%%writefile -a spark_analysis.py` at the start of each code cell.
+
+この先の作業をまとめる\
+要所要所をちょこちょこと変更する（変数、Matplotlibの吐き出し場所など）\
+コードセルをひとつのファイルにまとめていき、そのコードをテストで走らせる\
+うまくいったらそのPythonコードをCloud Storageに保存する\
+Cloud StorageからさらにCloud Shellにコピー\
+gcloudコマンドを使って、cloudprocのジョブとして登録する\
+ジョブは登録されるとすぐに動作するので、少しの間待つ\
+完了したら、その結果を確認する
