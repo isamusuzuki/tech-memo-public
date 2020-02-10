@@ -1,23 +1,19 @@
----
-tags: puppeteer
----
-
 # Puppeteerを使いこなす
 
-作成日 2019/11/25
+作成日 2020/02/10
 
 ## 01. ページサイズを変更する
 
 Puppeteerのイニシャルのページサイズは、800x600
 
-```javascript=
+```javascript
 const page = await browser.newPage();
 page.setViewport({ width: 1920, height: 1080 });
 ```
 
 ## 02. ユーザーエージェントを変更する
 
-```javascript=
+```javascript
 const page = await browser.newPage();
 const chrome_win10 =
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36";
@@ -26,7 +22,7 @@ page.setUserAgent(chrome_win10);
 
 ## 03. ページ遷移する
 
-```javascript=
+```javascript
 await page.goto('https://www.example.com/', 
     { waitUntil: 'networkidle2' }
 );
@@ -34,7 +30,7 @@ await page.goto('https://www.example.com/',
 
 ## 04. しばし待つ
 
-```javascript=
+```javascript
 // 3秒待つ
 await page.waitFor(3000);
 ```
@@ -43,7 +39,7 @@ await page.waitFor(3000);
 
 ### 要素内のテキストを取得する
 
-```javascript=
+```javascript
 const titles = await page.$x("//xpath");
 const title = await page.evaluate(x => x.textContent, titles[0]);
 ```
@@ -53,21 +49,21 @@ const title = await page.evaluate(x => x.textContent, titles[0]);
 
 ### テキストボックスに文言を書き込む
 
-```javascript=
+```javascript
 const mail = await page.$x('//input[@id="mail"]');
 await mail[0].type(username_input, { delay: 30 });
 ```
 
 ### ボタンをクリックする
 
-```javascript=
+```javascript
 const button = await page.$x('//input[@value="ログイン"]');
 await button[0].click();
 ```
 
 #### 確実にボタンがあるとは言えないときの対処法
 
-```javascript=
+```javascript
 // 「次へのページ」リンクを探す
 const nextLinks = await page.$x('//li[@class="a-last"]/a');
 
@@ -84,7 +80,7 @@ if (nextLinks.length > 0) {
 
 これだけXPathで実現できていない。CSSセレクタを使う
 
-```htmlmixed=
+```html
 <label>Choose One:
     <select id="choose1">
         <option value="val1">Value 1</option>
@@ -94,13 +90,13 @@ if (nextLinks.length > 0) {
 </label>
 ```
 
-```javascript=
+```javascript
 await page.select('select#choose1', 'val2');
 ```
 
 ## 07. ポップアップ画面に移動する
 
-```javascript=
+```javascript
 // ポップアップ画面を出す
 const link1 = await page.$x('//xpath');
 await link1[0].click();
@@ -124,7 +120,7 @@ NaturalWidthを使う
 
 ![](https://imgur.com/51gXQYZ.png)
 
-```javascript=
+```javascript
 const anpan = await page.$x('//img[@id="anpan"]');
 const anpan_nw = await page.evaluate(x => x.naturalWidth, anpan[0]);
 console.log(`anpan_nw => ${anpan_nw}`);
@@ -138,7 +134,7 @@ const baikin_nw = await page.evaluate(x => x.naturalWidth, baikin[0]);
 console.log(`baikin_nw => ${baikin_nw}`);
 ```
 
-```=
+```text
 anpan_nw => 240
 curry_nw => 213
 baikin_nw => 0
