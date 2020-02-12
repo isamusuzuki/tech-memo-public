@@ -1,6 +1,6 @@
 # DEGCP3 Week1
 
-作成日 2020/02/11、更新日 2020/02/11
+作成日 2020/02/11、更新日 2020/02/12
 
 ## 01. Manage Data Pipelines with Cloud Data Fusion and Cloud Composer
 
@@ -329,3 +329,18 @@ Graph View ... タスクにマウスオーバーするとステータスが表�
 タスクをクリックするとダイアログが表示され、直接操作できる
 
 ## 02. Serverless Data Processing with Cloud Dataflow
+
+### Cloud Dataflow - 8min
+
+Cloud Dataflow is the serverless execution service for data-processing pipelines writen using Apache Beam.
+
+Choosing between Cloud Dataflow and Cloud Dataproc\
+Cloud Dataflow provides a serverless way to execute pipelines on batch and streaming data.\
+
+- PTransforms
+- PCollections ... represents batch of stream data
+- Pipeline
+- Pipeline Runners
+
+A Cloud Dataflow pipeline is a drected graph of step\
+Each PCollection element can be distributed for parallel processing
