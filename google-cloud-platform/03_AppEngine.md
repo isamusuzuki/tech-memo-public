@@ -1,22 +1,18 @@
----
-tags: gcp
----
-
 # App Engine
 
-作成日 2019/07/17、更新日 2020/01/08
+作成日 2020/01/08
 
 ## 01. スタンダード環境とフレキシブル環境
 
 ドキュメント => [App Engine 環境の選択](https://cloud.google.com/appengine/docs/the-appengine-environments)
 
-解説記事 => [GCEとGAE、どっち使えばいいの？という人のためのGCP運用診断 \- Qiita](https://qiita.com/defunty/items/f837c9e09c8ccc6033b3)
+解説記事 => [GCE と GAE、どっち使えばいいの？という人のための GCP 運用診断 \- Qiita](https://qiita.com/defunty/items/f837c9e09c8ccc6033b3)
 
-## 02. Flaskアプリをデプロイしてみる
+## 02. Flask アプリをデプロイしてみる
 
 ### ファイルを用意する
 
-```=
+```text
 -- avocado
     |--app.yaml
     |--main.py
@@ -25,22 +21,22 @@ tags: gcp
 
 `app.yaml`ファイル
 
-```yaml=
+```yaml
 runtime: python37
 env: standard
 service: default
 entrypoint: gunicorn -b :$PORT main:app
 
 automatic_scaling:
-  min_idle_instances: automatic
-  max_idle_instances: automatic
-  min_pending_latency: automatic
-  max_pending_latency: automatic
+    min_idle_instances: automatic
+    max_idle_instances: automatic
+    min_pending_latency: automatic
+    max_pending_latency: automatic
 ```
 
 `main.py`ファイル
 
-```python=
+```python
 from flask import Flask, jsonify
 
 app = Flask(__name__)
@@ -58,16 +54,16 @@ if __name__ = '__main__':
 
 `requirements.txt`ファイル
 
-```=
+```text
 flask
 gunicorn
 ```
 
 ### デプロイする
 
-一番最初にデプロイするアプリのサービスはdefaultでないといけない
+一番最初にデプロイするアプリのサービスは default でないといけない
 
-```bash=
+```bash
 cd ~/avocado
 
 gcloud app deploy
@@ -89,6 +85,3 @@ gcloud app browse
 gcloud app logs tail
 # => サーバーサイドのログを吐き出し続ける
 ```
-
-
-

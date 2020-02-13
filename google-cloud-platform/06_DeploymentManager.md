@@ -1,12 +1,8 @@
----
-tags: gcp
----
-
 # Deployment Manager
 
 作成日 2019/10/17
 
-## 01. Deployment Managerとは
+## 01. Deployment Manager とは
 
 テンプレートを使って、クラウドリソースを構築・管理するツール
 
@@ -20,34 +16,34 @@ tags: gcp
 > 仮想マシンをリソースとしてデプロイの構成ファイルに追加します。\
 > 構成ファイルを使用してデプロイをします。
 
-YAML形式で設定ファイルを作成する
+YAML 形式で設定ファイルを作成する
 
 `vm.yaml`ファイル
 
-```yaml=
+```yaml
 resources:
-- type: compute.v1.instance
-  name: quickstart-deployment-vm
-  properties:
-    zone: us-central1-f
-    machineType: https://www.googleapis.com/compute/v1/projects/[MY_PROJECT]/zones/us-central1-f/machineTypes/f1-micro
-    disks:
-    - deviceName: boot
-      type: PERSISTENT
-      boot: true
-      autoDelete: true
-      initializeParams:
-        sourceIamge: https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/family/[FAMILY_NAME]
-    networkInterfaces:
-    - network: https://www.googleapis.com/compute/v1/projects/[MY_PROJECT]/global/networks/default
-      accessConfigs:
-      - name: External NAT
-      - type: ONE_TO_ONE_NAT
+    - type: compute.v1.instance
+      name: quickstart-deployment-vm
+      properties:
+          zone: us-central1-f
+          machineType: https://www.googleapis.com/compute/v1/projects/[MY_PROJECT]/zones/us-central1-f/machineTypes/f1-micro
+          disks:
+              - deviceName: boot
+                type: PERSISTENT
+                boot: true
+                autoDelete: true
+                initializeParams:
+                    sourceIamge: https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/family/[FAMILY_NAME]
+          networkInterfaces:
+              - network: https://www.googleapis.com/compute/v1/projects/[MY_PROJECT]/global/networks/default
+                accessConfigs:
+                    - name: External NAT
+                    - type: ONE_TO_ONE_NAT
 ```
 
-gcloudコマンドとYAMLファイルを使ってデプロイできる
+gcloud コマンドと YAML ファイルを使ってデプロイできる
 
-```bash=
+```bash
 # リソースをデプロイする
 gcloud deployment-manager deployments\
   create quickstart-deployment\
