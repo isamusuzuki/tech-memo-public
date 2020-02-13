@@ -1,8 +1,8 @@
-# Dockerをインストールする
+# Ubuntu に Docker をインストールする
 
 作成日 2019/12/12
 
-## 01. 公式ドキュメントを写経する 
+## 01. 公式ドキュメントを写経する
 
 [Get Docker Engine \- Community for Ubuntu \| Docker Documentation](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 
@@ -40,7 +40,7 @@ sudo apt install docker-ce docker-ce-cli containerd.io
 
 ### 自分の場合はインストール中にエラーが起こった
 
-「dockerを起動できない」というメッセージだったので、ひとまず再起動した
+「docker を起動できない」というメッセージだったので、ひとまず再起動した
 
 ```bash
 # デーモンを確認する
@@ -59,7 +59,7 @@ sudo docker run hello-world
 
 [Post\-installation steps for Linux \| Docker Documentation](https://docs.docker.com/install/linux/linux-postinstall/)
 
-sudoなしでdockerコマンドを実行できるようにする
+sudo なしで docker コマンドを実行できるようにする
 
 ```bash
 sudo groupadd docker
@@ -79,7 +79,7 @@ docker run hello-world
 
 ### Install Docker Compose
 
-Ubuntuの場合は、Dockerに含まれておらず、別途インストールする必要がある
+Ubuntu の場合は、Docker に含まれておらず、別途インストールする必要がある
 
 [Install Docker Compose \| Docker Documentation](https://docs.docker.com/compose/install/)
 
