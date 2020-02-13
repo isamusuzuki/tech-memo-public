@@ -51,7 +51,7 @@ gcloud init
 
 ### gcloud コマンドの更新
 
-`gcloud compnents update`コマンドは、Git Bash では動作しない\
+`gcloud components update`コマンドは、Git Bash では動作しない\
 必ず PowerShell で実行すること
 
 ## 03. アカウントとプロジェクトを管理する
@@ -137,8 +137,8 @@ gcloud projects get-iam-policy project-name > iam.yaml
 
 ```bash
 gcloud projects add-iam-policy-binding project-name \
---member user:taro@example.com \
---role roles/appengine.appAdmin
+  --member user:taro@example.com \
+  --role roles/appengine.appAdmin
 ```
 
 ## 05. Cloud Functions を管理する
