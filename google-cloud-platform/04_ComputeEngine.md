@@ -1,6 +1,6 @@
 # Compute Engine
 
-作成日 2019/11/15
+作成日 2020/02/13
 
 ## 01. Compute Engine とは
 
@@ -20,24 +20,24 @@ g1-small(0.5 vCPU, 1.70GB), 東京リージョン\
 ## 02. GCP コンソールで VM インスタンスを立てる
 
 左枠 ＞ Compute Engine ＞ VM インスタンス\
-右枠 ＞ 作成ボタン\
-「インスタンスの作成」ページ ＞ 新規 VM インスタンス
+右枠 ＞ 作成ボタン ＞ 「インスタンスの作成」ページが登場\
+左枠 ＞ 新規 VM インスタンス
 
 | Key                        | Value                                                     |
 | -------------------------- | --------------------------------------------------------- |
 | 名前                       | 適当につける                                              |
-| リージョン                 | asia-northeast1                                           |
+| リージョン                 | asia-northeast1（東京）                                   |
 | ゾーン                     | asia-northeast1-b                                         |
 | マシンファミリー           | 汎用                                                      |
-| マシンタイプ               | g1-small (1 vCPU, 1.7GB メモリ)                           |
+| シリーズ                   | N1 　                                                     |
+| マシンタイプ               | 共有コア ＞ g1-small (1 vCPU, 1.7GB メモリ)               |
 | コンテナ                   | コンテナイメージをデプロイ、チェックオフ                  |
 | ブートディスク OS イメージ | Ubuntu 18.04 LTS Minimal                                  |
 | ブートディスクの種類       | 標準の永続ディスク 10GB                                   |
 | サービスアカウント         | Compute Engine default service account                    |
 | アクセススコープ           | デフォルトのアクセス権を許可                              |
 | ファイアウォール           | HTTP トラフィックを許可する, HTTPS トラフィックを許可する |
-
-作成ボタン
+| 最後に                     | 作成ボタンをクリックする                                  |
 
 ### 立ち上がった VM インスタンスに SSH 接続する
 
@@ -55,6 +55,19 @@ cat /etc/os-release
 sudo apt update
 sudo apt upgrade -y
 sudo apt autoremove -y
+
+# Python環境を確認する
+python --version
+# => なし
+Python3 --version
+# => Python 3.6.9
+pip3 --version
+# => なし
+
+sudo apt install -y python3-pip
+
+pip3 --version
+# => pip 9.0.1 from /usr/lib/python3/dist-packages (python 3.6)
 ```
 
 #### SSH 認証鍵を取得する
@@ -73,7 +86,7 @@ gcloud を叩いたターミナルで SSH 接続できるわけではない
 vim も less も入っていない。自分でインストールする
 
 ```bash
-sudo apt install vim less
+sudo apt install -y vim less
 ```
 
 ## 03. 固定 IP アドレスを割り当てる
@@ -89,10 +102,7 @@ sudo apt install vim less
 | タイプ                   | リージョン              |
 | リージョン               | asia-northeast1（東京） |
 | 接続先                   | VM インスタンスの名前   |
-
-予約ボタン
-
-=> 固定 IP アドレスが割り当たった
+| 最後に                   | 予約ボタンをクリック    |
 
 ## 04. MySQL のポートを空ける
 
@@ -102,7 +112,7 @@ sudo apt install vim less
 
 | Key                      | Value                                  |
 | ------------------------ | -------------------------------------- |
-| 名前                     | default-allow-mysql                    |
+| 名前                     | allow-mysql                            |
 | ログ                     | オフ                                   |
 | ネットワーク             | default                                |
 | 優先度                   | 1000                                   |
@@ -113,8 +123,7 @@ sudo apt install vim less
 | ソース IP の範囲         | 0.0.0.0/0                              |
 | 2 番目のソースフィルタ   | なし                                   |
 | プロトコルとポート       | 指定したプロトコルとポート（TCP 3306） |
-
-作成ボタン
+| 最後に                   | 作成ボタンをクリック                   |
 
 左枠 ＞ Compute Engine ＞ VM インスタンス\
 「VM インスタンス」ページ ＞ 該当のインスタンス\
