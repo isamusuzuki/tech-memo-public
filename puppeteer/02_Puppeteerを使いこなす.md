@@ -16,9 +16,14 @@ page.setViewport({ width: 1920, height: 1080 });
 ```javascript
 const page = await browser.newPage();
 const chrome_win10 =
-  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36";
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
 page.setUserAgent(chrome_win10);
 ```
+
+### UserAgent を確認するには
+
+ユーザーエージェント確認サイト\
+[https://www.cloudgate.jp/ua.php](https://www.cloudgate.jp/ua.php)
 
 ## 03. ページ遷移する
 
