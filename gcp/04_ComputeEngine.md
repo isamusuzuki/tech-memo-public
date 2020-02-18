@@ -1,6 +1,6 @@
 # Compute Engine
 
-作成日 2020/02/13
+作成日 2020/02/13、更新日 2020/02/18
 
 ## 01. Compute Engine とは
 
@@ -32,7 +32,7 @@ g1-small(0.5 vCPU, 1.70GB), 東京リージョン\
 | シリーズ                   | N1 　                                                     |
 | マシンタイプ               | 共有コア ＞ g1-small (1 vCPU, 1.7GB メモリ)               |
 | コンテナ                   | コンテナイメージをデプロイ、チェックオフ                  |
-| ブートディスク OS イメージ | Ubuntu 18.04 LTS Minimal                                  |
+| ブートディスク OS イメージ | Ubuntu 18.04 LTS                                   |
 | ブートディスクの種類       | 標準の永続ディスク 10GB                                   |
 | サービスアカウント         | Compute Engine default service account                    |
 | アクセススコープ           | デフォルトのアクセス権を許可                              |
@@ -70,25 +70,6 @@ pip3 --version
 # => pip 9.0.1 from /usr/lib/python3/dist-packages (python 3.6)
 ```
 
-#### SSH 認証鍵を取得する
-
-```bash
-gcloud compute ssh --project PROJECT_ID --zone ZONE INSTANCE_NAME
-```
-
-1 回目は時間がかかる\
-2 回目はもう少し早い\
-いずれにしろ、PuTTY が立ち上がり、その中で利用する\
-gcloud を叩いたターミナルで SSH 接続できるわけではない
-
-### Ubuntu 18.04 LTS Minimal を選択したときの注意事項
-
-vim も less も入っていない。自分でインストールする
-
-```bash
-sudo apt install -y vim less
-```
-
 ## 03. 固定 IP アドレスを割り当てる
 
 左枠 ＞ VPC ネットワーク ＞ 外部 IP アドレス\
@@ -118,7 +99,8 @@ sudo apt install -y vim less
 | 優先度                   | 1000                                   |
 | トラフィックの方向       | 上り                                   |
 | 一致したときのアクション | 許可                                   |
-| ターゲット               | ネットワーク上のすべてのインスタンス   |
+| ターゲット               | 指定されたターゲットタグ   |
+| ターゲットタグ | mysql-server | 
 | ソースフィルタ           | IP 範囲                                |
 | ソース IP の範囲         | 0.0.0.0/0                              |
 | 2 番目のソースフィルタ   | なし                                   |
@@ -127,6 +109,4 @@ sudo apt install -y vim less
 
 左枠 ＞ Compute Engine ＞ VM インスタンス\
 「VM インスタンス」ページ ＞ 該当のインスタンス\
-行右端の縦 3 点をクリック ＞ ネットワークの詳細の表示\
-「ネットワークインターフェースの詳細」ページ\
-ファイアウォールルールに、default-allow-mysql があることを確認する
+編集 ＞ ネットワークタグ ＞ mysql-server を追加する ＞ 保存ボタン
