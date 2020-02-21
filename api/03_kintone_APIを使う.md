@@ -1,14 +1,12 @@
 # kintone API を使う
 
-作成日 2020/02/03、更新日 2020/02/07
+作成日 2020/02/03、更新日 2020/02/21
 
 ## 01. データを読む
 
 ドキュメント => [レコードの取得（GET） – cybozu developer network](https://developer.cybozu.io/hc/ja/articles/202331474)
 
-> レコードの一括取得（クエリで条件を指定）
-> 
-> 一度に取得できるレコードは 500件までです。
+> 一度に取得できるレコードは 500 件までです。
 
 ```python
 import base64
@@ -79,7 +77,128 @@ finally:
     return response
 ```
 
-## 02. データを更新する
+## 02. カーソルを使って、一括でデータを読む
+
+ドキュメント => [レコードの一括取得 – cybozu developer network](https://developer.cybozu.io/hc/ja/articles/360029152012)
+
+> アプリに対して、レコード取得用のカーソルを作成できます。
+
+```python
+import json
+import math
+import os
+import urllib.parse
+import urllib.request
+
+
+class SampleCursor():
+
+    def __init__(self, size):
+        self.token = os.environ.get('KINTONE_SHNCHK_TOKEN')
+        self.size = size
+        self.base_url = 'https://everglow.cybozu.com/k/v1/records/cursor.json'
+        self.id = 0
+        self.totalCount = 0
+
+    def get_data(self):
+        if self.id != 0:
+            params = {'id': self.id}
+            headers = {
+                'X-Cybozu-API-Token': self.token
+            }
+            url = f'{self.base_url}?{urllib.parse.urlencode(params)}'
+            req = urllib.request.Request(url, headers=headers)
+            try:
+                with urllib.request.urlopen(req) as res:
+                    body = res.read().decode('utf-8')
+                    result_dict = json.loads(body)
+                    response = {
+                        'success': True,
+                        'message': '',
+                        'result': result_dict
+                    }
+            except urllib.error.HTTPError as err:
+                body = err.read().decode('utf-8')
+                result_dict = json.loads(body)
+                response = {
+                    'success': False,
+                    'message': f'ERROR => {err.code} {err.reason}',
+                    'result': result_dict
+                }
+            except urllib.error.URLError as err:
+                response = {
+                    'success': False,
+                    'message': f'ERROR => {err.reason}'
+                }
+            finally:
+                return response
+
+    def get_id(self):
+        url = self.base_url
+        method = 'POST'
+        data = {'app': 38,
+                'query': (
+                    'status not in  ("へび","かめ") '
+                    'and type not in ("カラー眼鏡")'
+                ),
+                'fields': [
+                    'kanri_no', 'item_code', 'item_name', 'vendor_code'
+                ],
+                'size': self.size
+                }
+        json_data = json.dumps(data).encode('utf-8')
+        headers = {
+            'Content-Type': 'application/json',
+            'X-Cybozu-API-Token': self.token
+        }
+        req = urllib.request.Request(
+            url, data=json_data, method=method, headers=headers)
+        try:
+            with urllib.request.urlopen(req) as res:
+                body = res.read().decode('utf-8')
+                result_dict = json.loads(body)
+                self.id = result_dict['id']
+                self.totalCount = int(result_dict['totalCount'])
+                response = {
+                    'success': True,
+                    'message': '',
+                    'result': result_dict
+                }
+        except urllib.error.HTTPError as err:
+            body = err.read().decode('utf-8')
+            result_dict = json.loads(body)
+            response = {
+                'success': False,
+                'message': f'ERROR => {err.code} {err.reason}',
+                'result': result_dict
+            }
+        except urllib.error.URLError as err:
+            response = {
+                'success': False,
+                'message': f'ERROR => {err.reason}'
+            }
+        finally:
+            return response
+
+
+if __name__ == '__main__':
+    size = 100
+    sc = SampleCursor(size)
+    result0 = sc.get_id()
+    with open('temp/result0.json', mode='w', encoding='utf-8') as f:
+        f.write(json.dumps(result0, indent=2, ensure_ascii=False))
+
+    if result0['success']:
+        for i in range(0, math.ceil(sc.totalCount / size)):
+            result = sc.get_data()
+            with open(f'temp/result{i + 1}.json',
+                    mode='w', encoding='utf-8') as f:
+                f.write(json.dumps(result, indent=2, ensure_ascii=False))
+    else:
+        print('error')
+```
+
+## 03. データを更新する
 
 ドキュメント => [レコードの更新（PUT） – cybozu developer network](https://developer.cybozu.io/hc/ja/articles/201941784)
 
