@@ -1,6 +1,6 @@
 # vscode の Node.js 環境構築
 
-作成日 2019/11/27、更新日 2020/01/31
+作成日 2019/11/27、更新日 2020/02/21
 
 ## 01. Node.js をインストールする
 
@@ -68,6 +68,30 @@ JavaScript を自動で修正・整形してくれる便利ツールだが、
   "tabWidth": 4,
   "semi": true,
   "singleQuote": true
+}
+```
+
+### 設定の上書き
+
+MarkdownファイルもPrettierが整形してくれるのは助かっているが、タブ幅がリストインデントに影響しているに困っていた\
+ある条件の場合のみ、設定が上書きされる方法を発見した
+
+[Configuration File · Prettier](https://prettier.io/docs/en/configuration.html)
+
+```json
+{
+    "trailingComma": "es5",
+    "tabWidth": 4,
+    "semi": true,
+    "singleQuote": true,
+    "overrides": [
+        {
+            "files": "*.md",
+            "options": {
+                "tabWidth": 2
+            }
+        }
+    ]
 }
 ```
 
