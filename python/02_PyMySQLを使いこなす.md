@@ -1,6 +1,6 @@
 # PyMySQL を使いこなす
 
-作成日 2019/11/28
+作成日 2019/11/28、更新日 2020/02/25
 
 ## 01. PyMySQL とは
 
@@ -100,10 +100,10 @@ def insert_data(no, code, status, message)):
 
 ドキュメント => [Cursor Objects — PyMySQL 0\.7\.2 documentation](https://pymysql.readthedocs.io/en/latest/modules/cursors.html)
 
--   構文: execute(query, args=None)
--   引数 1: query ... str
--   引数 2: args ... tuple,list or dict
--   戻り: 影響があった行の数 int
+- 構文: execute(query, args=None)
+- 引数 1: query ... str
+- 引数 2: args ... tuple,list or dict
+- 戻り: 影響があった行の数 int
 
 > If args is a list or tuple, %s can be used as a placeholder in the query.\
 > If args is a dict, %(name)s can be used as a placeholder in the query.
@@ -138,4 +138,51 @@ with conn.cursor() as cursor:
     cursor.execute(sql, (10, 400))
     result = cursor.fetchall()
     df = DataFrame(result)
+```
+
+## 06. 日付時刻が入っているカラムからデータを取り出す
+
+### エラーになるコード
+
+created_at カラムが、timestamp を使って自動生成している場合、\
+以下のコードは、辞書リストを JSON データに変換したところで TypeError を起こす
+
+`TypeError: Object of type datetime is not JSON serializable`
+
+このエラーの原因は、PyMySQLが日付時刻データをPythonのDatetimeクラスに変換するため
+
+```python
+import json
+
+import pymysql
+
+conn = pymysql.connect(
+    # 略
+)
+
+sql = (
+    'select id, created_at'
+    ' from logs order by id desc limit 50;'
+)
+with conn.cursor() as cursor:
+    cursor.execute(sql)
+    db_results = cursor.fetchall()
+
+with open('temp/test.json', mode='w', encoding='utf-8') as f:
+    f.write(json.dumps(response, ensure_ascii=False, indent=4))
+print('done')
+```
+
+### 解決方法のひとつ
+
+SQLクエリーの中で、DATE_FORMAT関数を使って、日付時刻データを文字列に変換する
+
+[MySQL :: MySQL 5\.7 Reference Manual :: 12\.6 Date and Time Functions](https://dev.mysql.com/doc/refman/5.7/en/date-and-time-functions.html)
+
+```python
+sql = (
+    'select id,'
+    ' DATE_FORMAT(created_at, "%Y-%m-%d %H:%i:%s") created_at'
+    ' from logs order by id desc limit 50;'
+)
 ```
