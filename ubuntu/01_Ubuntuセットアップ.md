@@ -1,4 +1,4 @@
-# スクリプト実行 PC を構築する
+# Ubuntu をセットアップする
 
 作成日 2020/02/03、更新日 2020/02/18
 
@@ -9,9 +9,9 @@ Ubuntu のホームページに行く => [https://ubuntu.com/](https://ubuntu.co
 `ubuntu-18.04.3-desktop-amd64.iso` (1.93GB) を入手\
 [balenaEtcher](https://www.balena.io/etcher/)で USB メモリに書き込む
 
-## 02. Ubuntu のインストールを実行する
+## 02. Ubuntu をインストールする
 
-ウィザード画面
+### ウィザード画面
 
 | 画面名                     | 実行したこと                                     |
 | -------------------------- | ------------------------------------------------ |
@@ -22,7 +22,7 @@ Ubuntu のホームページに行く => [https://ubuntu.com/](https://ubuntu.co
 | Where are you?             | Tokyo ＞ Continue ボタン                         |
 | Who are you?               | 下の表の通り ＞ Continue ボタン                  |
 
-Who are you? の項目
+### Who are you? の項目
 
 | ラベル                        | 入力値        |
 | ----------------------------- | ------------- |
@@ -34,9 +34,7 @@ Who are you? の項目
 | Log in automatically          | check on      |
 | Require my password to log in | check off     |
 
-## 03. Ubuntu をセットアップする
-
-### パッケージを更新する
+## 03. パッケージを更新する
 
 ```bash
 sudo apt update
@@ -44,7 +42,19 @@ sudo apt upgrade -y
 sudo apt autoremove -y
 ```
 
-### 別 PC から SSH 接続できるようにする
+## 04. タイムゾーンを変更する
+
+```bash
+date
+# => Tue Feb 18 08:43:59 UTC 2020
+
+sudo timedatectl set-timezone Asia/Tokyo
+
+date
+# => Tue Feb 18 17:44:59 JST 2020
+```
+
+## 05. 別 PC から SSH 接続できるようにする
 
 ```bash
 # IPアドレスを調べようと思ったら、ifconfigがなかった
@@ -57,46 +67,15 @@ sudo aptitude install ssh
 systemctl status ssh
 ```
 
-### Python 開発環境を整える
-
-```bash
-python --version
-# => なし
-
-Python3 --version
-# => Python 3.6.8
-
-pip3 --version
-# => なし
-
-sudo apt install -y python3-pip python3-venv
-```
-
-### Node.js 開発環境を整える
-
-バイナリ配布の公式サイト => [NodeSource Node.js Binary Distributions](https://github.com/nodesource/distributions)
-
-```bash
-node -v
-# => なし
-
-sudo apt install curl
-curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
-sudo apt install -y nodejs
-
-node -v
-# => v10.18.1
-
-npm -v
-# => 6.13.4
-```
-
-## 04. GitHub リポジトリに接続できるようにする
+## 06. GitHub リポジトリに接続できるようにする
 
 公開鍵ファイル・秘密鍵ファイルを作成する
 
 ```bash
-ssh-keygen
+cd ~
+
+# RSA暗号の鍵を生成する
+ssh-keygen -t rsa
 # => ファイル名もパスフレーズも指定しない
 # => /home/ubuntu/.ssh/id_rsa, id_rsa.pub ファイルが生成される
 ```
@@ -134,60 +113,3 @@ Git クローンする
 ```bash
 git clone git@github.com:your-name/repository-name.git
 ```
-
-## 05. タイムゾーンを変更する
-
-```bash
-date
-# => Tue Feb 18 08:43:59 UTC 2020
-
-sudo timedatectl set-timezone Asia/Tokyo
-
-date
-# => Tue Feb 18 17:44:59 JST 2020
-```
-
-## 06. cron を設定する
-
-注意点
-
--   cron 実行時のカレントフォルダは、実行ユーザーのホームフォルダ
--   cron 実行時のシェルは、`.bashrc` を読まない
-    -   環境変数は、cron の中で設定することができるが、
-    -   dotenv を使って、実行するスクリプトの中で、環境変数を読み込むことが望ましい
-
-設定方法
-
-```bash
-# デーモンの稼働状況を確認する
-systemctl status cron
-# => cron.service - Regular background program processing daemon
-# => Loaded: loaded
-# => Active: active (running)
-
-# ログインしているユーザーのcrontabの内容を表示する
-crontab -l
-
-# ログインしているユーザーのcrontabを編集する
-crontab -e
-
-# ログインしているユーザーのcrontabを削除する
-crontabl -r
-
-# root ユーザーに昇格していれば、他のユーザーのcrontabも表示できる
-crontab -u other-user -l
-```
-
-書き込み例
-
-```text
-GOOGLE_APPLICATION_CREDENTIALS=/home/ubuntu/credentials.json
-
-17 * * * * cd <project-name>; python3 main.py >> temp/cron.log 2>&1
-```
-
-### crontab コマンド以外の設定方法
-
-/etc/cron.d ディレクトリに、設定ファイルを置くことでも、\
-cron ジョブを設定することができる\
-この場合は、実行するユーザー名を指定できる（root ユーザーを含む）
