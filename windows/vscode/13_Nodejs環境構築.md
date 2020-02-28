@@ -18,7 +18,7 @@ npm -v
 
 ## 02. 新規プロジェクトを作成する
 
-Git Bashを開く
+Git Bash を開く
 
 ```bash
 cd ~/YOUR-PROJECT
@@ -53,49 +53,7 @@ npm init -y
 }
 ```
 
-## 03. Prettier は、必須の vscode 拡張機能
-
-[Prettier \- Code formatter \- Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-
-JavaScript を自動で修正・整形してくれる便利ツールだが、
-ときに整形ルールを変更したいときもある
-
-`.prettierrc`ファイル
-
-```json
-{
-  "trailingComma": "es5",
-  "tabWidth": 4,
-  "semi": true,
-  "singleQuote": true
-}
-```
-
-### 設定の上書き
-
-MarkdownファイルもPrettierが整形してくれるのは助かっているが、タブ幅がリストインデントに影響しているに困っていた\
-ある条件の場合のみ、設定が上書きされる方法を発見した
-
-[Configuration File · Prettier](https://prettier.io/docs/en/configuration.html)
-
-```json
-{
-    "trailingComma": "es5",
-    "tabWidth": 4,
-    "semi": true,
-    "singleQuote": true,
-    "overrides": [
-        {
-            "files": "*.md",
-            "options": {
-                "tabWidth": 2
-            }
-        }
-    ]
-}
-```
-
-## 04. require 構文に、サジェスチョンが表示するのを止める
+## 03. require 構文に、サジェスチョンが表示するのを止める
 
 以下のようなサジェスチョンが、require 構文に表示される
 
