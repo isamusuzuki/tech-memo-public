@@ -1,6 +1,6 @@
 # Flask を使いこなす
 
-作成日 2019/11/28
+作成日 2019/11/28、更新日 2020/02/28
 
 ## 01. Flask とは
 
@@ -128,3 +128,21 @@ request.json は、状況により異なる
 
 -   データが JSON 形式で送信された場合 ... request.json は`dict`
 -   データが JSON 形式で送信されなかった場合 ... request.json は`NoneType`
+
+## 07. 返却するHTTPステータスを指定する
+
+タプルを戻すようにして、2番目の要素に数字を入れる
+
+```python
+@app.route('/hello')
+def hello():
+    return jsonify({'message': 'hello internal'}), 500
+```
+
+Responseクラスの引数で指定することも可能
+
+```python
+@app.route('/hello')
+def hello():
+    return Response(response=json.dumps({'message': 'hello response'}), status=500)
+```
