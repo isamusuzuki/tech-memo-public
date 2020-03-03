@@ -1,6 +1,6 @@
 # PyMySQL を使いこなす
 
-作成日 2019/11/28、更新日 2020/02/25
+作成日 2019/11/28、更新日 2020/03/04
 
 ## 01. PyMySQL とは
 
@@ -149,7 +149,7 @@ created_at カラムが、timestamp を使って自動生成している場合�
 
 `TypeError: Object of type datetime is not JSON serializable`
 
-このエラーの原因は、PyMySQLが日付時刻データをPythonのDatetimeクラスに変換するため
+このエラーの原因は、PyMySQL が日付時刻データを Python の Datetime クラスに変換するため
 
 ```python
 import json
@@ -175,7 +175,7 @@ print('done')
 
 ### 解決方法のひとつ
 
-SQLクエリーの中で、DATE_FORMAT関数を使って、日付時刻データを文字列に変換する
+SQL クエリーの中で、DATE_FORMAT 関数を使って、日付時刻データを文字列に変換する
 
 [MySQL :: MySQL 5\.7 Reference Manual :: 12\.6 Date and Time Functions](https://dev.mysql.com/doc/refman/5.7/en/date-and-time-functions.html)
 
@@ -184,5 +184,51 @@ sql = (
     'select id,'
     ' DATE_FORMAT(created_at, "%Y-%m-%d %H:%i:%s") created_at'
     ' from logs order by id desc limit 50;'
+)
+```
+
+## 07. 集計したカラムからデータを取り出す
+
+### エラーになるコード
+
+success カラムが、SUM などを使って集計している場合、\
+以下のコードは、辞書リストを JSON データに変換したところで TypeError を起こす
+
+`TypeError: Object of type Decimal is not JSON serializable`
+
+このエラーの原因は、PyMySQL が集計データを Python の Decimal クラスに変換するため
+
+```python
+import json
+
+import pymysql
+
+conn = pymysql.connect(
+    # 略
+)
+
+sql = (
+    'select id, sum(success)'
+    ' from logs group by id'
+)
+with conn.cursor() as cursor:
+    cursor.execute(sql)
+    db_results = cursor.fetchall()
+
+with open('temp/test.json', mode='w', encoding='utf-8') as f:
+    f.write(json.dumps(response, ensure_ascii=False, indent=4))
+print('done')
+```
+
+### 解決方法のひとつ
+
+SQL クエリーの中で、CAST 関数または CONVERT 関数を使って、集計データを整数に変換する
+
+[MySQL :: MySQL 5\.7 Reference Manual :: 12\.10 Cast Functions and Operators](https://dev.mysql.com/doc/refman/5.7/en/cast-functions.html)
+
+```python
+sql = (
+    'select id, cast(sum(success) as signed)'
+    ' from logs group by id'
 )
 ```
