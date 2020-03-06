@@ -31,13 +31,33 @@ crontabl -r
 crontab -u other-user -l
 ```
 
-### 03. crontab の書き方例
+## 03. crontab の書き方例
 
 ```text
 GOOGLE_APPLICATION_CREDENTIALS=/home/ubuntu/credentials.json
 
-17 * * * * cd <project-name>; python3 main.py >> temp/cron.log 2>&1
+17 * * * * cd <project-name>; python3 main.py >> temp/cron1.log 2>&1
+31 3 * * * cd <project-name>; python3 shuppin.py shousai >> ../temp/cron2.log 2>&1
+* 9-23 * * * cd <project-name>; python3 exec.py >> ../temp/cron3.log 2>&1
 ```
+
+### unix-cron 形式（5 桁の数字）について
+
+| No  | field        | available |
+| :-: | ------------ | --------- |
+|  1  | min          | 0-59      |
+|  2  | hour         | 0-23      |
+|  3  | day of month | 1-31      |
+|  4  | month        | 1-12      |
+|  5  | day of week  | 0-6       |
+
+- `* * * * *` ... 1 分ごと
+- `0 * * * *` ... 毎時 0 分に 1 時間おき
+- `*/10 * * * *` ... 10 分おき
+- `0 3 * * *` ... 毎日朝 3 時
+- `0 */3 * * *` ... 3 時間おき
+- `0 9 * * 1` ... 毎週月曜日の朝 9 時
+- `*/5 9-17 * * 1-5` ... 平日業務時間中の 5 分おき
 
 ## 04. crontab 以外の設定方法
 
