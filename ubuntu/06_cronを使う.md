@@ -1,12 +1,12 @@
 # cron を使う
 
-作成日 2020/02/26
+作成日 2020/02/26、更新日 2020/03/06
 
 ## 01. cron の注意点
 
 - cron 実行時のカレントフォルダは、実行ユーザーのホームフォルダ
 - cron 実行時のシェルは、`.bashrc` を読まない
-  - 環境変数は、cron の中で設定することができるが、
+  - 環境変数は、crontab の中で設定することができるが、
   - dotenv を使って、実行するスクリプトの中で、環境変数を読み込むことが望ましい
 
 ## 02. cron の設定方法
@@ -31,7 +31,7 @@ crontabl -r
 crontab -u other-user -l
 ```
 
-### 03. cron の書き込み例
+### 03. crontab の書き方例
 
 ```text
 GOOGLE_APPLICATION_CREDENTIALS=/home/ubuntu/credentials.json
@@ -39,7 +39,7 @@ GOOGLE_APPLICATION_CREDENTIALS=/home/ubuntu/credentials.json
 17 * * * * cd <project-name>; python3 main.py >> temp/cron.log 2>&1
 ```
 
-## 04. crontab コマンド以外の設定方法
+## 04. crontab 以外の設定方法
 
 /etc/cron.d ディレクトリに、設定ファイルを置くことでも、\
 cron ジョブを設定することができる\
