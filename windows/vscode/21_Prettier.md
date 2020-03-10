@@ -9,7 +9,20 @@ JavaScript を自動で修正・整形してくれる便利ツール
 
 [Prettier \- Code formatter \- Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
-## 02. Prettier を設定する
+## 02. Prettier をデフォルトのフォーマッターに指定する
+
+.vscode/settings.json
+
+```json
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript, markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
+```
+
+## 03. Prettier のルールを設定する
 
 ときに整形ルールを変更したいときもある
 
@@ -24,11 +37,11 @@ JavaScript を自動で修正・整形してくれる便利ツール
 }
 ```
 
-### 設定の上書き
+### ルールの上書き
 
 Markdown ファイルも Prettier が整形してくれるのは助かっているが、\
-タブ幅がリストインデントに影響しているに困っていた\
-ある条件の場合のみ、設定が上書きされる方法を発見した
+タブ幅がリストインデントに影響されて、4 文字になってしまうのに、困っていた\
+ある条件の場合のみ、設定を上書きする方法を発見した
 
 [Configuration File · Prettier](https://prettier.io/docs/en/configuration.html)
 
