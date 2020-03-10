@@ -10,7 +10,7 @@ dropbox.dropbox => [dropbox\.dropbox – Dropbox — Dropbox for Python 0\.0\.0 
 
 ## 01. 指定したフォルダにあるファイル名を取得する
 
-### ひとつのフォルダの直下だけを確認する場合
+### フォルダ直下だけを確認する場合
 
 ```python
 import os
@@ -18,11 +18,11 @@ import os
 import dropbox
 
 DROPBOX_ACCESS_TOKEN = os.environ.get('DROPBOX_ACCESS_TOKEN')
-FOLDER_NAME = 't00000-atc1222'
-
 dbx = dropbox.Dropbox(DROPBOX_ACCESS_TOKEN)
 
-res = dbx.files_list_folder(f'//7.画像処理対象/{FOLDER_NAME}/color/')
+folder_name = 't00000-atc1222'
+res = dbx.files_list_folder(
+    f'//7.画像処理対象/{folder_name}/color/', recursive=False)
 
 for entry in res.entries:
     if '.jpg' in entry.name or '.png' in entry.name:
@@ -39,15 +39,14 @@ import os
 import dropbox
 
 DROPBOX_ACCESS_TOKEN = os.environ.get('DROPBOX_ACCESS_TOKEN')
-FOLDER_NAME = 't00000-atc1222'
-
 dbx = dropbox.Dropbox(DROPBOX_ACCESS_TOKEN)
 
 folder_list = []
 file_list = []
 
+folder_name = 't00000-atc1222'
 res = dbx.files_list_folder(
-    f'//8.要画像確認/{FOLDER_NAME}/', recursive=True)
+    f'//8.要画像確認/{folder_name}/', recursive=True)
 
 for entry in res.entries:
     if isinstance(entry, dropbox.files.FileMetadata):
@@ -90,12 +89,21 @@ res = dbx.files_list_folder(f'//Everglow/7.画像処理対象/{FOLDER_NAME}/colo
 for entry in res.entries:
     if '.jpg' in entry.name or '.png' in entry.name:
         local_path = f'{subfolder}/{entry.name}'
-        dropbox_path = entry.id
+        dropbox_path = entry.full_path
         meta = dbx.files_download_to_file(local_path, dropbox_path)
         print(meta.name)
 
 print('done')
 ```
+
+`files_list_folder()`で取得できるのは、クラスのリスト
+
+- entry.name ... ファイル名
+- entry.id ... dropbox内で一意となるID
+- entry.full_path ... ファイルのフルパス
+
+`files_download_to_file()`には、idを与えることもできるが、ファイルが見つからないエラーが\
+発生したことがあるので、full_pathを与えたほうが安全だと思われる
 
 ## 03. 指定したファイルをアップロードする
 
