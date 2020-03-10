@@ -1,6 +1,6 @@
 # Flask を使いこなす
 
-作成日 2019/11/28、更新日 2020/02/28
+作成日 2019/11/28、更新日 2020/03/10
 
 ## 01. Flask とは
 
@@ -12,9 +12,9 @@
 
 > Flask は、 Jinja2 テンプレートエンジンと Werkzeug WSGI ツールキットに 依存しています。
 
-## 02. Flask の最初のサンプルコード
+### 最初のサンプルコード
 
-`hello.py`
+hello.py
 
 ```python
 from flask import Flask
@@ -27,6 +27,43 @@ def hello():
 
 起動方法 => `FLASK_APP=hello.py flask run`
 
+## 02. テンプレートファイルを使う
+
+server.py
+
+```python
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route('/detail/<int:id>')
+def detail(id):
+    return render_template('detail.html', id=id)
+```
+
+detail.html
+
+```html
+<input id="id" type="hidden" value="{{id}}" />
+```
+
+### 二重中括弧に要注意
+
+Vue.jsでテキスト展開に使っている二重中括弧は、\
+jinjaテンプレートの基本要素でもある
+
+jinjaテンプレートを通過したhtmlファイルに、\
+二重中括弧は残っていないので、Vue.jsでは使えない
+
+### html テンプレートファイルの置き場所
+
+テンプレートファイルを格納するディレクトリは、デフォルトで`templates`に設定されている\
+`template_folder`引数を使えば、変更可能
+
+```python
+app = Flask(__name__, template_folder='resources')
+```
+
 ## 03. スタティックファイルを使う
 
 ```python
@@ -34,24 +71,22 @@ from os import path
 
 from flask import Flask, Response
 
+
 app = Flask(__name__)
-
-
-def root_dir():
-    return path.abspath(path.dirname(__file__))
 
 
 def get_file(filename):
     try:
-        src = path.join(root_dir(), filename)
-        return open(src).read()
+        root_dir = path.abspath(path.dirname(__file__))
+        src = path.join(root_dir, filename)
+        return open(src, 'r', encoding='UTF-8').read()
     except IOError as err:
-        return str(err)
+        return f'<h1>ERROR: not file found</h1><div>{err}</div>'
 
 
 @app.route('/')
-def hello():
-    content = get_file('index.html')
+def index():
+    content = get_file('staic/index.html')
     return Response(content, mimetype='text/html')
 ```
 
@@ -87,8 +122,8 @@ def index():
     return 'Hello, World!'
 ```
 
--   `app.debug`は、デフォルトでは`False`に設定されている
--   `debug()`と`info()`を使いたいときは、`app.debug = True`にする
+- `app.debug`は、デフォルトでは`False`に設定されている
+- `debug()`と`info()`を使いたいときは、`app.debug = True`にする
 
 ## 05. GET パラメーターを取得する
 
@@ -126,12 +161,12 @@ def api_post():
 request.form は、常に`werkzeug.datastructures.ImmutableMultiDict`である一方で、\
 request.json は、状況により異なる
 
--   データが JSON 形式で送信された場合 ... request.json は`dict`
--   データが JSON 形式で送信されなかった場合 ... request.json は`NoneType`
+- データが JSON 形式で送信された場合 ... request.json は`dict`
+- データが JSON 形式で送信されなかった場合 ... request.json は`None`
 
-## 07. 返却するHTTPステータスを指定する
+## 07. 返す HTTP ステータスを指定する
 
-タプルを戻すようにして、2番目の要素に数字を入れる
+タプルを戻すようにして、2 番目の要素に数字を入れる
 
 ```python
 @app.route('/hello')
@@ -139,10 +174,52 @@ def hello():
     return jsonify({'message': 'hello internal'}), 500
 ```
 
-Responseクラスの引数で指定することも可能
+Response クラスの引数で指定することも可能
 
 ```python
 @app.route('/hello')
 def hello():
     return Response(response=json.dumps({'message': 'hello response'}), status=500)
+```
+
+## 08. Blueprintを使って、ファイルを分割する
+
+```text
+--coconut/
+    |--api_modules/
+    |   |--cacao.py
+    |   `--choco.py
+    `--server.py
+```
+
+cacao.py (choco.py)
+
+```python
+from flask import Blueprint, current_app, jsonify, request
+
+cacao = Blueprint('cacao', __name__, url_prefix='/api/cacao')
+
+@cacao.route('/list', methods=['POST'])
+def list():
+    current_app.logger.debug(f'/api/cacao/list {request.method} access')
+    return jsonify({'success': True})
+```
+
+server.py
+
+```python
+from api_modules.cacao import cacao
+from api_modules.choco import choco
+
+from flask import Flask, render_template
+
+
+app = Flask(__name__)
+app.register_blueprint(cacao)
+app.register_blueprint(choco)
+
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 ```
