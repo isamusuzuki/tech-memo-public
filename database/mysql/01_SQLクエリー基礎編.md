@@ -1,6 +1,6 @@
 # SQL クエリー基礎編
 
-作成日 2019/12/10
+作成日 2019/12/10、更新日 2020/03/11
 
 ## 01. SELECT クエリー
 
@@ -68,19 +68,28 @@ SET i.joudai_price = t.joudai_price
 WHERE t.cursor_id = '8196db33-b775-4cda-a2bb-0c13fce6c0a5'
 ```
 
+### 外部キー制約を一時的に無効にして、主キーを更新する
+
+```sql
+SET FOREIGN_KEY_CHECKS = 0;
+UPDATE m_items SET item_code = 'wubenlt35' WHERE item_code = 'WUBENLT35';
+UPDATE m_item_packing SET item_code = 'wubenlt35' WHERE item_code = 'WUBENLT35';
+SET FOREIGN_KEY_CHECKS = 1;
+```
+
 ## 04. ユーザー定義変数を使う
 
 ```sql
-set @item_code = 'cmb532';
-delete from m_item_packing where item_code = @item_code;
-delete from m_items where item_code = @item_code;
+SET @item_code = 'cmb532';
+delete from m_item_packing WHERE item_code = @item_code;
+delete from m_items WHERE item_code = @item_code;
 ```
 
 SET 以外のステートメントでは、`=`は比較演算子として扱われるので、\
 割り当て演算子は`:=`を使う
 
 ```sql
-set @t1=1, @t2=2, @t3=4;
+SET @t1=1, @t2=2, @t3=4;
 select @t1, @t2, @t3, @t4 := @t1+@t2+@t3;
 ```
 
@@ -96,7 +105,7 @@ end as type
 , count(l.id) as total
 from t_loginhistory as l
 join t_user as u on l.user_id = u.id
-where l.login_datetime >= '2019/07/01'
+WHERE l.login_datetime >= '2019/07/01'
 and l.login_datetime < '2019/08/01'
 and u.code not in ('9999','9999-999','9999-998','9990','9991')
 group by type;
