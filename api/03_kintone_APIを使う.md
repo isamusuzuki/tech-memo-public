@@ -1,12 +1,12 @@
 # kintone API を使う
 
-作成日 2020/02/03、更新日 2020/02/21
+作成日 2020/02/03、更新日 2020/03/11
 
 ## 01. データを読む
 
 ドキュメント => [レコードの取得（GET） – cybozu developer network](https://developer.cybozu.io/hc/ja/articles/202331474)
 
-> 一度に取得できるレコードは 500 件までです。
+- 一度に取得できるレコードは 500 件まで
 
 ```python
 import base64
@@ -81,7 +81,7 @@ finally:
 
 ドキュメント => [レコードの一括取得 – cybozu developer network](https://developer.cybozu.io/hc/ja/articles/360029152012)
 
-> アプリに対して、レコード取得用のカーソルを作成できます。
+- アプリに対して、レコード取得用のカーソルを作成できる
 
 ```python
 import json
@@ -202,10 +202,61 @@ if __name__ == '__main__':
 
 ドキュメント => [レコードの更新（PUT） – cybozu developer network](https://developer.cybozu.io/hc/ja/articles/201941784)
 
-> レコードの一括更新
->
-> 一度に更新できるレコードは 100 件までです。\
-> 一括更新に失敗すると、リクエストに含まれるレコードの処理はすべてキャンセルされます。
+一件だけの更新と一括の更新は、URL も与えるデータも違うの要注意
+
+### レコードの更新（1 件）
+
+```python
+import base64
+import json
+import os
+import urllib.error
+import urllib.request
+
+KINTONE_API_TOKEN = os.environ.get('KINTONE_API_TOKEN')
+KINTONE_BASIC_USERNAME = os.environ.get('KINTONE_BASIC_USERNAME')
+KINTONE_BASIC_PASSWORD = os.environ.get('KINTONE_BASIC_PASSWORD')
+
+url = 'https://everglow.cybozu.com/k/v1/record.json'
+method = 'PUT'
+data = {
+    'app': '38',
+    'id': id,
+    'record':  {
+        'image_folder_status': {
+            'value': 'OK'
+        }
+    }
+}
+json_data = json.dumps(data).encode('utf-8')
+a = f'{KINTONE_BASIC_USERNAME}:{KINTONE_BASIC_PASSWORD}'
+b = base64.b64encode(a.encode('utf-8'))
+basic_account = f'Basic {b.decode("utf-8")}'
+headers = {
+    'Content-Type': 'application/json; charset=utf-8'
+    'Authorization': basic_account,
+    'X-Cybozu-API-Token': KINTONE_API_TOKEN
+}
+req = urllib.request.Request(
+    url, data=json_data, method=method, headers=headers)
+
+try:
+    with urllib.request.urlopen(req) as res:
+        _ = res.read().decode('utf-8')
+    response = {'success': True}
+except urllib.error.HTTPError as err:
+    response = {'success': False,
+                'message': f'ERROR => {err.code} {err.reason}'}
+except urllib.error.URLError as err:
+    response = {'success': False, 'message': f'ERROR => {err.reason}'}
+finally:
+    return response
+```
+
+### レコードの一括更新
+
+- 一度に更新できるレコードは 100 件まで
+- 一括更新に失敗すると、リクエストに含まれるレコードの処理はすべてキャンセルされる
 
 ```python
 import base64
@@ -236,7 +287,6 @@ data = {
     'records': records
 }
 json_data = json.dumps(data).encode('utf-8')
-
 a = f'{KINTONE_BASIC_USERNAME}:{KINTONE_BASIC_PASSWORD}'
 b = base64.b64encode(a.encode('utf-8'))
 basic_account = f'Basic {b.decode("utf-8")}'
