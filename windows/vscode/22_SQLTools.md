@@ -1,6 +1,6 @@
 # SQLTools
 
-作成日 2019/12/19
+作成日 2019/12/19、更新日 2020/03/12
 
 ## 01. SQLTools とは
 
@@ -59,4 +59,17 @@ DESC m_items;
 -- Create Statementを表示する
 -- 1カラムの中に全文が入るので、コピペして広げる必要あり
 SHOW CREATE TABLE m_items;
+```
+
+## 05. 毎回自動生成される session.sql を作成させない
+
+左下歯車アイコン ＞ Settings ＞ テキストボックスに "sqltools auto open" と入力する\
+"SQLtools: Auto Open Session Files" 項目が登場するので、チェックボックスをオフにする
+
+`C:\Users\YOUR-NAME\AppData\Roaming\Code\User\settings.json`ファイル
+
+```json
+{
+  "sqltools.autoOpenSessionFiles": false
+}
 ```
