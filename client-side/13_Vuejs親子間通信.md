@@ -18,14 +18,14 @@ JSファイル
 const itemRow = {
     props: ['item', 'index'],
     methods: {
-        throw(id) {
+        publish(id) {
             this.$emit('child-event', id);
         }
     },
     template: `
     <tr>
         <td>{{item.name}}</td>
-        <td><button v-on:click="throw(item.id)"></td>
+        <td><button v-on:click="publish(item.id)"></td>
     </tr>
     `,
 };
@@ -40,7 +40,7 @@ htmlファイル
     v-bind:item="item"
     v-bind:key="item.id" 
     v-bind:index="index" 
-    v-on:child-event='catch'>
+    v-on:child-event='subscribe'>
 </tr>
 ```
 
@@ -53,7 +53,7 @@ const app = new Vue({
         'item-row': itemRow,
     },
     methods: {
-        catch(id) {
+        subscribe(id) {
             // 略
         }
     }    
