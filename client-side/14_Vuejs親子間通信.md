@@ -4,11 +4,12 @@
 
 ## $emitハンドラに引数を与える
 
-子供のイベントで、親のイベントを呼び出すためには `$emit()`を使う\
-1番目の引数は、v-bindディレクティブで親のイベントとバインドするための名前になるが、\
-2番目の引数は、親のイベントに与える引数として使える\
-もし複数の引数を与えたいときは、2番目の引数をオブジェクトにすればいい
+子供のイベントで、親のイベントを呼び出すには `$emit()`を使う\
+1番目の引数は、HTMLタグ上のv-bindディレクティブで、
+親のイベントとバインドするための名前になる\
+2番目以降の引数は、親のイベントに与える引数として使える
 
+ドキュメント => [API — Vue\.js](https://jp.vuejs.org/v2/api/index.html) 「インスタンスメソッド/イベント」の項目に解説がある
 
 ### 子供側
 
@@ -18,14 +19,14 @@ JSファイル
 const itemRow = {
     props: ['item', 'index'],
     methods: {
-        publish(id) {
+        trigger(id) {
             this.$emit('child-event', id);
         }
     },
     template: `
     <tr>
         <td>{{item.name}}</td>
-        <td><button v-on:click="publish(item.id)"></td>
+        <td><button v-on:click="trigger(item.id)"></td>
     </tr>
     `,
 };
@@ -40,7 +41,7 @@ htmlファイル
     v-bind:item="item"
     v-bind:key="item.id" 
     v-bind:index="index" 
-    v-on:child-event='subscribe'>
+    v-on:child-event='listen'>
 </tr>
 ```
 
@@ -53,7 +54,7 @@ const app = new Vue({
         'item-row': itemRow,
     },
     methods: {
-        subscribe(id) {
+        listen(id) {
             // 略
         }
     }    

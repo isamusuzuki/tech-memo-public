@@ -2,9 +2,9 @@
 
 作成日 2020/01/29
 
-## Level
+## 要素を横に並べる
 
-要素を横に並べる
+levelを使う
 
 [https://bulma.io/documentation/layout/level/](https://bulma.io/documentation/layout/level/)
 
