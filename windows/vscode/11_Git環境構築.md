@@ -1,6 +1,6 @@
 # vscode の Git 環境構築
 
-作成日 2020/01/31
+作成日 2020/01/31、更新日 2020/03/24
 
 ## 01. 事前に確認しておくべきこと
 
@@ -99,7 +99,7 @@ git clone git@github.com:<user-name>/<repository-name>.git
 # => ホームフォルダに、リポジトリ名のフォルダが出来上がる
 ```
 
-## 03. 該当のフォルダを、Visual Studio Codeで開く
+## 03. 該当のフォルダを、Visual Studio Code で開く
 
 ### ターミナルを Git Bash に変更する
 
@@ -127,3 +127,30 @@ git clone git@github.com:<user-name>/<repository-name>.git
 - `style:` ... コードの意味に影響しない変更（空白、フォーマット、セミコロン）
 - `docs:` ... ドキュメントだけの変更
 - `chore:` ... 雑用（ビルドプロセスの変更、ツールやライブラリの追加削除）
+
+## 05. Git Bash で Python インタープリターが動かなくなったときの対処法
+
+### 問題点
+
+Git Bash で、Python コマンドを叩くと、何も返ってこなくなった\
+右上のバッテンマークをクリックして、Git Bash を閉じる以外に方法がない\
+これはどうすれば解決できるか？
+
+### とりあえずの解決方法
+
+明示的にインタラクティブモードを指定すればよい
+
+```bash
+python -i
+```
+
+### きちんとした解決方法
+
+アリアスで登録する
+
+```bash
+alias python='python -i'
+
+vi .bash_profile
+# => 最終行に上記のaliasコマンドを書き込む
+```
