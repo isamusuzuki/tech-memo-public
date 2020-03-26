@@ -68,8 +68,8 @@ gcloud functions deploy sandbox1\
 
 ## 02. Ajax サーバーを設置する
 
--   HTTP トリガーの関数の引数は、Flask の request モジュールである
--   HTTP トリガーの関数の戻値は、Flask の response モジュールである
+- HTTP トリガーの関数の引数は、Flask の request モジュールである
+- HTTP トリガーの関数の戻値は、Flask の response モジュールである
 
 `sandbox1/main.py`ファイル
 
@@ -111,8 +111,8 @@ def sandbox1(request):
 
 ## 03. 環境変数を使う
 
--   Cloud Functions では、プロジェクトフォルダ内に`.env.yaml`ファイルを作成して、そこに変数を書いておく
--   gcloud コマンドでデプロイするとき、このファイルを指定すると、環境変数として登録される
+- Cloud Functions では、プロジェクトフォルダ内に`.env.yaml`ファイルを作成して、そこに変数を書いておく
+- gcloud コマンドでデプロイするとき、このファイルを指定すると、環境変数として登録される
 
 `.env.yaml`ファイル
 
