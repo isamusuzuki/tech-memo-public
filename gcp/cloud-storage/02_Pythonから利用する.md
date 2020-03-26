@@ -93,3 +93,35 @@ blob.upload_from_string("my secret message.")
 with open("/tmp/my-secure-file", "wb") as file_obj:
     blob.download_to_file(file_obj)
 ```
+
+## 05. Google Cloud Storageからダウンロードした画像をそのまま表示する
+
+`blob.download_to_file()` と `io.BytesIO()`、`send_file()`を使う
+
+```python
+from io import BytesIO
+
+from flask import Flask, send_file
+
+from google.cloud import storage
+
+app = Flask(__name__)
+
+
+@app.route('/test.jpg')
+def test_jpg():
+    source = 'original/t08908-disney2300mini/main04/disney2300mini.jpg'
+
+    # Cloud Storageの設定
+    client = storage.Client()
+    bucket = client.bucket('gzmstr')
+    blob = bucket.blob(source)
+
+    # メモリ上に画像ファイルを置く
+    image_on_memory = BytesIO()
+    blob.download_to_file(image_on_memory)
+    image_on_memory.seek(0)
+
+    return send_file(image_on_memory,
+                     mimetype='image/jpeg')
+```
