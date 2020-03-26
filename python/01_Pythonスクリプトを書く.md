@@ -1,6 +1,6 @@
 # ローカルで実行する Pyhon スクリプトを書く
 
-作成日 2020/02/03、更新日 2020/03/03
+作成日 2020/02/03、更新日 2020/03/26
 
 ## 01. 直接実行したときだけスクリプトが動くようにする
 
@@ -68,7 +68,18 @@ else:
     exit()
 ```
 
-## 04. 外部コマンドを実行する
+## 04. スクリプトに「待たせる」
+
+sleep 関数の引数は、秒数
+
+```python
+from time import sleep
+
+# 60秒待たせる
+sleep(60)
+```
+
+## 05. 外部コマンドを実行する
 
 ### subprocess.call()
 
@@ -122,43 +133,6 @@ for color in spec['colors']:
     size = getoutput(cmd).split(',')
     width = int(size[0])
     height = int(size[1])
-```
-
-## 05. 環境変数を使う
-
-### 環境変数にキーバリューペアを追加する
-
-python-dotenv を使う
-
-公式トップ => [https://saurabh-kumar.com/python-dotenv/](https://saurabh-kumar.com/python-dotenv/)
-
-インストール => `pip install python-dotenv`
-
-python-dotenv は、.env ファイルに書いておいたキーバリューペアを環境変数に追加する\
-.env ファイルは、`API_KEY=XXXXXXXX`と書く
-
-.env ファイルは、同じフォルダにあるものとする
-
-```python
-from dotenv import load_dotenv
-
-load_dotenv()
-```
-
-### 環境変数を読み込む
-
-load_dotenv()が実行されるまで、環境変数にはなにも入っていないので要注意\
-メソッドやクラスの中で、環境変数を読むことを習慣にすべし
-
-```python
-import os
-
-class CVG():
-    def __init__(self, env='local'):
-        CVG_HOST_NAME = os.environ.get('CVG_HOST_NAME')
-        CVG_USER_NAME = os.environ.get('CVG_USER_NAME')
-        CVG_PASSWORD = os.environ.get('CVG_PASSWORD')
-        CVG_DB_NAME = os.environ.get('CVG_DB_NAME')
 ```
 
 ## 06. 作業の経過時間を記録する
@@ -224,74 +198,3 @@ proc.wait()
 ```
 
 **要注意** バッチファイルは、必ずシフト JIS で保存すること
-
-## 08. スクリプトに「待たせる」
-
-sleep 関数の引数は、秒数
-
-```python
-from time import sleep
-
-# 60秒待たせる
-sleep(60)
-```
-
-## 09. メソッド・クラスを一発で CLI ツールに変換する
-
-### Fire とは
-
-Python で簡単に CLI ツールを作成するためのライブラリ
-
-公式トップ => [google/python\-fire: Python Fire is a library for automatically generating command line interfaces \(CLIs\) from absolutely any Python object\.](https://github.com/google/python-fire)
-
-インストール => `pip install fire`
-
-マニュアル => [python\-fire/using\-cli\.md at master · google/python\-fire](https://github.com/google/python-fire/blob/master/docs/using-cli.md)
-
-### Fire の使い方 例 1
-
-hello.py
-
-```python
-import fire
-
-def hello(name="World"):
-  return "Hello %s!" % name
-
-if __name__ == '__main__':
-  fire.Fire(hello)
-```
-
-hello.py を使う
-
-```bash
-python hello.py  # Hello World!
-python hello.py --name=David  # Hello David!
-python hello.py --help  # Shows usage information.
-```
-
-### Fire の使い方 例 2
-
-calculator.py
-
-```python
-import fire
-
-class Calculator(object):
-  """A simple calculator class."""
-
-  def double(self, number):
-    return 2 * number
-
-if __name__ == '__main__':
-  fire.Fire(Calculator)
-```
-
-calculator.py を使う
-
-```bash
-python calculator.py double 10  # 20
-python calculator.py double --number=15  # 30
-```
-
-クラスを指定すると、複数のメソッドが使えるところがいい
