@@ -94,9 +94,11 @@ with open("/tmp/my-secure-file", "wb") as file_obj:
     blob.download_to_file(file_obj)
 ```
 
-## 05. Google Cloud Storageからダウンロードした画像をそのまま表示する
+## 05. Flask で、Cloud Storage からダウンロードした画像をそのまま表示する
 
-`blob.download_to_file()` と `io.BytesIO()`、`send_file()`を使う
+- Cloud Storageからのダウンロードは `blob.download_to_file()` を使う
+- Flaskからのバイナリーの返信は `send_file()` を使う
+- 媒介には `io.BytesIO()` を使う
 
 ```python
 from io import BytesIO
@@ -110,12 +112,11 @@ app = Flask(__name__)
 
 @app.route('/test.jpg')
 def test_jpg():
-    source = 'original/t08908-disney2300mini/main04/disney2300mini.jpg'
 
     # Cloud Storageの設定
     client = storage.Client()
-    bucket = client.bucket('gzmstr')
-    blob = bucket.blob(source)
+    bucket = client.bucket(bucket-name))
+    blob = bucket.blob(source_file_name)
 
     # メモリ上に画像ファイルを置く
     image_on_memory = BytesIO()
