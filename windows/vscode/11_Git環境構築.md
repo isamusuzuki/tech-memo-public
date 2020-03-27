@@ -1,6 +1,6 @@
 # vscode の Git 環境構築
 
-作成日 2020/01/31
+作成日 2020/01/31、更新日 2020/03/25
 
 ## 01. 事前に確認しておくべきこと
 
@@ -99,7 +99,7 @@ git clone git@github.com:<user-name>/<repository-name>.git
 # => ホームフォルダに、リポジトリ名のフォルダが出来上がる
 ```
 
-## 03. 該当のフォルダを、Visual Studio Codeで開く
+## 03. 該当のフォルダを、Visual Studio Code で開く
 
 ### ターミナルを Git Bash に変更する
 

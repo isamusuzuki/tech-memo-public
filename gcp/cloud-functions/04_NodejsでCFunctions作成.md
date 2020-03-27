@@ -10,11 +10,11 @@
 
 許容される構成は以下の通り
 
--   1 つ以上の関数をエクスポートする index.js ファイル
--   1 つ以上の関数をエクスポートする app.js ファイル、\
-    および `"main": "app.js"`を格納した package.json ファイル
--   foo.js ファイルから 1 つ以上の関数をインポートしてから、\
-    1 つ以上の関数をエクスポートする index.js ファイル
+- 1 つ以上の関数をエクスポートする index.js ファイル
+- 1 つ以上の関数をエクスポートする app.js ファイル、\
+  および `"main": "app.js"`を格納した package.json ファイル
+- foo.js ファイルから 1 つ以上の関数をインポートしてから、\
+  1 つ以上の関数をエクスポートする index.js ファイル
 
 エクスポートされた関数を`require()`で読み込める限り、\
 どのような構成でも機能する
@@ -24,12 +24,12 @@
 ```javascript
 // HTTP関数
 exports.helloHttp = (req, res) => {
-    res.send(`Hello ${req.body.name || 'World'}!`);
+  res.send(`Hello ${req.body.name || 'World'}!`);
 };
 
 // バックグラウンド関数
 exports.helloBackground = (event, callback) => {
-    callback(null, `Hello ${event.data.name || 'World'}!`);
+  callback(null, `Hello ${event.data.name || 'World'}!`);
 };
 ```
 
@@ -43,9 +43,9 @@ exports.helloBackground = (event, callback) => {
 
 ```json
 {
-    "dependencies": {
-        "uuid": "^3.0.1"
-    }
+  "dependencies": {
+    "uuid": "^3.0.1"
+  }
 }
 ```
 
@@ -56,7 +56,7 @@ const uuid = require('uuid');
 
 // Return a newly generated UUID in the HTTP response.
 exports.getUuid = (req, res) => {
-    res.send(uuid.v4());
+  res.send(uuid.v4());
 };
 ```
 
@@ -98,8 +98,8 @@ gcloud functions deploy NAME --runtime nodejs10 --trigger-http
 
 ### 環境変数を使う
 
--   プロジェクトフォルダ内に`.env.yaml`ファイルを作成し、そこに YAML 形式で変数を書いておく
--   gcloud コマンドでデプロイするとき、このファイルを指定すると、環境変数として登録される
+- プロジェクトフォルダ内に`.env.yaml`ファイルを作成し、そこに YAML 形式で変数を書いておく
+- gcloud コマンドでデプロイするとき、このファイルを指定すると、環境変数として登録される
 
 ``.env.yaml`ファイル
 
@@ -112,11 +112,11 @@ TEST_PASSWORD: abcdefg
 
 ```javascript
 exports.coconut1 = async (req, res) => {
-    const username = process.env.TEST_USERNAME;
-    const password = proceses.env.TEST_PASSWORD;
-    console.log(username);
-    console.log(password);
-    res.json({ username: username, password: password });
+  const username = process.env.TEST_USERNAME;
+  const password = proceses.env.TEST_PASSWORD;
+  console.log(username);
+  console.log(password);
+  res.json({ username: username, password: password });
 };
 ```
 
@@ -136,12 +136,12 @@ gcloud functions deploy coconut1\
 
 ```javascript
 exports.coconut2 = async (event, context) => {
-    const json_str = event.data
-        ? Buffer.from(event.data, 'base64').toString()
-        : '{"kanri_no": "no-data"}';
-    console.log(json_str);
-    json_obj = JSON.parse(json_str);
-    console.log(json_obj['kanri_no']);
+  const json_str = event.data
+    ? Buffer.from(event.data, 'base64').toString()
+    : '{"kanri_no": "no-data"}';
+  console.log(json_str);
+  json_obj = JSON.parse(json_str);
+  console.log(json_obj['kanri_no']);
 };
 ```
 

@@ -25,10 +25,10 @@ def hello_pubsub(data, context):
     print(f'Hello {name}!')
 ```
 
--   pubsub メッセージは、base64 でエンコードされた状態で、data 引数の data キーの値として、\
-    送られてくる
--   pubsub メッセージは、必ずしも JSON データではない。ただの文字列である場合もある
--   とはいえ、pubsub メッセージは、JSON データのほうがやっぱり便利
+- pubsub メッセージは、base64 でエンコードされた状態で、data 引数の data キーの値として、\
+  送られてくる
+- pubsub メッセージは、必ずしも JSON データではない。ただの文字列である場合もある
+- とはいえ、pubsub メッセージは、JSON データのほうがやっぱり便利
 
 ## 02. Cloud Function をデプロイする
 

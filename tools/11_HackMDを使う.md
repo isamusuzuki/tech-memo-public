@@ -66,13 +66,13 @@ GitHub と同期させようとしたときに表示されたメッセージ
 
 HackMD は、CommonMark Spec に準拠しているが、1 箇所だけ違いがある
 
--   Hard line break ... エンターキーを叩くと改行（HackMD）
--   Soft line break ... エンターキーは空白として扱う（GitHub）
+- Hard line break ... エンターキーを叩くと改行（HackMD）
+- Soft line break ... エンターキーは空白として扱う（GitHub）
 
 Soft Line break で、改行したい場合は、2 つの方法がある
 
--   空白 2 個を入れてから改行する
--   行末にバックスラッシュを入れる
+- 空白 2 個を入れてから改行する
+- 行末にバックスラッシュを入れる
 
 ## 04. YAML フロントマッターを使いこなす
 
@@ -88,21 +88,21 @@ breaks: false
 GA: UA-1234567-8
 disqus: hackmd
 slideOptions:
-    transition: fade
-    theme: white
+  transition: fade
+  theme: white
 ```
 
 ## 05. Code ブロックを使いこなす
 
--   言語名の後ろにイコール(=)をつけると行番号が登場する
--   text という言語名はない。代わりに、言語名を指定しないという方法をとる
--   言語名を指定せず、イコール(=)だけという使い方も可能
+- 言語名の後ろにイコール(=)をつけると行番号が登場する
+- text という言語名はない。代わりに、言語名を指定しないという方法をとる
+- 言語名を指定せず、イコール(=)だけという使い方も可能
 
 ## 06. モードを切り替える
 
--   編集モード ... `Ctrl + Alt + E`
--   分割モード ... `Ctrl + Alt + B`
--   表示モード ... `Ctrl + Alt + V`
+- 編集モード ... `Ctrl + Alt + E`
+- 分割モード ... `Ctrl + Alt + B`
+- 表示モード ... `Ctrl + Alt + V`
 
 ## 07. ブックを生成する
 
@@ -133,6 +133,6 @@ YAML フロントマッターで指定することもできる
 
 ```yaml
 slideOptions:
-    transition: fade
-    theme: white
+  transition: fade
+  theme: white
 ```
