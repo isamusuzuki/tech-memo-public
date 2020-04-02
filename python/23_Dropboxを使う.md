@@ -1,6 +1,6 @@
 # Dropbox を使う
 
-作成日 2019/11/20、更新日 2020/02/13
+作成日 2019/11/20、更新日 2020/04/02
 
 ## 00. 公式ドキュメントに目を通す
 
@@ -22,7 +22,7 @@ dbx = dropbox.Dropbox(DROPBOX_ACCESS_TOKEN)
 
 folder_name = 't00000-atc1222'
 res = dbx.files_list_folder(
-    f'//7.画像処理対象/{folder_name}/color/', recursive=False)
+    f'/path/to/{folder_name}/color/', recursive=False)
 
 for entry in res.entries:
     if '.jpg' in entry.name or '.png' in entry.name:
@@ -46,7 +46,7 @@ file_list = []
 
 folder_name = 't00000-atc1222'
 res = dbx.files_list_folder(
-    f'//8.要画像確認/{folder_name}/', recursive=True)
+    f'/path/to/{folder_name}/', recursive=True)
 
 for entry in res.entries:
     if isinstance(entry, dropbox.files.FileMetadata):
@@ -84,7 +84,7 @@ FOLDER_NAME = 't00000-atc1222'
 
 dbx = dropbox.Dropbox(DROPBOX_ACCESS_TOKEN)
 
-res = dbx.files_list_folder(f'//Everglow/7.画像処理対象/{FOLDER_NAME}/color/')
+res = dbx.files_list_folder(f'/path/to/{FOLDER_NAME}/color/')
 
 for entry in res.entries:
     if '.jpg' in entry.name or '.png' in entry.name:
@@ -132,7 +132,6 @@ for target in targets:
     print(f'process {proc.pid} starts')
     proc.wait()
 
-
 DROPBOX_ACCESS_TOKEN = os.environ.get('DROPBOX_ACCESS_TOKEN')
 FOLDER_NAME = 't00000-atc1222'
 
@@ -141,9 +140,60 @@ dbx = dropbox.Dropbox(DROPBOX_ACCESS_TOKEN)
 for target in targets:
     with open(f'{subfolder2}/{target}', 'rb') as f:
         content = f.read()
-        path = f'/Everglow/7.画像処理対象/{FOLDER_NAME}/処理結果/{target}'
+        path = f'/path/to/{FOLDER_NAME}/{target}'
         meta = dbx.files_upload(content, path, dropbox.files.WriteMode.add)
         print(meta.id)
 
 print('done')
+```
+
+## 04. 指定したフォルダが存在するか確認する
+
+```python
+import os
+
+import dropbox
+
+DROPBOX_ACCESS_TOKEN = os.environ.get('DROPBOX_ACCESS_TOKEN')
+
+def folder_exists(folder_name):
+    is_exists = False
+    dbx = dropbox.Dropbox(DROPBOX_ACCESS_TOKEN)
+    res1 = dbx.files_list_folder(root_path, recursive=False)
+    for entry in res1.entries:
+        if isinstance(entry, dropbox.files.FolderMetadata):
+            if entry.name == folder_name:
+                is_exists = True
+                break
+
+    return is_exists
+```
+
+## 05. 指定したフォルダをZIPで固めてからローカルにダウンロードする
+
+[dropbox\.dropbox – Dropbox — Dropbox for Python 0\.0\.0 documentation](https://dropbox-sdk-python.readthedocs.io/en/latest/api/dropbox.html)
+
+> `files_download_zip_to_file(download_path, path)`: Download a folder from the user’s Dropbox, as a zip file.
+>
+>- download_path (str) ... Path on local machine to save file
+>- path (str) ... The path of the folder to download.
+
+```python
+import os
+
+import dropbox
+
+DROPBOX_ACCESS_TOKEN = os.environ.get('DROPBOX_ACCESS_TOKEN')
+
+def dowload_folder_zipped(folder_name):
+    local_path = f'temp/{folder_name}.zip'
+    remote_path = f'/path/to/{folder_name}'
+    dbx = dropbox.Dropbox(DROPBOX_ACCESS_TOKEN)
+    try:
+        response = {'success': True}
+        dbx.files_download_zip_to_file(local_path, remote_path)
+    except Exception as err:
+        response = {'success': False}
+    finally:
+        return response
 ```
