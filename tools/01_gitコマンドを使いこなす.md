@@ -1,6 +1,6 @@
 # git コマンドを使いこなす
 
-作成日 2020/03/30
+作成日 2020/03/30、更新日 2020/04/02
 
 ## 01. いったん昔の状態に戻る
 
@@ -69,4 +69,23 @@ git push -f origin master
 # => Total 0 (delta 0), reused 0 (delta 0)
 # => To https://source.developers.google.com/p/your-project/r/your-repository
 # =>  + 88ab868...c862f9d master -> master (forced update)
+```
+
+## サーバーにプッシュまであとに、コミットをやり直す
+
+直近2回のコミットをまとめたいと思ったとき
+
+```bash
+# 変更は残したまま２つ前の状態に戻る
+git reset --soft HEAD~2
+
+# サーバーに２回分のコミットを忘れさせる
+git push -f origin master
+
+# あらためてコミットする
+git add .
+git commit -m 'comment'
+
+# 改めてサーバーにプッシュする
+git push origin master
 ```

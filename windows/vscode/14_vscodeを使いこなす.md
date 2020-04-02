@@ -1,6 +1,6 @@
 # vscode を使いこなす
 
-作成日 2020/01/29、更新日 2020/01/31
+作成日 2020/01/29、更新日 2020/04/02
 
 ## 01. キーボードショートカット
 
@@ -25,20 +25,7 @@
 - 見つけた項目をクリックするとモーダルが登場
 - 新しいキー設定をタイプする。今回は `Ctrl + Shift + Enter`を入れる
 
-## 03. HTML ファイルは Prettier にフォーマットさせない
-
-.vscode/settings.json
-
-```json
-{
-  "prettier.disableLanguages": ["html"],
-  "[html]": {
-    "editor.defaultFormatter": "vscode.html-language-features"
-  }
-}
-```
-
-## 04. HTML 終了タグに自動でマルチカーソルを当てさせない
+## 03. HTML 終了タグに自動でマルチカーソルを当てさせない
 
 この機能は November 2019 (version 1.41)で導入された新機能で、HTML mirror cursor という
 
@@ -50,13 +37,13 @@
 ＞ HTML: Mirror Cursor On Matching Tag
 ＞ チェックボックスを外す
 
-## 05. 特定のファイルをエクスプローラーに表示させない
+## 04. 特定のファイルをエクスプローラーに表示させない
 
 設定ページ ＞ `file exclude`を検索
 
 `Files: Exclude`コーナーで、`**/desktop.ini`パターンを追加する
 
-## 06. シフト JIS のファイルを開く
+## 05. シフト JIS のファイルを開く
 
 右下の `UTF-8` と書かれた部分をクリックして、`Reopen with Encoding` をクリックすると、エンコードが選択できる
 
@@ -64,7 +51,7 @@
 
 設定ページ ＞ `Files: Auto Guess Encoding`を検索 ＞ チェックを入れる
 
-## 07. 拡張子ごとの関連付けを変更する
+## 06. 拡張子ごとの関連付けを変更する
 
 `spec.json.txt`というファイルは、JSON 扱いにする
 
@@ -76,12 +63,12 @@
 }
 ```
 
-## 08. 設定ファイルの格納場所
+## 07. 設定ファイルの格納場所
 
 - Windows 10 ... `C:\Users\YOUR-NAME\AppData\Roaming\Code\User`
 - Linux ... `$HOME/.config/Code/User`
 
-## 09. 拡張子に基づいたおすすめをポップアップさせない
+## 08. 拡張子に基づいたおすすめをポップアップさせない
 
 ```json
 {

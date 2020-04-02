@@ -1,11 +1,10 @@
 ## Prettier
 
-作成日 2020/02/28
+作成日 2020/02/28、更新日 2020/04/02
 
 ## 01. Prettier とは
 
-Prettier は、必須の拡張機能\
-JavaScript を自動で修正・整形してくれる便利ツール
+Prettier は、JavaScript などを修正・整形するフォーマッター
 
 [Prettier \- Code formatter \- Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
@@ -22,9 +21,18 @@ JavaScript を自動で修正・整形してくれる便利ツール
 }
 ```
 
-## 03. Prettier のルールを設定する
+### HTML ファイルだけは、Prettier に整形させない
 
-ときに整形ルールを変更したいときもある
+```json
+{
+  "prettier.disableLanguages": ["html"],
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  }
+}
+```
+
+## 03. Prettier の整形ルールをカスタマイズする
 
 `.prettierrc`ファイル
 
@@ -37,7 +45,7 @@ JavaScript を自動で修正・整形してくれる便利ツール
 }
 ```
 
-### ルールの上書き
+### 整形ルールの上書き
 
 Markdown ファイルも Prettier が整形してくれるのは助かっているが、\
 タブ幅がリストインデントに影響されて、4 文字になってしまうのに、困っていた\

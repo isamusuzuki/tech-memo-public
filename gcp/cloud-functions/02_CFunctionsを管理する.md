@@ -1,6 +1,6 @@
 # CFunctions を管理する
 
-作成日 2020/03/27
+作成日 2020/03/27、更新日 2020/04/02
 
 ## 01. gcloud コマンドを使う
 
@@ -16,11 +16,11 @@ gcloud functions list
 
 ```bash
 gcoud functions deploy NAME\
-  --region REGION
-  --memory MEMORY
-  --timeout TIMEOUT
-  --runtime RUNTIME
-  TRIGGER
+  --region REGION \
+  --memory MEMORY \
+  --timeout TIMEOUT \
+  --runtime RUNTIME \
+  TRIGGER \
   --env-vars-file FILE_PATH
 ```
 
@@ -30,7 +30,7 @@ gcoud functions deploy NAME\
 
 #### REGION
 
-`asia-northeast1`など。省略したら`us-entral1`
+`asia-northeast1`など。省略したら`us-central1`
 
 #### MEMORY
 
@@ -50,4 +50,4 @@ gcoud functions deploy NAME\
 
 #### FILE_PATH
 
-`.env.yaml`ファイルを指定すると、環境変数として取り込まれる
+`.env.yaml`ファイルを指定すると、キーバリューが環境変数として取り込まれる
