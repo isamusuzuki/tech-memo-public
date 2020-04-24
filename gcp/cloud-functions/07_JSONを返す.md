@@ -4,7 +4,7 @@
 
 注目ポイント
 
-- `jsonify`は、JSON文字列がASCII化されてしまうので、使わない
+- `jsonify`は、JSON文字列がASCII化されてしまうので使わない
 - CORS対策もしてあるので、クライアントサイドのみでも利用可能
 
 ```python
