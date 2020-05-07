@@ -114,7 +114,19 @@ ssh-keygen -l -E md5 -f ~/.ssh/id_rsa.pub
 -   公開鍵、秘密鍵のどちらを指定しても、鍵指紋は同じ結果になる
 -   `-E`オプションを使い、`MD5/hex`で表示させると、GitHub/GitLab で表示されているものと同じになる
 
-## 06. SSH Port Forwarding
+## 06. 別 PC から SSH 接続できるようにする
+
+```bash
+# IPアドレスを調べる
+ip address
+
+# sshdをインストールする
+sudo apt install aptitude
+sudo aptitude install ssh
+systemctl status ssh
+```
+
+## 07. SSH Port Forwarding
 
 紹介記事を読む
 
@@ -137,6 +149,6 @@ ssh user@vps
 ssh user@localhost -p 22222
 ```
 
-## 07. w コマンド, tty コマンド
+## 08. w コマンド, tty コマンド
 
 [自分がどの IP アドレスで SSH 接続しているのかを確認する ｜ Developers\.IO](https://dev.classmethod.jp/cloud/aws/amazon-linux-2-ssh-ipaddress/)
