@@ -65,7 +65,7 @@
 
 ## 07. 設定ファイルの格納場所
 
-- Windows 10 ... `C:\Users\YOUR-NAME\AppData\Roaming\Code\User`
+- Windows ... `C:\Users\YOUR-NAME\AppData\Roaming\Code\User`
 - Linux ... `$HOME/.config/Code/User`
 
 ## 08. 拡張子に基づいたおすすめをポップアップさせない
