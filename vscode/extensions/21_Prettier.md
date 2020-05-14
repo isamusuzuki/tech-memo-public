@@ -1,6 +1,6 @@
 ## Prettier
 
-作成日 2020/02/28、更新日 2020/04/02
+作成日 2020/02/28、更新日 2020/05/14
 
 ## 01. Prettier とは
 
@@ -8,24 +8,22 @@ Prettier は、JavaScript などを修正・整形するフォーマッター
 
 [Prettier \- Code formatter \- Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
-## 02. Prettier をデフォルトのフォーマッターに指定する
+## 02. Prettier をフォーマッターに指定する
 
 .vscode/settings.json
 
 ```json
 {
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[javascript, markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
 ```
 
-### HTML ファイルだけは、Prettier に整形させない
+### HTML ファイルは、Prettier に整形させない
 
 ```json
 {
-  "prettier.disableLanguages": ["html"],
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
   }
