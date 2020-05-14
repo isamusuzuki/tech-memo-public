@@ -25,5 +25,5 @@ du -s -m environment
 #=> 50  environment （environmentディレクトリのサイズは50MBという意味）
 ```
 
--   `-s` ... サマリーだけ出す
--   `-m` ... 単位を MB にする
+- `-s` ... サマリーだけ出す
+- `-m` ... 単位を MB にする
