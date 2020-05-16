@@ -77,10 +77,11 @@ sudo vi /etc/default/keyboard
 
 設定を反映させるために再起動する
 
-### sudo を実行するときにパスワードを求められなくする
+### sudo を実行するときにパスワードを入力しなくてよくする
 
 ```bash
-sudo usermod -aG sudo taro
+sudo visudo
+# new line -> taro ALL=NOPASSWD: ALL
 ```
 
 ### Chromium をインストールする
