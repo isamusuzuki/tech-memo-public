@@ -44,9 +44,9 @@ balenaEtcher を使ったらなぜか失敗した\
 
 | Key                           | Value    |
 | ----------------------------- | -------- |
-| Your name                     | gontaro  |
-| Your computer's name          | deskmini |
-| Pick a username               | gontaro  |
+| Your name                     | taro     |
+| Your computer's name          | avocado  |
+| Pick a username               | taro     |
 | Choose a password             | PASSWORD |
 | Confirm your password         | PASSWORD |
 | Require my password to log in | check    |
@@ -66,21 +66,22 @@ sudo apt purge ibus -y
 - fcitx を起動する
 - fcitx configuration tool を起動する ＞ リストに Mozc を追加する
 
-再起動後、ターミナルを起動すれば、Mozcが登場するようになる
+再起動後、ターミナルを起動すれば、Mozc が登場するようになる
 
 ### CapsLock キーを Ctrl にキーに変更する
 
-Tweaks をインストールする
-
 ```bash
-sudo apt install gnome-tweak-tool -y
+sudo vi /etc/default/keyboard
+# XKBOPTIONS="" -> XKBOPTIONS="ctrl:nocaps"
 ```
 
-- Tweaks を起動する
-- 左枠 ＞ Keyboard & Mouse
-- 右枠 ＞ Additional Layout Options ボタン
-- Ctrl Position ＞ Caps Lock as Ctrl
-- Caps Lock Behavior ＞ Caps Lock is also a Ctrl
+設定を反映させるために再起動する
+
+### sudo を実行するときにパスワードを求められなくする
+
+```bash
+sudo usermod -aG sudo taro
+```
 
 ### Chromium をインストールする
 

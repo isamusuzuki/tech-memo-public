@@ -1,4 +1,4 @@
-## Ubuntu に Python 環境を構築する
+# Ubuntu に Python 環境を構築する
 
 作成日 2020/02/26
 
@@ -45,4 +45,3 @@ export PYTHONPATH='/home/user/avocado:$PYTHONPATH'
 ```
 
 `.bashrc`の最後尾に追加しておくと、ログインしたときに自動で実行される
-
