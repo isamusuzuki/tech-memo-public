@@ -1,6 +1,6 @@
 # SQLTools
 
-作成日 2019/12/19、更新日 2020/03/12
+作成日 2019/12/19、更新日 2020/05/16
 
 ## 01. SQLTools とは
 
@@ -9,15 +9,9 @@ Visual Studio Code の拡張機能\
 
 公式トップ => [SQLTools](https://vscode-sqltools.mteixeira.dev/)
 
-マーケットプレイス => [SQLTools \- Database tools \- Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools)
-
 MySQL Workbench から離脱したいので、不慣れでも使っていくことにした
 
 ## 02. データベース接続情報
-
-### デフォルトの保存先
-
-`C:\Users\YOUR-NAME\AppData\Roaming\Code\User\settings.json`ファイル
 
 ```json
 {
@@ -62,11 +56,6 @@ SHOW CREATE TABLE m_items;
 ```
 
 ## 05. 毎回自動生成される session.sql を作成させない
-
-左下歯車アイコン ＞ Settings ＞ テキストボックスに "sqltools auto open" と入力する\
-"SQLtools: Auto Open Session Files" 項目が登場するので、チェックボックスをオフにする
-
-`C:\Users\YOUR-NAME\AppData\Roaming\Code\User\settings.json`ファイル
 
 ```json
 {

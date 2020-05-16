@@ -6,11 +6,7 @@
 
 ルールに基づいて Markdown 文を評価する
 
-公式トップ => [DavidAnson/vscode\-markdownlint: Markdown linting and style checking for Visual Studio Code](https://github.com/DavidAnson/vscode-markdownlint)
-
-マーケットプレイス => [markdownlint \- Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
-
-## どのようなルールがあるのか？
+## どのようなルールがあるのか
 
 [markdownlint/Rules\.md at master · DavidAnson/markdownlint](https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md)
 
@@ -24,7 +20,7 @@
 - MD041 - First line in file should be a top level heading
 - MD047 - Files should end with a single newline character
 
-## ルール適用を除外するには？
+## ルール適用を除外するには
 
 除外したい Markdown ファイルに HTML コメントを追加する
 

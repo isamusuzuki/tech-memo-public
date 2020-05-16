@@ -1,16 +1,12 @@
 # REST Client
 
-作成日 2019/12/09
+作成日 2019/12/09、更新日 2020/05/16
 
 ## 01. REST Client とは
 
-vscode 拡張機能になった API 開発ツール
+API 開発ツール
 
-公式トップ => [vscode\-restclient/README\.md at master · Huachao/vscode\-restclient](https://github.com/Huachao/vscode-restclient/blob/master/README.md)
-
-マーケットプレイス => [REST Client \- Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
-
-## 02. REST Cient の紹介ページを読む
+## 02. 紹介記事を読む
 
 [REST Client は変数を使うと API の環境やパラメータ変更が楽になる！](https://dev.classmethod.jp/tool/vscode-rest-client-is-good/)
 
@@ -35,16 +31,15 @@ POST https://hoge.execute-api.ap-northeast-1.amazonaws.com/Prod/version
 content-type: application/json
 
 {
-    "id": "1234"
+  "id": "1234"
 }
 ```
 
 - POST のリクエストボディは、1 行空けて書くこと
+- 保存するファイルの拡張子は `.http` にする
 - `###`を区切り文字として使用できる
 
 ### 環境変数の設定
-
-`settings.json` に書き込む
 
 ```json
 {
@@ -67,7 +62,8 @@ content-type: application/json
 }
 ```
 
-コマンドパレットから、`Rest Client Switch Environment`を選択し、dev,stg,prod を選ぶと環境変数を切り替えられる
+コマンドパレットから、`Rest Client Switch Environment`を選択し、\
+dev,stg,prod を選ぶと環境変数を切り替えられる
 
 #### 変数を使った例
 
@@ -76,11 +72,11 @@ post https://{{host}}/{{version}}/users
 content-type: application/json
 
 {
-    "email": {{email}}
+  "email": {{email}}
 }
 ```
 
-## 03. REST Cient の紹介ページを読む 2
+## 03. 紹介記事を読む 2
 
 [REST API のテストに Postman 使ってたけど Visual Studio Code の REST Client に乗り換えた](https://blog.okazuki.jp/)
 
