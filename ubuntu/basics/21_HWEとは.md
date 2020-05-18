@@ -12,12 +12,12 @@ Ubuntu 18.04にログインする度に、以下のメッセージが表示さ�
 
 > The Ubuntu LTS enablement (also called HWE or Hardware Enablement) stacks provide newer kernel\
 > and X support for existing Ubuntu LTS releases. These enablement stacks can be installed manually\
-> but are also available when installing with Ubuntu LTS point release media. 
+> but are also available when installing with Ubuntu LTS point release media.
 
 2023年の4月というのは、Ubuntu 18.04 LTSのサポート期限のことと理解した。\
 Ubuntuがハードウェアを調べて、耐用年数を報告しているわけではない
 
-### HWEをインストールする
+## HWEをインストールする
 
 [Ubuntu18\.04にカーネル 5\.0 をインストールする手順](https://www.virment.com/how-to-update-kernel-5-in-ubuntu/)
 

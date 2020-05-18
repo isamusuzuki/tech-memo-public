@@ -77,7 +77,7 @@ pip install -r requirements.txt
 # バージョンの固定
 pip freeze > constraints.txt
 
-# 2回目移行
+# 2回目以降
 pip install -r requirements.txt -c constraints.txt
 
 # Linuxだけ

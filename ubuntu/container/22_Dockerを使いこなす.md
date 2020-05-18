@@ -76,13 +76,13 @@ docker exec -it <container> bash
 > ユーザは docker build を使い、複数のコマンド行の命令を順次実行し、\
 > イメージを自動構築します。
 
-### Dockerfile の EXPOSE 命令と docker コマンドの-p フラグは、どう使い分けるのか？
+### Dockerfile の EXPOSE 命令と docker コマンドの-p フラグは、どう使い分けるのか
 
 - EXPOSE 命令はコンテナがそのポートをリッスンすることを Docker に伝える
 - EXPOSE 命令だけあっても、これだけではホストからコンテナにアクセスできない
 - ホストからコンテナにアクセスするには、`-p`フラグを使ってポート転送を設定する必要がある
 
-### Dockerfile の VOLUME 命令と docker コマンドの-v フラグは、どう使い分けるのか？
+### Dockerfile の VOLUME 命令と docker コマンドの-v フラグは、どう使い分けるのか
 
 - VOLUME 命令は、マウントポイントを作成し、外部マウント可能なボリュームにする
 - `-v`フラグはコンテナにデータボリュームを追加する

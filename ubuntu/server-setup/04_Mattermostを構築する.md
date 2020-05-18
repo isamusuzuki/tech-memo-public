@@ -8,22 +8,22 @@
 
 ## 01. AWS EC2 インスタンスを作成する
 
--   AWS マネジメントコンソール ＞ EC2
--   左枠 ＞ インスタンス ＞ 右枠 ＞ 「インスタンスの作成」ボタン
--   手順 1 ページ（AMI） ＞ AWS Marketplace から Ubuntu を検索 ＞ `Ubuntu 18.04 LTS - Bionic` ＞ Continue ボタン
--   手順 2 ページ（インスタンスタイプ） ＞ `t3.small` ＞ 次の手順
--   手順 3 ページ（インスタンス詳細） ＞ デフォルトのサブネット ＞ 次の手順
--   手順 4 ページ（ストレージ） ＞ 8GB のまま ＞ 次の手順
--   手順 5 ページ（タグ） ＞ なにもいじらず ＞ 次の手順
--   手順 6 ページ（セキュリティグループ） ＞ 既存を選択 ＞ `eg-sg-tyo-mattermost` ＞ 確認と作成
--   手順 7 ページ（確認） ＞ 起動ボタン
--   新しいキーペアの作成 ＞ `eg-mattermost` ＞ 作成開始
--   インスタンス ID = `i-01a46a6ceb2ab31bd`
+- AWS マネジメントコンソール ＞ EC2
+- 左枠 ＞ インスタンス ＞ 右枠 ＞ 「インスタンスの作成」ボタン
+- 手順 1 ページ（AMI） ＞ AWS Marketplace から Ubuntu を検索 ＞ `Ubuntu 18.04 LTS - Bionic` ＞ Continue ボタン
+- 手順 2 ページ（インスタンスタイプ） ＞ `t3.small` ＞ 次の手順
+- 手順 3 ページ（インスタンス詳細） ＞ デフォルトのサブネット ＞ 次の手順
+- 手順 4 ページ（ストレージ） ＞ 8GB のまま ＞ 次の手順
+- 手順 5 ページ（タグ） ＞ なにもいじらず ＞ 次の手順
+- 手順 6 ページ（セキュリティグループ） ＞ 既存を選択 ＞ `eg-sg-tyo-mattermost` ＞ 確認と作成
+- 手順 7 ページ（確認） ＞ 起動ボタン
+- 新しいキーペアの作成 ＞ `eg-mattermost` ＞ 作成開始
+- インスタンス ID = `i-01a46a6ceb2ab31bd`
 
 ### Elastic IP の割り当て
 
--   Elastic IP = `3.113.153.181`
--   アドレスの関連付け ＞ `i-01a46a6ceb2ab31bd` ＞ 関連付け
+- Elastic IP = `3.113.153.181`
+- アドレスの関連付け ＞ `i-01a46a6ceb2ab31bd` ＞ 関連付け
 
 ### SSH 接続のセットアップ
 
@@ -121,7 +121,7 @@ sudo vi /opt/mattermost/config/config.json
 
 ```json
 {
-    "SqlSettings": "mmuser:mmuser-5963@tcp(127.0.0.1:3306)/mattermost?charset=utf8mb4,utf8&readTimeout=30s&writeTimeout=30s"
+  "SqlSettings": "mmuser:mmuser-5963@tcp(127.0.0.1:3306)/mattermost?charset=utf8mb4,utf8&readTimeout=30s&writeTimeout=30s"
 }
 ```
 

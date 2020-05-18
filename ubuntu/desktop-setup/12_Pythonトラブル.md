@@ -14,7 +14,6 @@ Python のインタラクティブシェルを動かす
 $ python3
 >>> import sys
 >>> sys.path
-['', '/usr/lib/python3.6', '/usr/lib/python3.6/lib-dynload', '/usr/local/lib/python3.6/dist-packages', 'usr/local/lib/python3/dis-packages']
 ```
 
 ここに自分のプロジェクトのルートフォルダがない
@@ -30,21 +29,22 @@ PYTHONPATH 環境変数に追加すると、自動的に sys.path に追加さ�
 export PYTHONPATH="/home/user/PROJECT-NAME:$PYTHONPATH"
 ```
 
-## 02. bdist_wheel がない問題
+## 02. bdist_wheel コマンドがない問題
 
 プロジェクトの中で、モジュールをインストールしたときに\
 `error: invalid command 'bdist_wheel'` と赤字で表示される
 
 ### わかってきたこと
 
-グローバル環境では、wheel モジュールがある
+グローバル環境には、wheel モジュールがある
 
 ```bash
 pip3 list
+# => ...
 # => wheel 0.34.2
 ```
 
-プロジェクトの中の仮想環境では、wheel がない
+プロジェクトの中の仮想環境には、wheel がない
 
 ```bash
 pip list
@@ -56,7 +56,7 @@ pip list
 ### 解決方法
 
 requirements.txt を使って一括インストールする前に、\
-wheel だけをインストールしておく
+wheel をインストールしておく
 
 ```bash
 pip install wheel
