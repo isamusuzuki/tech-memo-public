@@ -11,11 +11,11 @@ Windows のパッケージ管理マネージャー\
 
 ## 02. Chocolatey をインストールする
 
--   Powershell を「管理者として実行」する
--   公式サイトの[Installation ページ](https://chocolatey.org/install)を開く
--   `Install with PowerShell.exe` コーナーにあるスクリプトをコピペする
--   正常にインストールが完了したら、いったん PowerShell を閉じてからもう一度開く
--   `choco`とタイプして、バージョン番号が返ってくればインストール成功
+- Powershell を「管理者として実行」する
+- 公式サイトの[Installation ページ](https://chocolatey.org/install)を開く
+- `Install with PowerShell.exe` コーナーにあるスクリプトをコピペする
+- 正常にインストールが完了したら、いったん PowerShell を閉じてからもう一度開く
+- `choco`とタイプして、バージョン番号が返ってくればインストール成功
 
 ## 03. Chocolatey を使いこなす
 
@@ -78,12 +78,12 @@ C:\Python36\python --version
 テーブルの中から`Path`を選択 ＞ 編集ボタン\
 どれを一番上に配置するかでデフォルトが決まる
 
--   C:\Python38\Scripts\
--   C:\Python38\
--   C:\Python37\Scripts\
--   C:\Python37\
--   C:\Python36\Scripts\
--   C:\Python36\
+- C:\Python38\Scripts\
+- C:\Python38\
+- C:\Python37\Scripts\
+- C:\Python37\
+- C:\Python36\Scripts\
+- C:\Python36\
 
 ### プロジェクトごとに違うバージョンを利用するには
 

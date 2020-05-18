@@ -59,15 +59,15 @@ Noto Sans JP 紹介ページ => [https://fonts.google.com/specimen/Noto+Sans+JP]
 
 #### よく使うオプション
 
--   `-annotate`
--   `-compose`
--   `-composite`
--   `-crop`
--   `-fill`
--   `-geometry`
--   `-gravity`
--   `-pointsize`
--   `-resize`
+- `-annotate`
+- `-compose`
+- `-composite`
+- `-crop`
+- `-fill`
+- `-geometry`
+- `-gravity`
+- `-pointsize`
+- `-resize`
 
 ### Examples of ImageMagick Usage
 
@@ -75,14 +75,14 @@ Noto Sans JP 紹介ページ => [https://fonts.google.com/specimen/Noto+Sans+JP]
 
 ### Practical Examples
 
--   [Text to Image Handling](https://www.imagemagick.org/Usage/text/)
--   [Compound Font Efffectc](https://www.imagemagick.org/Usage/fonts/)
--   [Montage, Arrays of Images](https://www.imagemagick.org/Usage/montage/)
--   [Layers of Multiple Images](https://www.imagemagick.org/Usage/layers/)
+- [Text to Image Handling](https://www.imagemagick.org/Usage/text/)
+- [Compound Font Efffectc](https://www.imagemagick.org/Usage/fonts/)
+- [Montage, Arrays of Images](https://www.imagemagick.org/Usage/montage/)
+- [Layers of Multiple Images](https://www.imagemagick.org/Usage/layers/)
 
 ### Basic Techniques
 
--   [Cutting and Bordering](https://www.imagemagick.org/Usage/crop/)
+- [Cutting and Bordering](https://www.imagemagick.org/Usage/crop/)
 
 ## 03. ImageMagick の基本的テクニック
 

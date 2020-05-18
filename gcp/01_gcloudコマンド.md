@@ -1,6 +1,6 @@
 # gcloud コマンド
 
-作成日 2019/12/06、更新日 2019/12/23
+作成日 2019/12/06、更新日 2020/05/18
 
 ## 01. gcloud コマンドとは
 
@@ -9,22 +9,22 @@ Google Cloud Platform を利用するのに必須のコマンドラインツー�
 
 公式トップ => [https://cloud.google.com/sdk/?hl=ja](https://cloud.google.com/sdk/?hl=ja)
 
-## 02. gcloud コマンドをインストールする
+## 02. Windows にインストールする
 
-バージョン 274.0.0 から、gcloud コマンドの Python3.5 系以降での\
-動作がGA サポートとなった\
+バージョン 274.0.0 から、gcloud コマンドの Python3.5 系以降での動作が GA サポートとなった
+
 しかし、インストーラーによるインストールがふたたび失敗したので、\
 以下に述べる「アーカイブからのインストール」を継続利用する
 
 ### 「アーカイブからのインストール」手順
 
--   [バージョニングされたアーカイブからのインストール](https://cloud.google.com/sdk/docs/downloads-versioned-archives)
--   ページに掲載されているバージョン 245 は古いので、アーカイブページから一番新しいバージョンを探す
--   [Google Cloud Storage のダウンロードアーカイブ](https://console.cloud.google.com/storage/browser/cloud-sdk-release?authuser=0)
--   検索窓に、`google-cloud-sdk-nnn`と入力して、意中のバージョンを探す
--   「windows 64 ビット版」が欲しいので、末尾が`windows-x86_64.zip`になっているものをクリックする
--   リンク URL をクリックして、ダウンロードする
--   ZIP の中の google-cloud-sdk フォルダをホームフォルダに解凍する。前のバージョンがある場合は、あらかじめフォルダごと削除しておく
+- [バージョニングされたアーカイブからのインストール](https://cloud.google.com/sdk/docs/downloads-versioned-archives)
+- ページに掲載されているバージョン 245 は古いので、アーカイブページから一番新しいバージョンを探す
+- [Google Cloud Storage のダウンロードアーカイブ](https://console.cloud.google.com/storage/browser/cloud-sdk-release?authuser=0)
+- 検索窓に、`google-cloud-sdk-nnn`と入力して、意中のバージョンを探す
+- 「windows 64 ビット版」が欲しいので、末尾が`windows-x86_64.zip`になっているものをクリックする
+- リンク URL をクリックして、ダウンロードする
+- ZIP の中の google-cloud-sdk フォルダをホームフォルダに解凍する。前のバージョンがある場合は、あらかじめフォルダごと削除しておく
 
 ### ユーザー環境変数を設定する
 
@@ -54,14 +54,18 @@ gcloud init
 `gcloud components update`コマンドは、Git Bash では動作しない\
 必ず PowerShell で実行すること
 
-## 03. アカウントとプロジェクトを管理する
+## 03. Ubuntuにインストールする
+
+[apt\-get を使用したインストール（Debian と Ubuntu のみ）  \|  Cloud SDK のドキュメント](https://cloud.google.com/sdk/docs/downloads-apt-get?hl=ja)
+
+## 04. アカウントとプロジェクトを管理する
 
 ### アカウント（OAuth2 認証）を管理する
 
 ```bash
 gcloud auth login
 gcloud auth list
-gcloud auto revoke
+gcloud auth revoke
 ```
 
 ### アカウントとプロジェクトの設定を変更する
