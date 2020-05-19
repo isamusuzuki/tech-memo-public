@@ -1,6 +1,6 @@
 # Python トラブルシューティング
 
-作成日 2020/02/26、更新日 2020/05/18
+作成日 2020/02/26、更新日 2020/05/19
 
 ## 01. ModuleNotFoundError 発生
 
@@ -11,7 +11,7 @@
 Python のインタラクティブシェルを動かす
 
 ```bash
-$ python3
+$ python
 >>> import sys
 >>> sys.path
 ```
@@ -22,11 +22,18 @@ PYTHONPATH 環境変数に追加すると、自動的に sys.path に追加さ�
 
 ### 解決策
 
-`.bashrc`の最後尾に以下追加しておく\
-ログインしたときに自動で実行される
+`bin/activate`ファイルに以下を追加しておく\
+仮想環境を有効にしたときに PYTHONPATH 環境変数が追加される
 
 ```bash
-export PYTHONPATH="/home/user/PROJECT-NAME:$PYTHONPATH"
+deactivate () {
+    # この中の最後尾
+    unset PYTHONPATH
+}
+
+# スクリプトの最後尾
+PYTHONPATH="/home/user/PROJECT-NAME"
+export PYTHONPATH
 ```
 
 ## 02. bdist_wheel コマンドがない問題
