@@ -77,20 +77,6 @@ sudo vi /etc/default/keyboard
 
 設定を反映させるために再起動する
 
-### sudo を実行するときにパスワードを入力しなくてよくする
-
-```bash
-sudo visudo
-```
-
-最後尾に以下を追加する
-
-```bash
-taro     ALL=(ALL:ALL) NOPASSWD: ALL
-```
-
-[Enable sudo without password in Ubuntu/Debian \| PHPraxis \- PHP and more](https://phpraxis.wordpress.com/2016/09/27/enable-sudo-without-password-in-ubuntudebian/)
-
 ### Chromium をインストールする
 
 apt コマンドではなく、Ubuntu Software を使う
