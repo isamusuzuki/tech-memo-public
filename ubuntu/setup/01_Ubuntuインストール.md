@@ -81,8 +81,15 @@ sudo vi /etc/default/keyboard
 
 ```bash
 sudo visudo
-# new line -> taro ALL=NOPASSWD: ALL
 ```
+
+最後尾に以下を追加する
+
+```bash
+taro     ALL=(ALL:ALL) NOPASSWD: ALL
+```
+
+[Enable sudo without password in Ubuntu/Debian \| PHPraxis \- PHP and more](https://phpraxis.wordpress.com/2016/09/27/enable-sudo-without-password-in-ubuntudebian/)
 
 ### Chromium をインストールする
 
