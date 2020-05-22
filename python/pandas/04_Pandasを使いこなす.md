@@ -99,7 +99,7 @@ total_count = len(item_list)
 >
 > datetime64 型は Python にある timestamp 型を継承したクラス
 
-```python=
+```python
 df['order_at'] = pd.to_datetime(df['order_at'])
 ```
 
@@ -113,7 +113,7 @@ df['order_at'] = pd.to_datetime(df['order_at'])
 >
 > そういったときは Series#fillna() メソッドなどを使って NaN をそれ以外の値に置き換えてやる必要がある。 もちろん Series#dropna() などで、そもそも集計の対象外としてしまうことも考えられる。
 
-```python=
+```python
 # エラーになった
 df['supplier_code'] = df['supplier_code'].astype(int)
 

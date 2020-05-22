@@ -155,7 +155,7 @@ print(df.dtypes)
 
 構文
 
-```python=
+```python
 df = DataFrame(
     data=None,
     index=None,
