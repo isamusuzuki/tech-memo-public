@@ -6,7 +6,7 @@
 
 [JupyterLab のすゝめ \- Qiita](https://qiita.com/kirikei/items/a1639954ce5ccaf7ac3c)
 
-> JupyterLab とは，データ分析者に愛されている Jupyter notebook の後継機である 
+> JupyterLab とは，データ分析者に愛されている Jupyter notebook の後継機である
 > Web アプリケーション的 IDE のことです。ベータ版が今年リリースされました。
 > Jupyter notebook の開発は一旦終了し，JupyterLab に移行すると公式アナウンスされています。
 
@@ -16,13 +16,13 @@
 
 Getting Started
 
--   [Overview](https://jupyterlab.readthedocs.io/en/stable/getting_started/overview.html)
--   [Installation](https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html)
--   [Starting JupyterLab](https://jupyterlab.readthedocs.io/en/stable/getting_started/starting.html)
+- [Overview](https://jupyterlab.readthedocs.io/en/stable/getting_started/overview.html)
+- [Installation](https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html)
+- [Starting JupyterLab](https://jupyterlab.readthedocs.io/en/stable/getting_started/starting.html)
 
 User Guide
 
--   [The JupyterLab Interface](https://jupyterlab.readthedocs.io/en/stable/user/interface.html)
+- [The JupyterLab Interface](https://jupyterlab.readthedocs.io/en/stable/user/interface.html)
 
 ## 02. JupyterLab を使えるようにする
 
@@ -92,9 +92,9 @@ sudo apt install python3-pandas
 
 その他、apt search で見つかったパッケージ
 
--   python3-numpy
--   python3-imaging
--   python3-matlotlib
+- python3-numpy
+- python3-imaging
+- python3-matlotlib
 
 ### 最初のサンプルコード
 
