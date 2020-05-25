@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD024 -->
+
 # Nginx サーバーを構築する
 
 作成日 2020/02/02
