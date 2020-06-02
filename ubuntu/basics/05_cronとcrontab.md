@@ -7,10 +7,6 @@
 - cron 実行時のカレントフォルダは、実行ユーザーのホームフォルダ
 - cron 実行時のシェルは、`.bashrc` を読まない
 
-環境変数は、crontab の中で設定することができるが、\
-dotenv を使って、実行するスクリプトの中で、\
-環境変数を読み込むことが望ましい
-
 ## 02. cron の設定方法
 
 ```bash
@@ -43,7 +39,7 @@ GOOGLE_APPLICATION_CREDENTIALS=/home/ubuntu/credentials.json
 * 9-23 * * * cd <project-name>; python3 exec.py >> ../temp/cron3.log 2>&1
 ```
 
-### unix-cron 形式（5 桁の数字）について
+## 04. unix-cron 形式（5 桁の数字）について
 
 | No  | field        | available |
 | :-: | ------------ | --------- |
@@ -62,9 +58,3 @@ GOOGLE_APPLICATION_CREDENTIALS=/home/ubuntu/credentials.json
 - `0 9 * * 1` ... 毎週月曜日の朝 9 時
 - `*/5 9-17 * * 1-5` ... 平日 9:00 から 17:55 の間、5 分おき（5 で割り切れる数）
 - `3,23,43 9-21 * * *` ... 毎日 9:03 から 21:43 の間、20 分おき
-
-## 04. crontab 以外の設定方法
-
-/etc/cron.d ディレクトリに、設定ファイルを置くことでも、\
-cron ジョブを設定することができる\
-この場合は、実行するユーザー名を指定できる（root ユーザーを含む）
