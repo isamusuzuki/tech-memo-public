@@ -1,6 +1,6 @@
 # XML データを扱う
 
-作成日 2019/11/20
+作成日 2019/11/20、更新日 2020/06/03
 
 ## 01. xml.etree.ElementTree とは
 
@@ -90,6 +90,59 @@ for count in number_of_offers:
             mkt_count = int(count.text)
 print(f'fba_count => {fba_count}')
 print(f'mkt_count => {mkt_count}')
+```
+
+### 名前空間に対応する
+
+もしルートエレメントにxmlnsという属性があったら、名前空間が設定されている\
+名前空間は複数設定されることもある
+
+```xml
+<?xml version="1.0"?>
+<GetMatchingProductForIdResponse xmlns="http://mws.amazonservices.com/schema/Products/2011-10-01">
+<GetMatchingProductForIdResult Id="1234567890" IdType="JAN" status="Success">
+<Products xmlns:ns2="http://mws.amazonservices.com/schema/Products/2011-10-01/default.xsd">
+<Product>
+<AttributeSets>
+<ns2:ItemAttributes xml:lang="ja-JP">
+<ns2:Title>Amazon WMS API</ns2:Title>
+</ns2:ItemAttributes>
+</AttributeSets>
+</Product>
+</Products>
+</GetMatchingProductForIdResult>
+</GetMatchingProductForIdResponse>
+```
+
+名前空間の配下にあるエレメントは、長い名前になる `{名前空間}名前`
+
+`find()`, `findall()` といったメソッドでは、第二引数を使って名前空間を登録できる
+
+```python
+response_root = ET.fromstring(body)
+ns = {
+    'ns': (
+        'http://mws.amazonservices.com/schema/'
+        'Products/2011-10-01'
+    ),
+    'ns2': (
+        'http://mws.amazonservices.com/schema/'
+        'Products/2011-10-01/default.xsd'
+    )
+}
+result_element = response_root.find(
+    './/ns:GetMatchingProductForIdResult', ns)
+    print(result_element)
+    # <Element '{http://mws.amazonservices.com/schema/
+    # Products/2011-10-01}GetMatchingProductForIdResult'
+    # at 0x7f33442a4d60>
+    product = result_element.find(
+        './/ns:Products/ns:Product', ns)
+    item_attributes = product.find(
+        './/ns:AttributeSets/ns2:ItemAttributes', ns)
+    title = item_attributes.find('.//ns2:Title', ns)
+    print(title.text)
+    # Amazon WMS API
 ```
 
 ## 03. xml.etree.ElementTree がサポートしている XPath 構文
