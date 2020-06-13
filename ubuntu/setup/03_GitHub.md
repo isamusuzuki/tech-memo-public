@@ -1,10 +1,21 @@
-# Git 環境構築
+# GitHub に接続できるようにする
 
-作成日 2020/03/12
+作成日 2020/03/12、更新日 2020/06/13
 
-## GitHub リポジトリに接続できるようにする
+## Git をインストールする
 
-公開鍵ファイル・秘密鍵ファイルを作成する
+```bash
+sudo apt git install
+```
+
+## 自分の名前とメルアドを設定する
+
+```bash
+git config --global user.name "Taro Okamoto"
+git config --global user.email taro@example.com
+```
+
+## 公開鍵ファイル・秘密鍵ファイルを作成する
 
 ```bash
 cd ~
@@ -13,20 +24,18 @@ cd ~
 ssh-keygen -t rsa
 # => ファイル名もパスフレーズも指定しない
 # => /home/ubuntu/.ssh/id_rsa, id_rsa.pub ファイルが生成される
+```
 
+## GitHub に公開鍵を登録する
+
+```bash
 # 鍵指紋を確認する
 ssh-keygen -E md5 -l -f .ssh/id_rsa
 ```
 
-別 PC から scp コマンドを実行して、公開鍵ファイルを取得する
+## SSH 接続できるように設定する（実際はしないが）
 
-```bash
-scp ubuntu@192.168.2.174:/home/ubuntu/.ssh/id_rsa.pub ~/
-```
-
-別 PC で、公開鍵を GitHub に登録する
-
-Ubuntu に戻って、`~/.ssh/config` 設定ファイルを作成する
+`~/.ssh/config` 設定ファイルを作成する
 
 ```text
 Host github.com
@@ -47,7 +56,7 @@ ssh git@github.com
 # => 設定は間違っていないことがわかる
 ```
 
-Git クローンする
+## GitHub からリポジトリをクローンする
 
 ```bash
 git clone git@github.com:your-name/repository-name.git
