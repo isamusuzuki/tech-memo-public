@@ -21,7 +21,7 @@ sudo apt install -y python3-pip python3-venv
 
 ### .gitignore ファイルの用意
 
-Windowsと両用できるようにしている
+Windows と両用できるようにしている
 
 ```text
 __pycache__/
@@ -49,8 +49,8 @@ source bin/activate
 
 requirements.txt の例
 
-waitressはWindowsで動かすため\
-gunicornはLinux専用なので別途インストールする
+waitress は Windows で動かすため\
+gunicorn は Linux 専用なので別途インストールする
 
 ```text
 autopep8
@@ -84,7 +84,7 @@ pip install -r requirements.txt -c constraints.txt
 pip install gunicorn
 ```
 
-### vscodeの設定
+### vscode の設定
 
 .vscode/settings.json の例
 
@@ -102,9 +102,9 @@ pip install gunicorn
 }
 ```
 
-## 03. Flaskの設定
+## 03. Flask の設定
 
-Windowsでも動くようにする
+Windows でも動くようにする
 
 server.py
 
@@ -154,7 +154,7 @@ if __name__ == "__main__":
     app.run()
 ```
 
-Flaskアプリの起動
+Flask アプリの起動
 
 ```bash
 # Windowsの場合

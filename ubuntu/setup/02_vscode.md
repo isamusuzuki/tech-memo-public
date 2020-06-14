@@ -4,14 +4,7 @@
 
 ## Visual Studio Code をインストールする
 
-[Visual Studio Code \- Code Editing\. Redefined](https://code.visualstudio.com/)
-
-deb パッケージをダウンロードする ＞ code_1.46.0-15917880013_amd64.deb (59.7MB)
-
-```bash
-cd ~/Downloads
-sudo apt install ./code_1.46.0-15917880013_amd64.deb
-```
+本家サイトから deb パッケージをダウンロードするのではなく、Ubuntu Software を使う
 
 ## フォント設定を変更する
 

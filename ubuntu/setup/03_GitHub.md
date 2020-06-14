@@ -29,11 +29,14 @@ ssh-keygen -t rsa
 ## GitHub に公開鍵を登録する
 
 ```bash
+# 公開鍵を表示する
+less .ssh/id_rsa.pub
+
 # 鍵指紋を確認する
 ssh-keygen -E md5 -l -f .ssh/id_rsa
 ```
 
-## SSH 接続できるように設定する（実際はしないが）
+## SSH 接続できるように設定する
 
 `~/.ssh/config` 設定ファイルを作成する
 

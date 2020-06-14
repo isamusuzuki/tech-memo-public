@@ -14,20 +14,20 @@ IIJ のコピーサイトからダウンロードする
 [Index of /pub/linux/ubuntu/releases](http://ftp.iij.ad.jp/pub/linux/ubuntu/releases/)
 
 `ubuntu-20.04-desktop-amd64.iso` を入手したら、念の為にベリファイする\
-やり方は、本家サイトにあった
+やり方は、本家チュートリアルにあった
+
+[How to verify your Ubuntu download \| Ubuntu](https://ubuntu.com/tutorials/tutorial-how-to-verify-ubuntu)
 
 ```bash
 echo "e5b72e9cfe20988991c9cd87bde43c0b691e3b67b01f76d23f8150615883ce11 *ubuntu-20.04-desktop-amd64.iso" | shasum -a 256 --check
 ```
 
-[How to verify your Ubuntu download \| Ubuntu](https://ubuntu.com/tutorials/tutorial-how-to-verify-ubuntu)
-
 ### USB メモリに書き込む
 
 卵が先か鶏が先かの話になってしまうが、\
-Ubuntuには、Startup Disk Creatorというアプリがある
+Ubuntu には、Startup Disk Creator というアプリがある
 
-Windowsの場合は、本家チュートリアルでは Rufus を紹介している
+Windows の場合は、本家チュートリアルでは Rufus を紹介している
 
 [Create a bootable USB stick on Windows \| Ubuntu](https://ubuntu.com/tutorials/tutorial-create-a-usb-stick-on-windows)
 
@@ -66,7 +66,7 @@ sudo apt purge ibus -y
 - fcitx を起動する
 - fcitx configuration tool を起動する ＞ リストに Mozc を追加する
 
-再起動後、ターミナルを起動すれば、Mozc が登場するようになる
+再起動後、Mozc が登場するようになる
 
 ## 04. CapsLock キーを Ctrl にキーに変更する
 
@@ -80,3 +80,7 @@ sudo vi /etc/default/keyboard
 ## 05. Chromium をインストールする
 
 apt コマンドではなく、Ubuntu Software を使う
+
+デフォルトの Web Browser を変更する\
+Settings ＞ 左枠 ＞ Default Applications\
+Web ＞ Firefox を Chromium に変更する

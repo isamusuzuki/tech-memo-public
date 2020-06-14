@@ -2,46 +2,12 @@
 
 作成日 2020/02/26、更新日 2020/05/19
 
-## 01. ModuleNotFoundError 発生
-
-自分が作成したモジュールが見つからない
-
-### sys.path を確認する
-
-Python のインタラクティブシェルを動かす
-
-```bash
-$ python
->>> import sys
->>> sys.path
-```
-
-ここに自分のプロジェクトのルートフォルダがない
-
-PYTHONPATH 環境変数に追加すると、自動的に sys.path に追加される
-
-### 解決策
-
-`bin/activate`ファイルに以下を追加しておく\
-仮想環境を有効にしたときに PYTHONPATH 環境変数が追加される
-
-```bash
-deactivate () {
-    # この中の最後尾
-    unset PYTHONPATH
-}
-
-# スクリプトの最後尾
-PYTHONPATH="/home/user/PROJECT-NAME"
-export PYTHONPATH
-```
-
-## 02. bdist_wheel コマンドがない問題
+## 01. bdist_wheel コマンドがない
 
 プロジェクトの中で、モジュールをインストールしたときに\
 `error: invalid command 'bdist_wheel'` と赤字で表示される
 
-### わかってきたこと
+### わかったこと
 
 グローバル環境には、wheel モジュールがある
 
@@ -67,5 +33,37 @@ wheel をインストールしておく
 
 ```bash
 pip install wheel
-pip install -r requirements.txt -c constraints.txt
+```
+
+## 02. ModuleNotFoundError 発生
+
+自分が作成したモジュールが見つからない
+
+### sys.path を確認する
+
+Python のインタラクティブシェルを動かす
+
+```bash
+$ python
+>>> import sys
+>>> sys.path
+```
+
+ここに自分のプロジェクトのルートフォルダがないのが問題\
+=> PYTHONPATH 環境変数に追加すると、自動的に sys.path に追加される
+
+### 解決策
+
+`bin/activate`ファイルに以下を追加しておく\
+仮想環境を有効にしたときに PYTHONPATH 環境変数が追加される
+
+```bash
+deactivate () {
+    # この中の最後尾
+    unset PYTHONPATH
+}
+
+# スクリプトの最後尾
+PYTHONPATH="/home/user/PROJECT-NAME"
+export PYTHONPATH
 ```
