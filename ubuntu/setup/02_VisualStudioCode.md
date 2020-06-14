@@ -1,6 +1,6 @@
-# Visual Studio Code を使えるようにする
+# Visual Studio Code
 
-作成日 2020/06/13、更新日 2020/06/13
+作成日 2020/06/13、更新日 2020/06/14
 
 ## Visual Studio Code をインストールする
 

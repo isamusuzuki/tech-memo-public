@@ -1,6 +1,6 @@
 # Ubuntu 20.04 LTS をインストールする
 
-作成日 2020/05/02、更新日 2020/06/13
+作成日 2020/05/02、更新日 2020/06/14
 
 ## 01. ブートディスクを用意する
 
@@ -60,13 +60,14 @@ fcitx と mozc をインストールする
 ```bash
 sudo apt install fcitx-mozc -y
 sudo apt purge ibus -y
+sudo apt autoremove -y
 ```
 
 - Input Method を起動する ＞ fcitx を選択する
 - fcitx を起動する
 - fcitx configuration tool を起動する ＞ リストに Mozc を追加する
 
-再起動後、Mozc が登場するようになる
+再起動後、Mozc が使えるようになる
 
 ## 04. CapsLock キーを Ctrl にキーに変更する
 
