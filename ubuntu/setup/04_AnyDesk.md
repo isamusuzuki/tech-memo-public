@@ -35,3 +35,21 @@ Set password for unattended access...
 AnyDesk アプリを起動する\
 Remote Desk コーナー ＞ 相手側の AnyDesk-Address を入力する\
 相手側のパスワードを入力する
+
+## AnyDesk トラブルシューティング
+
+### リモートから再起動したら接続できなくなった
+
+`Not Supported: Remote display server is not supported (e.g. Wayland)` というメッセージが出る
+
+[18\.04 \- Anydesk remote server display not supported e\.g Wayland \- Ask Ubuntu](https://askubuntu.com/questions/1131921/anydesk-remote-server-display-not-supported-e-g-wayland)
+
+/etc/gdm3/custom.conf
+
+```text
+[daemon]
+AutomaticLoginEnable=true
+AutomaticLogin=$USERNAME
+```
+
+[\[ubuntu\] Anydesk remote server display not supported e\.g Wayland](https://ubuntuforums.org/showthread.php?t=2416231)
