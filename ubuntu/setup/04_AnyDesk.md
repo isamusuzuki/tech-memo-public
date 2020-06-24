@@ -48,8 +48,12 @@ Remote Desk コーナー ＞ 相手側の AnyDesk-Address を入力する\
 
 ```text
 [daemon]
-AutomaticLoginEnable=true
-AutomaticLogin=$USERNAME
+# Uncomment the line below to force the login screen to use Xorg
+WaylandEnable=false
+
+# Uncomment the line below to force the login screen to use Xorg
+AutomaticLoginEnable = true
+AutomaticLogin = $USERNAME
 ```
 
 [\[ubuntu\] Anydesk remote server display not supported e\.g Wayland](https://ubuntuforums.org/showthread.php?t=2416231)
