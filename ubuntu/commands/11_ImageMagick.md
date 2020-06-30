@@ -1,8 +1,8 @@
 # ImageMagick
 
-作成日 2020/06/01
+作成日 2020/06/01、更新日 2020/06/30
 
-## 01. ImageMagickとは
+## 01. ImageMagick とは
 
 コマンドベースの画像編集ツール
 
@@ -10,11 +10,10 @@
 
 インストール => `sudo apt install imagemagick -y`
 
-マニュアルは、v7.0と先に行ってしまっていて参考にならない
+公式トップには最新版は 7.0 だとあるが、実際に Ubuntu にインストールすると、\
+6.9 がインストールされる。6.9 の段階では、まだ magick という統一コマンドはない
 
 ### 複数コマンドの集合体
-
-バージョン6.9の段階では、まだmagickという統一コマンドはない
 
 ```bash
 compare --version
@@ -42,21 +41,53 @@ stream --version
 # => Version: ImageMagick 6.9.10-23 Q16 x86_64 20190101
 ```
 
-## 02. ImageMagick のノウハウ
+## 02. ImageMagick の基本的な使い方
 
-### ImageMagick の原理原則
-
-オプションの順番がとても大事 \
-とくに設定オプションは、実行オプションの後に置くと、\
-先に実行オプションが走るため、\
-設定がまったく反映されないので要注意
+### 画像をリサイズする
 
 ```bash
-# 誤った例
-magick -trim -fuzz 50% orginal.png new.png
+# 縦横比を維持したまま、指定サイズに収まるようにリサイズする
+convert -resize 640x480 original.jpg new.jpg
 
-# 正しい例
-magick -fuzz 50% -trim orginal.png new.png
+# 縦横比を無視して、指定サイズに収まるようにリサイズする
+convert -resize 640x480! original.jpg new.jpg
+```
+
+### 画像の情報を取得する
+
+```bash
+identify original.jpg
+```
+
+### 白画像を生成する
+
+```bash
+convert -size 200x200 xc:white white.jpg
+```
+
+### 文章を挿入する
+
+```bash
+convert original.jpg \
+-font "./RobotoMono-Bold.ttf" \
+-annotate +350+50 "Taro Okamoto" new.jpg
+```
+
+中央に配置した商品画像から 10 ピクセルだけ下げたところに、説明文を挿入するには？ \
+`-gravity`オプションを north にセットし、 商品画像のエンドに+10 する
+
+```bash
+convert {INPUT} -font {FONT} \
+-fill gray -pointsize 24 \
+-gravity north \
+-annotate +0+{FONT_POSITION} "{TEXT}" {OUTPUT}
+```
+
+### 画像の一括サイズ変換
+
+```bash
+# 横幅のサイズだけを指定。縦横の比率は保たれる
+mogrify -resize 200 *.jpg
 ```
 
 ### 画像を合成する
@@ -88,87 +119,30 @@ composite -geometry 24x24+62+50 present.gif comp_resize.gif comp_resize.gif
 composite -geometry 16x16+10+55 shading.gif comp_resize.gif comp_resize.gif
 ```
 
-### 白画像を生成する
-
-```bash
-cd ~/Desktop
-magick -size 200x200 xc:white white.jpg
-```
-
-### 文章を挿入する
-
-```bash
-magick test.jpg \
--font "fonts/NotoSansJP-Regular.otf" \
--annotate +50+160 \
-"岡本太郎" test.jpg
-```
-
-中央に配置した商品画像から 10 ピクセルだけ下げたところに、説明文を挿入するには？ \
-`-gravity`オプションを north にセットし、 商品画像のエンドに+10 する
-
-```bash
-magick {INPUT} -font {FONT} \
--fill gray -pointsize 24
--gravity north -annotate +0+{FONT_POSITION} "{TEXT}" {OUTPUT}
-```
-
-### `-trim`オプションを使って、画像を自動で切り抜きする
+### 画像を自動で切り抜きする
 
 ```bash
 # 基本形
-magick --trim org.png new.png
+convert --trim org.png new.png
 
 # 背景を削っていくので、商品にズームアップしたような画像になる
-magick -define trim:percent-background=5% -trim org.png new.png
+convert -define trim:percent-background=5% -trim org.png new.png
 
 # 背景画像の判断をゆるくすると、きっちり切り抜きできる
-magick -fuzz 50% -trim org.png new.png
-```
-
-### Identify コマンドで画像の情報を取得する
-
-```python
-from subprocess import getoutput
-
-for color in spec['colors']:
-    cmd = f'identify -format "%w,%h" temp/{color["filename"]}'
-    size = getoutput(cmd).split(',')
-    width = int(size[0])
-    height = int(size[1])
+convert -fuzz 50% -trim org.png new.png
 ```
 
 ### PNG 画像を JPG 画像に変換するときに、透過部分を白にする
 
-```python
-import subprocess
-
-for color in spec['colors']:
-    cmd = (
-        f'magick images/{spec["item_code"]}/color/{color["filename"]} '
-        f'-resize {width}x{height} -extent {width}x{height} '
-        f'temp/{color["filename"].replace(".png", ".jpg")}'
-    )
-    proc = subprocess.Popen(cmd, shell=True)
-    print(f'process {proc.pid} starts')
-    proc.wait()
+```bash
+magick original.png
+-resize 640x480 -extent 640x480
+new.jpg
 ```
 
 ### 縦横比を維持しつつサイズを変更し、余白は白で塗りつぶす
 
 ```bash
-magick c1.png -resize 1000x1000 -gravity center \
--background white -extent 1000x1000 ../temp/c1.png
-```
-
-### 画像の一括サイズ変換
-
-```bash
-# ファイルアプリで、Linuxファイルの中に新しいフォルダをつくり
-# その中に、変換したい画像ファイルをコピーする
-cd ~/Downloads/images
-
-# 画像ファイルを一括でサイズ変換する
-# 横幅のサイズだけを指定。縦横の比率は保たれる
-mogrify -resize 200 *.jpg
+convert c1.png -resize 1000x1000 -gravity center \
+-background white -extent 1000x1000 c1a.png
 ```
