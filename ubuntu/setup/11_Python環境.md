@@ -1,6 +1,6 @@
 # Ubuntu に Python 環境を構築する
 
-作成日 2020/05/18
+作成日 2020/05/18、更新日 2020/07/10
 
 ## 01. グローバル環境での作業
 
@@ -21,17 +21,9 @@ sudo apt install -y python3-pip python3-venv
 
 ### .gitignore ファイルの用意
 
-Windows と両用できるようにしている
-
 ```text
 __pycache__/
-bin/
-[Ii]nclude/
-[Ll]ib/
-lib64
-Scripts/
-share/
-pyvenv.cfg
+venv/
 ```
 
 ### 仮想環境の構築
@@ -39,10 +31,10 @@ pyvenv.cfg
 ```bash
 cd ~/PROJECTNAME
 
-python3 -m venv .
+python3 -m venv venv
 
 # 仮想環境の有効化
-source bin/activate
+source venv/bin/activate
 ```
 
 ### パッケージのインストール
@@ -90,14 +82,14 @@ pip install gunicorn
 
 ```json
 {
-  "python.pythonPath": "bin/python",
+  "python.pythonPath": "venv/bin/python",
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
-  "python.linting.flake8Path": "bin/flake8",
+  "python.linting.flake8Path": "venv/bin/flake8",
   "python.linting.lintOnSave": true,
   "python.formatting.provider": "autopep8",
-  "python.formatting.autopep8Path": "bin/autopep8",
+  "python.formatting.autopep8Path": "venv/bin/autopep8",
   "editor.formatOnSave": true
 }
 ```
