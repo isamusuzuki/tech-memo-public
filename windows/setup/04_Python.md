@@ -1,6 +1,6 @@
 # vscode の Python 環境構築
 
-作成日 2019/11/21
+作成日 2019/11/21、更新日 2020/07/22
 
 ## 01. venv で仮想環境を構築する
 
@@ -8,10 +8,10 @@
 cd ~/YOUR-PROJECT
 
 # venvの仮想環境を構築
-/c/Python37/python -m venv .
+/c/Python37/python -m venv venv
 
 # 仮想環境の有効化
-source Scripts/activate
+source venv/Scripts/activate
 
 # バージョン番号の確認
 python --version
@@ -46,14 +46,14 @@ flake8-import-order
 
 ```json
 {
-  "python.pythonPath": "${workspaceFolder}\\Scripts\\python.exe",
+  "python.pythonPath": "${workspaceFolder}\\venv\\Scripts\\python.exe",
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
-  "python.linting.flake8Path": "${workspaceFolder}\\Scripts\\flake8.exe",
+  "python.linting.flake8Path": "${workspaceFolder}\\venv\\Scripts\\flake8.exe",
   "python.linting.lintOnSave": true,
   "python.formatting.provider": "autopep8",
-  "python.formatting.autopep8Path": "${workspaceFolder}\\Scripts\\autopep8.exe",
+  "python.formatting.autopep8Path": "${workspaceFolder}\\venv\\Scripts\\autopep8.exe",
   "editor.formatOnSave": true
 }
 ```
@@ -62,11 +62,7 @@ flake8-import-order
 
 ```text
 __pycache__/
-.vscode/
-Include/
-Lib/
-Scripts/
-pyvenv.cfg
+venv/
 ```
 
 ### Python コードを自動整形＆コードレビューさせる
@@ -90,6 +86,6 @@ pip uninstall -r temp.txt -y
 
 - `Ctrl + Shift + p`で、コマンドパレットを表示する
 - `Python: Select Interpreter`を選ぶ
-- 候補の中から`.\Scripts\python.exe`が選ばれていることを確認する
+- 候補の中から`.\venv\Scripts\python.exe`が選ばれていることを確認する
 - 左下に`Python 3.7.4 64-bit`が表示されていることを確認する
 - この状態でターミナルを起動すると、`source Scripts/activate`が実行されてから登場する
