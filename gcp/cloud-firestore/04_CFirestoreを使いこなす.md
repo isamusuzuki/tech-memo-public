@@ -112,7 +112,7 @@ for doc in docs:
 def helper(obj):
     if isinstance(obj, DatetimeWithNanoseconds):
         return obj.isoformat()
-    raise TypeError (f'Type {type(obj)} not serializable')
+    raise TypeError (f'Type {type(obj)} is not JSON serializable')
 
 jsonstr = json.dumps(links[0], default=helper)
 print(jsonstr)
