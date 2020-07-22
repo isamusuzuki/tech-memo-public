@@ -54,15 +54,10 @@ $ python
 
 ### 解決策
 
-`bin/activate`ファイルに以下を追加しておく\
+`venv/bin/activate`ファイルに以下を追加しておく\
 仮想環境を有効にしたときに PYTHONPATH 環境変数が追加される
 
 ```bash
-deactivate () {
-    # この中の最後尾
-    unset PYTHONPATH
-}
-
 # スクリプトの最後尾
 PYTHONPATH="/home/user/PROJECT-NAME"
 export PYTHONPATH
