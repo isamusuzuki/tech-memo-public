@@ -1,6 +1,6 @@
 # Python トラブルシューティング
 
-作成日 2020/02/26、更新日 2020/05/19
+作成日 2020/02/26、更新日 2020/07/31
 
 ## 01. bdist_wheel コマンドがない
 
@@ -52,13 +52,26 @@ $ python
 ここに自分のプロジェクトのルートフォルダがないのが問題\
 => PYTHONPATH 環境変数に追加すると、自動的に sys.path に追加される
 
-### 解決策
+### 解決策 1
+
+Visual Studio Codeを使っている場合は、`settings.json` を使って\
+統合ターミナルの環境変数にキーバリューを追加することができる
+
+```json
+{
+  "terminal.integrated.env.linux": {
+    "PYTHONPATH": "/home/USER-NAME/PROJECT-NAME"
+  }
+}
+```
+
+### 解決策 2
 
 `venv/bin/activate`ファイルに以下を追加しておく\
-仮想環境を有効にしたときに PYTHONPATH 環境変数が追加される
+仮想環境を有効化したときに PYTHONPATH 環境変数が追加される
 
 ```bash
 # スクリプトの最後尾
-PYTHONPATH="/home/user/PROJECT-NAME"
+PYTHONPATH="/home/USER-NAME/PROJECT-NAME"
 export PYTHONPATH
 ```
