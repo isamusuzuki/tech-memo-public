@@ -13,8 +13,6 @@
 1. カラム名を変更する
 1. データを出力する
 
-`DataFrame.apply()`以外は、それぞれ1回づつ登場するのが望ましい
-
 ```python
 import pandas as pd
 
@@ -66,14 +64,14 @@ def apple():
     print(df3.columns)
     print('----------')
 
-    # 絞り込み
+    # 行列の絞り込み
     df4 = df3[df3['product1'] > 10][['product1', 'product2']]
     print(df4.head())
     print(df4.shape)
     print(df4.columns)
     print('----------')
 
-    # カラム名変更
+    # カラム名の変更
     df5 = df4.rename(columns={'product1': 'a', 'product2': 'b'})
     print(df5.head())
     print(df5.shape)
@@ -89,11 +87,28 @@ if __name__ == "__main__":
     apple()
 ```
 
+## なぜ基本の流れに沿わないといけないのか
+
+行列の絞り込みやカラム名の変更は、データフレームのコピーを生成している
+
+コピーのデータをいじろうとすると、以下のような警告がでる
+
+```text
+SettingWithCopyWarning:
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+```
+
+いっぽうで、`DataFrame.apply()` は、よく見るとデータフレームはコピーしていない
+
+常に `DataFrame.apply()` を優先して行い、行列の絞り込みやカラム名の変更は最後に\
+もってくるよう配慮するのが望ましい
+
 ## 基本の流れに沿えないときの対処方法
 
-Q: 外部から調達してきたデータが、カラム名変更など、いろいろ調整が必要な場合はどうするのか？
+Q: 外部から調達してきたデータが、データの絞り込み・カラム名変更などが必要な場合はどうするのか？
 
-=> 調整するだけのスクリプトを別ファイルに用意する。この流れはひとつのファイルに収める範囲も示している
+=> 調整するだけのスクリプトを別ファイルに用意する。基本の流れを守れなくなったときが、ファイルを分割すべき時である
 
 Q: 1回の`DataFrame.apply()`ではこなしきれないほど、処理がたくさんある場合はどうするのか？
 
@@ -104,4 +119,4 @@ Q: `DataFrame.apply()`で使う関数は、外部ファイルにしてもよい�
 
 => 見通しが悪くなるので、それは避けるべきである。\
 たとえば コードをクラスにまとれば、利用するメソッドの下に、書くことができるようになる\
-もしくは、`DataFrame.apply()`の回数が多いいことを理由に、別ファイルにすることも可能
+もしくは、`DataFrame.apply()`の回数が多いいことを理由に、別ファイルにすることも有効である
