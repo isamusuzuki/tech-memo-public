@@ -1,6 +1,6 @@
 # Fire を使いこなす
 
-作成日 2020/03/26
+作成日 2020/03/26、更新日 2020/08/12
 
 ## 01. Fire とは
 
@@ -19,13 +19,13 @@ Python で簡単に CLI ツールを作成するためのライブラリ
 hello.py
 
 ```python
-import fire
+from fire import Fire
 
 def hello(name="World"):
   return "Hello %s!" % name
 
 if __name__ == '__main__':
-  fire.Fire(hello)
+  Fire(hello)
 ```
 
 hello.py を使う
@@ -33,7 +33,7 @@ hello.py を使う
 ```bash
 python hello.py  # Hello World!
 python hello.py --name=David  # Hello David!
-python hello.py --help  # Shows usage information.
+python hello.py --help  # 使い方情報を表示する
 ```
 
 ### クラスを Fire に登録する
@@ -41,7 +41,7 @@ python hello.py --help  # Shows usage information.
 calculator.py
 
 ```python
-import fire
+from fire import Fire
 
 class Calculator(object):
   """A simple calculator class."""
@@ -49,15 +49,20 @@ class Calculator(object):
   def double(self, number):
     return 2 * number
 
+  def triple(self, number):
+    return 3 * number
+
 if __name__ == '__main__':
-  fire.Fire(Calculator)
+  Fire(Calculator)
 ```
 
 calculator.py を使う
 
 ```bash
 python calculator.py double 10  # 20
-python calculator.py double --number=15  # 30
+python calculator.py double --number=10  # 20
+python calculator.py triple 10  # 30
+python calculator.py triple --number=10  # 30
 ```
 
 クラスを登録すると、複数のメソッドが使えるところがいい
