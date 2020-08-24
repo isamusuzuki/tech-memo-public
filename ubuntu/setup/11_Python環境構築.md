@@ -1,6 +1,6 @@
 # Ubuntu に Python 環境を構築する
 
-作成日 2020/05/18
+作成日 2020/05/18、更新日 2020/08/24
 
 ## 01. グローバル環境での作業
 
@@ -21,17 +21,11 @@ sudo apt install -y python3-pip python3-venv
 
 ### .gitignore ファイルの用意
 
-Windows と両用できるようにしている
-
 ```text
 __pycache__/
-bin/
-[Ii]nclude/
-[Ll]ib/
-lib64
-Scripts/
-share/
-pyvenv.cfg
+venv/
+
+.vscode/
 ```
 
 ### 仮想環境の構築
@@ -39,10 +33,10 @@ pyvenv.cfg
 ```bash
 cd ~/PROJECTNAME
 
-python3 -m venv .
+python3 -m venv venv
 
 # 仮想環境の有効化
-source bin/activate
+source venv/bin/activate
 ```
 
 ### パッケージのインストール
@@ -54,23 +48,18 @@ gunicorn は Linux 専用なので別途インストールする
 
 ```text
 autopep8
-dropbox
-fire
 flake8
 flake8-import-order
 Flask
-google-cloud-firestore
-google-cloud-storage
-PyMySQL
-python-dotenv
-pytz
-Pillow
 waitress
 ```
 
 一括インストール
 
 ```bash
+# トラブル避けのおまじない
+pip install wheel
+
 # 1回目の場合
 pip install -r requirements.txt
 
@@ -90,17 +79,22 @@ pip install gunicorn
 
 ```json
 {
-  "python.pythonPath": "bin/python",
+  "python.pythonPath": "venv/bin/python",
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
-  "python.linting.flake8Path": "bin/flake8",
+  "python.linting.flake8Path": "venv/bin/flake8",
   "python.linting.lintOnSave": true,
   "python.formatting.provider": "autopep8",
-  "python.formatting.autopep8Path": "bin/autopep8",
-  "editor.formatOnSave": true
+  "python.formatting.autopep8Path": "venv/bin/autopep8",
+  "editor.formatOnSave": true,
+  "terminal.integrated.env.linux": {
+    "PYTHONPATH": "/home/YOURNAME/PROJECTNAME"
+  }
 }
 ```
+
+最終行は、トラブル避けのおまじない
 
 ## 03. Flask の設定
 
@@ -111,9 +105,7 @@ server.py
 ```python
 import sys
 
-from dotenv import load_dotenv
-
-from flask import Flask
+from flask import Flask, render_template
 from flask.logging import create_logger
 
 from waitress import serve
@@ -137,24 +129,49 @@ def index():
 
 
 if __name__ == "__main__":
-    load_dotenv()
     print(f'DEBUG = {IS_DEBUG}')
-    serve(app, host='0.0.0.0', port=80)
+    serve(app, host='0.0.0.0', port=5000)
 ```
 
 wsgi.py
 
 ```python
-from dotenv import load_dotenv
-
 from server import app
 
 if __name__ == "__main__":
-    load_dotenv()
     app.run()
 ```
 
-Flask アプリの起動
+templates/index.html
+
+```html
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sandbox</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          Hello World
+        </h1>
+        <h2 class="subtitle">
+          My first website
+        </h2>
+      </div>
+    </section>
+  </body>
+</html>
+```
+
+### Flask アプリの起動
 
 ```bash
 # Windowsの場合

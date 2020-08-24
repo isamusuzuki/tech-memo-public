@@ -1,6 +1,6 @@
 # Python トラブルシューティング
 
-作成日 2020/02/26、更新日 2020/05/19
+作成日 2020/02/26、更新日 2020/08/24
 
 ## 01. bdist_wheel コマンドがない
 
@@ -54,16 +54,13 @@ $ python
 
 ### 解決策
 
-`bin/activate`ファイルに以下を追加しておく\
-仮想環境を有効にしたときに PYTHONPATH 環境変数が追加される
+.vscode/settings.json に以下を追加すると、ターミナルを起動したときに\
+自動的に PYTHONPATH 環境変数が追加される
 
-```bash
-deactivate () {
-    # この中の最後尾
-    unset PYTHONPATH
+```json
+{
+  "terminal.integrated.env.linux": {
+    "PYTHONPATH": "/home/YOURNAME/PROJECTNAME"
+  }
 }
-
-# スクリプトの最後尾
-PYTHONPATH="/home/user/PROJECT-NAME"
-export PYTHONPATH
 ```
