@@ -1,10 +1,19 @@
 # Visual Studio Code
 
-作成日 2020/06/13、更新日 2020/06/14
+作成日 2020/06/13、更新日 2020/07/08
 
 ## Visual Studio Code をインストールする
 
-本家サイトから deb パッケージをダウンロードするのではなく、Ubuntu Software を使う
+Ubuntu Software からインストールしてはいけない。日本語が入力できない問題がある
+
+本家サイトから deb パッケージをダウンロードする
+
+```bash
+cd ~/Downloads
+sudo apt install ./code_1.46.1-1592428892_amd64.deb
+```
+
+[Download Visual Studio Code \- Mac, Linux, Windows](https://code.visualstudio.com/download)
 
 ## フォント設定を変更する
 
@@ -22,11 +31,8 @@
 ```bash
 cd ~
 mkdir .fonts
-
 mv Downloads/*.ttf .fonts
-
 fc-cache
-
 fc-list | grep "Roboto Mono"
 ```
 
