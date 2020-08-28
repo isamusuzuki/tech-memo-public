@@ -52,8 +52,8 @@ urllib.error.HTTPError モジュールは、read()メソッドを持っている
 
 公式ドキュメント => [https://docs.python.org/ja/3/library/urllib.parse.html](https://docs.python.org/ja/3/library/urllib.parse.html)
 
--   `urllib.parse.quote(string)` ... URL 構成要素として使えるように、文字列をクオートする
--   `urllib.parse.urlencode(dict)` ... &文字で区切られた`key=value`からなるクォート文字列を作成する
+- `urllib.parse.quote(string)` ... URL 構成要素として使えるように、文字列をクオートする
+- `urllib.parse.urlencode(dict)` ... &文字で区切られた`key=value`からなるクォート文字列を作成する
 
 ```python
 import urllib.parse
@@ -100,9 +100,9 @@ print(urllib.parse.urlencode(dct, quote_via=urllib.parse.quote))
 > 機能するオブジェクトを返します。\
 > このオブジェクトには以下のメソッドがあります。
 >
-> -   geturl() ... 取得されたリソースの URL を返します
-> -   info() ... http.client.HTTPMessage オブジェクトを返す
-> -   getcode() ... レスポンスの HTTP ステータスコード
+> - geturl() ... 取得されたリソースの URL を返します
+> - info() ... http.client.HTTPMessage オブジェクトを返す
+> - getcode() ... レスポンスの HTTP ステータスコード
 
 http.client.HTTPMessage オブジェクトは、email.message.Message クラスを利用している
 
