@@ -142,7 +142,7 @@ with conn.cursor() as cursor:
 
 ## 06. 日付時刻が入っているカラムからデータを取り出す
 
-### エラーになるコード
+### エラーになるコード a
 
 created_at カラムが、timestamp を使って自動生成している場合、\
 以下のコードは、辞書リストを JSON データに変換したところで TypeError を起こす
@@ -173,7 +173,7 @@ with open('temp/test.json', mode='w', encoding='utf-8') as f:
 print('done')
 ```
 
-### 解決方法のひとつ
+### 解決方法のひとつ a
 
 SQL クエリーの中で、DATE_FORMAT 関数を使って、日付時刻データを文字列に変換する
 
@@ -189,7 +189,7 @@ sql = (
 
 ## 07. 集計したカラムからデータを取り出す
 
-### エラーになるコード
+### エラーになるコード b
 
 success カラムが、SUM などを使って集計している場合、\
 以下のコードは、辞書リストを JSON データに変換したところで TypeError を起こす
@@ -220,7 +220,7 @@ with open('temp/test.json', mode='w', encoding='utf-8') as f:
 print('done')
 ```
 
-### 解決方法のひとつ
+### 解決方法のひとつ b
 
 SQL クエリーの中で、CAST 関数または CONVERT 関数を使って、集計データを整数に変換する
 
