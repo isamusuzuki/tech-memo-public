@@ -33,7 +33,7 @@ Git Bash を開く
 
 ```bash
 ssh-keygen -t rsa -f ~/.ssh/avocado -C gcp-user
-mv ~/.ssh/everflow ~/.ssh/avocado.pem
+mv ~/.ssh/avocado ~/.ssh/avocado.pem
 ```
 
 ### プロジェクト全体に公開 SSH 認証鍵を追加する
