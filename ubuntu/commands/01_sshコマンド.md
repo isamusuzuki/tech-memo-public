@@ -29,25 +29,6 @@ ssh -i ~/.ssh/secret.pem ec2-user@100.100.100.100 ./something.sh
 # => 実行が終わったら即切断される
 ```
 
-### 兄弟のような scp コマンド
-
-構文: `scp オプション ログイン名@ホスト名:パス ログイン名@ホスト名:パス`
-
-オプション
-
-- `-i` ... SSH 秘密鍵を指定する
-- `-r` ... ローカルのディレクトリごとリモートにコピーする
-
-使用例
-
-```bash
-# 最も簡単な例
-scp ~/test.txt ubuntu@192.168.3.251:~/test.txt
-
-# SSH秘密鍵を使い、フォルダごとまとめてコピーする
-scp -i ~/.ssh/awsweb.pem -r ./ centos@10.0.0.224:/opt/bitnami/apps/wordpress/htdocs/work/
-```
-
 ## 02. config ファイル
 
 - `~/.ssh`フォルダに、`pem`ファイルを置く
@@ -148,7 +129,3 @@ ssh user@vps
 # vps に入ったあと vps から nuc
 ssh user@localhost -p 22222
 ```
-
-## 08. w コマンド, tty コマンド
-
-[自分がどの IP アドレスで SSH 接続しているのかを確認する ｜ Developers\.IO](https://dev.classmethod.jp/cloud/aws/amazon-linux-2-ssh-ipaddress/)
