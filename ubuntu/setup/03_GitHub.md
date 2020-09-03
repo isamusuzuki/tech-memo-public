@@ -1,11 +1,11 @@
 # GitHub に接続できるようにする
 
-作成日 2020/03/12、更新日 2020/06/13
+作成日 2020/03/12、更新日 2020/09/03
 
 ## Git をインストールする
 
 ```bash
-sudo apt git install
+sudo apt install git -y
 ```
 
 ## 自分の名前とメルアドを設定する
@@ -62,5 +62,5 @@ ssh git@github.com
 ## GitHub からリポジトリをクローンする
 
 ```bash
-git clone git@github.com:your-name/repository-name.git
+git clone git@github.com:YOUR-NAME/REPOSITORY-NAME.git
 ```
