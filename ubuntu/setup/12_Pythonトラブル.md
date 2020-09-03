@@ -76,6 +76,6 @@ deactivate () {
     unset PYTHONPATH
 }
 # スクリプトの最後尾
-PYTHONPATH="/home/user/PROJECT-NAME"
+PYTHONPATH=/home/USER-NAME/PROJECT-NAME
 export PYTHONPATH
 ```
