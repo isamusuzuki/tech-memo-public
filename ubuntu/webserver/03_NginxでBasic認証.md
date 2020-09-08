@@ -10,7 +10,7 @@
 
 ```bash
 # htpasswdコマンドのインストール
-sudo apt apache2-utils
+sudo apt install apache2-utils
 
 #.htpasswdファイルの作成
 sudo htpasswd -c /etc/nginx/.htpasswd USERNAME
