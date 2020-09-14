@@ -34,40 +34,40 @@ apps/scraper.js
 ```javascript
 const puppeteer = require('puppeteer');
 
-module.exports = async name => {
-    const url = `https://www.example.com/${name}/`;
+module.exports = async (name) => {
+  const url = `https://www.example.com/${name}/`;
 
-    // ブラウザを準備する
-    const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
-    const page = await browser.newPage();
-    const chrome_win10 =
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36';
-    page.setUserAgent(chrome_win10);
-    page.setViewport({ width: 1920, height: 1080 });
+  // ブラウザを準備する
+  const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
+  const page = await browser.newPage();
+  const chrome_win10 =
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36';
+  page.setUserAgent(chrome_win10);
+  page.setViewport({ width: 1920, height: 1080 });
 
-    // 指定されたページを開く
-    await page.goto(url, {
-        waitUntil: 'domcontentloaded',
-    });
+  // 指定されたページを開く
+  await page.goto(url, {
+    waitUntil: 'domcontentloaded',
+  });
 
-    const result = {};
+  const result = {};
 
-    // 商品名を取得する
-    const titles = await page.$x('//xpath');
-    const title = await page.evaluate(x => x.textContent, titles[0]);
-    result['title'] = title.trim();
+  // 商品名を取得する
+  const titles = await page.$x('//xpath');
+  const title = await page.evaluate((x) => x.textContent, titles[0]);
+  result['title'] = title.trim();
 
-    // ブラウザを閉じる
-    await browser.close();
+  // ブラウザを閉じる
+  await browser.close();
 
-    return result;
+  return result;
 };
 ```
 
 ## 02. デプロイ方法
 
 デプロイ名と同名の関数がある index.js ファイルがあるフォルダ上で、\
-gcloud コマンドを実行する。Puppeteerを実行するには、最低でも 1GB のメモリが必要
+gcloud コマンドを実行する。Puppeteer を実行するには、最低でも 1GB のメモリが必要
 
 ```bash
 gcloud functions deploy avocado \

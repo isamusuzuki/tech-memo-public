@@ -1,10 +1,10 @@
-# Puppeteerを使いこなす
+# Puppeteer を使いこなす
 
 作成日 2020/02/10
 
 ## 01. ページサイズを変更する
 
-Puppeteerのイニシャルのページサイズは、800x600
+Puppeteer のイニシャルのページサイズは、800x600
 
 ```javascript
 const page = await browser.newPage();
@@ -16,7 +16,7 @@ page.setViewport({ width: 1920, height: 1080 });
 ```javascript
 const page = await browser.newPage();
 const chrome_win10 =
-  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36';
 page.setUserAgent(chrome_win10);
 ```
 
@@ -28,9 +28,7 @@ page.setUserAgent(chrome_win10);
 ## 03. ページ遷移する
 
 ```javascript
-await page.goto('https://www.example.com/', 
-    { waitUntil: 'networkidle2' }
-);
+await page.goto('https://www.example.com/', { waitUntil: 'networkidle2' });
 ```
 
 ## 04. しばし待つ
@@ -40,17 +38,17 @@ await page.goto('https://www.example.com/',
 await page.waitFor(3000);
 ```
 
-## 05. XPathを使いこなす
+## 05. XPath を使いこなす
 
 ### 要素内のテキストを取得する
 
 ```javascript
-const titles = await page.$x("//xpath");
-const title = await page.evaluate(x => x.textContent, titles[0]);
+const titles = await page.$x('//xpath');
+const title = await page.evaluate((x) => x.textContent, titles[0]);
 ```
 
 `page.$x(expression)`の戻値は、`<Promise<Array<ElementHandle>>>`である \
-たとえ1個しか見つからなくても配列なので、ゼロ番目を抜き出す必要がある
+たとえ 1 個しか見つからなくても配列なので、ゼロ番目を抜き出す必要がある
 
 ### テキストボックスに文言を書き込む
 
@@ -73,25 +71,24 @@ await button[0].click();
 const nextLinks = await page.$x('//li[@class="a-last"]/a');
 
 if (nextLinks.length > 0) {
-    // リンクがあるなら遷移する  
-    await nextLinks[0].click();
-    await page.waitForNavigation(
-        { waitUntil: 'networkidle2' }
-    );
+  // リンクがあるなら遷移する
+  await nextLinks[0].click();
+  await page.waitForNavigation({ waitUntil: 'networkidle2' });
 }
 ```
 
 ## 06. ドロップダウンリストの選択を変更する
 
-これだけXPathで実現できていない。CSSセレクタを使う
+これだけ XPath で実現できていない。CSS セレクタを使う
 
 ```html
-<label>Choose One:
-    <select id="choose1">
-        <option value="val1">Value 1</option>
-        <option value="val2">Value 2</option>
-        <option value="val3">Value 3</option>
-    </select>
+<label
+  >Choose One:
+  <select id="choose1">
+    <option value="val1">Value 1</option>
+    <option value="val2">Value 2</option>
+    <option value="val3">Value 3</option>
+  </select>
 </label>
 ```
 
@@ -121,21 +118,21 @@ await page.bringToFront();
 
 ## 08. 本当に画像が表示されているかを調べる
 
-NaturalWidthを使う
+NaturalWidth を使う
 
-![](https://imgur.com/51gXQYZ.png)
+![Page](https://imgur.com/51gXQYZ.png)
 
 ```javascript
 const anpan = await page.$x('//img[@id="anpan"]');
-const anpan_nw = await page.evaluate(x => x.naturalWidth, anpan[0]);
+const anpan_nw = await page.evaluate((x) => x.naturalWidth, anpan[0]);
 console.log(`anpan_nw => ${anpan_nw}`);
 
 const curry = await page.$x('//img[@id="curry"]');
-const curry_nw = await page.evaluate(x => x.naturalWidth, curry[0]);
+const curry_nw = await page.evaluate((x) => x.naturalWidth, curry[0]);
 console.log(`curry_nw => ${curry_nw}`);
 
 const baikin = await page.$x('//img[@id="baikin"]');
-const baikin_nw = await page.evaluate(x => x.naturalWidth, baikin[0]);
+const baikin_nw = await page.evaluate((x) => x.naturalWidth, baikin[0]);
 console.log(`baikin_nw => ${baikin_nw}`);
 ```
 
