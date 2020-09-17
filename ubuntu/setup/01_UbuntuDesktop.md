@@ -82,6 +82,7 @@ sudo vi /etc/default/keyboard
 
 apt コマンドではなく、Ubuntu Software を使う
 
-デフォルトの Web Browser を変更する\
+### デフォルトの Web Browser を変更する
+
 Settings ＞ 左枠 ＞ Default Applications\
 Web ＞ Firefox を Chromium に変更する
