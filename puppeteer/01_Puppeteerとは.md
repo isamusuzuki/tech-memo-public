@@ -1,8 +1,8 @@
-# Puppeteer を使う
+# Puppeteer とは
 
 作成日 2020/02/10
 
-## 01. Puppeteer とは
+## 01. Puppeteer 概要
 
 Chrome/Chromium をヘッドレスで操作する Node.js ライブラリ
 
@@ -14,7 +14,7 @@ Chrome/Chromium をヘッドレスで操作する Node.js ライブラリ
 
 ### Node.js をインストールする
 
-[Chocolatey](https://chocolatey.org/)を使う => `choco install nodejs-lts　-y`
+[Chocolatey](https://chocolatey.org/)を使う => `choco install nodejs-lts -y`
 
 ```bash
 node -v
@@ -53,10 +53,10 @@ JavaScript コードを自動で修正してくれる、Prettier という拡張
 
 ```json
 {
-    "trailingComma": "es5",
-    "tabWidth": 4,
-    "semi": true,
-    "singleQuote": true
+  "trailingComma": "es5",
+  "tabWidth": 4,
+  "semi": true,
+  "singleQuote": true
 }
 ```
 
@@ -70,7 +70,7 @@ const puppeteer = require('puppeteer');
 
 ```json
 {
-    "javascript.suggestionActions.enabled": false
+  "javascript.suggestionActions.enabled": false
 }
 ```
 
@@ -84,14 +84,14 @@ const moment = require('moment');
 const nowStr = moment().format('YYYYMMDD_HHmmss');
 
 (async () => {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.goto('https://www.example.com/');
-    await page.screenshot({ path: `../temp/${nowStr}.png` });
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.goto('https://www.example.com/');
+  await page.screenshot({ path: `../temp/${nowStr}.png` });
 
-    await browser.close();
-    await console.log('done');
-})().catch(e => console.error(e));
+  await browser.close();
+  await console.log('done');
+})().catch((e) => console.error(e));
 ```
 
 無名関数を書いた直後に実行させる場合は、行終わりのカンマが必須
@@ -102,17 +102,17 @@ const nowStr = moment().format('YYYYMMDD_HHmmss');
 const puppeteer = require('puppeteer');
 
 puppeteer
-    .launch()
-    .then(async browser => {
-        const page = await browser.newPage();
-        await page.goto('https://www.example.com/');
-        const title = await page.title();
-        await page.pdf({ path: `../temp/${title}.pdf`, format: 'A4' });
+  .launch()
+  .then(async (browser) => {
+    const page = await browser.newPage();
+    await page.goto('https://www.example.com/');
+    const title = await page.title();
+    await page.pdf({ path: `../temp/${title}.pdf`, format: 'A4' });
 
-        await browser.close();
-        await console.log('done');
-    })()
-    .catch(e => console.error(e));
+    await browser.close();
+    await console.log('done');
+  })()
+  .catch((e) => console.error(e));
 ```
 
 無名関数の即時実行の代わりに、Promise チェーンを使うこともできる

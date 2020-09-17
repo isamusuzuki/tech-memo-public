@@ -1,4 +1,4 @@
-# Node.jsスクリプトを使いこなす
+# Node.js スクリプトを使いこなす
 
 作成日 2020/02/10
 
@@ -11,7 +11,7 @@
 (async () => {
   const result = await somethingPromise();
   console.log(result);
-})().catch(e => console.error(e));
+})().catch((e) => console.error(e));
 ```
 
 ## 02. 引数を取得する
@@ -24,7 +24,7 @@
   // process.argv[1] => index.js
   const userName = process.argv[2];
   const userNumber = Number(process.argv[3]);
-})().catch(e => console.error(e));
+})().catch((e) => console.error(e));
 ```
 
 ## 03. 日付を入力する
@@ -32,10 +32,10 @@
 moment をインストールする => `npm install moment --save`
 
 ```javascript
-const moment = require("moment");
-moment.locale("ja");
-const jpnnow = moment().format("YYYY/MM/DD HH:mm:ss");
-const filename = moment().format("YYYYMMDD_HHmmss");
+const moment = require('moment');
+moment.locale('ja');
+const jpnnow = moment().format('YYYY/MM/DD HH:mm:ss');
+const filename = moment().format('YYYYMMDD_HHmmss');
 ```
 
 ## 04. 経過時間を計測する
@@ -44,7 +44,7 @@ const filename = moment().format("YYYYMMDD_HHmmss");
 const start_ms = new Date().getTime();
 // 実行コード
 const elapsed_ms = new Date().getTime() - start_ms;
-result["elapsed_ms"] = `${elapsed_ms}ms`;
+result['elapsed_ms'] = `${elapsed_ms}ms`;
 ```
 
 ## 05. ファイルに書き込む
@@ -52,13 +52,13 @@ result["elapsed_ms"] = `${elapsed_ms}ms`;
 Node.js v10 からサポートされたプロミスを使う
 
 ```javascript
-const fs = require("fs").promises;
+const fs = require('fs').promises;
 
 (async () => {
   const filepath = process.argv[2];
   const result = await somethingPromise();
   await fs.writeFile(filepath, JSON.stringify({ result }, null, 2));
-})().catch(e => console.error(e));
+})().catch((e) => console.error(e));
 ```
 
 ## 06. 数字をゼロ埋めする
@@ -67,7 +67,7 @@ const fs = require("fs").promises;
 
 ```javascript
 let num = 5;
-let num_txt = ("0" + num).slice(-2);
+let num_txt = ('0' + num).slice(-2);
 console.log(num_txt); // => 05
 ```
 

@@ -39,5 +39,5 @@ except IndexError:
     print('Please input report_type')
     exit()
 
-pass # => report_typeを使う
+# report_typeを使うコード
 ```
