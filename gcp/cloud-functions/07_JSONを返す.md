@@ -32,8 +32,9 @@ def something(request):
         json.dumps(result, ensure_ascii=False, indent=4),
         mimetype='application/json')
     response.headers.set('Access-Control-Allow-Origin', '*')
-    response.headers.set('Access-Control-Allow-Headers',
-                         'Origin, X-Requested-With, Content-Type, Accept')
-    response.headers.set('Access-Control-Allow-Methods', 'GET')
+    response.headers.set(
+        'Access-Control-Allow-Headers',
+        'Origin, X-Requested-With, Content-Type, Accept')
+    response.headers.set('Access-Control-Allow-Methods', '*')
     return response
 ```
