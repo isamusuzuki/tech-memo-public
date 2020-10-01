@@ -1,6 +1,6 @@
 # Python を使って、Cloud Functions を作成する
 
-作成日 2019/11/22、更新日 2019/12/06
+作成日 2019/11/22、更新日 2020/10/01
 
 ## 01. Python ランタイムのフォルダ構造
 
@@ -80,7 +80,7 @@ from flask import jsonify
 
 
 def sandbox1(request):
-    response = jsonify({'meassage': 'このメソッドは受け付けられません'})
+    response = jsonify({'message': 'このメソッドは受け付けられません'})
 
     if request.method == 'GET':
         response = jsonify({'message': 'GETメソッドで来ましたね'})
@@ -91,21 +91,12 @@ def sandbox1(request):
         if 'name' in data_dict:
             message += f'。{data_dict["name"]}さん'
         response = jsonify({'message':  message})
-    elif request.method == 'PUT':
-        message = 'PUTメソッドで来ましたね'
-        data = request.data.decode('utf-8')
-        data_dict = json.loads(data)
-        if 'name' in data_dict:
-            message += f'。{data_dict["name"]}さん'
-        response = jsonify({'message':  message})
-    elif request.method == 'DELETE':
-        response = jsonify({'message': 'DELETEメソッドで来ましたね'})
 
     response.headers.set('Access-Control-Allow-Origin', '*')
     response.headers.set('Access-Control-Allow-Headers',
                          'Origin, X-Requested-With, Content-Type, Accept')
     response.headers.set('Access-Control-Allow-Methods',
-                         'GET, POST, PUT, DELETE')
+                         'GET, POST')
     return response
 ```
 
@@ -187,7 +178,9 @@ invocation とは「呼び出し」のこと。HTTP トリガーは、認証な�
 Python スクリプトでそのファイルの中身を読み込んでから、\
 データベースに投げるようにしてみた
 
-gcloud コマンドを使ってデプロイしたときに、\
-拡張子が`.sql`のファイルは、ちゃんとアップロードされるのかが不安であったが\
-結論としては、なんの問題もなかった。gcloud コマンドを実行したフォルダにある\
-ファイルとサブフォルダは、すべてアップロードしていることがわかった
+gcloud コマンドを使ってデプロイしたときに、拡張子が`.sql`のファイルが、\
+ちゃんとアップロードされるのかが不安であったが、それは杞憂であった
+
+gcloud コマンドを実行したフォルダにあるファイルとサブフォルダは、すべてアップロードされる
+
+逆に、デプロイしたくないファイルがあるならば、`.gcloudignore` ファイルに書き込む必要がある
