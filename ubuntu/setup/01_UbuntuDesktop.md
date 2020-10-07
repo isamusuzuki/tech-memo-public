@@ -1,6 +1,6 @@
 # Ubuntu 20.04 LTS をインストールする
 
-作成日 2020/05/02、更新日 2020/06/14
+作成日 2020/05/02、更新日 2020/10/07
 
 ## 01. ブートディスクを用意する
 
@@ -52,6 +52,26 @@ Windows の場合は、本家チュートリアルでは Rufus を紹介して�
 | Choose a password             | PASSWORD |
 | Confirm your password         | PASSWORD |
 | Require my password to log in | check    |
+
+### ホームフォルダの中身を英語にする
+
+```bash
+LANG=C xdg-user-dirs-gtk-update
+```
+
+### Droid フォントを削除する
+
+これがChrome上における日本語の文字化けの原因らしい
+
+```bash
+fc-list | grep Droid
+
+locate Droid
+
+sudo rm -fr /usr/share/fonts/truetype/droid
+sudo rm -f /usr/share/ghostscript/9.05/Resource/CIDFSubst/DroidSansFallback.ttf
+sudo rm -f /usr/share/onboard/themes/Droid.theme
+```
 
 ## 03. 日本語入力を可能にする
 
