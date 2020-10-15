@@ -1,77 +1,8 @@
-# Pandas を使いこなす
+# dtype
 
-作成日 2019/12/23
+作成日 2020/10/15
 
-## 01. DataFrame 上で加工する
-
-### 条件で絞り込み、取り出す列を指定する
-
-```python
-a = df[(df['state'] == 'Ohio') & (df['year'] == 2002)]['pop']
-# => 戻値は、Seriesになる
-
-print(a)
-# => 2    3.6
-# => Name: pop, dtype: float64
-
-print(a.values[0])
-# => 3.6
-```
-
-取り出したい列が複数になる場合は、二重カッコで囲む
-
-```python
-a = df[df['state'] == 'Ohio'][['year', 'pop']]`
-```
-
-### 複数条件で絞り込み、取り出す列を指定する
-
-```python
-a = df[(df['state'] == 'Ohio') & (df['year'] == 2002)]['pop']
-```
-
-真偽が入っている 3 つの列のすべてが真のものだけを抽出する
-
-```python
-import pandas as pd
-
-a0 = pd.read_excel('./data/20191017.xlsx')
-a1 = a0[['sku_code', '赤字確認', '価格確認', 'レビュー確認']]
-a2 = a1[a1['赤字確認'] & a1['価格確認'] & a1['レビュー確認']]
-
-print(a2.shape)
-```
-
-### データ型を変更する
-
-```python
-# オリジナルのオブジェクトを変更しない
-a["年齢"].astype(float)
-
-# 新しい値で元のオブジェクトを上書きする
-a["年齢"] = a["年齢"].astype(float)
-```
-
-### 列名を変更する
-
-```python
-df2 = df1.rename(columns={'出品者SKU': 'sku_code'})
-```
-
-### DataFrame の 1 列分をリストに変換する
-
-Series に変換してから、values プロパティをリストに変換する
-
-```python
-df = pd.read_excel('./data.xlsx)
-s = df[df['数量' > 0]['商品コード']
-#=> 戻り値はSeriesになっている
-
-item_list = s.values.tolist()
-total_count = len(item_list)
-```
-
-## 02. dtype を学ぶ
+## 01. dtype とは
 
 [pandas のデータ型 dtype 一覧と astype による変換（キャスト） \| note\.nkmk\.me](https://note.nkmk.me/python-pandas-dtype-astype/)
 
@@ -103,7 +34,7 @@ total_count = len(item_list)
 df['order_at'] = pd.to_datetime(df['order_at'])
 ```
 
-## 03. エラーに対処する
+### エラーに対処する
 
 `ValueError: Cannot convert non-finite values (NA or inf) to integer`というエラーに直面した
 
