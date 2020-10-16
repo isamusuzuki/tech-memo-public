@@ -111,7 +111,7 @@ puppeteer
 
     await browser.close();
     await console.log('done');
-  })()
+  })
   .catch((e) => console.error(e));
 ```
 
