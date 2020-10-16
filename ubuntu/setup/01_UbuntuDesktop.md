@@ -1,39 +1,33 @@
-# Ubuntu 20.04 LTS をインストールする
+# Ubuntu 20.04.1 LTS をインストールする
 
-作成日 2020/05/02、更新日 2020/10/07
+作成日 2020/05/02、更新日 2020/10/16
 
 ## 01. ブートディスクを用意する
 
 ### ISO ファイルをダウンロードする
 
-本家サイトから 2.5GB の ISO ファイルをダウンロードするのは時間がかかりすぎる\
+本家サイトから 2GB 超の ISO ファイルをダウンロードするのは時間がかかりすぎる\
 IIJ のコピーサイトからダウンロードする
 
-[Thank you for downloading Ubuntu Desktop \| Ubuntu](https://ubuntu.com/download/desktop/thank-you?version=20.04&architecture=amd64)
+[Index of /pub/linux/ubuntu/releases/20\.04\.1](http://ftp.iij.ad.jp/pub/linux/ubuntu/releases/20.04.1/)
 
-[Index of /pub/linux/ubuntu/releases](http://ftp.iij.ad.jp/pub/linux/ubuntu/releases/)
-
-`ubuntu-20.04-desktop-amd64.iso` を入手したら、念の為にベリファイする\
+`ubuntu-20.04.1-desktop-amd64.iso` を入手したら、念の為にベリファイする\
 やり方は、本家チュートリアルにあった
 
 [How to verify your Ubuntu download \| Ubuntu](https://ubuntu.com/tutorials/tutorial-how-to-verify-ubuntu)
 
 ```bash
-echo "e5b72e9cfe20988991c9cd87bde43c0b691e3b67b01f76d23f8150615883ce11 *ubuntu-20.04-desktop-amd64.iso" | shasum -a 256 --check
+echo "b45165ed3cd437b9ffad02a2aad22a4ddc69162470e2622982889ce5826f6e3d *ubuntu-20.04.1-desktop-amd64.iso" | shasum -a 256 --check
 ```
 
 ### USB メモリに書き込む
 
-卵が先か鶏が先かの話になってしまうが、\
-Ubuntu には、Startup Disk Creator というアプリがある
-
-Windows の場合は、本家チュートリアルでは Rufus を紹介している
-
-[Create a bootable USB stick on Windows \| Ubuntu](https://ubuntu.com/tutorials/tutorial-create-a-usb-stick-on-windows)
-
-[Rufus \- The Official Website \(Download, New Releases\)](https://rufus.ie/)
+卵が先か鶏が先かの話になってしまうが、Ubuntu には、Startup Disk Creator というアプリがある
 
 ## 02. Ubuntu Desktop をインストールする
+
+これは完全に自分の好みであるが、デフォルト言語を英語に設定している\
+使っているキーボードは、英語配列である
 
 [Install Ubuntu desktop \| Ubuntu](https://ubuntu.com/tutorials/tutorial-install-ubuntu-desktop#1-overview)
 
@@ -51,27 +45,7 @@ Windows の場合は、本家チュートリアルでは Rufus を紹介して�
 | Pick a username               | taro     |
 | Choose a password             | PASSWORD |
 | Confirm your password         | PASSWORD |
-| Require my password to log in | check    |
-
-### ホームフォルダの中身を英語にする
-
-```bash
-LANG=C xdg-user-dirs-gtk-update
-```
-
-### Droid フォントを削除する
-
-これがChrome上における日本語の文字化けの原因らしい
-
-```bash
-fc-list | grep Droid
-
-locate Droid
-
-sudo rm -fr /usr/share/fonts/truetype/droid
-sudo rm -f /usr/share/ghostscript/9.05/Resource/CIDFSubst/DroidSansFallback.ttf
-sudo rm -f /usr/share/onboard/themes/Droid.theme
-```
+| Require my password to log in | check-on |
 
 ## 03. 日本語入力を可能にする
 
@@ -83,11 +57,21 @@ sudo apt purge ibus -y
 sudo apt autoremove -y
 ```
 
-- Input Method を起動する ＞ fcitx を選択する
-- fcitx を起動する
-- fcitx configuration tool を起動する ＞ リストに Mozc を追加する
+- Language Support を起動する
+- "Install/Remove Languages..." ボタンをクリックする
+- Japanese にチェックを入れて、Apply ボタンをクリックする
+- Keyboard Input Method System が fcitx になっていることを確認する
+- Close ボタンをクリックして、ウィンドウを閉じる
 
-再起動後、Mozc が使えるようになる
+いったん、ここで再起動させる
+
+- fcitx を起動する
+- fcitx configuration tool を起動する ＞ Input Method Configuration ウィンドウが登場する
+- 「＋」ボタンをクリックする
+- "Only Show Current Language" オプションのチェックを外す
+- "Search Input Method" テキストボックスに mozc と入力する
+- 一覧に表示された Mozc を選んで OK ボタンをクリックする
+- OK ボタンをクリックして、ウインドウを閉じる
 
 ## 04. CapsLock キーを Ctrl にキーに変更する
 
@@ -96,7 +80,7 @@ sudo vi /etc/default/keyboard
 # XKBOPTIONS="" -> XKBOPTIONS="ctrl:nocaps"
 ```
 
-設定を反映させるために再起動する
+設定を反映させるために再起動する必要あり
 
 ## 05. Chromium をインストールする
 
@@ -106,3 +90,15 @@ apt コマンドではなく、Ubuntu Software を使う
 
 Settings ＞ 左枠 ＞ Default Applications\
 Web ＞ Firefox を Chromium に変更する
+
+## 06. オプション
+
+デフォルトの言語を英語にしている自分には必要のない作業であるが、\
+もし日本語にした場合は、ホームフォルダ内の「ドキュメント」フォルダや「ダウンロード」フォルダが\
+日本語になってしまって、ターミナル上での操作が面倒臭くなる\
+これを英語のフォルダ名に変更する方法を記す
+
+```bash
+# ホームフォルダの中身を英語にする
+LANG=C xdg-user-dirs-gtk-update
+```
