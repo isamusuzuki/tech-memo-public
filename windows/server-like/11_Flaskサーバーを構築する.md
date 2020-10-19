@@ -56,17 +56,17 @@ flask run
 
 テストランしてわかったこと
 
--   ローカルからならば接続できる（`http://127.0.0.1:5000`）
--   別マシンからは接続できない（`http://192.168.2.81:5000`）
--   利用目的が社内 Web サーバーならば、WSGI サーバーは必須
+- ローカルからならば接続できる（`http://127.0.0.1:5000`）
+- 別マシンからは接続できない（`http://192.168.2.81:5000`）
+- 利用目的が社内 Web サーバーならば、WSGI サーバーは必須
 
 ## 03. waitress をセットアップする
 
 ### waitress を選択した理由
 
--   uWSGI は、コンパイルが必要
--   gunicorn は、Windows に非対応
--   waitress は、ピュア Python だから、Windows でも動く
+- uWSGI は、コンパイルが必要
+- gunicorn は、Windows に非対応
+- waitress は、ピュア Python だから、Windows でも動く
 
 ### waitress をインストールする
 
@@ -114,18 +114,18 @@ exe でも、batch でも、なんでもサービス化できる便利ツール
 
 ### nssm でサービスを作成する
 
--   `nssm install andy` => GUI が登場する
--   Application タブ
-    -   Path ... `C:\Python37\python.exe`
-    -   Startup directory ... `C:\Users\user\andy`
-    -   Arguments ... `server.py`
--   Log on タブ
-    -   Log on as > This Account ... `user`
-    -   Password, Confirm ... いつものやつ
--   I/O タブ
-    -   Output ... `C:\Users\user\Desktop\andy.log`
-    -   Error ... `C:\Users\user\Desktop\andy.log`
--   Install service ボタン
+- `nssm install andy` => GUI が登場する
+- Application タブ
+  - Path ... `C:\Python37\python.exe`
+  - Startup directory ... `C:\Users\user\andy`
+  - Arguments ... `server.py`
+- Log on タブ
+  - Log on as > This Account ... `user`
+  - Password, Confirm ... いつものやつ
+- I/O タブ
+  - Output ... `C:\Users\user\Desktop\andy.log`
+  - Error ... `C:\Users\user\Desktop\andy.log`
+- Install service ボタン
 
 コントロールパネル ＞ 管理ツール ＞ サービス ＞ andy がいた\
 右クリックして開始したら、デスクトップにログファイルが登場した
