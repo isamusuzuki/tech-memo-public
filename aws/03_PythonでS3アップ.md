@@ -14,15 +14,15 @@ AWS マネジメントコンソール ＞ IAM を検索 ＞ IAM ページ\
 
 ```json
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "VisualEditor0",
-            "Effect": "Allow",
-            "Action": "s3:PutObject",
-            "Resource": "arn:aws:s3:::target-bucket-name/*"
-        }
-    ]
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "VisualEditor0",
+      "Effect": "Allow",
+      "Action": "s3:PutObject",
+      "Resource": "arn:aws:s3:::target-bucket-name/*"
+    }
+  ]
 }
 ```
 
@@ -58,8 +58,8 @@ export AWS_DEFAULT_REGION=ap-northeast-1
 
 ドキュメント => [S3 — Boto 3 Docs 1\.10\.29 documentation](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html)
 
--   S3.Client.upload_file(Filename, Bucket, Key)
--   S3.Bucket.upload_file(Filename, Key)
+- S3.Client.upload_file(Filename, Bucket, Key)
+- S3.Bucket.upload_file(Filename, Key)
 
 ```python
 import boto3

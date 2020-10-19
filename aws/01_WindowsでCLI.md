@@ -1,12 +1,8 @@
----
-tags: aws
----
-
 # Windows で AWS CLI を使う
 
 作成日 2019/11/18
 
-## Windows 10 に AWS CLI をインストールする
+## 01. Windows 10 に AWS CLI をインストールする
 
 ```bash
 # Chocolateyを使ってPythonをインストールする
@@ -29,10 +25,10 @@ aws --version
 #=> aws-cli/1.11.168 Python/3.6.3 Windows/10 botocore/1.7.26
 ```
 
-### 注意点
+注意点
 
--   PowerShell で実行すると「ファイルの関連付けが見つからない」エラーが出る
--   Git Bash で実行すればエラーは出ない
+- PowerShell で実行すると「ファイルの関連付けが見つからない」エラーが出る
+- Git Bash で実行すればエラーは出ない
 
 ### AWS CLI を設定する
 
@@ -55,11 +51,11 @@ less ~/.aws/config
 # region = ap-northeast-1
 ```
 
-### 注意点
+注意点
 
--   アクセスキーはどこにもメモしない。使い回さずに必要になったら新規作成すること
+- アクセスキーはどこにもメモしない。使い回さずに必要になったら新規作成すること
 
-## EC2 インスタンスを操作する
+## 02. EC2 インスタンスを操作する
 
 ```bash
 # create.sh
@@ -118,7 +114,7 @@ ssh-keyscan -H <ip_address or hostname> >> ~/.ssh/known_hosts
 ssh-keygen -R <ip_address or hostname>
 ```
 
-## S3 を操作する
+## 03. S3 を操作する
 
 ```bash
 # ローカルのファイルをS3バケットにコピーする
@@ -135,13 +131,13 @@ aws s3 cp ./<folder-name>/ s3://<your-packet-name>/ --recursive --exclude "*DS_S
 aws s3 sync ./<folder-name>/ s3://<your-packet-name>/<folder-name> --profile <your-profile-name> --region ap-northeast-1
 ```
 
-## SSL 証明書を管理する
+## 04. SSL 証明書を管理する
 
 新たに取得した署名を cer フォルダに保存する
 
--   `c:\cer\ssl_cert.txt`
--   `c:\cer\intermediate.txt`
--   `c:\cer\private_key.txt`
+- `c:\cer\ssl_cert.txt`
+- `c:\cer\intermediate.txt`
+- `c:\cer\private_key.txt`
 
 ```bash
 # 新しい証明書を追加する
