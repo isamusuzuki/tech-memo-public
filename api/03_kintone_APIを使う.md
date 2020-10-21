@@ -1,8 +1,8 @@
 # kintone API を使う
 
-作成日 2020/02/03、更新日 2020/03/11
+作成日 2020/02/03、更新日 2020/10/21
 
-## 01. データを読む
+## 01. データを取得する
 
 ドキュメント => [レコードの取得（GET） – cybozu developer network](https://developer.cybozu.io/hc/ja/articles/202331474)
 
@@ -26,7 +26,7 @@ TODAY = datetime.datetime.now(pytz.timezone('Asia/Tokyo'))
 TODAY_STR = TODAY.strftime("%Y-%m-%d")
 base_url = 'https://abcdefg.cybozu.com/k/v1/records.json'
 params = {
-    'app': 'nn',
+    'app': 99,
     'query': (
         'imageCompletion_date >= "1900-01-01"'
         f' and imageCompletion_date <= "{TODAY_STR}"'
@@ -77,7 +77,7 @@ finally:
     return response
 ```
 
-## 02. カーソルを使って、一括でデータを読む
+## 02. カーソルを使ってデータを取得する
 
 ドキュメント => [レコードの一括取得 – cybozu developer network](https://developer.cybozu.io/hc/ja/articles/360029152012)
 
@@ -96,7 +96,7 @@ class SampleCursor():
     def __init__(self, size):
         self.token = os.environ.get('KINTONE_SHNCHK_TOKEN')
         self.size = size
-        self.base_url = 'https://everglow.cybozu.com/k/v1/records/cursor.json'
+        self.base_url = 'https://abcdefg.cybozu.com/k/v1/records/cursor.json'
         self.id = 0
         self.totalCount = 0
 
@@ -136,7 +136,7 @@ class SampleCursor():
     def get_id(self):
         url = self.base_url
         method = 'POST'
-        data = {'app': 38,
+        data = {'app': 99,
                 'query': (
                     'status not in  ("へび","かめ") '
                     'and type not in ("カラー眼鏡")'
@@ -217,10 +217,10 @@ KINTONE_API_TOKEN = os.environ.get('KINTONE_API_TOKEN')
 KINTONE_BASIC_USERNAME = os.environ.get('KINTONE_BASIC_USERNAME')
 KINTONE_BASIC_PASSWORD = os.environ.get('KINTONE_BASIC_PASSWORD')
 
-url = 'https://everglow.cybozu.com/k/v1/record.json'
+url = 'https://abcdefg.cybozu.com/k/v1/record.json'
 method = 'PUT'
 data = {
-    'app': '38',
+    'app': 99,
     'id': id,
     'record':  {
         'image_folder_status': {
@@ -283,7 +283,7 @@ for id in id_list:
 url = 'https://abcdefg.cybozu.com/k/v1/records.json'
 method = 'PUT'
 data = {
-    'app': '38',
+    'app': 99,
     'records': records
 }
 json_data = json.dumps(data).encode('utf-8')
@@ -310,3 +310,10 @@ except urllib.error.URLError as err:
 finally:
     return response
 ```
+
+## 04. その他・ティップス
+
+### HTTP ステータス「520」の意味
+
+HTTP ステータス「520」が返ってきたら、それはバリデーションエラーと思うべき\
+通常の 500 番台はサーバーエラーであるが、kintone に限ってはこちらのミスの可能性が高い
