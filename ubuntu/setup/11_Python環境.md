@@ -1,6 +1,6 @@
-# Ubuntu に Python 環境を構築する
+# Ubuntu に Python 環境を用意する
 
-作成日 2020/05/18、更新日 2020/08/24
+作成日 2020/05/18、更新日 2020/10/28
 
 ## 01. グローバル環境での作業
 
@@ -159,12 +159,8 @@ templates/index.html
   <body>
     <section class="section">
       <div class="container">
-        <h1 class="title">
-          Hello World
-        </h1>
-        <h2 class="subtitle">
-          My first website
-        </h2>
+        <h1 class="title">Hello World</h1>
+        <h2 class="subtitle">My first website</h2>
       </div>
     </section>
   </body>
@@ -179,4 +175,86 @@ python server.py debug
 
 # Linuxの場合
 python wsgi.py debug
+```
+
+## 04. 【トラブルシュート】 bdist_wheel コマンドがない
+
+### 04-1. 問題発生
+
+プロジェクトの中で、モジュールをインストールしたときに\
+`error: invalid command 'bdist_wheel'` と赤字で表示される
+
+### 04-2. 調べてわかったこと
+
+グローバル環境には、wheel モジュールがある
+
+```bash
+pip3 list
+# => ...
+# => wheel 0.34.2
+```
+
+プロジェクトの中の仮想環境には、wheel がない
+
+```bash
+pip list
+# => pip           20.0.2
+# => pkg-resources 0.0.0
+# => setuptools    44.0.0
+```
+
+### 04-3. 解決方法
+
+requirements.txt を使って一括インストールする前に、\
+wheel をインストールしておく
+
+```bash
+pip install wheel
+```
+
+## 05. 【トラブルシュート】 ModuleNotFoundError が発生
+
+### 05-1. 問題発生
+
+自分が作成したモジュールが見つからない
+
+### 05-2. sys.path を確認する
+
+Python のインタラクティブシェルを動かす
+
+```bash
+$ python
+>>> import sys
+>>> sys.path
+```
+
+ここに自分のプロジェクトのルートフォルダがないのが問題\
+=> PYTHONPATH 環境変数に追加すると、自動的に sys.path に追加される
+
+### 05-3. 解決策その 1
+
+.vscode/settings.json に以下を追加すると、ターミナルを起動したときに\
+自動的に PYTHONPATH 環境変数が追加される
+
+```json
+{
+  "terminal.integrated.env.linux": {
+    "PYTHONPATH": "/home/YOURNAME/PROJECTNAME"
+  }
+}
+```
+
+### 05-4. 解決策 その 2
+
+`venv/bin/activate`ファイルに以下を追加しておく\
+仮想環境を有効にしたときに PYTHONPATH 環境変数が追加される
+
+```bash
+deactivate () {
+    # この中の最後尾
+    unset PYTHONPATH
+}
+# スクリプトの最後尾
+PYTHONPATH=/home/USER-NAME/PROJECT-NAME
+export PYTHONPATH
 ```
