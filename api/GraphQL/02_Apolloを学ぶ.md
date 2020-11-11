@@ -16,17 +16,17 @@
 
 Apollo GraphQL という vscode 拡張を使う
 
--   VSCode に拡張機能の Apollo GraphQL を追加します。
--   apollo.config.js に GraphQL サーバの接続情報を設定します。
--   VSCode のコマンドパレットで Apollo: Reload schema を実行します。
--   以上の設定を終えると、 gql タグで囲った内部で、入力補完が働くようになります。
+- VSCode に拡張機能の Apollo GraphQL を追加します。
+- apollo.config.js に GraphQL サーバの接続情報を設定します。
+- VSCode のコマンドパレットで Apollo: Reload schema を実行します。
+- 以上の設定を終えると、 gql タグで囲った内部で、入力補完が働くようになります。
 
 apollo-tooling という CLI を使う
 
--   apollo-tooling をインストールします。インストールせずに npx を使っても良いです。
--   client:codegen コマンドを実行します。 apollo client:codegen --target typescript types
--   以上の手順を終えると、 gql タグで囲った内部に定義した Query や Mutation のレスポンスの型が自動生成されます。
--   また Enum や Input Object の型定義も自動生成されます。
+- apollo-tooling をインストールします。インストールせずに npx を使っても良いです。
+- client:codegen コマンドを実行します。 apollo client:codegen --target typescript types
+- 以上の手順を終えると、 gql タグで囲った内部に定義した Query や Mutation のレスポンスの型が自動生成されます。
+- また Enum や Input Object の型定義も自動生成されます。
 
 Apollo のエコシステムを利用することで、
 GraphQL を利用するクライアントアプリケーションの実装が
