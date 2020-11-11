@@ -129,14 +129,14 @@ def sms_receive(request):
 
 `requirements.txt`
 
-```
+```text
 twilio
 ```
 
--   Twilio は、フォームを POST 送信してくる
--   Flask の request.form は、ImmutableMultiDict クラスである
--   From, To, Body の 3 つが取れればそれでいい
--   `resp.message()`を入れると返事をしてしまうが、抜けば何もしない
+- Twilio は、フォームを POST 送信してくる
+- Flask の request.form は、ImmutableMultiDict クラスである
+- From, To, Body の 3 つが取れればそれでいい
+- `resp.message()`を入れると返事をしてしまうが、抜けば何もしない
 
 ```python
 resp = MessagingResponse()
