@@ -1,10 +1,12 @@
-# Flask アプリサーバーを構築する
+# Gunicorn を設定する
 
 作成日 2019/11/15
 
 「Ubuntu 18.04 + Nginx + Flask + Gunicorn」の組み合わせで、アプリケーションサーバーを立てる
 
-参考記事を写経する => [How To Serve Flask Applications with Gunicorn and Nginx on Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-18-04)
+参考記事を写経する
+
+[How To Serve Flask Applications with Gunicorn and Nginx on Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-18-04)
 
 ## Step 1 — Installing the Components from the Ubuntu Repositories
 

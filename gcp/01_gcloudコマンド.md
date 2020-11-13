@@ -4,17 +4,60 @@
 
 ## 01. gcloud コマンドとは
 
-Google Cloud Platform を利用するのに必須のコマンドラインツール\
+Google Cloud Platform を利用するのに必須のコマンドラインツール
+
 "Google Cloud SDK"という枠組の中のひとつのツール
 
 公式トップ => [https://cloud.google.com/sdk/?hl=ja](https://cloud.google.com/sdk/?hl=ja)
 
-## 02. Windows にインストールする
+## 02. gcloud コマンドを使う
+
+### アカウント（OAuth2 認証）を管理する
+
+```bash
+gcloud auth login
+gcloud auth list
+gcloud auth revoke
+```
+
+### アカウントとプロジェクトの設定を変更する
+
+```bash
+gcloud config list
+gcloud config set project project1
+gcloud config set account account1@example.com
+```
+
+### プロジェクトとアカウントをセットにして管理する
+
+```bash
+gcloud config configurations create config2
+gcloud config set account account2@example.com
+gcloud config set project project2
+
+gcloud config configurations list
+# NAME     IS_ACTIVE ACCOUNT                       PROJECT
+# default  False     account1@example.com          project1
+# config2  True      account2@example.com          project2
+
+gcloud config configurations activate default
+#=> Activated [default].
+
+gcloud config configurations delete config2
+#=> Deleted [config2].
+```
+
+## 03. Ubuntu にインストールする
+
+以下のドキュメントを参照する
+
+[apt\-get を使用したインストール（Debian と Ubuntu のみ）  \|  Cloud SDK のドキュメント](https://cloud.google.com/sdk/docs/downloads-apt-get?hl=ja)
+
+## 04. Windows にインストールする
 
 バージョン 274.0.0 から、gcloud コマンドの Python3.5 系以降での動作が GA サポートとなった
 
-しかし、インストーラーによるインストールがふたたび失敗したので、\
-以下に述べる「アーカイブからのインストール」を継続利用する
+しかし、インストーラーによるインストールがふたたび失敗したので、以下に述べる「アーカイブからのインストール」を継続利用する
 
 ### 「アーカイブからのインストール」手順
 
@@ -51,46 +94,4 @@ gcloud init
 
 ### gcloud コマンドの更新
 
-`gcloud components update`コマンドは、Git Bash では動作しない\
-必ず PowerShell で実行すること
-
-## 03. Ubuntuにインストールする
-
-[apt\-get を使用したインストール（Debian と Ubuntu のみ）  \|  Cloud SDK のドキュメント](https://cloud.google.com/sdk/docs/downloads-apt-get?hl=ja)
-
-## 04. アカウントとプロジェクトを管理する
-
-### アカウント（OAuth2 認証）を管理する
-
-```bash
-gcloud auth login
-gcloud auth list
-gcloud auth revoke
-```
-
-### アカウントとプロジェクトの設定を変更する
-
-```bash
-gcloud config list
-gcloud config set project project1
-gcloud config set account account1@example.com
-```
-
-### プロジェクトとアカウントをセットにして管理する
-
-```bash
-gcloud config configurations create config2
-gcloud config set account account2@example.com
-gcloud config set project project2
-
-gcloud config configurations list
-# NAME     IS_ACTIVE ACCOUNT                       PROJECT
-# default  False     account1@example.com          project1
-# config2  True      account2@example.com          project2
-
-gcloud config configurations activate default
-#=> Activated [default].
-
-gcloud config configurations delete config2
-#=> Deleted [config2].
-```
+`gcloud components update`コマンドは、Git Bash では動作しない。必ず PowerShell で実行すること

@@ -1,6 +1,6 @@
-# Cloud SQL を学ぶ
+# Cloud SQL
 
-作成日 2019/12/05、更新日 2020/01/24
+作成日 2019/12/05、更新日 2020/11/12
 
 ## 01. Cloud SQL とは
 
@@ -41,3 +41,10 @@ GCP コンソール ＞ ストレージ ＞ SQL ＞ Instances ページが表示
 
 もちろんユーザーアカウントにも、ホスト名を指定して接続場所を指定するが、\
 その前に、承認済みネットワークに追加しないと、接続できるようにはならない
+
+[Cloud SQL のタイムゾーンを変える \- めあとるーむ記録帳](https://maretol.hatenablog.jp/entry/2017/04/03/141318)
+
+[データベース フラグを構成する  \|  Cloud SQL for MySQL  \|  Google Cloud](https://cloud.google.com/sql/docs/mysql/flags)
+
+default_time_zoneを +09:00 
+
