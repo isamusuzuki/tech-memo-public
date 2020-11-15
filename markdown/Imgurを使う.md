@@ -55,8 +55,8 @@
 
 [https://imgur.com/qYo7jTS](https://imgur.com/qYo7jTS)
 
-![](https://imgur.com/qYo7jTS.png)
+![imgur1](https://imgur.com/qYo7jTS.png)
 
 [https://imgur.com/VLSfc8p](https://imgur.com/VLSfc8p)
 
-![](https://imgur.com/VLSfc8p.png)
+![imgur2](https://imgur.com/VLSfc8p.png)
