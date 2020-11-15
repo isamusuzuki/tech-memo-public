@@ -1,4 +1,4 @@
-# Windows で AWS CLI を使う
+# AWS CLI を使う
 
 作成日 2019/11/18
 
