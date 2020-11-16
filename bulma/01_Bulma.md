@@ -46,3 +46,29 @@ css フォルダの中に `bulma.min.css` があるので、それを読み込�
   </body>
 </html>
 ```
+
+## 03. レスポンシブについて
+
+[Responsiveness \| Bulma: Free, open source, and modern CSS framework based on Flexbox](https://bulma.io/documentation/overview/responsiveness/)
+
+Bulma は 5 つの切れ目を持つ
+
+- `touch` ... until `1023px`
+  - `mobile` ... until `768px`
+  - `tablet` ... from `769px` until `1023px`
+- `desktop` ... from `1024px`
+  - `widescreen` ... from `1216px`
+  - `fullhd` ... from `1408px`
+
+### Web サイトは横幅何ピクセルでつくればいいのか
+
+- PC は `1040px` でつくる
+- SP は `750px` でつくる
+
+[Web サイトデザインの横幅サイズ！もう何 px か迷わない！ 2017 年 1 月版 \| FASTCODING BLOG](https://fastcoding.jp/blog/all/webdesign/designswidth/)
+
+> どんなモニターでも問題なく見られるサイズが「1000px 前後」なのです。
+>
+> 考え方のポイントは「iPhone の最新機種に合わせる」です。
+
+iPhone 7 => ディスプレイサイズ 375 x 667 => 実際のピクセル数 750 x 1334
