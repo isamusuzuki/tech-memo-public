@@ -24,8 +24,7 @@ GRANT ALL PRIVILEGES ON metabase.* TO 'metauser'@'localhost' IDENTIFIED BY 'meta
 FLUSH PRIVILEGES;
 ```
 
-`'localhost'`を`'%'`にするとワイルドカードになるが、\
-その中にlocalhostは含まれない
+`'localhost'`を`'%'`にするとワイルドカードになるが、その中にlocalhostは含まれない
 
 ### ユーザーのパスワードを変更する
 
@@ -33,23 +32,7 @@ FLUSH PRIVILEGES;
 SET PASSWORD FOR metauser@localhost = 'metaPasswd1!';
 ```
 
-## 02. SSHでサーバーにログインして SQLクエリーを実行するスクリプト
-
-パスワードを引数で指定すると警告が出るので、代わりに環境変数を指定する\
-スクリプト中の query変数は、改行しながら、長い文字列にできる
-
-```bash
-#!/bin/bash
-
-query="select sort_order, title, file_name, id from m_document \
-where category_id = 2 and type = 1 order by sort_order limit 10;"
-
-echo "${query}" | ssh server1 MYSQL_PWD=dbpasswd mysql -u dbuser -D db1
-
-exit 0
-```
-
-## 03. スロークエリーログを出力する
+## 02. スロークエリーログを出力する
 
 現状のログ設定について調べる
 
@@ -75,7 +58,7 @@ slow_query_log_file=/var/lib/mysql/slow.log
 long_query_time=0.020000
 ```
 
-## 04. データベースのバックアップとレストア
+## 03. データベースのバックアップとレストア
 
 ### データベース全体をバックアップする
 
