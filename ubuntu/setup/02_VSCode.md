@@ -46,4 +46,4 @@ fc-list | grep "Roboto Mono"
 'Roboto Mono','Noto Sans Mono CJK JP'
 ```
 
-vscode を再起動する
+VSCode を再起動する
