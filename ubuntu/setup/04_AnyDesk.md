@@ -1,15 +1,14 @@
 # AnyDesk
 
-作成日 2020/06/14
+作成日 2020/06/14、更新日 2020/11/22
 
-## AnyDesk とは
+## 01. AnyDesk とは
 
-個人利用は無料のリモートデスクトップ接続アプリ\
-Windows や Mac だけでなく、Linux や Raspberry Pi までサポートしている
+個人利用は無料のリモートデスクトップ接続アプリ。Windows や Mac だけでなく、Linux や Raspberry Pi までサポートしている
 
 [高速リモートデスクトップアプリケーション – AnyDesk](https://anydesk.com/ja)
 
-## AnyDesk をインストールする
+## 02. AnyDesk をインストールする
 
 [Remote desktop sharing with AnyDesk on Ubuntu 20\.04 Focal Fossa \- LinuxConfig\.org](https://linuxconfig.org/remote-desktop-sharing-with-anydesk-on-ubuntu-20-04-focal-fossa)
 
@@ -20,7 +19,7 @@ sudo apt update
 sudo apt install anydesk -y
 ```
 
-## AnyDesk を設定する
+## 03. AnyDesk を設定する
 
 ### リモート接続される側
 
@@ -36,13 +35,13 @@ AnyDesk アプリを起動する\
 Remote Desk コーナー ＞ 相手側の AnyDesk-Address を入力する\
 相手側のパスワードを入力する
 
-## AnyDesk トラブルシューティング
+## 04. AnyDesk トラブルシューティング
 
 ### リモートから再起動したら接続できなくなった
 
 `Not Supported: Remote display server is not supported (e.g. Wayland)` というメッセージが出る
 
-[18\.04 \- Anydesk remote server display not supported e\.g Wayland \- Ask Ubuntu](https://askubuntu.com/questions/1131921/anydesk-remote-server-display-not-supported-e-g-wayland)
+### 解決方法
 
 /etc/gdm3/custom.conf
 
@@ -55,5 +54,9 @@ WaylandEnable=false
 AutomaticLoginEnable = true
 AutomaticLogin = $USERNAME
 ```
+
+### 参考記事
+
+[18\.04 \- Anydesk remote server display not supported e\.g Wayland \- Ask Ubuntu](https://askubuntu.com/questions/1131921/anydesk-remote-server-display-not-supported-e-g-wayland)
 
 [\[ubuntu\] Anydesk remote server display not supported e\.g Wayland](https://ubuntuforums.org/showthread.php?t=2416231)

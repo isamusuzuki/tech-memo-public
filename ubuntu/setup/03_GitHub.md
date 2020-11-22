@@ -1,6 +1,6 @@
 # GitHub に接続できるようにする
 
-作成日 2020/03/12、更新日 2020/10/16
+作成日 2020/03/12、更新日 2020/11/22
 
 ## 01. Git をインストールする
 
@@ -11,8 +11,12 @@ sudo apt install git -y
 ## 02. 自分の名前とメルアドを設定する
 
 ```bash
-git config --global user.name "Taro Okamoto"
+git config --global user.name "Taro Suzuki"
 git config --global user.email taro@example.com
+
+git config --list
+# => user.name=Taro Suzuki
+# => user.email=taro@example.com
 ```
 
 ## 03. 公開鍵ファイル・秘密鍵ファイルを作成する
@@ -36,8 +40,7 @@ less .ssh/id_rsa.pub
 ssh-keygen -l -f .ssh/id_rsa
 ```
 
-※ GitHubの設定ページのSSH Keys一覧において、仕様が変わったため、\
-`-E md5` というオプションは不要になった
+※ GitHubの設定ページのSSH Keys一覧において、仕様が変わったため、`-E md5` というオプションは不要になった
 
 ## 05. SSH 接続できるように設定する
 

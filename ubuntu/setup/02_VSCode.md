@@ -1,6 +1,6 @@
 # Visual Studio Code
 
-作成日 2020/06/13、更新日 2020/10/16
+作成日 2020/06/13、更新日 2020/11/22
 
 ## 01. Visual Studio Code をインストールする
 
@@ -35,6 +35,16 @@ mv Downloads/*.ttf .fonts
 fc-cache
 fc-list | grep "Roboto Mono"
 ```
+
+### Noto Sans Mono CJK JP をインストールする
+
+このフォントは、Language Support で Japanese を選択したときに、インストールされるようだ
+
+もしインストールが必要な場合は、以下から入手できる
+
+[Google Noto Fonts](https://www.google.com/get/noto/)
+
+"Noto Sans CJK JP" と検索する。"Noto Sans Mono CJK JP" はこの中に含まれている
 
 ### Visual Studio Code の設定を変更する
 
