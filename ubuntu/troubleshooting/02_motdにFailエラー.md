@@ -1,4 +1,4 @@
-# Fail メッセージが表示されないようにする
+# motd に Fail メッセージが表示されるようになった
 
 作成日 2020/11/02
 
@@ -23,6 +23,6 @@ sudo /usr/lib/ubuntu-release-upgrader/release-upgrade-motd
 
 motd = message of the day
 
-Ubuntuの場合、motd は `/etc/update-motd.d/` フォルダにある
+Ubuntu の場合、motd は `/etc/update-motd.d/` フォルダにある
 
 上のコマンドは、`/etc/update-motd.d/91-release-upgrade` に関連するメッセージをいったん削除し、更新している模様
