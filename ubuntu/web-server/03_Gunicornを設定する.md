@@ -103,7 +103,7 @@ User=ubuntu
 Group=www-data
 WorkingDirectory=/home/ubuntu/bobby
 Environment="PATH=/home/ubuntu/bobby/venv/bin"
-ExecStart=/home/ubuntu/bobby/bin/gunicorn --workers 3 --bind unix:bobby.sock -m 007 wsgi:app
+ExecStart=/home/ubuntu/bobby/venv/bin/gunicorn --workers 3 --bind unix:bobby.sock -m 007 wsgi:app
 
 [Install]
 WantedBy=multi-user.target
