@@ -1,6 +1,6 @@
 # Gunicorn を設定する
 
-作成日 2019/11/15
+作成日 2019/11/15、更新日 2020/11/26
 
 「Ubuntu 18.04 + Nginx + Flask + Gunicorn」の組み合わせで、アプリケーションサーバーを立てる
 
@@ -27,8 +27,8 @@ Python 仮想環境を整える
 sudo apt install python3-venv
 mkdir ~/bobby
 cd ~/bobby
-python3 -m venv .
-source bin/activate
+python3 -m venv venv
+source venv/bin/activate
 ```
 
 ## Step 3 — Setting Up a Flask Application
@@ -38,7 +38,7 @@ Python コードを書く
 ```bash
 pip install gunicorn flask
 
-nano ~/bobby/server.py
+vi ~/bobby/server.py
 ```
 
 ~/bobby/server.py
@@ -58,16 +58,16 @@ return jsonify({
 })
 
 if __name__ == '__main__':
-app.run(host='0.0.0.0')
+  app.run(host='0.0.0.0')
 ```
 
 動作チェックする
 
 ```bash
 python server.py
-#=> Ctrl + Cで停止する
+#=> Ctrl+Cで停止する
 
-nano ~/bobby/wsgi.py
+vi ~/bobby/wsgi.py
 ```
 
 ~/bobby/wsgi.py
@@ -76,7 +76,7 @@ nano ~/bobby/wsgi.py
 from server import app
 
 if __name__ == '__main__':
-app.run()
+  app.run()
 ```
 
 ## Step 4 — Configuring Gunicorn
@@ -84,11 +84,11 @@ app.run()
 ```bash
 cd ~/bobby
 gunicorn --bind 0.0.0.0:5000 wsgi:app
-#=> Ctrl + Cで停止する
+#=> Ctrl+Cで停止する
 
 deactivate
 
-sudo nano /etc/systemd/system/bobby.service
+sudo vi /etc/systemd/system/bobby.service
 ```
 
 /etc/systemd/system/bobby.service
@@ -102,7 +102,7 @@ After=network.target
 User=ubuntu
 Group=www-data
 WorkingDirectory=/home/ubuntu/bobby
-Environment="PATH=/home/ubuntu/bobby/bin"
+Environment="PATH=/home/ubuntu/bobby/venv/bin"
 ExecStart=/home/ubuntu/bobby/bin/gunicorn --workers 3 --bind unix:bobby.sock -m 007 wsgi:app
 
 [Install]
@@ -117,7 +117,7 @@ sudo systemctl enable bobby
 sudo systemctl status bobby
 ```
 
-bobby フォルダに `bobby.sock` ファイルがあることだけを確認する
+bobby フォルダに `bobby.sock` ファイルがあることを確認する
 
 tcp ポートではなく、unix ソケットをバインドしているので、ブラウザでは見られない
 
@@ -134,14 +134,15 @@ sudo nginx -t
 # => nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 # => nginx: configuration file /etc/nginx/nginx.conf test is successful
 
-sudo nano /etc/nginx/sites-available/bobby
+sudo vi /etc/nginx/sites-available/bobby
 ```
 
 `/etc/nginx/sites-available/bobby`ファイル
 
 ```text
 server {
-  listen 80;
+  listen 80 default_server;
+  server_name _;
 
   location / {
       include proxy_params;

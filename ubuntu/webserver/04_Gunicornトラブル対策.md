@@ -1,6 +1,6 @@
 # gunicorn トラブルシューティング
 
-作成日 2020/09/10、更新日 2020/11/13
+作成日 2020/09/10、更新日 2020/11/26
 
 ## 01. 【復習】gunicorn を systemd のサービスにする
 
@@ -17,7 +17,7 @@ After=network.target
 User=ubuntu
 Group=www-data
 WorkingDirectory=/home/ubuntu/bobby
-Environment="PATH=/home/ubuntu/bobby/bin"
+Environment="PATH=/home/ubuntu/bobby/venv/bin"
 ExecStart=/home/ubuntu/bobby/bin/gunicorn --workers 3 --bind unix:bobby.sock -m 007 wsgi:app
 
 [Install]
@@ -53,8 +53,8 @@ Service ファイルに書き加える。`Environment`項目と`EnvironmentFile`
 
 ```text
 [Service]
-Environment="PATH=/home/ubuntu/bobby/bin"
-EnvironmentFile=/home/ubuntu/bobby/.env <-- ADDED
+Environment="PATH=/home/ubuntu/bobby/venv/bin"
+EnvironmentFile=/home/ubuntu/bobby/.env <-- 追加
 ```
 
 ## 03. 外部コマンドが実行できない問題が発生
