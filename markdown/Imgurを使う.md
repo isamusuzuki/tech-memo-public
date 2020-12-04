@@ -1,22 +1,29 @@
 # Imgur を使う
 
-作成日 2019/11/8、更新日 2019/11/18
+作成日 2019/11/08、更新日 2020/12/04
 
 ## 01. Imgur とは
 
-匿名で無制限に画像をアップすることができる
+匿名で無制限に画像をアップすることができるサイト
 
 サイトトップ => [https://imgur.com/](https://imgur.com/)
 
 ## 02. Imgur に匿名で画像をアップする方法
 
-1. 画像アップページに行く => [https://imgur.com/upload?beta](https://imgur.com/upload?beta)
-1. `Drop images here`コーナーに、画像（複数可）をドロップする
+1. 画像アップページに行く => [https://imgur.com/upload](https://imgur.com/upload)
+1. `Drop images here`コーナーに、画像（複数可）をドラッグ＆ドロップする
 1. 即座に画像のアップロードが始まる
-1. 表示されている画像の上にカーソルを動かし、
-1. 登場した Copy Link ボタンをクリックする
-1. 得られた URL の末尾に.png を追加する
-1. ページ遷移せず、次の画像もドラッグ＆ドロップ可能
+1. ページに表示された画像の上にマウスカーソルを動かす
+1. 登場した `Copy Link` ボタンをクリックする
+1. 得られたリンクは、Imgur でのその画像のページとなる
+1. 得られたリンクの末尾に、画像の拡張子（`.jpg`もしくは`.png`）を追加する
+1. 画像だけが表示される
+
+ページ遷移することなく、続けて画像をドラッグ＆ドロップできる
+
+### 匿名でアップするときの注意点
+
+その画像を削除することができなくなるので、個人的な情報や写真は、絶対にアップしないこと
 
 ## 03. Imgur API とは
 
@@ -53,10 +60,8 @@
 
 ## 06. Imgur にアップした画像のサンプル
 
-[https://imgur.com/qYo7jTS](https://imgur.com/qYo7jTS)
-
-![imgur1](https://imgur.com/qYo7jTS.png)
-
 [https://imgur.com/VLSfc8p](https://imgur.com/VLSfc8p)
 
-![imgur2](https://imgur.com/VLSfc8p.png)
+[https://imgur.com/VLSfc8p.png](https://imgur.com/VLSfc8p.png)
+
+![imgur1](https://imgur.com/VLSfc8p.png)
