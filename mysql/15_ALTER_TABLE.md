@@ -1,8 +1,8 @@
 # ALTER TABLE クエリー
 
-作成日 2020/11/10
+作成日 2020/11/10、更新日 2020/12/04
 
-## 01. 基本形
+## 01. ALTER TABLE table ADD column
 
 後からカラムを追加することが可能
 
@@ -22,4 +22,15 @@ ADD
     cutoff_date varchar(255) DEFAULT NULL COMMENT '締め日'
 AFTER
     follow_days;
+```
+
+## 02. ALTER TABLE table DROP column
+
+テーブルからカラムを削除する
+
+```sql
+ALTER TABLE
+    m_items
+DROP
+    status;
 ```
