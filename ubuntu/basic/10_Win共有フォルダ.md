@@ -60,3 +60,4 @@ sudo mount -t cifs -o username=nnnnnnnn,password=xxxxxxxx,domain=WORKGROUP,rw,ui
 - `gid=arg` ... サーバーが所有者の情報を提供しない時に、マウントされたファイルシステム上の、すべてのファイルとディレクトリを所有するgidを設定する
 - `file_mode=arg` ... サーバーが CIFS Unix extensions をサポートしていない場合、ファイルモードを上書きする
 - `dir_mode=arg` ... サーバーが CIFS Unix extensions をサポートしていない場合、 ディレクトリモードを上書きする
+- `vers=arg` ... プロトコルのバージョンを決める。Synologyサーバーに接続するときは、`vers=2` を指定しないと動かなかった
