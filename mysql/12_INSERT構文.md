@@ -1,6 +1,6 @@
-# INSERT クエリー
+# INSERT 構文
 
-作成日 2020/11/10
+作成日 2020/11/10、更新日 2020/12/16
 
 ## 01. 基本形
 
@@ -62,7 +62,41 @@ WHERE
     AND t.is_found = 0;
 ```
 
-## 04. よくあるエラー
+## 04. インサートアップデート
+
+主キーまたはユニークインデックスに重複した値が挿入される時は、代わりに、古い行の更新が実行される
+
+```sql
+INSERT INTO
+    sku_images (sku_code, 
+        file_name, 
+        gsurl, 
+        updated_at, 
+        created_at)
+VALUES
+    (
+        "sku_code1",
+        "file_name1",
+        "gsurl1",
+        "created_at1",
+        "created_at1"
+    ),
+    (
+        "sku_code2",
+        "file_name2",
+        "gsurl2",
+        "created_at2",
+        "created_at2"
+    )
+ON DUPLICATE KEY
+UPDATE
+    file_name = VALUES(file_name),
+    gsurl = VALUES(gsurl),
+    overwrite_times = overwrite_times + 1,
+    updated_at = VALUES(updated_at);
+```
+
+## 05. よくあるエラー
 
 テーブル内のカラム数とそれに与える VALUE の数が一致していないと、下記のエラーメッセージが表示される
 
@@ -74,5 +108,5 @@ Column count doesn\'t match value count at row 1
 
 ```sql
 INSERT INTO
-    your_table (column1, column2) VALUE ('test');
+    table1 (column1, column2) VALUES ('test');
 ```

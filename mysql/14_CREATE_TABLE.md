@@ -1,4 +1,4 @@
-# CREATE TABLE クエリー
+# CREATE TABLE 構文
 
 作成日 2020/11/10
 
