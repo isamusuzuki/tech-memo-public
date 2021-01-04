@@ -2,7 +2,9 @@
 
 作成日 2021/01/04
 
-## `sudo apt update` で変なメッセージが出るようになった
+どちらもVisual Studio Codeに関係している
+
+## 1. `sudo apt update` で毎回「スキップします」メッセージが出る
 
 vscodeに関係するメッセージが出る
 
@@ -23,3 +25,21 @@ sudo vi /etc/apt/sources.list.d/vscode.list
 参考にした記事
 
 [linux \- VS Code N: Skipping acquire of configured file 'main/binary\-arm64/Packages' \- Stack Overflow](https://stackoverflow.com/questions/65306968/vs-code-n-skipping-acquire-of-configured-file-main-binary-arm64-packages)
+
+## 2. 設定の同期がうまくいかない
+
+以下のエラーメッセージが表示されて、失敗する
+
+```text
+Error Message: The name org.freedesktop.secrets was not provided by any .service files
+```
+
+解決方法
+
+```bash
+sudo apt install gnome-keyring -y
+```
+
+参考にした記事
+
+[The name org\.freedesktop\.secrets was not provided by any \.service files · Issue \#1515 · microsoft/vscode\-docker](https://github.com/microsoft/vscode-docker/issues/1515)
