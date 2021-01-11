@@ -4,7 +4,7 @@
 
 どちらもVisual Studio Codeに関係している
 
-## 1. `sudo apt update` で毎回「スキップします」メッセージが出る
+## 01. `sudo apt update` で毎回「スキップします」メッセージが出る
 
 vscodeに関係するメッセージが出る
 
@@ -26,7 +26,7 @@ sudo vi /etc/apt/sources.list.d/vscode.list
 
 [linux \- VS Code N: Skipping acquire of configured file 'main/binary\-arm64/Packages' \- Stack Overflow](https://stackoverflow.com/questions/65306968/vs-code-n-skipping-acquire-of-configured-file-main-binary-arm64-packages)
 
-## 2. 設定の同期がうまくいかない
+## 02. 設定の同期がうまくいかない
 
 以下のエラーメッセージが表示されて、失敗する
 
