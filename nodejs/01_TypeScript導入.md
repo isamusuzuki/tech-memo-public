@@ -22,11 +22,14 @@ npx tsc --version
 
 # tsconfig.jsonファイルを生成する
 npx tsc --init
+
+# コンパイルする
+npx tsc
 ```
 
-## 02. tsconfig.json ファイルの中身を確認する
+## 02. tsconfig.json ファイルをいじる
 
-なにもいじっていないデフォルトの状態は以下の通り
+生成したばかりの、なにもいじっていない状態は、以下の通り
 
 ```json
 {
@@ -41,24 +44,33 @@ npx tsc --init
 }
 ```
 
-この中で変更すべきは `target` である。ECMAScript5(ES5) は、Internet Explorer 11 でも動作させられるほどの古い規格である。ターゲットブラウザが Google Chorme をならば、"ES2017" をチョイスできる
+### tsconfig.json ファイル 変更点 1
 
-自分の好みとしては、TypeScript ファイルは、すべて`src`フォルダの中にまとめて置き、
-生成された JavaScript ファイルは、プロジェクトのルートフォルダ以下に散らばるように配置したい
+この中で変更すべき項目は `target` である。ECMAScript5(ES5) は、Internet Explorer 11 でも動作させられるほどの古い規格である。ターゲットブラウザが Google Chorme ならば、"ES2017" をチョイスできる
+
+### tsconfig.json ファイル 変更点 2
+
+自分の好みとしては、TypeScript ファイルは、すべて`src`フォルダの中にまとめて置き、生成された JavaScript ファイルは、プロジェクトのルートフォルダ以下に、フォルダ構造を保ったまま配置されるようにしたい
 
 ```text
 --avocado/
     |--src/
     |   |--static/
-    |   |   `---index.ts
-    |   `--main.ts
+    |   |   `---index.ts ... コンパイル前1
+    |   `--main.ts       ... コンパイル前2
     |
     |--static/
-    |   `--index.js
-    `--main.js
+    |   `--index.js      ... コンパイル後1
+    `--main.js           ... コンパイル後2
 ```
 
-`target` を変更し、`include` と `outDir` の 2 つを追加した後が、以下の通り
+これは、`include` と `outDir` の 2 つの項目を追加することで実現できる
+
+### tsconfig.json ファイル 変更点 3
+
+`sourceMap` 項目を追加して、ソースマップを出力させる
+
+### tsconfig.json ファイル 変更点 まとめ
 
 ```json
 {
@@ -66,30 +78,11 @@ npx tsc --init
   "compilerOptions": {
     "target": "ES2017",
     "module": "commonjs",
+    "sourceMap": true,
     "outDir": "",
     "strict": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   }
 }
-```
-
-## 03. よく使うコマンド
-
-```bash
-# コンパイル
-npx tsc
-
-# スクリプトの実行
-node main.js
-```
-
-### コンパイルと実行を同時に行うには
-
-ts-node をインストールすれば実現できる
-
-インストール => `npm install --save-dev ts-node`
-
-```bash
-npx ts-node src/main.ts
 ```
