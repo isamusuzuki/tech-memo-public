@@ -1,6 +1,6 @@
 # TypeScript で Chrome 機能拡張を開発する
 
-作成日 2021/01/02
+作成日 2021/01/02、更新日 2021/01/19
 
 ## 01. 関連記事を読む
 
@@ -14,16 +14,16 @@
 
 ## 02. 移植作業中にエラーに遭遇
 
-JavaScript のコードを TypeScript にコピペしたら、`document.getElementById()` メソッドでエラーが出た
+JavaScript のコードを TypeScript ファイルにコピペしたら、`document.getElementById()` メソッドでエラーが出た
 
 このメソッドで得られるものは、`HTMLElement | null` であるため、HTMLElement のつもりで話を進めると、`Object is possibly 'null'.` と注意される
 
 TypeScript では、以下のように書くのが正しい
 
-```typescript
-const loader = document.getElementById('loader');
+```javascript
+const loader = document.getElementById('loader')
 if (loader) {
-  loader.style.display = 'none';
+  loader.style.display = 'none'
 }
 ```
 
@@ -31,7 +31,7 @@ if (loader) {
 
 正しくは、`HTMLInputElement.disabled` であった
 
-```typescript
-var element = <HTMLInputElement>document.getElementById('btnExcel');
-element.disabled = true;
+```javascript
+var button1 = <HTMLInputElement>document.getElementById('button1')
+button1.disabled = true
 ```
