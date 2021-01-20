@@ -39,5 +39,5 @@ describe('Array#join', () => {
 npx mocha --version
 # => 8.2.1
 
-npx mocha --require ts-node/register intelli-espower-loader tests/**/*.ts
+npx mocha --require ts-node/register --require intelli-espower-loader tests/**/*.ts
 ```
