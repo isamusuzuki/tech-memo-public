@@ -4,8 +4,7 @@
 
 ## 01. DataFrameとは
 
-DataFrame とは、テーブル形式のスプレッドシート風のデータ構造を持ち、\
-順序付けられた列を持っている。行と列の両方に index を持っている
+DataFrame とは、テーブル形式のスプレッドシート風のデータ構造を持ち、順序付けられた列を持っている。行と列の両方に index を持っている
 
 ```python
 from pandas import DataFrame
