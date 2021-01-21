@@ -14,10 +14,10 @@
 
 ### dtype 一覧
 
-- 整数型 ... int32,int64,uint32,uint64
+- 整数型      ... int32,int64,uint32,uint64
 - 浮動小数点型 ... float32,float64
-- 複素数型 ... complex64
-- ブール型 ... bool
+- 複素数型    ... complex64
+- ブール型    ... bool
 - Python オブジェクト型 ... object
 
 日付型はない。文字列型もない

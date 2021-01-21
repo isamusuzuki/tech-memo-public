@@ -4,9 +4,9 @@
 
 ## 01. Series とは
 
-1 次元の配列のようなオブジェクト\
-Series は、values と index から成り立っている\
-values は、Numpy の ndarray そのもの
+- 1 次元の配列のようなオブジェクト
+- Series は、values と index から成り立っている
+- values は、Numpy の ndarray そのもの
 
 ```python
 from pandas import Series
@@ -39,8 +39,8 @@ print(type(obj.index))
 # => <class 'pandas.core.indexes.range.RangeIndex'>
 ```
 
-index 付きの Series を作成することも可能\
-また配列操作した後も、values と index の関係は保持される
+- index 付きの Series を作成することも可能
+- 配列操作した後も、values と index の関係は保持される
 
 ```python
 from pandas import Series

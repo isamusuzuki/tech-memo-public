@@ -2,7 +2,7 @@
 
 作成日 2020/10/28、更新日 2021/01/07
 
-## pandas.DataFrame.groupbyメソッド
+## 01. pandas.DataFrame.groupbyメソッド
 
 [pandas\.DataFrame\.groupby — pandas 1\.1\.3 documentation](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.groupby.html)
 
@@ -26,7 +26,7 @@ print(df1.groupby('item').size())
 print(df1.groupby('item').count())
 ```
 
-## GROUPBYした後に、その合計値を保存する
+## 02. GROUPBYした後に、その合計値を保存する
 
 shop_nameでGROUPBYされ、品代金と代引手数料は合計値になっているデータを保存する
 
