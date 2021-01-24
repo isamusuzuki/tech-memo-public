@@ -35,7 +35,7 @@ WSL (Windows Subsystem for Linux) 上のフォルダを Visual Studio Code で�
 - WSL 側へのインストールは、拡張機能ビューの各拡張機能にリンクが登場する
 - そのリンクをクリックして、VSCode を再起動する
 
-### 02-5/ Remote WSL の高度な使い方
+### 02-5. Remote WSL の高度な使い方
 
 - `Ctrl + Shift + P` でコマンドパレットを開く
 - "Remote-WSL: Show Log" を実行する

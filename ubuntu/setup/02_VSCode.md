@@ -50,7 +50,7 @@ fc-list | grep "Roboto Mono"
 
 ※ Settings Sync（設定同期）をオンにしている場合は、以下の作業は不要
 
-左下歯車アイコン > Settings > Editor: Font Family
+左下歯車アイコン ＞ 設定 ＞ 設定の検索 ＞ Editor: Font Family
 
 ```text
 'Roboto Mono','Noto Sans Mono CJK JP'
