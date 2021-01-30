@@ -4,13 +4,13 @@
 
 ## 01. Gunicorn サービスに環境変数を読ませる
 
-## 01-1. 問題発生
+### 01-1. 問題発生
 
 Flask から 環境変数を読ませたときに、「その値はない」と言われた
 
 Gunicorn サービスが起動する前に、`.env` ファイルを読み込ませる必要がある
 
-## 01-2. 解決方法
+### 01-2. 解決方法
 
 /etc/systemd/system/avocado.service
 
@@ -31,7 +31,7 @@ ExecStart=/home/ubuntu/avocado/venv/bin/gunicorn --workers 3 --bind unix:avocado
 WantedBy=multi-user.target
 ```
 
-`Environment` 項目と `EnvironmentFile` 項目は両立できる
+ポイント: `Environment` 項目と `EnvironmentFile` 項目は両立できる
 
 ## 02. Gunicorn サービスから外部コマンドを呼べるようにする
 
@@ -60,4 +60,4 @@ ExecStart=/home/ubuntu/avocado/venv/bin/gunicorn --workers 3 --bind unix:avocado
 WantedBy=multi-user.target
 ```
 
-`Environment`項目に `echo $PATH` の内容を追加する
+ポイント: `Environment`項目に `echo $PATH` の内容を追加する
