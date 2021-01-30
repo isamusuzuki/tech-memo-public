@@ -16,7 +16,7 @@ Let's Encrypt の無償の SSL 証明書を使って、HTTPS 通信を達成す�
 
 ### 前提条件
 
-ドメイン名は `avocado.example.com` がすでに設定されているものとする
+サーバーには `avocado.example.com` というホスト名がすでに設定されているものとする
 
 ## 02. Nginx のインストール
 
