@@ -1,16 +1,16 @@
-# Webpack 導入
+# Webpack を導入して、Vue.js の開発を TypeScript で行う
 
-作成日 2021/02/06
+作成日 2021/02/07
 
-## 01. Webpack をインストールする
+## 01. Webpack 導入
 
-### Webpack とは
+### 01-1. Webpack とは
 
 モジュールのバンドラー。ローダーを組み合わせることで、様々なタイプのファイルを変換できるようになる
 
 [Concepts \| webpack](https://webpack.js.org/concepts/)
 
-### 最もシンプルな形で Webpack を使ってみる
+### 01-2. 最もシンプルな形で Webpack を使う
 
 新しいプロジェクトを作成する
 
@@ -18,10 +18,13 @@
 cd ~
 mkdir banana
 cd banana
-
 npm init -y
 # => package.json が生成される
+```
 
+必要なモジュールをインストールする
+
+```bash
 npm i -D webpack webpack-cli webpack-dev-server
 ```
 
@@ -82,17 +85,17 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    index: './src/index.js',
+    index: './src/index.js'
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist')
   },
   devServer: {
-    contentBase: path.resolve(__dirname, 'dist'),
+    contentBase: path.resolve(__dirname, 'dist')
     compress: true,
-    port: 8080,
-  },
+    port: 8080
+  }
 };
 ```
 
@@ -112,15 +115,17 @@ npm run build
 # => dist/index.bundle.js が生成される
 ```
 
-## 02. Vue Loader をインストールする
+## 02. Vue Loader 導入
 
-### Vue Loader とは
+### 02-1. Vue Loader とは
 
 Vue.js をバンドルするローダー
 
 [Introduction · vue\-loader](https://vue-loader-v14.vuejs.org/ja/)
 
-### 最もシンプルな形で Vue Loader を使う
+### 02-2. 最もシンプルな形で Vue Loader を使う
+
+必要なモジュールをインストールする
 
 ```bash
 npm i -D vue vue-loader vue-template-compiler
@@ -135,14 +140,14 @@ npm i -D vue vue-loader vue-template-compiler
     |--src/
     |   |--components/
     |   |   `--App.vue    // <= 追加
-    |   `--index.js       // <= 書き換え
+    |   `--index.js       // <= 全部書換
     |--package.json
     `--webpack.config.js  // <= 追記
 ```
 
 src/components/App.vue
 
-- Vue.js の単一ファイルコンポーネントを書く
+- 単一ファイルコンポーネントを書く
 
 ```html
 <template>
@@ -156,9 +161,9 @@ src/components/App.vue
     name: 'App',
     data: () => {
       return {
-        name: 'Banana',
+        name: 'Banana'
       };
-    },
+    }
   };
 </script>
 ```
@@ -172,7 +177,7 @@ import App from './components/App';
 new Vue({
   el: '#app',
   components: { App },
-  template: '<app/>',
+  template: '<app/>'
 });
 ```
 
@@ -183,35 +188,37 @@ webpack.config.js
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
-  // 以下を書き加える
+  // 以下を追加する
   module: {
     rules: [
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-      },
-    ],
+      }
+    ]
   },
   resolve: {
     extensions: ['.js', '.vue'],
     alias: {
-      vue$: 'vue/dist/vue.esm.js',
-    },
+      vue$: 'vue/dist/vue.esm.js'
+    }
   },
-  plugins: [new VueLoaderPlugin()],
+  plugins: [new VueLoaderPlugin()]
 };
 ```
 
-## 03. css-loader, style-loader をインストールする
+## 03. css-loader, style-loader 導入
 
-### css-loader, style-loader とは
+### 03-1. css-loader, style-loader とは
 
 - css-loader ... JavaScript の中で CSS を扱えるようにする
 - style-loader ... JavaScript の中にある CSS を DOM に挿入する
 
 この 2 つは組み合わせて使うことが多い
 
-### css-loader, style-loader を Webpack に組み込む
+### 03-2. css-loader, style-loader を組み込む
+
+必要なモジュールをインストールする
 
 ```bash
 npm i -D css-loader style-loader
@@ -234,7 +241,7 @@ npm i -D css-loader style-loader
 src/components/App.vue
 
 ```html
-<!-- // 一番下に以下を書き加える -->
+<!-- // 一番下に追加する -->
 <style scoped>
   .title {
     font-size: 48px;
@@ -248,7 +255,7 @@ webpack.config.js
 module.exports = {
   module: {
     rules: [
-      // 以下を書き加える
+      // 以下を追加する
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
@@ -258,13 +265,17 @@ module.exports = {
 };
 ```
 
-## 04. ts-loader をインストールする
+## 04. ts-loader 導入
 
-### ts-loader とは
+### 04-1. ts-loader とは
 
 TypeScript を取り扱うローダー
 
 [TypeStrong/ts\-loader: TypeScript loader for webpack](https://github.com/TypeStrong/ts-loader)
+
+### 04-2. ts-loader を組み込む
+
+必要なモジュールをインストールする
 
 ```bash
 npm i -D typescript ts-loader
@@ -272,8 +283,6 @@ npm i -D typescript ts-loader
 npx tsc --init
 # => tsconfig.json が生成される
 ```
-
-### JavaScript を TypeScript に書き換える
 
 現在の構成に一部変更を加える
 
@@ -283,8 +292,8 @@ npx tsc --init
     |   `--index.html
     |--src/
     |   |--components/
-    |   |   `--App.vue     // <= 書き換え
-    |   |--index.ts        // <= 書き換え
+    |   |   `--App.vue     // <= 一部書換
+    |   |--index.ts        // <= 全面書換
     |   `--vue-shims.d.ts  // <= 追加
     |--package.json
     |--tsconfig.json       // <= 追加
@@ -296,31 +305,32 @@ src/components/App.vue
 ```html
 <!-- // 以下を書き換える -->
 <script lang="ts">
-  import Vue from 'vue';
+  import Vue from 'vue'
 
   export default Vue.extend({
     data() {
       return {
-        name: 'Banana',
-      };
-    },
-  });
+        name: 'Banana'
+      }
+    }
+  })
 </script>
 ```
 
 src/index.ts
 
+- JavaScript を TypeScript に書き換える
 - 単一ファイルコンポーネントを読み込むときは `.vue` の拡張子まで書く
 
 ```javascript
-import Vue from 'vue';
-import App from './components/App.vue';
+import Vue from 'vue'
+import App from './components/App.vue'
 
 new Vue({
   el: '#app',
   components: { App },
-  template: '<app/>',
-});
+  template: '<app/>'
+})
 ```
 
 src/vue-shims.d.ts
@@ -341,7 +351,6 @@ tsconfig.json
   "compilerOptions": {
     "target": "esnext",
     "module": "es2015",
-    "sourceMap": true,
     "strict": true,
     "noImplicitReturns": true,
     "moduleResolution": "node"
@@ -363,20 +372,22 @@ module.exports = {
         options: {
           appendTsSuffixTo: [/\.vue$/]
         }
-      },
-    ],
+      }
+    ]
   },
   resolve: {
     // '.ts'を書き加える
     extensions: ['.js', '.ts', '.vue'],
     alias: {
-      vue$: 'vue/dist/vue.esm.js',
-    },
-  },
+      vue$: 'vue/dist/vue.esm.js'
+    }
+  }
 };
 ```
 
 ## 05. TypeScript 寄りのコードの書き方をする
+
+必要なモジュールをインストールする
 
 ```bash
 npm i -D vue-class-component vue-property-decorator
@@ -390,9 +401,8 @@ npm i -D vue-class-component vue-property-decorator
     |   `--index.html
     |--src/
     |   |--components/
-    |   |   |--App.ts      // <= 追加
-    |   |   `--App.vue
-    |   |--index.ts        // <= 書き換え
+    |   |   `--App.ts      // <= 全面書換
+    |   |--index.ts        // <= 一部書換
     |   `--vue-shims.d.ts
     |--package.json
     |--tsconfig.json       // <= 追記
@@ -405,23 +415,22 @@ src/components/App.ts
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-
 @Component({
-    template: `
-        <div>
-            <p class="title">Hello, {{name}}!!!</p>
-        </div>
-    `
+  template: `
+    <div>
+      <p class="title">Hello, {{ name }}!!!</p>
+    </div>
+  `
 })
 export default class App extends Vue {
-    name: string = 'Banana'
+  name: string = 'Banana'
 }
 ```
 
 src/index.ts
 
 ```javascript
-// 以下を入れ替える
+// 以下を書き換える
 // import App from './components/App.vue'
 import App from './components/App'
 ```
