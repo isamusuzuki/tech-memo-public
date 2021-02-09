@@ -1,6 +1,6 @@
 # Cloud SQL
 
-作成日 2019/12/05、更新日 2020/11/12
+作成日 2019/12/05、更新日 2021/02/09
 
 ## 01. Cloud SQL とは
 
@@ -42,9 +42,31 @@ GCP コンソール ＞ ストレージ ＞ SQL ＞ Instances ページが表示
 もちろんユーザーアカウントにも、ホスト名を指定して接続場所を指定するが、\
 その前に、承認済みネットワークに追加しないと、接続できるようにはならない
 
-[Cloud SQL のタイムゾーンを変える \- めあとるーむ記録帳](https://maretol.hatenablog.jp/entry/2017/04/03/141318)
+### タイムゾーンを日本に変更する
 
-[データベース フラグを構成する  \|  Cloud SQL for MySQL  \|  Google Cloud](https://cloud.google.com/sql/docs/mysql/flags)
+タイムゾーンの設定を確認する
 
-default_time_zoneを +09:00 
+```sql
+show variables like '%time_zone%';
+-- system_time_zone UTC
+-- time_zone SYSTEM
+```
 
+これを日本に変更するには、Cloud SQL の管理画面でフラグを立てる必要がある
+
+SQL ＞ インスタンス ＞ 目当てのインスタンスIDをクリックする\
+概要ページ ＞ 構成コーナー ＞ 「構成を編集」をクリック\
+設定オプション ＞ フラグを開く ＞ 「＋項目を追加」ボタン\
+フラグ名に「default_time_zone」を選ぶ ＞ 値に「+09:00」を入力する\
+「閉じる」ボタン ＞ 「保存」ボタン
+
+タイムゾーンの設定をもう一度確認する
+
+```sql
+show variables like '%time_zone%';
+-- system_time_zone UTC
+-- time_zone +09:00
+
+select now();
+-- 2021-02-09 18:18:53
+```
