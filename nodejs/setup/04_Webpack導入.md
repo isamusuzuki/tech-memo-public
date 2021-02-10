@@ -161,9 +161,9 @@ src/components/App.vue
     name: 'App',
     data: () => {
       return {
-        name: 'Banana'
+        name: 'Banana',
       };
-    }
+    },
   };
 </script>
 ```
@@ -177,7 +177,7 @@ import App from './components/App';
 new Vue({
   el: '#app',
   components: { App },
-  template: '<app/>'
+  template: '<app/>',
 });
 ```
 
@@ -194,16 +194,16 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-      }
-    ]
+      },
+    ],
   },
   resolve: {
     extensions: ['.js', '.vue'],
     alias: {
-      vue$: 'vue/dist/vue.esm.js'
-    }
+      vue$: 'vue/dist/vue.esm.js',
+    },
   },
-  plugins: [new VueLoaderPlugin()]
+  plugins: [new VueLoaderPlugin()],
 };
 ```
 
@@ -305,15 +305,15 @@ src/components/App.vue
 ```html
 <!-- // 以下を書き換える -->
 <script lang="ts">
-  import Vue from 'vue'
+  import Vue from 'vue';
 
   export default Vue.extend({
     data() {
       return {
-        name: 'Banana'
-      }
-    }
-  })
+        name: 'Banana',
+      };
+    },
+  });
 </script>
 ```
 
@@ -323,14 +323,14 @@ src/index.ts
 - 単一ファイルコンポーネントを読み込むときは `.vue` の拡張子まで書く
 
 ```javascript
-import Vue from 'vue'
-import App from './components/App.vue'
+import Vue from 'vue';
+import App from './components/App.vue';
 
 new Vue({
   el: '#app',
   components: { App },
-  template: '<app/>'
-})
+  template: '<app/>',
+});
 ```
 
 src/vue-shims.d.ts
@@ -370,18 +370,18 @@ module.exports = {
         loader: 'ts-loader',
         exclude: /node_modules/,
         options: {
-          appendTsSuffixTo: [/\.vue$/]
-        }
-      }
-    ]
+          appendTsSuffixTo: [/\.vue$/],
+        },
+      },
+    ],
   },
   resolve: {
     // '.ts'を書き加える
     extensions: ['.js', '.ts', '.vue'],
     alias: {
-      vue$: 'vue/dist/vue.esm.js'
-    }
-  }
+      vue$: 'vue/dist/vue.esm.js',
+    },
+  },
 };
 ```
 
@@ -412,18 +412,18 @@ npm i -D vue-class-component vue-property-decorator
 src/components/App.ts
 
 ```javascript
-import Vue from 'vue'
-import Component from 'vue-class-component'
+import Vue from 'vue';
+import Component from 'vue-class-component';
 
 @Component({
   template: `
     <div>
       <p class="title">Hello, {{ name }}!!!</p>
     </div>
-  `
+  `,
 })
 export default class App extends Vue {
-  name: string = 'Banana'
+  name: string = 'Banana';
 }
 ```
 
@@ -431,8 +431,8 @@ src/index.ts
 
 ```javascript
 // 以下を書き換える
-// import App from './components/App.vue'
-import App from './components/App'
+// import App from './components/App.vue';
+import App from './components/App';
 ```
 
 tsconfig.json
