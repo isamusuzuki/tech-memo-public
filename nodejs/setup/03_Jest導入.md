@@ -14,6 +14,7 @@ npm install --save-dev jest @types/jest ts-jest
 
 ```json
 {
+  // これより前は省略。最後尾に以下を追加する
   "jest": {
     "moduleFileExtensions": ["ts", "js"],
     "transform": {

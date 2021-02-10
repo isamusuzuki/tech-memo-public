@@ -62,25 +62,19 @@ npx eslint --init
 
 ```json
 {
-    "env": {
-        "browser": true,
-        "es2021": true,
-        "node": true
-    },
-    "extends": [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaVersion": 12,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "@typescript-eslint"
-    ],
-    "rules": {
-    }
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint"],
+  "rules": {}
 }
 ```
 
@@ -88,6 +82,6 @@ npx eslint --init
 
 ## 03. 追加の設定
 
-TypeScriptファイルしかチェックさせるつもりがないので、生成したJavaScriptファイルについては、ESLintに無視させたい
+TypeScript ファイルしかチェックさせるつもりがないので、生成した JavaScript ファイルについては、ESLint に無視させたい
 
 解決方法: `.eslintignore` ファイルを作成して、その中に無視させたいファイル名を書く
