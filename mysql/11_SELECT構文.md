@@ -1,6 +1,6 @@
 # SELECT 構文
 
-作成日 2020/11/10、更新日 2020/12/16
+作成日 2020/11/10、更新日 2021/02/10
 
 ## 01. WHERE 句で LIKE を使う
 
@@ -15,7 +15,7 @@ WHERE
     code LIKE "2528%";
 ```
 
-※ "%2528", "%2528%" も使用可能
+`%` は後ろだけでなく、`%2528`, `%2528%` も使用可能
 
 ## 02. 変数を使う
 
@@ -31,8 +31,7 @@ WHERE
     item_code = @item_code;
 ```
 
-SET 以外のステートメントでは、`=`は比較演算子として扱われるので、\
-割り当て演算子は`:=`を使う
+SET 以外のステートメントでは、`=`は比較演算子として扱われるので、割り当て演算子は`:=`を使う
 
 ```sql
 SET
@@ -66,4 +65,19 @@ WHERE
     AND u.code NOT IN ('9990', '9991', '9999')
 GROUP BY
     type;
+```
+
+## 04. UTC で入っている TIMESTAMP を 日本時間に直す
+
+```sql
+SELECT 
+    sku_code,
+    overwrite_times,
+    DATE_ADD(updated_at, INTERVAL 9 HOUR) updated_at_jpn,
+    DATE_ADD(created_at, INTERVAL 9 HOUR) created_at_jpn 
+FROM
+    sku_images
+ORDER BY
+    updated_at DESC
+LIMIT 10;
 ```
