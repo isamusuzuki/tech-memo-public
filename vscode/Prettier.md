@@ -43,8 +43,8 @@ Prettier は、JavaScript などを修正・整形するフォーマッター
 
 ### 整形ルールの上書き
 
-Markdown ファイルも Prettier が整形してくれるのは助かっているが、\
-タブ幅がリストインデントに影響されて、4 文字になってしまうのに、困っていた\
+Markdown ファイルも Prettier が整形してくれるのは助かっているが、タブ幅の設定がリストインデントに影響されて、4 文字になってしまうことに困っていた
+
 ある条件の場合のみ、設定を上書きする方法を発見した
 
 [Configuration File · Prettier](https://prettier.io/docs/en/configuration.html)
