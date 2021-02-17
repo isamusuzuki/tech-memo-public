@@ -9,9 +9,9 @@
 - values は、Numpy の ndarray そのもの
 
 ```python
-from pandas import Series
+import pandas as pd
 
-obj = Series([4, 7, -5, 3])
+obj = pd.Series([4, 7, -5, 3])
 
 print(obj)
 # => 0    4
@@ -43,9 +43,9 @@ print(type(obj.index))
 - 配列操作した後も、values と index の関係は保持される
 
 ```python
-from pandas import Series
+import pandas as pd
 
-obj2 = Series([4, 7, -5, 3], index=['d', 'b', 'a', 'c'])
+obj2 = pd.Series([4, 7, -5, 3], index=['d', 'b', 'a', 'c'])
 
 print(obj2)
 # => d    4
@@ -78,13 +78,11 @@ print(obj2 * 2)
 構文
 
 ```python
-s = Series(
+s = pd.Series(
     data=None,
     index=None,
     dtype=None,
-    name=None,
-    copy=False,
-    fastpath=False
+    copy=False
 )
 ```
 

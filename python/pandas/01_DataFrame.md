@@ -2,19 +2,19 @@
 
 作成日 2020/10/15
 
-## 01. DataFrameとは
+## 01. DataFrame とは
 
 DataFrame とは、テーブル形式のスプレッドシート風のデータ構造を持ち、順序付けられた列を持っている。行と列の両方に index を持っている
 
 ```python
-from pandas import DataFrame
+import pandas as pd
 
 data = {
     'state': ['Ohio', 'Ohio', 'Ohio', 'Nevada', 'Nevada'],
     'year': [2000, 2001, 2002, 2001, 2002],
     'pop': [1.5, 1.7, 3.6, 2.4, 2.9]
 }
-df = DataFrame(data)
+df = pd.DataFrame(data)
 
 print(df)
 # =>    year   state  pop
@@ -34,7 +34,7 @@ print(df.dtypes)
 # => dtype: object
 ```
 
-文字列が、Pandas の dtype では object になる
+Pandas の dtype では、文字列が object になる
 
 ## DataFrame のコンストラクタ
 
@@ -43,7 +43,7 @@ print(df.dtypes)
 構文
 
 ```python
-df = DataFrame(
+df = pd.DataFrame(
     data=None,
     index=None,
     columns=None,

@@ -6,7 +6,7 @@
 
 [pandas のデータ型 dtype 一覧と astype による変換（キャスト） \| note\.nkmk\.me](https://note.nkmk.me/python-pandas-dtype-astype/)
 
-> pandas.Series は一つのデータ型 dtype、\
+> pandas.Series は一つのデータ型 dtype を、\
 > panas.DataFrame は各列ごとにそれぞれデータ型 dtype を保持している。
 >
 > dtype は、コンストラクタで新たにオブジェクトを生成する際や csv ファイルなどから\
@@ -26,7 +26,7 @@
 
 [Pandas で時間や日付データに変換する to_datetime 関数の使い方 \- DeepAge](https://deepage.net/features/pandas-to-datetime.html)
 
-> Pandas において文字列データや数値データを日付データである datetime64 型に変換する
+> Pandas において文字列データや数値データを、日付データである datetime64 型に変換する
 >
 > datetime64 型は Python にある timestamp 型を継承したクラス
 
