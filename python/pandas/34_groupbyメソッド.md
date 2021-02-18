@@ -1,6 +1,6 @@
 # groupby メソッドを使いこなす
 
-作成日 2020/10/28、更新日 2021/01/07
+作成日 2020/10/28、更新日 2021/02/18
 
 ## 01. pandas.DataFrame.groupby メソッド
 
@@ -10,7 +10,7 @@
 
 [GroupBy — pandas 1\.1\.3 documentation](https://pandas.pydata.org/pandas-docs/stable/reference/groupby.html)
 
-`GroupBy.count()`, `GroupBy.size()`, `GroupBy.sum()` いずれも DataFrame を返す。groupby された項目がインデックスとなり、それ以外の項目の処理された値がバリューとなる
+`GroupBy.count()`, `GroupBy.size()`, `GroupBy.sum()` いずれのメソッドも DataFrame を返す。groupby された項目がインデックスとなり、それ以外の項目のそれぞれ処理された値がバリューとなる
 
 ```python
 import pandas as pd
@@ -33,12 +33,30 @@ print(df1.groupby('item').count())
 shop_name で GROUPBY され、品代金と代引手数料は合計値になっているデータを保存する
 
 ```python
-    df = pd.read_csv(
-        'seisansyo_20201228191541.csv', encoding='utf-8')
-    df1 = df[['shop_name', '品代金', '代引手数料']]
-    df2 = df1.groupby(['shop_name']).sum()
-    df2.to_csv(
-        'seisansyo_20201228191541_group.csv')
+import pandas as pd
+
+df1 = pd.read_csv(
+    'seisansyo_20201228191541.csv', encoding='utf-8')
+df2 = df1[['shop_name', '品代金', '代引手数料']]
+df3 = df2.groupby(['shop_name']).sum()
+df3.to_csv(
+    'seisansyo_20201228191541_group.csv')
 ```
 
-`index=False` がないことに注意。`index=False`してしまったら、groupby した値がわからなくなってしまう
+- `index=False` がないことに注意。`index=False`してしまったら、groupby した値がわからなくなってしまう
+
+## 03. GROUPBY した後のその値だけが欲しい場合
+
+groupby した値だけが欲しい場合は、index をリスト化すればよい
+
+```python
+import json
+import pandas as pd
+
+df1 = pd.read_csv(
+    'seisansyo_20201228191541.csv', encoding='utf-8')
+df2 = df1.groupby(['shop_name']).count()
+shop_name_list = df2.index.tolist()
+with open('shop_name_list.json', mode='w', encoding='utf-8') as f:
+    f.write(json.dumps(shop_name_list, ensure_asii=False, indent=4))
+```
