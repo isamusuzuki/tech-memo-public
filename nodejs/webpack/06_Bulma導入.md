@@ -2,7 +2,7 @@
 
 作成日 2021/02/17
 
-## 01. とりあえず公式サイトを写経する
+## 01. とりあえず公式サイトを写経してみる
 
 [With webpack \| Bulma: Free, open source, and modern CSS framework based on Flexbox](https://bulma.io/documentation/customize/with-webpack/)
 
@@ -33,7 +33,6 @@ npm i -D mini-css-extract-plugin
     |--src/
     |   |--index.js
     |   `--mystyles.scss
-    |--package.json
     `--webpack.config.js
 ```
 
@@ -90,19 +89,6 @@ src/style.scss
 @import '~bulma/bulma';
 ```
 
-package.json
-
-```json
-{
-  // ここより前は省略
-  "scripts": {
-    "dev": "webpack-cli serve --mode=development",
-    "build": "webpack --mode=production"
-  }
-  // ここより後も省略
-}
-```
-
 webpack.config.js
 
 ```javascript
@@ -148,16 +134,19 @@ module.exports = {
 
 ### mini-css-extract-plugin の役割とは
 
-CSS を別ファイルに仕立ててくれる
+CSS を別ファイルに仕立ててくれること
 
 [webpack\-contrib/mini\-css\-extract\-plugin: Lightweight CSS extraction plugin](https://github.com/webpack-contrib/mini-css-extract-plugin)
 
-## 02. 感想
+## 02. 個人的な感想
 
-Bulmaは、jsコードの中に埋め込まれるのではなく、Headタグの冒頭で読まれる必要があると見た。そのために、mini-css-extract-pluginが必要なのではないか？
+Bulma は、js コードの中に埋め込まれるのではなく、Head タグの冒頭で読まれる必要があると思った。そのために、mini-css-extract-plugin が必要なのではないか？
 
-現時点では、TypeScriptコードでのBulmaの組み込み方がわかっておらず、「HeadタグにCDNを書き込めばよくね？」に反論できない
+現時点では、TypeScript コードの場合の Bulma の組み込み方がわからない。それがわかったたとしても、「Head タグに CDN を書き込めばよくね？」に反論できそうにない
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
+/>
 ```

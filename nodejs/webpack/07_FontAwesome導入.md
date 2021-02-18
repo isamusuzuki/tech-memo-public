@@ -2,7 +2,7 @@
 
 作成日 2021/02/1
 
-## 01. とりあえず参考記事と公式サイトを写経する
+## 01. とりあえず参考記事と公式サイトを写経してみる
 
 [1 年後に差がつく Font Awesome5 ～フロントエンド開発\(ES6,Webpack4,Babel7\)への導入～ \- Qiita](https://qiita.com/riversun/items/4faa56ac40071f638313)
 
@@ -33,7 +33,6 @@ npm i -D @fortawesome/free-regular-svg-icons
     |   `--index.html
     |--src/
     |   `--index.js
-    |--package.json
     `--webpack.config.js
 ```
 
@@ -65,19 +64,6 @@ import { faComments } from '@fortawesome/free-regular-svg-icons';
 library.add(faDog, faComments, faCat);
 
 dom.watch();
-```
-
-package.json
-
-```json
-{
-  // ここより前は省略
-  "scripts": {
-    "dev": "webpack-cli serve --mode=development",
-    "build": "webpack --mode=production"
-  }
-  // ここより後も省略
-}
 ```
 
 webpack.config.js
