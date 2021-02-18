@@ -1,14 +1,16 @@
-# groupbyメソッドを使いこなす
+# groupby メソッドを使いこなす
 
 作成日 2020/10/28、更新日 2021/01/07
 
-## 01. pandas.DataFrame.groupbyメソッド
+## 01. pandas.DataFrame.groupby メソッド
 
 [pandas\.DataFrame\.groupby — pandas 1\.1\.3 documentation](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.groupby.html)
 
-戻り値は、GroupBy オブジェクトである
+`DataFrame.groupby()` メソッドの戻り値は、GroupBy オブジェクトである
 
 [GroupBy — pandas 1\.1\.3 documentation](https://pandas.pydata.org/pandas-docs/stable/reference/groupby.html)
+
+`GroupBy.count()`, `GroupBy.size()`, `GroupBy.sum()` いずれも DataFrame を返す。groupby された項目がインデックスとなり、それ以外の項目の処理された値がバリューとなる
 
 ```python
 import pandas as pd
@@ -26,9 +28,9 @@ print(df1.groupby('item').size())
 print(df1.groupby('item').count())
 ```
 
-## 02. GROUPBYした後に、その合計値を保存する
+## 02. GROUPBY した後に、その合計値を保存する
 
-shop_nameでGROUPBYされ、品代金と代引手数料は合計値になっているデータを保存する
+shop_name で GROUPBY され、品代金と代引手数料は合計値になっているデータを保存する
 
 ```python
     df = pd.read_csv(
@@ -38,3 +40,5 @@ shop_nameでGROUPBYされ、品代金と代引手数料は合計値になって�
     df2.to_csv(
         'seisansyo_20201228191541_group.csv')
 ```
+
+`index=False` がないことに注意。`index=False`してしまったら、groupby した値がわからなくなってしまう
