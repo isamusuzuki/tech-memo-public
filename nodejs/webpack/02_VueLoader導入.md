@@ -44,7 +44,7 @@ src/components/App.vue
 <script>
   export default {
     name: 'App',
-    data: () => {
+    data() {
       return {
         name: 'Banana',
       };
@@ -151,7 +151,7 @@ src/components/App.vue
 <script>
   export default {
     name: 'App',
-    data: () => {
+    data() {
       return {
         name: 'Banana',
       };
