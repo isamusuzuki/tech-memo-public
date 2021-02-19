@@ -69,10 +69,24 @@ new Vue({
 webpack.config.js
 
 ```javascript
-// 冒頭に追加する
+const path = require('path');
+// 以下を追加する
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+// ここまで
 
 module.exports = {
+  entry: {
+    index: './src/index.js',
+  },
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+  devServer: {
+    contentBase: path.resolve(__dirname, 'dist'),
+    compress: true,
+    port: 8080,
+  },
   // 以下を追加する
   module: {
     rules: [
@@ -89,6 +103,7 @@ module.exports = {
     },
   },
   plugins: [new VueLoaderPlugin()],
+  // ここまで
 };
 ```
 
@@ -155,15 +170,42 @@ src/components/App.vue
 webpack.config.js
 
 ```javascript
+const path = require('path');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+
 module.exports = {
+  entry: {
+    index: './src/index.js',
+  },
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+  devServer: {
+    contentBase: path.resolve(__dirname, 'dist'),
+    compress: true,
+    port: 8080,
+  },
   module: {
     rules: [
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+      },
       // 以下を追加する
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
+      // ここまで
     ],
   },
+  resolve: {
+    extensions: ['.js', '.vue'],
+    alias: {
+      vue$: 'vue/dist/vue.esm.js',
+    },
+  },
+  plugins: [new VueLoaderPlugin()],
 };
 ```

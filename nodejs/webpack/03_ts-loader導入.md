@@ -108,6 +108,7 @@ module.exports = {
           appendTsSuffixTo: [/\.vue$/],
         },
       },
+      // ここまで
     ],
   },
   resolve: {
