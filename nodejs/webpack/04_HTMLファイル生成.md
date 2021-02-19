@@ -1,6 +1,6 @@
 # HTML ファイルを生成する
 
-作成日 2021/02/10
+作成日 2021/02/10、更新日 2021/02/19
 
 ## 01. html-webpack-plugin とは
 
@@ -87,4 +87,42 @@ templates/index.html
 </html>
 ```
 
-head タグの一番下に、`<script defer="defer" src="index.bundle.js"></script>` が挿入された形でファイルが生成された
+- head タグの一番下に、`<script defer="defer" src="index.bundle.js"></script>` が挿入された形でファイルが生成された
+
+### index.html以外のファイル名にしたい場合
+
+html-webpack-plugin は、デフォルトで `index.html` ファイルを生成する
+
+違うファイル名を生成したいときは、`filename` オプションで指定する
+
+```javascript
+module.exports = {
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'about.html',
+      template: './templates/about.html',
+      inject: true,
+    }),
+  ],
+};
+```
+
+### 複数のファイルを生成したい場合
+
+plugin に、もうひとつ `new HtmlWebpackPlugin()` を書く
+
+```javascript
+module.exports = {
+  plugins: [
+    new HtmlWebpackPlugin(
+      template: './templates/index.html',
+      inject: true,
+    ),
+    new HtmlWebpackPlugin({
+      filename: 'about.html',
+      template: './templates/about.html',
+      inject: true,
+    }),
+  ],
+};
+```
