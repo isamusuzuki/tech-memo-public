@@ -201,3 +201,16 @@ src/components/App.vue
 ```
 
 これで、Bulma も JS コードの中にバンドルされる
+
+### Bulmaをバンドルしたら、すぐに警告が出るようになった
+
+```text
+WARNING in asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
+This can impact web performance.
+Assets: 
+  index.bundle.js (300 KiB)
+```
+
+デフォルトのWebpackのパフォーマンスヒントでは、244KB以上のバンドルファイルに警告が出る
+
+やっぱり「Head タグに CDN を書き込めばよくね？」に戻ってしまった
