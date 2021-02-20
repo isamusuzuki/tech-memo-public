@@ -1,6 +1,6 @@
 # Bulma 導入
 
-作成日 2021/02/17
+作成日 2021/02/17、更新日 2021/02/20
 
 ## 01. とりあえず公式サイトを写経してみる
 
@@ -150,3 +150,54 @@ Bulma は、js コードの中に埋め込まれるのではなく、Head タグ
   href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
 />
 ```
+
+## 03. とにかくカンタンに Bulma を導入する
+
+すでに Webpack が導入済みで、Vue の単一コンポーネントファイルも使えるようになっているものとする
+
+Bulma だけをインストールする
+
+```bash
+npm i -D bulma
+```
+
+src/components/App.vue
+
+```html
+<template>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">Hello, {{ name }}!!</h1>
+      <div class="field">
+        <div class="control">
+          <input
+            class="input"
+            type="text"
+            placeholder="お名前を入力してください"
+          />
+        </div>
+      </div>
+      <div class="field">
+        <button class="button is-primary">送信</button>
+      </div>
+    </div>
+  </section>
+</template>
+
+<script lang="ts">
+  import Vue from 'vue';
+  export default Vue.extend({
+    data() {
+      return {
+        name: 'Bacon',
+      };
+    },
+  });
+</script>
+
+<style>
+  @import '../../node_modules/bulma/css/bulma.min.css';
+</style>
+```
+
+これで、Bulma も JS コードの中にバンドルされる
