@@ -1,6 +1,6 @@
 # TypeScript を導入する
 
-作成日 2021/01/17
+作成日 2021/01/17、更新日 2021/02/21
 
 ## 01. TypeScript をインストールする
 
@@ -85,4 +85,31 @@ npx tsc
     "forceConsistentCasingInFileNames": true
   }
 }
+```
+
+## 03. TypeScriptを直接実行する
+
+ts-node を使うと、Typescriptのコードのまま、実行できる
+
+```bash
+npm i -D ts-node
+```
+
+ファイルの配置を変更する
+
+```text
+--avocado/
+    |--src/
+    |   `--main.ts  ... ここにあったものを
+    |
+    |--main.ts      ... 直接ここに置く
+    `--(main.js)    ... コンパイルしていたものは削除
+```
+
+```bash
+# 今まで実行していたコードを
+node main.js
+
+# ts-nodeを使ったものに変更する
+ts-node main.ts
 ```
