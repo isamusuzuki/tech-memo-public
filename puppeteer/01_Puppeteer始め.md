@@ -1,44 +1,40 @@
-# Puppeteer とは
+# Puppeteer を始める
 
-作成日 2020/02/10
+作成日 2020/02/10、更新日 2021/02/23
 
-## 01. Puppeteer 概要
+## 01. Puppeteer とは
 
-Chrome/Chromium をヘッドレスで操作する Node.js ライブラリ
+DevTools Protocol 経由で Chrome/Chromium を操作する Node ライブラリ
 
-ドキュメント => [https://pptr.dev/](https://pptr.dev/)
-
-リポジトリ => [https://github.com/puppeteer/puppeteer](https://github.com/puppeteer/puppeteer)
+公式サイト => [Puppeteer v7\.1\.0](https://pptr.dev/)
 
 ## 02. Puppeteer をセットアップする
 
 ### Node.js をインストールする
 
-[Chocolatey](https://chocolatey.org/)を使う => `choco install nodejs-lts -y`
+公式サイト => [Node\.js](https://nodejs.org/en/)
+
+Windows の場合は、公式サイトから LTS 版のインストーラーをダウンロードする
 
 ```bash
 node -v
-# => v12.15.0
+# => v14.15.5
 
 npm -v
-# => 6.13.4
-
-npm list -g
-# => C:\Users\user\AppData\Roaming\npm
-# => `-- (empty)
+# => 7.5.6
 ```
 
-### Puppeteer 用のプロジェクトを作成する
+### 新規プロジェクトを作成する
 
 ```bash
-mkdir puppeteer-sandbox
-cd puppeteer-sandbox
+mkdir avocado
+cd avocado
 
 # pacakge.jsonを作成する
 npm init -y
 
 # puppeteerをインストールする
-npm install puppeteer --save
+npm i -S puppeteer
 # => Chormium も一緒にインストールされる
 ```
 
@@ -60,37 +56,20 @@ JavaScript コードを自動で修正してくれる、Prettier という拡張
 }
 ```
 
-#### require 文にサジェストが表示される場合は、次の設定を追加する
-
-```javascript
-const puppeteer = require('puppeteer');
-```
-
-.vscode/settings.json
-
-```json
-{
-  "javascript.suggestionActions.enabled": false
-}
-```
-
-## 03. Puppeteer のもっとも簡単なコード
+## 03. Puppeteer の簡単なコードを書く
 
 ### スクリーンショットを PNG 画像として保存する
 
 ```javascript
 const puppeteer = require('puppeteer');
-const moment = require('moment');
-const nowStr = moment().format('YYYYMMDD_HHmmss');
 
 (async () => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await page.goto('https://www.example.com/');
-  await page.screenshot({ path: `../temp/${nowStr}.png` });
-
+  await page.goto('http://whatsmyuseragent.org/');
+  await page.screenshot({ path: `../temp/test.png` });
   await browser.close();
-  await console.log('done');
+  console.log('done');
 })().catch((e) => console.error(e));
 ```
 
@@ -108,9 +87,8 @@ puppeteer
     await page.goto('https://www.example.com/');
     const title = await page.title();
     await page.pdf({ path: `../temp/${title}.pdf`, format: 'A4' });
-
     await browser.close();
-    await console.log('done');
+    console.log('done');
   })
   .catch((e) => console.error(e));
 ```

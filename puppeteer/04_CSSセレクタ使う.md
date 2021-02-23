@@ -1,10 +1,33 @@
-# CSS セレクタを勉強する
+# CSS セレクタを使いこなす
 
 作成日 2020/02/10
 
+## 01. CSSセレクタを使ってページから要素を抜き出して何かする
+
+### ドロップダウンリストの選択を変更する
+
+これだけ XPath で実現できていない。CSS セレクタを使う
+
+```html
+<label
+  >Choose One:
+  <select id="choose1">
+    <option value="val1">Value 1</option>
+    <option value="val2">Value 2</option>
+    <option value="val3">Value 3</option>
+  </select>
+</label>
+```
+
+```javascript
+await page.select('select#choose1', 'val2');
+```
+
+## 02. CSS セレクタを勉強する
+
 MDN の解説ページ => [https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors)
 
-## セレクタ
+### セレクタ
 
 | type                 | syntax                   | comment                       |
 | -------------------- | ------------------------ | ----------------------------- |
@@ -14,7 +37,7 @@ MDN の解説ページ => [https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_
 | ユニバーサルセレクタ | `*`                      | すべての要素が合致            |
 | 属性セレクタ         | `[attr]`, `[attr=value]` | 属性で抽出                    |
 
-## コンビネーション
+### コンビネーション
 
 | syntax  | comment                                                    |
 | ------- | ---------------------------------------------------------- |

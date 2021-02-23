@@ -1,8 +1,47 @@
-# XPath 文法を勉強する
+# XPath を使いこなす
 
 作成日 2020/02/10
 
-## XPath の文法
+## 01. XPathを使ってページから要素を抜き出して何かする
+
+### 要素内のテキストを取得する
+
+```javascript
+const titles = await page.$x('//xpath');
+const title = await page.evaluate((x) => x.textContent, titles[0]);
+```
+
+`page.$x(expression)`の戻値は、`<Promise<Array<ElementHandle>>>`である \
+たとえ 1 個しか見つからなくても配列なので、ゼロ番目を抜き出す必要がある
+
+### テキストボックスに文言を書き込む
+
+```javascript
+const mail = await page.$x('//input[@id="mail"]');
+await mail[0].type(username_input, { delay: 30 });
+```
+
+### ボタンをクリックする
+
+```javascript
+const button = await page.$x('//input[@value="ログイン"]');
+await button[0].click();
+```
+
+#### 確実にボタンがあるとは言えないときの対処法
+
+```javascript
+// 「次へのページ」リンクを探す
+const nextLinks = await page.$x('//li[@class="a-last"]/a');
+
+if (nextLinks.length > 0) {
+  // リンクがあるなら遷移する
+  await nextLinks[0].click();
+  await page.waitForNavigation({ waitUntil: 'networkidle2' });
+}
+```
+
+## 02. XPath の文法
 
 参考記事 => [https://qiita.com/rllllho/items/cb1187cec0fb17fc650a](https://qiita.com/rllllho/items/cb1187cec0fb17fc650a)
 
@@ -23,8 +62,8 @@
 | `//td[@class="inventory"][1]/preceding-sibling::td`      | 指定した要素よりも前の兄弟要素         |
 | `//td[note(.=preceding::td)]`                            | 重複なく抽出                           |
 
-## XPath Helper とは
+## 03. XPath Helper とは
 
-実際のページで、XPath を検証できる便利な拡張機能
+実際のページで、XPath を検証できる便利な Chrome 拡張機能
 
 [https://chrome.google.com/webstore/detail/xpath-helper/hgimnogjllphhhkhlmebbmlgjoejdpjl?hl=ja](https://chrome.google.com/webstore/detail/xpath-helper/hgimnogjllphhhkhlmebbmlgjoejdpjl?hl=ja)
