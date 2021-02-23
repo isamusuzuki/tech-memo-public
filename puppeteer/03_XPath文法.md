@@ -1,8 +1,8 @@
-# XPath と CSS セレクタ
+# XPath 文法を勉強する
 
 作成日 2020/02/10
 
-## 01. XPath を勉強する
+## XPath の文法
 
 参考記事 => [https://qiita.com/rllllho/items/cb1187cec0fb17fc650a](https://qiita.com/rllllho/items/cb1187cec0fb17fc650a)
 
@@ -23,31 +23,8 @@
 | `//td[@class="inventory"][1]/preceding-sibling::td`      | 指定した要素よりも前の兄弟要素         |
 | `//td[note(.=preceding::td)]`                            | 重複なく抽出                           |
 
-### XPath Helper とは
+## XPath Helper とは
 
 実際のページで、XPath を検証できる便利な拡張機能
 
 [https://chrome.google.com/webstore/detail/xpath-helper/hgimnogjllphhhkhlmebbmlgjoejdpjl?hl=ja](https://chrome.google.com/webstore/detail/xpath-helper/hgimnogjllphhhkhlmebbmlgjoejdpjl?hl=ja)
-
-## 02. CSS セレクタを勉強する
-
-MDN の解説ページ => [https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors)
-
-### セレクタ
-
-| type                 | syntax                   | comment                       |
-| -------------------- | ------------------------ | ----------------------------- |
-| Type セレクタ        | `eltname`                | 要素名が合致したもの全員      |
-| Class セレクタ       | `.classname`             | class 属性が合致したもの全員  |
-| ID セレクタ          | `#idname`                | id 属性が合致。一意であるはず |
-| ユニバーサルセレクタ | `*`                      | すべての要素が合致            |
-| 属性セレクタ         | `[attr]`, `[attr=value]` | 属性で抽出                    |
-
-### コンビネーション
-
-| syntax  | comment                                                    |
-| ------- | ---------------------------------------------------------- |
-| `A B`   | A の中にある B をすべて抽出                                |
-| `A > B` | A の直接の子供である B をすべて抽出                        |
-| `A ~ B` | A の直接または間接的に連なる B をすべて抽出。A と B は親戚 |
-| `A + B` | A の直後にくる B を抽出。一意のはず。A と B は同じ親の兄弟 |
