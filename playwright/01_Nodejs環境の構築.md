@@ -44,6 +44,13 @@ npm i -D playwright-chromium
         `--ffmpeg-1005/
 ```
 
+### インストールされた Playwright のバージョンを確認する
+
+```bash
+npx playwright --version
+# => Version 1.9.1
+```
+
 ### Node.js コードの動作確認
 
 firstscript.js

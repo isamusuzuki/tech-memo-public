@@ -87,6 +87,16 @@ playwright install chromium
         `--ffmpeg-1005/
 ```
 
+### インストールされた Playwright のバージョンを確認する
+
+```bash
+cd ~/playwright-dojo
+source venv/bin/activate
+
+playwright --version
+# => Version 1.9.1-1614225150000
+```
+
 ### Python コードの動作確認
 
 ```bash
