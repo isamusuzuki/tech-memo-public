@@ -1,15 +1,15 @@
 # dtype
 
-作成日 2020/10/15
+作成日 2020/10/15、更新日 2021/02/28
 
 ## 01. dtype とは
 
 [pandas のデータ型 dtype 一覧と astype による変換（キャスト） \| note\.nkmk\.me](https://note.nkmk.me/python-pandas-dtype-astype/)
 
-> pandas.Series は一つのデータ型 dtype を、\
+> pandas.Series は一つのデータ型 dtype を、
 > panas.DataFrame は各列ごとにそれぞれデータ型 dtype を保持している。
 >
-> dtype は、コンストラクタで新たにオブジェクトを生成する際や csv ファイルなどから\
+> dtype は、コンストラクタで新たにオブジェクトを生成する際や csv ファイルなどから
 > 読み込む際に指定したり、astype()メソッドで変換（キャスト）したりすることができる。
 
 ### dtype 一覧
@@ -20,18 +20,16 @@
 - ブール型    ... bool
 - Python オブジェクト型 ... object
 
-日付型はない。文字列型もない
+文字列型はない。日付型もない
 
-### 日付型を導入する
-
-[Pandas で時間や日付データに変換する to_datetime 関数の使い方 \- DeepAge](https://deepage.net/features/pandas-to-datetime.html)
-
-> Pandas において文字列データや数値データを、日付データである datetime64 型に変換する
->
-> datetime64 型は Python にある timestamp 型を継承したクラス
+## 02. データ型を変更する
 
 ```python
-df['order_at'] = pd.to_datetime(df['order_at'])
+import pandas as pd
+
+df = pd.read_csv('temp/data.csv', encoding='cp932', dtype=object)
+
+df["年齢float"] = df["年齢"].astype(float)
 ```
 
 ### エラーに対処する
