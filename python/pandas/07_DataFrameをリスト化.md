@@ -1,4 +1,4 @@
-# DataFrame を変換する
+# DataFrame をリスト化する
 
 作成日 2021/01/07
 
@@ -7,11 +7,9 @@
 ```python
 import pandas as pd
 
-class HaisouSolver():
-    def __init__(self):
-        csv_file = 'apps/haisou/data.csv'
-        df = pd.read_csv(csv_file, encoding='utf-8')
-        self.haisou_data = df.to_dict(orient='records')
+csv_file = 'apps/haisou/data.csv'
+df1 = pd.read_csv(csv_file, encoding='utf-8')
+haisou_data = df1.to_dict(orient='records')
 ```
 
 ## 02. DataFrame の 1 列分をリストに変換する

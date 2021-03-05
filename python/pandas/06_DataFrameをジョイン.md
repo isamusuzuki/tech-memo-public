@@ -1,9 +1,10 @@
-# DataFrame 同士を結合する
+# 2 つの DataFrame をジョインする
 
 作成日 2021/01/20
 
-- `df.append()`メソッドが使える
-- 最初に空のDataFrameを用意することで繰り返しが使える
+- ジョインは縦方向の結合
+- `DataFrame.append()`メソッドが使える
+- 最初に空の DataFrame を用意することで繰り返しが使える
 
 ```python
 import os
