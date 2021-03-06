@@ -2,14 +2,14 @@
 
 作成日 2019/02/08、更新日 2020/05/16
 
-## Markdown ファイルをプレビューする
+## 01. Markdown ファイルをプレビューする
 
 - `ctrl+k,v`は、サイドバイサイドでプレビューを開く（かな漢字変換がオフになっていること）
   - プレビューを開いた後は、右クリックが使える
 - `ctrl+shift+v`は、ひきつづき、純正のプレビューが別タブで表示される
 - `ctrl+shift+p`でコマンドパレットを開き、`Markdown Preview Enhanced`を検索すると、たくさんコマンドが用意されている
 
-## Emoji や Font Awesome が使える
+## 02. Emoji や Font Awesome が使える
 
 ```text
 :smile:
@@ -21,7 +21,7 @@
 :fa-user:
 :fa-car:
 
-## Markdown 内の作図機能
+## 03. Markdown 内の作図機能
 
 [Diagrams \- Markdown Preview Enhanced](https://shd101wyy.github.io/markdown-preview-enhanced/#/diagrams)
 

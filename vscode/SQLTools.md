@@ -4,7 +4,6 @@
 
 ## 01. SQLTools とは
 
-Visual Studio Code の拡張機能\
 データベースに接続して SQL クエリーを投げて結果を取得できる
 
 公式トップ => [SQLTools](https://vscode-sqltools.mteixeira.dev/)

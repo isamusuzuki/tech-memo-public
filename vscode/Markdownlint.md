@@ -2,11 +2,11 @@
 
 作成日 2019/12/09
 
-## Markdownlint とは
+## 01. Markdownlint とは
 
 ルールに基づいて Markdown 文を評価する
 
-## どのようなルールがあるのか
+## 02. どのようなルールがあるのか
 
 [markdownlint/Rules\.md at master · DavidAnson/markdownlint](https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md)
 
@@ -20,7 +20,7 @@
 - MD041 - First line in file should be a top level heading
 - MD047 - Files should end with a single newline character
 
-## ルール適用を除外するには
+## 03. ルール適用を除外するには
 
 除外したい Markdown ファイルに HTML コメントを追加する
 
