@@ -1,6 +1,6 @@
 # Python 環境の構築
 
-作成日 2021/02/28
+作成日 2021/02/28、更新日 2021/03/09
 
 ## 01. Playwright をインストールする
 
@@ -104,6 +104,7 @@ cd ~/playwright-dojo
 source venv/bin/activate
 
 python firstscript.py
+# => temp/firstscript.py.png が生成されれば成功
 ```
 
 firstscript.py
