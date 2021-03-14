@@ -1,6 +1,6 @@
 # Node.js 環境の構築
 
-作成日 2021/02/28
+作成日 2021/02/28、更新日 2021/03/09
 
 ## 01. Playwright をインストールする
 
@@ -9,16 +9,16 @@
 Node.js LTS v14 がインストールされていることが前提
 
 ```bash
-cd ~
-mkdir playwright-dojo
-cd ~/playwright-dojo
-npm init -y
-
 node -v
 # => v14.16.0
 
 npm -v
-# => 7.6.0
+# => 7.6.1
+
+cd ~
+mkdir playwright-dojo
+cd ~/playwright-dojo
+npm init -y
 
 # Chromium/Webkit/Firefox の3つのブラウザをインストールするので時間がかかる
 # npm i -D playwright
@@ -52,6 +52,11 @@ npx playwright --version
 ```
 
 ### Node.js コードの動作確認
+
+```bash
+node firstscript.js
+# => temp/firstscript.js.png が生成されれば成功
+```
 
 firstscript.js
 
