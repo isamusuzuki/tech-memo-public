@@ -1,6 +1,6 @@
 # groupby メソッドを使いこなす
 
-作成日 2020/10/28、更新日 2021/03/03
+作成日 2020/10/28、更新日 2021/03/16
 
 ## 01. groupby メソッドとは
 
@@ -47,9 +47,11 @@ df3.to_csv(
 - `index`引数がないことに注意。`index=False`してしまったら、groupby した値が消えてしまう
 - `index_label`引数で、indexにラベルを付けることができる
 
-## 03. GROUPBY した後のその値だけが欲しい場合
+## 03. GROUPBY したその値だけが欲しい場合
 
-DataFrame の index をリスト化すればよい
+つまり、ある列に登場するユニークな値だけをリスト化したい場合
+
+GROUPBYした後の DataFrame の index をリスト化すればよい
 
 ```python
 import json
@@ -61,4 +63,24 @@ df2 = df1.groupby(['shop_name']).count()
 shop_name_list = df2.index.tolist()
 with open('shop_name_list.json', mode='w', encoding='utf-8') as f:
     f.write(json.dumps(shop_name_list, ensure_asii=False, indent=4))
+```
+
+## 04. GROUPBY した後、index になった項目を列に戻す
+
+`DataFrame.reset_index()` メソッドは、インデックスを0始まりの連番に振りなおすだけでなく、元のインデックスを新しい列に変更する（列名は`index`で固定）
+
+```python
+import pandas as pd
+
+df1 = pd.read_csv('aaa.csv', encoding='cp932')
+# item_codeをGROUPBYして、残りの列をカウントして、sku_code列だけ残す
+df2 = df1.groupby('item_code').count()[['sku_code']]
+# インデックスを振りなおす。item_codeは列になる
+df3 = df2.reset_index()
+# 列名を変更する
+df4 = df3.rename(columns={
+    'index': 'item_code',
+    'sku_code': 'sku_count'
+})
+sku_count_list = df4.to_dict(orient='records')
 ```
