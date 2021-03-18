@@ -4,17 +4,22 @@
 
 ## 01. 課題
 
-1 行づつデータを取り込んで、API に問い合わせをし、その結果を新しい列に取り込みたい
+- 1 行づつJANコードを読み込んで、API に問い合わせをし、その結果を新しい列に取り込みたい
+- その API にはスロットルがあるので、1 回づつ待ち時間を入れたい
 
-その API にはスロットルがあるので、1 回づつ待ち時間を入れたい。あえて行数だけ繰り返すコードを書く
+=> あえて行数分、繰り返すコードを書く
 
 ## 02. サンプルコード
+
+- `df.shape[0]` ... 行数を知る
+- `df.columns.get_loc(a)` ... 列名から列番号を取得する
+- `df.iat[i,j]` ... 行番号と列番号でカラムを指定する
 
 ```python
 import pandas as pd
 
 # Excelファイルを読む
-df = pd.read_excel(INPUT_FILE)
+df = pd.read_excel(excel_file))
 
 # 行数を知る
 row_count = df.shape[0]
@@ -47,9 +52,3 @@ print(f'「あり」だけの行数 => {df1.shape[0]}')
 df2 = df[df['arinashi'] == 'NASHI']
 print(f'「なし」だけの行数 => {df2.shape[0]}')
 ```
-
-## 03. ポイント
-
-- `df.shape[0]` ... 行数を知る
-- `df.columns.get_loc(a)` ... 列名から列番号を取得する
-- `df.iat[i,j]` ... 行番号と列番号でカラムを指定する
