@@ -1,12 +1,12 @@
-# Puppeteer を始める
+# Puppeteer を開始する
 
-作成日 2020/02/10、更新日 2021/02/23
+作成日 2020/02/10、更新日 2021/03/19
 
 ## 01. Puppeteer とは
 
 DevTools Protocol 経由で Chrome/Chromium を操作する Node ライブラリ
 
-公式サイト => [Puppeteer v7\.1\.0](https://pptr.dev/)
+公式サイト => [https://pptr.dev/](https://pptr.dev/)
 
 ## 02. Puppeteer をセットアップする
 
@@ -18,10 +18,10 @@ Windows の場合は、公式サイトから LTS 版のインストーラーを�
 
 ```bash
 node -v
-# => v14.15.5
+# => v14.16.0
 
 npm -v
-# => 7.5.6
+# => 7.6.1
 ```
 
 ### 新規プロジェクトを作成する
@@ -35,25 +35,20 @@ npm init -y
 
 # puppeteerをインストールする
 npm i -S puppeteer
-# => Chormium も一緒にインストールされる
 ```
 
-### Visual Studio Code を設定する
+=> Chormium も一緒にインストールされるので時間がかかる
 
-JavaScript コードを自動で修正してくれる、Prettier という拡張機能をインストールする
+### Chromiumのありか
 
-[Prettier \- Code formatter \- Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-
-どのように修正して欲しいかは、カスタマイズ可能\
-プロジェクトのルートディレクトリに`.prettierrc`というファイルを置く
-
-```json
-{
-  "trailingComma": "es5",
-  "tabWidth": 4,
-  "semi": true,
-  "singleQuote": true
-}
+```text
+--avocado/
+  `--node_modules/
+      `--puppeteer/
+          `--.local-chromium/
+                `--linux-856583/
+                    `--chrome-linux/
+                        `--chrome
 ```
 
 ## 03. Puppeteer の簡単なコードを書く

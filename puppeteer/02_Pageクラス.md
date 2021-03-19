@@ -1,8 +1,8 @@
 # Page クラス
 
-作成日 2020/02/10
+作成日 2020/02/10、更新日 2021/03/19
 
-公式サイト => [Page](https://pptr.dev/#?product=Puppeteer&version=v7.1.0&show=api-class-page)
+公式サイト => [Page](https://pptr.dev/#?product=Puppeteer&show=api-class-page)
 
 ## 01. ページサイズを変更する
 
@@ -25,7 +25,10 @@ page.setUserAgent(chrome_win10);
 ## 03. ページ遷移する
 
 ```javascript
-await page.goto('https://www.example.com/', { waitUntil: 'networkidle2' });
+await page.goto(
+  'https://www.example.com/', 
+  { waitUntil: 'networkidle2' }
+);
 ```
 
 ## 04. ポップアップ画面に移動する
