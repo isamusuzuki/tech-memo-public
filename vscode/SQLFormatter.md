@@ -1,4 +1,4 @@
-# SQL Formatter
+# SQL Formatter 機能拡張
 
 作成日 2020/11/20
 
@@ -68,4 +68,4 @@ with conn.cursor() as cursor:
     db_results = cursor.fetchall()
 ```
 
-=>  結論: 問題ない
+=> 結論: 問題ない

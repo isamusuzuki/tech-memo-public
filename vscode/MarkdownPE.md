@@ -1,4 +1,4 @@
-# Markdown Preview Enhanced
+# Markdown Preview Enhanced 機能拡張
 
 作成日 2019/02/08、更新日 2020/05/16
 
