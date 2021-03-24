@@ -67,25 +67,7 @@ ssh-keyscan -H example.com >> ~/.ssh/known_hosts
 ssh-keygen -R example.com
 ```
 
-## 04. authorized_keys ファイル
-
-自分が、SSH 接続される場合に、相手側の公開鍵を、このファイルに書き込んでおくと、\
-公開鍵でのログインが可能になる
-
-公開鍵を登録した後、ssh の設定を変更して、パスワード認証を使えなくする方法は、以下の通り
-
-```bash
-cat ~/id_rsa.pub >> ~/.ssh/authorized_keys
-chmod 600 ~/.ssh/authorized_keys
-
-sudo vi /etc/ssh/sshd_config
-# => PasswordAuthentication yesをnoに変更する
-
-# 再起動が必要
-sudo shutdown -r now
-```
-
-## 05. SSH 鍵の鍵指紋を確認する
+## 04. SSH 鍵の鍵指紋を確認する
 
 ```bash
 ssh-keygen -l -E md5 -f ~/.ssh/id_rsa
@@ -94,38 +76,3 @@ ssh-keygen -l -E md5 -f ~/.ssh/id_rsa.pub
 
 - 公開鍵、秘密鍵のどちらを指定しても、鍵指紋は同じ結果になる
 - `-E`オプションを使い、`MD5/hex`で表示させると、GitHub/GitLab で表示されているものと同じになる
-
-## 06. 別 PC から SSH 接続できるようにする
-
-```bash
-# IPアドレスを調べる
-ip address
-
-# sshdをインストールする
-sudo apt install aptitude
-sudo aptitude install ssh
-systemctl status ssh
-```
-
-## 07. SSH Port Forwarding
-
-紹介記事を読む
-
-[Intel NUC で自宅 Ubuntu 開発環境構築と SSH Port Forwarding によるアクセス \| blog\.jxck\.io](https://blog.jxck.io/entries/2019-11-03/nuc-dev-server-port-forwarding.html)
-
-> 自宅内に置いているため、固定 IP などはない。\
-> しかし、せっかく作った環境は、外出先等でも使いたいため、外からもアクセスできるようにしたい。\
-> すでに Sakura VPS には固定 IP を振っているため、これを用いた最も安価で簡単な方法は SSH の Portfowarding だろう。\
-> NUC と VPS の SSH を張りっぱなしにしておき、laptop からの SSH をそこを通して NUC に届けるのが Port Fowarding だ。
-
-```bash
-# nuc から vps
-ssh user@vps -NR 22222:localhost:22
-# => 繋ぎっぱなしにする
-
-# laptop から vps
-ssh user@vps
-
-# vps に入ったあと vps から nuc
-ssh user@localhost -p 22222
-```
