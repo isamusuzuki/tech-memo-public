@@ -1,56 +1,19 @@
 # Colaboratory
 
-作成日 2019/08/04
+作成日 2019/08/04、更新日 2021/03/26
 
 ## 01. Colaboratory とは
 
-設定不要の Jupyter ノートブック環境\
-作成したノートブックは、Google ドライブに保存される\
-Python 2.7 と Python 3.6 に対応している
+- 設定不要の Jupyter ノートブック環境
+- 作成したノートブックは、Google ドライブに保存される
+- Python 3.7 に対応している
+- 下の公式ガイドも、Colaboratory の 1 ページとなっている
 
-公式ガイドも、Colaboratory の 1 ページとなっている
+公式ガイド => [Colaboratory へようこそ \- Colaboratory](https://colab.research.google.com/notebooks/welcome.ipynb?hl=ja)
 
-[Colaboratory へようこそ \- Colaboratory](https://colab.research.google.com/notebooks/welcome.ipynb?hl=ja)
+## 03. 紹介記事を読む 1
 
-## 02. 再挑戦した場合の新規ノートブック作成方法
-
-すでに Google Drive と Colaboratory の連携は終わっているが、\
-連携させたフォルダを削除してしまったところから、再挑戦したいと思った
-
-- 先に実行環境に行く
-- オレンジ色のダイアログが登場する
-- 右下にある「PYTHON3 の新しいノートブック」をクリック
-- 新しいノートブックが開く
-- メニュー ＞ ファイル ＞ 保存
-- Google Drive に Colab Notebooks フォルダができていてその中に`Untitled0.ipynb`が保存されていた
-- ノートブックを開くときは、ファイルを右クリック ＞ アプリで開く ＞ Google Colaboratory
-
-### システムアリアスとは
-
-よく使うコマンドへのショートカットを、システムアリアスという
-
-```bash
-!os /etc/os-release
-# NAME="Ubuntu"
-# VERSION="18.04.2 LTS (Bionic Beaver)"
-
-!python --version
-# Pytrhon 3.6.8
-
-!pip list
-# matplotlib               3.0.3
-# numpy                    1.16.4
-# pandas                   0.24.2
-# scipy                    1.3.0
-# seaborn                  0.9.0
-# statsmodels              0.10.1
-```
-
-実行環境 => [https://colab.research.google.com/](https://colab.research.google.com/)
-
-## 03. 紹介記事 1 を読む
-
-[Google Colab の知っておくべき使い方](https://www.codexa.net/how-to-use-google-colaboratory/)
+紹介記事 => [Google Colab の知っておくべき使い方](https://www.codexa.net/how-to-use-google-colaboratory/)
 
 ### Google Colaboratory とは
 
@@ -112,9 +75,9 @@ device_lib.list_local_devices()
 !pip list
 ```
 
-## 04. 紹介記事 2 を読む
+## 04. 紹介記事を読む 2
 
-[【秒速で無料 GPU を使う】深層学習実践 Tips on Colaboratory \- Qiita](https://qiita.com/tomo_makes/items/b3c60b10f7b25a0a5935)
+紹介記事 => [【秒速で無料 GPU を使う】深層学習実践 Tips on Colaboratory \- Qiita](https://qiita.com/tomo_makes/items/b3c60b10f7b25a0a5935)
 
 Colaboratory を立ち上げると、時間限定で下記の環境が割り当てられる。
 
