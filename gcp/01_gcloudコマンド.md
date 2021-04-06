@@ -1,6 +1,6 @@
 # gcloud コマンド
 
-作成日 2019/12/06、更新日 2020/05/18
+作成日 2019/12/06、更新日 2021/04/06
 
 ## 01. gcloud コマンドとは
 
@@ -47,13 +47,7 @@ gcloud config configurations delete config2
 #=> Deleted [config2].
 ```
 
-## 03. Ubuntu にインストールする
-
-以下のドキュメントを参照する
-
-[apt\-get を使用したインストール（Debian と Ubuntu のみ）  \|  Cloud SDK のドキュメント](https://cloud.google.com/sdk/docs/downloads-apt-get?hl=ja)
-
-## 04. Windows にインストールする
+## 03. Windows にインストールする
 
 バージョン 274.0.0 から、gcloud コマンドの Python3.5 系以降での動作が GA サポートとなった
 
@@ -95,3 +89,34 @@ gcloud init
 ### gcloud コマンドの更新
 
 `gcloud components update`コマンドは、Git Bash では動作しない。必ず PowerShell で実行すること
+
+## 04. Ubuntu にインストールする
+
+Windows 版と同様に、「バージョニングされたアーカイブからのインストール」を利用する
+
+[Linux 用のクイックスタート  \|  Cloud SDK のドキュメント  \|  Google Cloud](https://cloud.google.com/sdk/docs/quickstart-linux?hl=ja)
+
+最新のバージョン番号は、以下のページに記載されている
+
+[バージョニングされたアーカイブからのインストール  \|  Cloud SDK のドキュメント  \|  Google Cloud](https://cloud.google.com/sdk/docs/downloads-versioned-archives?hl=ja)
+
+```bash
+curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-334.0.0-linux-x86_64.tar.gz
+
+tar zxvf google-cloud-sdk-334.0.0-linux-x86_64.tar.gz google-cloud-sdk
+
+./google-cloud-sdk/install.sh
+# => ~/.bashrc に必要な設定が書き込まれる
+```
+
+いったんシェルをぬけて、変更を反映させる
+
+```bash
+which gcloud
+/home/<user>/google-cloud-sdk/bin/gcloud
+
+gcloud version
+gcloud components list
+gcloud components update
+gcloud config configurations list
+```
