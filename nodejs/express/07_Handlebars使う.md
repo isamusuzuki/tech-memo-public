@@ -6,7 +6,7 @@
 
 Express 用のテンプレートエンジン
 
-公式サイト => [express\-handlebars/express\-handlebars: A Handlebars view engine for Express which doesn't suck\.](https://github.com/express-handlebars/express-handlebars)
+公式サイト => [https://github.com/express-handlebars/express-handlebars](https://github.com/express-handlebars/express-handlebars)
 
 インストール
 
