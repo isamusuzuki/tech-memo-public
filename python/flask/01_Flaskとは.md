@@ -1,18 +1,16 @@
-# Flask の基本
+# Flask
 
-作成日 2020/03/26
+作成日 2020/03/26、更新日 2021/05/14
 
 ## 01. Flask とは
 
 WSGI Web アプリケーション フレームワーク
 
-公式トップ => [Flask \| The Pallets Projects](https://palletsprojects.com/p/flask/)
+公式トップ => [https://palletsprojects.com/p/flask/](https://palletsprojects.com/p/flask/)
 
-ドキュメント => [Welcome to Flask — Flask Documentation \(1\.1\.x\)](https://flask.palletsprojects.com/en/1.1.x/)
+ドキュメント => [https://flask.palletsprojects.com/en/2.0.x/](https://flask.palletsprojects.com/en/2.0.x/)
 
 > Flask は、 Jinja2 テンプレートエンジンと Werkzeug WSGI ツールキットに 依存している
-
-パッケージトップ => [Flask · PyPI](https://pypi.org/project/Flask/)
 
 インストール => `pip install Flask`
 
@@ -39,7 +37,8 @@ FLASK_APP=hello.py flask run
 
 ### テンプレートファイルの置き場所
 
-テンプレートファイルを格納するディレクトリは、`templates` がデフォルトに設定されている\
+テンプレートファイルを格納するディレクトリは、`templates` がデフォルトに設定されている
+
 `template_folder` 引数を使えば、変更可能
 
 ```python
@@ -48,7 +47,8 @@ app = Flask(__name__, template_folder='resources')
 
 #### 静的ファイルの置き場所
 
-静的ファイルを格納するディレクトリは、デフォルトで`static` がデフォルトに設定されている\
+静的ファイルを格納するディレクトリは、デフォルトで`static` がデフォルトに設定されている
+
 `static_folder` 引数を使えば、変更可能
 
 ```python
@@ -82,8 +82,8 @@ detail.html
 
 ### 二重中括弧 `{{}}` に要注意
 
-Vue.js でテキスト展開に使っている二重中括弧は、Jinja テンプレートの基本要素でもある\
-Jinja テンプレートを通過したコンテンツに、二重中括弧は残っていないので Vue.js では使えない
+- Vue.js でテキスト展開に使っている二重中括弧は、Jinja テンプレートの基本要素でもある
+- Jinja テンプレートを通過したコンテンツに、二重中括弧は残っていないので Vue.js では使えない
 
 ## 04. HTML ファイルを静的ファイルとして使う
 

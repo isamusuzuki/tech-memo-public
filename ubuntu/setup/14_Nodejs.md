@@ -4,7 +4,7 @@
 
 ## 01. 最新の LTS のバージョンを調べる
 
-公式サイト => [Node\.js](https://nodejs.org/en/)
+公式サイト => [https://nodejs.org/en/](https://nodejs.org/en/)
 
 最新の LTS バージョンは `14.15.4` だった
 
@@ -21,7 +21,7 @@ apt search nodejs
 
 Nodesource は、Linux 用の Node.js のバイナリーを配布しているところ
 
-公式サイト => [GitHub \- nodesource/distributions: NodeSource Node\.js Binary Distributions](https://github.com/nodesource/distributions)
+公式サイト => [https://github.com/nodesource/distributions](https://github.com/nodesource/distributions)
 
 ```bash
 curl -sL https://deb.nodesource.com/setup_lts.x | sudo -E bash -

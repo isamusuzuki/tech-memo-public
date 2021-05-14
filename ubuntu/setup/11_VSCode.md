@@ -8,7 +8,7 @@ Ubuntu Software からインストールしてはいけない。日本語が入�
 
 本家サイトから deb パッケージをダウンロードする
 
-[Visual Studio Code \- Code Editing\. Redefined](https://code.visualstudio.com/)
+[https://code.visualstudio.com/](https://code.visualstudio.com/)
 
 ```bash
 cd ~/Downloads
@@ -21,7 +21,7 @@ sudo apt install ./code_1.50.1-1602600906_amd64.deb
 
 ### Roboto Mono をインストールする
 
-[Roboto Mono \- Google Fonts](https://fonts.google.com/specimen/Roboto+Mono)
+[https://fonts.google.com/specimen/Roboto+Mono](https://fonts.google.com/specimen/Roboto+Mono)
 
 ページ右上 ＞ Download family ＞ Roboto_Mono.zip を入手
 
@@ -42,13 +42,11 @@ fc-list | grep "Roboto Mono"
 
 もしインストールが必要な場合は、以下から入手できる
 
-[Google Noto Fonts](https://www.google.com/get/noto/)
+[https://www.google.com/get/noto/](https://www.google.com/get/noto/)
 
 "Noto Sans CJK JP" と検索する。"Noto Sans Mono CJK JP" はこの中に含まれている
 
 ### Visual Studio Code の設定を変更する
-
-※ Settings Sync（設定同期）をオンにしている場合は、以下の作業は不要
 
 左下歯車アイコン ＞ 設定 ＞ 設定の検索 ＞ Editor: Font Family
 
