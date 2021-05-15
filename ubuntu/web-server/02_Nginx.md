@@ -4,15 +4,15 @@
 
 ## 01. 目的
 
+下記の構成で、インターネット上に Web サーバーを構築する
+
 - OS ... Ubuntu 20.04 LTS
 - 言語 ... Python 3.8
 - Web フレームワーク ... Flask
 - WSGI サーバー ... Gunicorn
 - リバースプロキシーサーバー ... Nginx
 
-上記の構成で、インターネット上に Web サーバーを構築する
-
-Let's Encrypt の無償の SSL 証明書を使って、HTTPS 通信を達成する
+Let's Encrypt の SSL 証明書（無料）を使って、HTTPS 通信を達成する
 
 ### 前提条件
 

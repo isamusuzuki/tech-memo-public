@@ -4,18 +4,18 @@
 
 ## 01. 目的
 
+下記の構成で、Web サーバーを構築する
+
 - OS ... Ubuntu 20.04 LTS
 - 言語 ... Python 3.8
 - Web フレームワーク ... Flask
 - WSGI サーバー ... Gunicorn
 
-上記の構成で、Web サーバーを構築する
-
 ### 前提条件
 
 プロジェクトのフォルダ名は `avocado` とする
 
-## 02. Python 　環境を整える
+## 02. Python 環境を整える
 
 ```bash
 python3 --version
@@ -35,7 +35,7 @@ source venv/bin/activate
 pip install wheel
 
 # FlaskとGunicornをインストールする
-pip install flask gunicorn
+pip install Flask gunicorn
 ```
 
 ## 03. Python スクリプトを書く
@@ -76,7 +76,7 @@ gunicorn --bind 0.0.0.0:5000 wsgi:app
 
 `Ctrl+C` で停止する
 
-## 04. Gunicorn をサービスにする
+## 04. Gunicorn を systemd のサービスにする
 
 systemd の設定ファイルを編集する
 
