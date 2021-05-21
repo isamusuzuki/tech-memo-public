@@ -25,7 +25,7 @@ sudo htpasswd -c /etc/nginx/.htpasswd USERNAME
 
 /etc/nginx/sites-available/avocado
 
-```text
+```bash
 server {
   listen 80 default_server;
   listen [::]:80 default_server;
@@ -33,7 +33,7 @@ server {
   return 301 https://$host$request_uri;
 }
 
-// geoブロックで、条件設定を行う
+# geoブロックで、条件設定を行う
 geo $authentication {
   default "Authentication required";
   100.100.100.101 "off";
@@ -51,8 +51,8 @@ server {
   ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 
   location / {
-    auth_basic $authentication;                 // この行を追加する             
-    auth_basic_user_file /etc/nginx/.htpasswd;  // この行を追加する
+    auth_basic $authentication;                 # この行を追加する
+    auth_basic_user_file /etc/nginx/.htpasswd;  # この行を追加する
     include proxy_params;
     proxy_pass http://unix:/home/ubuntu/avocado/avocado.sock;
   }

@@ -52,8 +52,7 @@ app.config['JSON_SORT_KEYS'] = False
 @app.route('/')
 def index():
 return jsonify({
-  'status': 200,
-  'message': 'オーケー、成功！'
+  'status': 200, 'message': 'オーケー、成功！'
 })
 ```
 
@@ -86,7 +85,7 @@ sudo vi /etc/systemd/system/avocado.service
 
 /etc/systemd/system/avocado.service
 
-```text
+```bash
 [Unit]
 Description=Gunicorn instance to serve avocado
 After=network.target

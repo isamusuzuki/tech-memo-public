@@ -40,12 +40,12 @@ sudo vi /etc/nginx/sites-available/default
 
 /etc/nginx/sites-available/default
 
-```text
+```bash
 server {
     listen 80 default_server;
     listen [::]:80 default_server;
-    # server_name _;                  // この行をコメントアウトする
-    server_name avocado.example.com;  // この行を追加する
+    # server_name _;                  # この行をコメントアウトする
+    server_name avocado.example.com;  # この行を追加する
 }
 ```
 
@@ -78,28 +78,28 @@ Certbot は Nginx の設定ファイル (`/etc/nginx/sites-available/default`) �
 
 /etc/nginx/sites-available/avocado
 
-```text
-// http通信は、こちらの設定
+```bash
+# http通信は、こちらの設定
 server {
   listen 80 default_server;
   listen [::]:80 default_server;
   server_name avocado.example.com;
-  // 以下を追加する
-  return 301 https://$host$request_uri;  // https通信に転送する
+  # 以下を追加する
+  return 301 https://$host$request_uri;  # https通信に転送する
 }
 
-// https通信は、こちらの設定
+# https通信は、こちらの設定
 server {
   listen [::]:443 ssl ipv6only=on;
   listen 443 ssl;
   server_name avocado.example.com;
-  // 以下は、certbot が書いたコードをそのままコピペする
+  # 以下は、certbot が書いたコードをそのままコピペする
   ssl_certificate /etc/letsencrypt/live/avocado.example.com/fullchain.pem;
   ssl_certificate_key /etc/letsencrypt/live/avocado.example.com/privkey.pem;
   include /etc/letsencrypt/options-ssl-nginx.conf;
   ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 
-  // 以下は、Gunicornへの転送を行う
+  # 以下は、Gunicornへの転送を行う
   location / {
     include proxy_params;
     proxy_pass http://unix:/home/ubuntu/avocado/avocado.sock;
