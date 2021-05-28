@@ -1,12 +1,14 @@
-# FileUpload の記述
+# FileUpload を記述する
 
-作成日 2021/05/27
+作成日 2021/05/28
 
-## FileUpload を記述する
+## マニュアルを読む
 
-[File Upload](https://swagger.io/docs/specification/describing-request-body/file-upload/)
+マニュアル => [File Upload](https://swagger.io/docs/specification/describing-request-body/file-upload/)
 
-### 自分で正解はこれかなと思うもの
+Upload via Multipart Requests の 1 番目の記述が、自分がやっていることに沿っているように思った
+
+### 自分で正解はこれかなと思った記述
 
 ```yaml
 paths:
@@ -16,19 +18,16 @@ paths:
         content:
           multipart/form-data:
             schema:
-              uploadFile:
-                type: object
-                properties:
-                  type: object
-                  properties:
-                    filename:
-                      type: string
-                      format: binary
+              type: object
+              properties:
+                uploadFile:
+                  type: string
+                  format: binary
 ```
 
-## 実際のところ、FileUpload はどう実装されているか
+## 自分は、FileUpload をどう実装しているか
 
-### クライアントサイド
+### クライアントサイド HTML パート
 
 - 基本 `<input type="file">` でオーケー
 - その他はすべて Bulma の脚色
@@ -54,6 +53,8 @@ paths:
   </label>
 </div>
 ```
+
+### クライアントサイド JavaScript パート
 
 - `FormData()` コンストラクターを使って、FormData オブジェクトを生成する
 - `FormData.append()` メソッドを使って、キーと値の組を追加する
@@ -87,9 +88,9 @@ const app = new Vue({
 })
 ```
 
-### サーバーサイド
+### サーバーサイド Python パート
 
-- Python Flask Blueprint で記述
+- Flask を利用
 - [Uploading Files — Flask Documentation \(1\.1\.x\)](https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/)
 
 ```python
