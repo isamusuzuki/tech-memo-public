@@ -1,6 +1,6 @@
 # Fire を使う
 
-作成日 2020/03/26、更新日 2020/08/12
+作成日 2020/03/26、更新日 2021/06/06
 
 ## 01. Fire とは
 
@@ -66,3 +66,43 @@ python calculator.py triple --number=10  # 30
 ```
 
 クラスを登録すると、複数のメソッドが使えるところがいい
+
+## 03. Fire の高度な使い方
+
+### カンマ区切りの文字列を与える
+
+run1.py
+
+```python
+from fire import Fire
+
+class Run():
+  def job1(self, item_codes: str) -> None:
+    print(f'item_codes: {item_codes}') 
+    print(f'type: {type(item_codes)}')
+
+if __name__ == '__main__':
+  Fire(Run)
+```
+
+```bash
+python run1.py 
+# => ヘルプが表示される
+
+python run1.py job1
+# => ITEM_CODES が必要というエラーになる
+
+python run1.py job1 --item_codes=
+# => item_codes:
+# => type: <class 'str'>
+
+python run1.py job1 --item_codes=aaa
+# => item_codes: aaa
+# => type: <class 'str'>
+
+python run1.py job1 --item_codes=aaa,bbb
+# => item_codes: ('aaa', 'bbb')
+# => type: <class 'tuple'>
+```
+
+カンマ区切りの文字列を与えるとタプルになることがわかった
