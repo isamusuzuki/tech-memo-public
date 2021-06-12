@@ -25,23 +25,8 @@ Microsoft ストアで配布されている新しいターミナルアプリ
 
 デフォルトは Windows のホームフォルダになってしまっている。これを WSL 側のホームディレクトリに変更する
 
-- 左枠 ＞ 「JSON ファイルを開く」をクリック
-- json ファイルを開こうとする。デフォルトアプリを VSCode に設定する
-- VSC の中で、`settings.json` ファイルを編集する
-- `profiles.list` の中にある Wsl の 設定に `startingDirectory` を追加する
-
-```json
-{
-  "profiles": {
-    "list": [
-      {
-        "guid": "{abcdefg-hijklmn-opqrstu-vwxyz}",
-        "hidden": false,
-        "name": "Ubuntu",
-        "source": "Windows.Terminal.Wsl",
-        "startingDirectory": "\\\\wsl$\\Ubuntu\\home\\USER-NAME"
-      }
-    ]
-  }
-}
-```
+- 左枠 ＞ プロファイル ＞ Ubuntu
+- 右枠 ＞ ディレクトリの開始
+- 「参照...」は押さずに、直接テキストボックスに以下を書き込む
+- `\\wsl\$Ubuntu\home\USER-NAME`
+- 右下 ＞ 「保存」ボタンをクリック
