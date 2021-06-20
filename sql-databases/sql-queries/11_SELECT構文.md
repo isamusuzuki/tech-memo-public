@@ -1,8 +1,19 @@
 # SELECT 構文
 
-作成日 2020/11/10、更新日 2021/02/10
+作成日 2020/11/10、更新日 2021/06/18
 
-## 01. WHERE 句で LIKE を使う
+## 01. 基本形
+
+```sql
+SELECT
+    email, password, expiredDate
+FROM
+    users
+WHERE
+    groupName = 'tokyo170928';
+```
+
+## 02. WHERE 句で LIKE を使う
 
 LIKE を使うときは `%` がワイルドカードとなる
 
@@ -17,7 +28,7 @@ WHERE
 
 `%` は後ろだけでなく、`%2528`, `%2528%` も使用可能
 
-## 02. 変数を使う
+## 03. 変数を使う
 
 ```sql
 SET
@@ -46,7 +57,7 @@ SELECT
     @t4 := @t1 + @t2 + @t3;
 ```
 
-## 03. CASE 式を使う
+## 04. CASE 式を使う
 
 ```sql
 SELECT
@@ -65,19 +76,4 @@ WHERE
     AND u.code NOT IN ('9990', '9991', '9999')
 GROUP BY
     type;
-```
-
-## 04. UTC で入っている TIMESTAMP を 日本時間に直す
-
-```sql
-SELECT 
-    sku_code,
-    overwrite_times,
-    DATE_ADD(updated_at, INTERVAL 9 HOUR) updated_at_jpn,
-    DATE_ADD(created_at, INTERVAL 9 HOUR) created_at_jpn 
-FROM
-    sku_images
-ORDER BY
-    updated_at DESC
-LIMIT 10;
 ```
