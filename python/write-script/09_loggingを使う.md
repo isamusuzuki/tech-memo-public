@@ -154,7 +154,7 @@ gyakusu.py
 from logging import Logger
 
 
-def gyakusu(number: int, logger: Logger = None) -> None:
+def gyakusu(number: int, logger: Logger) -> None:
     try:
         g_num = str(1/number)
         logger.debug(f'{number} => {g_num}')
