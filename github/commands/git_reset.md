@@ -20,7 +20,7 @@ git reset --hard HEAD^
 git push -f origin master
 ```
 
-## 04. ローカルをリモートに強制一致させる
+## ローカルをリモートに強制一致させる
 
 ```bash
 # リモートからデータをすべて取得する

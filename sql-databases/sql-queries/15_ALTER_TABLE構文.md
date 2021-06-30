@@ -1,6 +1,6 @@
 # ALTER TABLE 構文
 
-作成日 2020/11/10、更新日 2020/12/04
+作成日 2020/11/10、更新日 2021/06/30
 
 ## 01. ALTER TABLE table ADD column
 
@@ -12,7 +12,7 @@
 ALTER TABLE
     m_malls
 ADD
-    fee double NOT NULL DEFAULT 0
+    fee double DEFAULT 0
 AFTER
     mall_name;
 
@@ -24,7 +24,29 @@ AFTER
     follow_days;
 ```
 
-## 02. ALTER TABLE table DROP column
+## 02. ALTER TABLE table RENAME COLUMN column1 TO column2
+
+カラム名を変更する
+
+```sql
+ALTER TABLE
+    item_master
+RENAME
+    COLUMN `lg_category` TO `linegift_category`;
+```
+
+## 03. ALTER TABLE table MODIFY COLUMN column
+
+コメントを追加したり、カラムの属性を変更する
+
+```sql
+ALTER TABLE
+    item_master
+MODIFY
+    COLUMN `linegift_category` varchar(255) DEFAULT '' COMMENT 'LINEギフトブランドコード';
+```
+
+## 04. ALTER TABLE table DROP column
 
 テーブルからカラムを削除する
 

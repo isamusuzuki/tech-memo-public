@@ -2,10 +2,12 @@
 
 作成日 2021/06/27
 
-- `git branch`  ... ブランチの一覧を表示する
-- `git branch <name>`  ... 新しいブランチを作成する
-- `git branch <name> --delete`  ... ブランチを削除する
-- `git branch <name> <remote/name>` ... remoteの指定ブランチを追跡するブランチを作成する
+- `git branch` ... ローカルにあるブランチを表示する
+- `git branch -r(--remote)` ... リモートにあるブランチを表示する
+- `git branch -a(--all)` ... ローカル・リモートすべてのブランチを表示する
+- `git branch <name>` ... 新しいブランチを作成する
+- `git branch <name> -d(--delete)` ... ブランチを削除する
+- `git branch <name> <remote/name>` ... remote の指定ブランチを追跡するブランチを作成する
 
 ## 新しいブランチを作成して切り替える
 
@@ -30,7 +32,7 @@ git checkout master
 git merge issue1
 
 # ブランチを削除する
-git branch issue1 --delete
+git branch issue1 -d
 ```
 
 ## 手元にないリモートブランチを取得する
