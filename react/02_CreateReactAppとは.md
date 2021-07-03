@@ -14,13 +14,14 @@
 
 > Create React App is an officially supported way to create single-page React applications. It offers a modern build setup with no configuration.
 
+事前のインストールは不要。npx コマンドは常に最新のバージョンを取得してきてから、そのコマンドを使う
+
 ```bash
 npx create-react-app my-app
 cd my-app
 npm start
+# => ブラウザで http://localhost:3000 ページを開く
 ```
-
-事前のインストールは不要。npx コマンドは常に最新のバージョンを取得してきてから、そのコマンドを使う
 
 ![React App](images/react-app.png)
 
@@ -43,8 +44,6 @@ npm -v
 # => 7.19.1
 
 npx create-react-app avocado --template typescript
-cd avocado
-npm start
 ```
 
 ### 出来上がったアプリのファイル・フォルダ構造
