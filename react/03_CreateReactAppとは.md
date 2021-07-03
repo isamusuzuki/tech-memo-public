@@ -1,18 +1,22 @@
 # Create React App
 
-作成日 2021/05/14
+作成日 2021/05/14、更新日 2021/07/03
 
 ## 01. Create React App とは
 
 公式サイト => [Create React App](https://create-react-app.dev/)
 
-公式リポジトリ => [facebook/create\-react\-app: Set up a modern web app by running one command\.](https://github.com/facebook/create-react-app)
+> Set up a modern web app by running one command.
 
-## 02. 実際に create-react-app コマンドを使う
+### Getting Started を読む
+
+[Getting Started \| Create React App](https://create-react-app.dev/docs/getting-started)
+
+> Create React App is an officially supported way to create single-page React applications. It offers a modern build setup with no configuration.
 
 ```bash
-npx create-react-app avocado
-cd avocado
+npx create-react-app my-app
+cd my-app
 npm start
 ```
 
@@ -20,11 +24,33 @@ npm start
 
 ![React App](images/react-app.png)
 
+### Adding TypeScript を読む
+
+[Adding TypeScript \| Create React App](https://create-react-app.dev/docs/adding-typescript/)
+
+> To start a new Create React App project with TypeScript, you can run:
+
+```bash
+npx create-react-app my-app --template typescript
+```
+
+## 02. 実際に create-react-app コマンドを使ってみる
+
+```bash
+node -v
+# => v14.17.2
+npm -v
+# => 7.19.1
+
+npx create-react-app avocado --template typescript
+cd avocado
+npm start
+```
+
 ### 出来上がったアプリのファイル・フォルダ構造
 
 ```text
 --avocado/
-    |--node_modules/
     |--public/
     |   |--favicon.ico
     |   |--index.html
@@ -34,16 +60,16 @@ npm start
     |   `--robots.txt
     |--src/
     |   |--App.css
-    |   |--App.js
-    |   |--App.test.js
+    |   |--App.test.tsx
+    |   |--App.tsx
     |   |--index.css
-    |   |--log.svg
-    |   |--reportWebVitals.js
-    |   `--setupTests.js
-    |--.gitignore
-    |--package-lock.json
+    |   |--index.tsx
+    |   |--logo.svg
+    |   |--react-app-env.d.ts
+    |   |--reportWebVitals.ts
+    |   `--setupTests.ts
     |--package.json
-    `--README.md
+    `--tsconfig.json
 ```
 
 ### インストールされたパッケージ
@@ -53,12 +79,17 @@ package.json の一部
 ```json
 {
   "dependencies": {
-    "@testing-library/jest-dom": "^5.12.0",
+    "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "@types/jest": "^26.0.23",
+    "@types/node": "^12.20.15",
+    "@types/react": "^17.0.13",
+    "@types/react-dom": "^17.0.8",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
+    "typescript": "^4.3.5",
     "web-vitals": "^1.1.2"
   }
 }
@@ -85,10 +116,35 @@ react-scripts が create-react-app コマンドの本体であることがわか
 
 > This package includes scripts and configuration used by Create React App.
 
-## 03. TypeScript を使うには
+### TypeScriptの設定
 
-[Adding TypeScript \| Create React App](https://create-react-app.dev/docs/adding-typescript/)
+tsconfig.json
 
-```bash
-npx create-react-app my-app --template typescript
+```JSON
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
+  },
+  "include": [
+    "src"
+  ]
+}
 ```
