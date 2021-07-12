@@ -1,6 +1,6 @@
 # CORS 問題解決
 
-作成日 2021/05/21
+作成日 2021/05/21、更新日 2021/07/12
 
 ## どんな問題が発生したのか
 
@@ -29,10 +29,9 @@ server {
   location / {
     if ($request_method = 'OPTIONS') {
         add_header Access-Control-Allow-Origin '*';
-        add_header Access-Control-Allow-Methods 'GET,POST,PUT,DELETE';
-        add_header Access-Control-Allow-Headers 'Origin,Authorization,Accept,Content-Type';
+        add_header Access-Control-Allow-Methods 'GET, POST, PUT, DELETE';
+        add_header Access-Control-Allow-Headers 'Origin, Authorization, Accept, Content-Type';
         add_header Access-Control-Max-Age 3600;
-
         add_header Content-Type 'text/plain charset=UTF-8';
         add_header Content-Length 0;
         return 204;
@@ -45,3 +44,5 @@ server {
   }
 }
 ```
+
+- 【注意】 値のカンマ `,` 後の空白は必須
