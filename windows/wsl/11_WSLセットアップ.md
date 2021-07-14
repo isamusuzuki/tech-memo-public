@@ -25,8 +25,7 @@ dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /nores
 
 - 手順 3 が終わったら、マシンを再起動する
 - 手順 4 で以下のパッケージをダウンロードしてインストールする
-
-[x64 マシン用 WSL2 Linux カーネル更新プログラム パッケージ](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi)
+- [x64 マシン用 WSL2 Linux カーネル更新プログラム パッケージ](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi)
 
 ```bash
 # 手順 5
