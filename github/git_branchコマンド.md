@@ -5,13 +5,17 @@
 - `git branch` ... ローカルにあるブランチを表示する
 - `git branch -r(--remote)` ... リモートにあるブランチを表示する
 - `git branch -a(--all)` ... ローカル・リモートすべてのブランチを表示する
-- `git branch <name>` ... 新しいブランチを作成する
-- `git branch <name> -d(--delete)` ... ブランチを削除する
-- `git branch <name> <remote/name>` ... remote の指定ブランチを追跡するブランチを作成する
+- `git branch {branch}` ... 新しいブランチを作成する
+- `git branch {branch} -d(--delete)` ... ブランチを削除する
+- `git branch {branch} {remote/branch}` ... remote の指定ブランチを追跡するブランチを作成する
 
 ## 新しいブランチを作成して切り替える
 
 ```bash
+# ブランチの一覧を表示する
+git branch
+#=> *master 
+
 # issue1というブランチを作成する
 git branch issue1
 
@@ -26,7 +30,11 @@ git checkout issue1
 git branch
 #=>  master
 #=> *issue1
+```
 
+## あるブランチで行った変更履歴を別のブランチに取り込ませる
+
+```bash
 # issue1で行った変更をmasterに取り込ませる
 git checkout master
 git merge issue1
