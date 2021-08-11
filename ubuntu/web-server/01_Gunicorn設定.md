@@ -106,7 +106,7 @@ Gunicorn サービスを起動する
 ```bash
 sudo systemctl start avocado
 sudo systemctl enable avocado
-sudo systemctl status avocado
+systemctl status avocado
 ```
 
 avocado フォルダに `avocado.sock` ファイルがあることを確認する
