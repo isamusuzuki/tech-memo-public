@@ -76,10 +76,19 @@ Certbot は Nginx の設定ファイル (`/etc/nginx/sites-available/default`) �
 
 ### Nginx 設定ファイルの編集 2 回目
 
+```bash
+# ファイルをコピーする
+cd /etc/nginx/sites-available
+sudo cp default avocado
+
+# 新しいファイルを編集する
+sudo vi avocado
+```
+
 /etc/nginx/sites-available/avocado
 
 ```bash
-# http通信は、こちらの設定
+# 以下は、http通信の設定
 server {
   listen 80 default_server;
   listen [::]:80 default_server;
@@ -88,18 +97,18 @@ server {
   return 301 https://$host$request_uri;  # https通信に転送する
 }
 
-# https通信は、こちらの設定
+# 以下は、https通信の設定
 server {
   listen [::]:443 ssl ipv6only=on;
   listen 443 ssl;
   server_name avocado.example.com;
-  # 以下は、certbot が書いたコードをそのままコピペする
+  # 以下は、certbot が書いたコードのまま
   ssl_certificate /etc/letsencrypt/live/avocado.example.com/fullchain.pem;
   ssl_certificate_key /etc/letsencrypt/live/avocado.example.com/privkey.pem;
   include /etc/letsencrypt/options-ssl-nginx.conf;
   ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 
-  # 以下は、Gunicornへの転送を行う
+  # 以下は、Gunicornへの転送
   location / {
     include proxy_params;
     proxy_pass http://unix:/home/ubuntu/avocado/avocado.sock;
