@@ -1,6 +1,6 @@
-# Excel ファイルを生成する
+# Excel ファイル
 
-作成日 2019/11/28
+作成日 2019/11/28、更新日 2021/09/14
 
 ## 01. openpyxl とは
 
@@ -10,9 +10,25 @@
 
 最新バージョン => 3.0.1 (2019/11/14)
 
-## 02. openpyxl のサンプルコード
+## 02. Excel ファイルを読む
 
-`test1.py`
+```python
+from openpyxl import load_workbook
+
+# 読み取り専用でエクセルファイルを開く
+wb = load_workbook(filename=file_path, read_only=True)
+# 決め打ちで1枚目のシートを読む
+ws = wb.worksheets[0]
+
+# セルの場所も決め打ちで読む
+result.data['namae_onchu'] = ws['B2'].value
+result.data['order_no'] = ws['C6'].value
+wb.close()
+```
+
+## 03. Excel ファイルを作成する
+
+### もっとも簡単な例
 
 ```python
 import openpyxl as excel
@@ -24,7 +40,7 @@ ws['A1'] = 'こんにちは'
 wb.save(TEMP_FILE)
 ```
 
-`test2.py`
+### cell()メソッドを使った簡単な例
 
 ```python
 import openpyxl as excel
@@ -38,7 +54,7 @@ for i in range(1, 10):
 wb.save(TEMP_FILE)
 ```
 
-`test3.py`
+### cell()メソッドを使った応用例
 
 ```python
 import openpyxl as excel
@@ -72,7 +88,7 @@ ws.cell(row=2, column=4).number_format = '#,##0'
 wb.save(TEMP_FILE)
 ```
 
-## 03. Cell モジュール
+## 04. Cell モジュール
 
 [openpyxl\.cell\.cell module — openpyxl 3\.0\.1 documentation](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.cell.cell.html)
 
@@ -81,7 +97,7 @@ wb.save(TEMP_FILE)
 - cell.value ... セルに値を設定する、もしくは値を得る
 - cell.hyperlink ... セルにハイパーリンクを設定する、もしくは値を得る
 
-## 04. styles パッケージ
+### 04-a. styles パッケージ
 
 [openpyxl\.styles package — openpyxl 3\.0\.1 documentation](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.styles.html)
 
@@ -114,7 +130,7 @@ ws.cell(row=j, column=10).font = \
     Font(underline='single', color='FF0563c1')
 ```
 
-## 05. 計算式を入力する
+### 04-b. 計算式を入力する
 
 cell の指定は番号を使うが、計算式の中でのセルの指定は、A1 形式を使う
 
