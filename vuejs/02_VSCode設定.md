@@ -1,10 +1,8 @@
-# Vue.js 3 の開発環境を構築する その 2
+# Visual Studio Code で気持ちよく開発するための設定
 
 作成日 2021/09/18
 
-## 01. Visual Studio Code で気持ちよく開発するための設定
-
-### JavaScript で `require()`を使っても、警告を表示させない
+## 01. JavaScript で `require()`を使っても、警告を表示させない
 
 .vscode/settings.json
 
@@ -14,7 +12,7 @@
 }
 ```
 
-### ファイルごとにフォーマッターを指定する
+## 02. ファイルごとにフォーマッターを指定する
 
 .vscode/settings.json
 
@@ -32,7 +30,7 @@
 }
 ```
 
-### 拡張機能でインストールした Prettier を設定する
+## 03. 拡張機能としてインストールした Prettier を設定する
 
 .prettierrc
 
