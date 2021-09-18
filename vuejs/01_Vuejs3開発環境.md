@@ -1,15 +1,16 @@
 # Vue.js 3 の開発環境を構築する
 
-作成日 2021/09/17
+作成日 2021/09/18
 
-## 01. Vue.js 2x から 3.x への移行
+## 01. Vue.js 3.x への移行を開始する
 
-今まで、TypeScript + Webpack + Vue.js 2.x の組み合わせで、Web クライアントを開発してきたが、Vue.js 3.x へ移行することにした
+今まで、Vue.js 2.x + TypeScript + Webpack の組み合わせで、Web クライアントを開発してきたが、Vue.js 3.x へ移行することにした。「もう一度イチから勉強」とはならないだろうが、たくさん学ぶことがあるだろう
 
-## 02. Vue.js のバージョン移行に影響されない部分の構築
+## 02. Vue.js のバージョンに影響されない部分の構築
 
 - まっさらな状態から開発環境を構築する
-- `npm i -D` は、`npm install --save-dev` の短縮形
+- ディレクトリ名の `avocado` は仮の名前
+- `npm i -D {name}` は、`npm install --save-dev {name}` の短縮形
 
 ```bash
 node -v
@@ -22,7 +23,7 @@ cd ~
 mkdir avocado
 cd avocado
 
-# package.jsonファイルを生成する
+# package.json ファイルを生成する
 npm init -y
 ```
 
@@ -31,7 +32,7 @@ npm init -y
 ```bash
 npm i -D typescript
 npx tsc --init
-# => tsconfig.jsonが生成される
+# => tsconfig.json ファイルが生成される
 ```
 
 ### tsconfig.json の設定例
@@ -107,68 +108,23 @@ npm i -D ts-loader
 npm i -D css-loader style-loader
 ```
 
-## 03. Vue.js 3.x と Webpack の組み合わせで開発するための構築
+## 03. Vue.js 3.x で開発するための構築
 
 ```bash
-# Vue.js 3.x 導入
-npm i -D vue@next
+# バージョン2系の場合
+# npm i -D vue
+# npm i -D vue-loader
+# npm i -D vue-template-compiler
 
-# Webpack ローダー導入
+# バージョン3系の場合
+npm i -D vue@next
 npm i -D vue-loader@next
 npm i -D @vue/compiler-sfc
 ```
 
-- `vue-loader@next` は、`vue-loader` の置き換え
-- `@vue/compiler-sfc` は、`vue-template-loader` の置き換え
-
-### webpack.config.js 設定例
-
-```javascript
-const path = require('path');
-const { VueLoaderPlugin } = require('vue-loader');
-
-module.exports = {
-  mode: 'development',
-  entry: {
-    index: './src/index.ts',
-  },
-  output: {
-    path: path.resolve(__dirname, 'public'),
-    filename: '[name].bundle.js',
-  },
-  devServer: {
-    static: {
-      directory: path.resolve(__dirname, 'public'),
-    },
-    compress: true,
-    port: 8080,
-  },
-  module: {
-    rules: [
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-      },
-      {
-        test: /\.ts$/,
-        loader: 'ts-loader',
-        exclude: /node_modules/,
-        options: {
-          appendTsSuffixTo: [/\.vue$/],
-        },
-      },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-      },
-    ],
-  },
-  resolve: {
-    extensions: ['.js', '.ts', '.vue'],
-  },
-  plugins: [new VueLoaderPlugin()],
-};
-```
+- Vue.js 本体は、`vue` を `vue@next` に置き換える
+- Vue.js 用の Webpack ローダーは、`vue-loader` を `vue-loader@next` に置き換える
+- Webpack が SFCを取り扱えるようにするツールは、`vue-template-compiler`　を `@vue/compiler-sfc` に置き換える。（SFC = Single File Components 単一ファイルコンポーネント）
 
 ## 04. サンプルコードの用意とスクリプトの実行
 
@@ -242,7 +198,64 @@ declare module '*.vue' {
 }
 ```
 
+webpack.config.js
+
+```javascript
+const path = require('path');
+const { VueLoaderPlugin } = require('vue-loader');
+
+module.exports = {
+  mode: 'development',
+  entry: {
+    index: './src/index.ts',
+  },
+  output: {
+    path: path.resolve(__dirname, 'public'),
+    filename: '[name].bundle.js',
+  },
+  devServer: {
+    static: {
+      directory: path.resolve(__dirname, 'public'),
+    },
+    compress: true,
+    port: 8080,
+  },
+  module: {
+    rules: [
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+      },
+      {
+        test: /\.ts$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/,
+        options: {
+          appendTsSuffixTo: [/\.vue$/],
+        },
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
+  resolve: {
+    extensions: ['.js', '.ts', '.vue'],
+  },
+  plugins: [new VueLoaderPlugin()],
+};
+```
+
 ### スクリプトの実行
+
+```bash
+# テストサーバーの起動
+npx webpack serve --config=webpack.config.js
+
+# または、package.json に追記しておいてから
+npm run dev
+```
 
 package.json
 
@@ -252,10 +265,4 @@ package.json
     "dev": "webpack serve --config=webpack.config.js"
   }
 }
-```
-
-テストサーバーの起動
-
-```bash
-npm run dev
 ```
