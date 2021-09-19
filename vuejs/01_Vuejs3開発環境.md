@@ -56,6 +56,8 @@ npx tsc --init
 
 ### ESLint 導入
 
+※ 前提として、VSCode の拡張機能としての ESLint はインストールしない
+
 ```bash
 npm i -D eslint
 npx eslint --init
@@ -124,7 +126,7 @@ npm i -D @vue/compiler-sfc
 
 - Vue.js 本体は、`vue` を `vue@next` に置き換える
 - Vue.js 用の Webpack ローダーは、`vue-loader` を `vue-loader@next` に置き換える
-- Webpack が SFCを取り扱えるようにするツールは、`vue-template-compiler`　を `@vue/compiler-sfc` に置き換える。（SFC = Single File Components 単一ファイルコンポーネント）
+- Webpack が SFC を取り扱えるようにするツールは、`vue-template-compiler`　を `@vue/compiler-sfc` に置き換える。（SFC = Single File Components 単一ファイルコンポーネント）
 
 ## 04. サンプルコードの用意とスクリプトの実行
 
@@ -182,7 +184,7 @@ src/index.ts
 
 ```javascript
 import { createApp } from 'vue';
-import App from 'App.vue';
+import App from './App.vue';
 
 createApp(App).mount('#app');
 ```
