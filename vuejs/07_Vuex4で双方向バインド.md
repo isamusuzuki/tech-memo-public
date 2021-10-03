@@ -25,97 +25,100 @@ src/components/Keyword.vue
 
 ```html
 <template>
-    <div class="field">
-        <label class="label">キーワード</label>
-        <div class="control">
-            <input
-                class="input"
-                type="text"
-                placeholder="キーワードの入力"
-                v-model="keyword"
-            />
-        </div>
+  <div class="field">
+    <label class="label">キーワード</label>
+    <div class="control">
+      <input
+        class="input"
+        type="text"
+        placeholder="キーワードの入力"
+        v-model="keyword"
+      />
     </div>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { useKeyword } from '../hooks/useKeyword'
+  import { defineComponent } from 'vue';
+  import { useKeyword } from '../hooks/useKeyword';
 
-export default defineComponent({
+  export default defineComponent({
     setup() {
-        return {
-            ...useKeyword(),
-        }
+      return {
+        ...useKeyword(),
+      };
     },
-})
+  });
 </script>
 ```
 
 src/hooks/useKeyword.ts
 
 ```javascript
-import { computed } from 'vue'
-import { useStore } from 'vuex'
-import { key } from '../store/index'
+import { computed } from 'vue';
+import { useStore } from 'vuex';
+import { key } from '../store/index';
 
 export const useKeyword = () => {
-    const store = useStore(key)
-    
-    const keyword = computed({
-        get: () => store.state.keyword,
-        set: (val: string) => store.commit('setKeyword', val)
-    })
+  const store = useStore(key);
 
-    return {
-        keyword
-    }
-}
+  const keyword = computed({
+    get: () => store.state.keyword,
+    set: (val: string) => store.commit('setKeyword', val),
+  });
+
+  return {
+    keyword,
+  };
+};
 ```
 
 src/store/index.ts
 
 ```javascript
-import { InjectionKey } from 'vue'
-import { createStore, Store } from 'vuex'
+import { InjectionKey } from 'vue';
+import { createStore, Store } from 'vuex';
 
 export interface State {
-    keyword: string
+  keyword: string;
 }
 
-export const key: InjectionKey<Store<State>> = Symbol()
+export const key: InjectionKey<Store<State>> = Symbol();
 
-export const store = createStore<State>({
+export const store =
+  createStore <
+  State >
+  {
     state: {
-        keyword: ''
+      keyword: '',
     },
     mutations: {
-        setKeyword(state, val: string) {
-            state.keyword = val
-        }
-    }
-})
+      setKeyword(state, val: string) {
+        state.keyword = val;
+      },
+    },
+  };
 ```
-  
+
 src/App.vue
 
 ```html
 <template>
-    <section class="section">
-        <div class="container">
-            <keyword></keyword>
-        </div>
-    </section>
+  <section class="section">
+    <div class="container">
+      <keyword></keyword>
+    </div>
+  </section>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import Keyword from './components/Keyword.vue'
+  import { defineComponent } from 'vue';
+  import Keyword from './components/Keyword.vue';
 
-export default defineComponent({
+  export default defineComponent({
     components: {
-        Keyword,
+      Keyword,
     },
-})
+  });
 </script>
 ```

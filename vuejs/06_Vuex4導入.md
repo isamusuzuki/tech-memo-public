@@ -1,4 +1,4 @@
-# Vuex 4 を勉強する
+# Vuex 4 を導入する
 
 作成日 2021/09/20
 
@@ -8,9 +8,13 @@
 npm i -D vuex@next
 ```
 
+[インストール \| Vuex](https://next.vuex.vuejs.org/ja/installation.html)
+
 ## 02. TypeScript をサポートする
 
-公式ドキュメント => [TypeScript サポート \| Vuex](https://next.vuex.vuejs.org/ja/guide/typescript-support.html)
+公式ドキュメントを写経する
+
+[TypeScript サポート \| Vuex](https://next.vuex.vuejs.org/ja/guide/typescript-support.html)
 
 ```text
 --src/
@@ -60,11 +64,14 @@ export interface State {
 export const key: InjectionKey<Store<State>> = Symbol();
 
 // ストアを生成する
-export const store = createStore<State>({
+export const store =
+  createStore <
+  State >
+  {
     state: {
-        count: 0
-    }
-})
+      count: 0,
+    },
+  };
 ```
 
 src/index.ts
@@ -98,7 +105,7 @@ export default {
 };
 ```
 
-## 03. 写経してみて気づいたこと
+### 02d. 写経してみて気づいたこと
 
-- 「コンポーネント内の `methods` で　直接ストアをいじることはしない」と決めたら、`src/vuex.d.ts` ファイルは不要
-- ストアは、Composition API でしか使わないことにすればいいだけのこと。これなら守れそうだ
+- コンポーネントの `methods` では、ストアをいじらないならば、`src/vuex.d.ts` ファイルは不要
+- Composition API でしか、ストアを使わなければいいだけのこと。これなら守れそうだ
