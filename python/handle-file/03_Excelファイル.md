@@ -1,6 +1,6 @@
 # Excel ファイル
 
-作成日 2019/11/28、更新日 2021/09/14
+作成日 2019/11/28、更新日 2021/09/28
 
 ## 01. openpyxl とは
 
@@ -8,9 +8,9 @@
 
 インストール => `pip install openpyxl`
 
-最新バージョン => 3.0.1 (2019/11/14)
+最新バージョン => 3.0.9 (2021/09/23)
 
-## 02. Excel ファイルを読む
+## 02. 既存の Excel ファイルを読む
 
 ```python
 from openpyxl import load_workbook
@@ -23,7 +23,9 @@ ws = wb.worksheets[0]
 # セルの場所も決め打ちで読む
 result.data['namae_onchu'] = ws['B2'].value
 result.data['order_no'] = ws['C6'].value
-wb.close()
+
+# ファイル名を指定して別ファイルに保存可能
+wb.save(EXCEL_FILE)
 ```
 
 ## 03. Excel ファイルを作成する
@@ -37,7 +39,7 @@ wb = excel.Workbook()
 ws = wb.active
 
 ws['A1'] = 'こんにちは'
-wb.save(TEMP_FILE)
+wb.save(EXCEL_FILE)
 ```
 
 ### cell()メソッドを使った簡単な例
@@ -51,7 +53,7 @@ for i in range(1, 10):
     for j in range(1, 10):
         v = i * j
         ws.cell(column=j, row=i, value=v)
-wb.save(TEMP_FILE)
+wb.save(EXCEL_FILE)
 ```
 
 ### cell()メソッドを使った応用例
@@ -85,7 +87,7 @@ ws.cell(row=2, column=3).value = 'タイトルタイトル'
 ws.cell(row=2, column=4).value = 5678
 ws.cell(row=2, column=4).number_format = '#,##0'
 
-wb.save(TEMP_FILE)
+wb.save(EXCEL_FILE)
 ```
 
 ## 04. Cell モジュール
