@@ -10,7 +10,7 @@
 
 ## サンプルコード
 
-src/hooks/useExcelUpload.ts
+src/composables/useExcelUpload.ts
 
 ```javascript
 import { reactive, toRef } from 'vue'

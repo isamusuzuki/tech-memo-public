@@ -24,7 +24,7 @@ Vue コンポーネントも肥大化する。違う関心事が入れ子にな�
 --src/
     |--components/
     |   `--Counter.vue
-    |--hooks/
+    |--composables/
     |   `--useCount.ts
     `--App.vue
 ```
@@ -40,7 +40,7 @@ src/components/Counter.vue
 
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import { useCount } from '../hooks/useCount';
+  import { useCount } from '../composables/useCount';
 
   export default defineComponent({
     setup() {
@@ -52,7 +52,7 @@ src/components/Counter.vue
 </script>
 ```
 
-src/hooks/useCount.ts
+src/composables/useCount.ts
 
 ```javascript
 import { ref } from 'vue';
@@ -87,7 +87,7 @@ App.vue
 <script lang="ts">
   import { defineComponent } from 'vue';
   import Counter from './components/Counter.vue';
-  import { useCount } from './hooks/useCount';
+  import { useCount } from './composables/useCount';
 
   export default defineComponent({
     components: { Counter },

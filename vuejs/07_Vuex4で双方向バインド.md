@@ -14,7 +14,7 @@
 --src/
     |--components/
     |   `--Keyword.vue  ... Vueコンポーネント + Composition API
-    |--hooks/
+    |--composables/
     |   `--useKeyword.ts  ... computed()の中でgetとsetを用意する
     |--store/
     |   `--index.ts       ... Vuex 4で状態管理
@@ -40,7 +40,7 @@ src/components/Keyword.vue
 
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import { useKeyword } from '../hooks/useKeyword';
+  import { useKeyword } from '../composables/useKeyword';
 
   export default defineComponent({
     setup() {
@@ -52,7 +52,7 @@ src/components/Keyword.vue
 </script>
 ```
 
-src/hooks/useKeyword.ts
+src/composables/useKeyword.ts
 
 ```javascript
 import { computed } from 'vue';
