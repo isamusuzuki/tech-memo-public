@@ -1,6 +1,6 @@
 # TypeScript で Vue.js を開発するときにはまりやすいポイント
 
-作成日 2021/05/03
+作成日 2021/05/03、更新日 2021/10/25
 
 ## 01. data に型をつける
 
@@ -71,9 +71,9 @@ export default Vue.extend({
 });
 ```
 
-Array や Object の型をどうやって指定するか？
+Object や Array の型をどうやって指定するか？
 
-## 解決方法: PropType を導入する
+### 解決方法: PropType を導入する
 
 ```javascript
 import Vue, { PropType } from 'vue'
@@ -87,8 +87,7 @@ interface IItem {
 export default Vue.extend({
     props: {
         item: Object as PropType<IItem>,
-        keyword: String,
-        index: Number
+        keywords: Array as PropType<string[]>,
     },
 });
 ```
