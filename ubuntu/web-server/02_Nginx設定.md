@@ -1,22 +1,19 @@
 # Nginx 設定
 
-作成日 2021/01/30
+作成日 2021/11/03
 
 ## 01. 目的
 
 下記の構成で、インターネット上に Web サーバーを構築する
 
 - OS ... Ubuntu 20.04 LTS
-- 言語 ... Python 3.8
-- Web フレームワーク ... Flask
-- WSGI サーバー ... Gunicorn
-- リバースプロキシーサーバー ... Nginx
+- Webサーバー ... Nginx
 
 Let's Encrypt の SSL 証明書（無料）を使って、HTTPS 通信を達成する
 
 ### 前提条件
 
-サーバーには `avocado.example.com` というホスト名がすでに設定されているものとする
+DNSサーバーには `avocado.example.com` というホスト名がすでに登録されているものとする
 
 ## 02. Nginx のインストール
 
@@ -29,7 +26,7 @@ nginx -v
 
 ブラウザで `http://avocado.example.com` にアクセスすると、Nginx のデフォルトページが表示される
 
-### Nginx 設定ファイルの編集 1 回目
+### Nginx 設定ファイルの編集
 
 Certbot (Let's Encrypt のツール) がスムーズに進行するように、最低限の編集を行う
 
@@ -64,7 +61,7 @@ sudo certbot --nginx
 # => Enter email address: 自分のメルアドを入力する
 # => Please read the Terms of Service: チェックを入れる
 # => Would you share your email: 了解する
-# => Which names for HTTPS: avocado.example.comを入力する
+# => Which names for HTTPS: avocado.example.comが候補に登場するのでそれを選ぶ
 
 # 自動的にSSL証明書が更新されるか、ドライランを行う
 sudo certbot renew --dry-run
@@ -73,61 +70,3 @@ sudo certbot renew --dry-run
 Certbot は Nginx の設定ファイル (`/etc/nginx/sites-available/default`) を更新する
 
 ブラウザで `https://avocado.example.com` にアクセスすると、Nginx のデフォルトページが表示される
-
-### Nginx 設定ファイルの編集 2 回目
-
-```bash
-# ファイルをコピーする
-cd /etc/nginx/sites-available
-sudo cp default avocado
-
-# 新しいファイルを編集する
-sudo vi avocado
-```
-
-/etc/nginx/sites-available/avocado
-
-```bash
-# 以下は、http通信の設定
-server {
-  listen 80 default_server;
-  listen [::]:80 default_server;
-  server_name avocado.example.com;
-  # 以下を追加する
-  return 301 https://$host$request_uri;  # https通信に転送する
-}
-
-# 以下は、https通信の設定
-server {
-  listen [::]:443 ssl ipv6only=on;
-  listen 443 ssl;
-  server_name avocado.example.com;
-  # 以下は、certbot が書いたコードのまま
-  ssl_certificate /etc/letsencrypt/live/avocado.example.com/fullchain.pem;
-  ssl_certificate_key /etc/letsencrypt/live/avocado.example.com/privkey.pem;
-  include /etc/letsencrypt/options-ssl-nginx.conf;
-  ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
-
-  # 以下は、Gunicornへの転送
-  location / {
-    include proxy_params;
-    proxy_pass http://unix:/home/ubuntu/avocado/avocado.sock;
-  }
-}
-```
-
-Nginx の設定を切り替えて、再起動する
-
-```bash
-# リンクファイルを作り直すことで、設定を切り替える
-sudo rm /etc/nginx/sites-enabled/default
-sudo ln -s /etc/nginx/sites-available/avocado /etc/nginx/sites-enabled/default
-
-# シンタックスエラーをチェックする
-sudo nginx -t
-
-# Nginxを再起動する
-sudo systemctl restart nginx
-```
-
-ブラウザで `https://avocado.example.com` にアクセスすると、JSON 文字列が表示される

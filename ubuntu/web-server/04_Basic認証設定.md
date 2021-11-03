@@ -26,13 +26,6 @@ sudo htpasswd -c /etc/nginx/.htpasswd USERNAME
 /etc/nginx/sites-available/avocado
 
 ```bash
-server {
-  listen 80 default_server;
-  listen [::]:80 default_server;
-  server_name avocado.example.com;
-  return 301 https://$host$request_uri;
-}
-
 # geoブロックで、条件設定を行う
 geo $authentication {
   default "Authentication required";
@@ -42,13 +35,7 @@ geo $authentication {
 }
 
 server {
-  listen [::]:443 ssl ipv6only=on;
-  listen 443 ssl;
-  server_name avocado.example.com;
-  ssl_certificate /etc/letsencrypt/live/avocado.example.com/fullchain.pem;
-  ssl_certificate_key /etc/letsencrypt/live/avocado.example.com/privkey.pem;
-  include /etc/letsencrypt/options-ssl-nginx.conf;
-  ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+  # ...途中省略...
 
   location / {
     auth_basic $authentication;                 # この行を追加する
@@ -57,6 +44,8 @@ server {
     proxy_pass http://unix:/home/ubuntu/avocado/avocado.sock;
   }
 }
+
+# ...後半省略...
 ```
 
 Nginxを再起動する

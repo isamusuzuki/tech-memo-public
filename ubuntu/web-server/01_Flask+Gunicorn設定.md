@@ -1,6 +1,6 @@
-# Gunicorn 設定
+# Flask+Gunicorn 設定
 
-作成日 2021/01/30
+作成日 2021/11/03
 
 ## 01. 目的
 
@@ -22,7 +22,7 @@ python3 --version
 # => Python 3.8.5
 
 # 追加モジュールをインストールする
-sudo apt install python3-pip python3-venv -y
+sudo apt install -y python3-pip python3-venv
 
 # プロジェクトのフォルダを作成する
 cd ~
@@ -74,41 +74,3 @@ gunicorn --bind 0.0.0.0:5000 wsgi:app
 ブラウザで `http://localhost:5000` にアクセスすると、JSON 文字列が表示される
 
 `Ctrl+C` で停止する
-
-## 04. Gunicorn を systemd のサービスにする
-
-systemd の設定ファイルを編集する
-
-```bash
-sudo vi /etc/systemd/system/avocado.service
-```
-
-/etc/systemd/system/avocado.service
-
-```bash
-[Unit]
-Description=Gunicorn instance to serve avocado
-After=network.target
-
-[Service]
-User=ubuntu
-Group=www-data
-WorkingDirectory=/home/ubuntu/avocado
-Environment="PATH=/home/ubuntu/avocado/venv/bin"
-ExecStart=/home/ubuntu/avocado/venv/bin/gunicorn --workers 3 --bind unix:avocado.sock -m 007 wsgi:app
-
-[Install]
-WantedBy=multi-user.target
-```
-
-Gunicorn サービスを起動する
-
-```bash
-sudo systemctl start avocado
-sudo systemctl enable avocado
-systemctl status avocado
-```
-
-avocado フォルダに `avocado.sock` ファイルがあることを確認する
-
-tcp ポートではなく、unix ソケットをバインドしているので、ブラウザでは見られない
