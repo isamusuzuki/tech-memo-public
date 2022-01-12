@@ -1,6 +1,6 @@
 # Puppeteer を開始する
 
-作成日 2020/02/10、更新日 2021/03/19
+作成日 2020/02/10、更新日 2022/01/12
 
 ## 01. Puppeteer とは
 
@@ -10,18 +10,14 @@ DevTools Protocol 経由で Chrome/Chromium を操作する Node ライブラリ
 
 ## 02. Puppeteer をセットアップする
 
-### Node.js をインストールする
-
-公式サイト => [Node\.js](https://nodejs.org/en/)
-
-Windows の場合は、公式サイトから LTS 版のインストーラーをダウンロードする
+### Node.js はすでにインストールされているものとする
 
 ```bash
 node -v
-# => v14.16.0
+# => v16.13.2
 
 npm -v
-# => 7.6.1
+# => 8.1.2
 ```
 
 ### 新規プロジェクトを作成する
@@ -37,9 +33,9 @@ npm init -y
 npm i -S puppeteer
 ```
 
-=> Chormium も一緒にインストールされるので時間がかかる
+=> Chormium も一緒にインストールするので時間がかかる
 
-### Chromiumのありか
+### Chromium のありか
 
 ```text
 --avocado/
@@ -55,6 +51,8 @@ npm i -S puppeteer
 
 ### スクリーンショットを PNG 画像として保存する
 
+first.js
+
 ```javascript
 const puppeteer = require('puppeteer');
 
@@ -62,15 +60,25 @@ const puppeteer = require('puppeteer');
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto('http://whatsmyuseragent.org/');
-  await page.screenshot({ path: `../temp/test.png` });
+  await page.screenshot({ path: `temp/test.png` });
   await browser.close();
   console.log('done');
 })().catch((e) => console.error(e));
 ```
 
-無名関数を書いた直後に実行させる場合は、行終わりのカンマが必須
+即時関数を使う場合は、行終わりのカンマが必須となる。カンマがないと、1 行目の `require()` メソッドと 3 行目冒頭のカッコが繋がってしまって、`TypeError: require(...) is not a function` というエラーを出す
+
+```bash
+cd ~/avocado
+
+vi first.js
+
+node first.js
+```
 
 ### スクリーンショットを PDF ファイルとして保存する
+
+second.js
 
 ```javascript
 const puppeteer = require('puppeteer');
@@ -81,11 +89,11 @@ puppeteer
     const page = await browser.newPage();
     await page.goto('https://www.example.com/');
     const title = await page.title();
-    await page.pdf({ path: `../temp/${title}.pdf`, format: 'A4' });
+    await page.pdf({ path: `temp/${title}.pdf`, format: 'A4' });
     await browser.close();
     console.log('done');
   })
   .catch((e) => console.error(e));
 ```
 
-無名関数の即時実行の代わりに、Promise チェーンを使うこともできる
+即時関数の代わりに、Promise チェーンを使うこともできる
