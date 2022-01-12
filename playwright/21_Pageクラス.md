@@ -2,11 +2,9 @@
 
 作成日 2021/10/01
 
-## 01. Page クラスとは
-
 [Page \| Playwright](https://playwright.dev/python/docs/api/class-page)
 
-## 02. 入力する
+## 01. 入力する
 
 ### `page.type(selector, text, **kwargs)` メソッド
 
@@ -44,3 +42,12 @@ page.select_option('select#colors, 'blue')
 page.select_option('select#colors, label='blue')
 page.select_option('select#colors, value=['red', 'green', 'blue'])
 ```
+
+## 04. ページからHTML要素を抽出する
+
+- `page.query_selector(selector, **kwargs)` メソッド
+- `page.query_selector_all(selector)` メソッド
+
+## 05. ページでJavaScriptコードを評価する
+
+- `page.evaluate(expression, **kwargs)` メソッド
