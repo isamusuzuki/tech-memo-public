@@ -23,12 +23,12 @@ Desktop を起動したら以下のエラーが表示された
 - 右枠 ＞ docker-users をダブルクリック ＞「docker-users のプロパティ」ウィンドウ
 - 選択するオブジェクト名を入力してください ＞ ユーザー名を入力 ＞ 「名前の確認」ボタン
 - OK ボタン ＞ 適用ボタン ＞ OK ボタン
-- PCを再起動する
+- PC を再起動する
 
 ## 03. Docker Desktop WSL 2 バックエンドとは
 
-インストールされているならば、Docker DesktopがWSL2を利用して、Linuxコンテナをネイティブに実行するようになる
+Docker Desktop が WSL2 を利用して、Linux コンテナをネイティブに実行するようになる
 
-WSL 2 がインストールされているPCでは、Docker Desktopをインストールした時に、自動的に「有効化」されている
+WSL 2 がインストールされている PC では、Docker Desktop をインストールした時に、この機能は、自動的に「有効化」されている
 
 ドキュメント => [https://docs.docker.jp/docker-for-windows/wsl.html](https://docs.docker.jp/docker-for-windows/wsl.html)
