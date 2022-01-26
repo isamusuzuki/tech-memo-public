@@ -47,7 +47,7 @@ env = Environment(
 )
 
 template = env.get_template('template1.html')
-html_txt = teamplate.render({'name': 'Taro Okamoto'})
+html_txt = template.render({'name': 'Taro Okamoto'})
 ```
 
 - FileSystemLoader を使うと、テンプレートファイルの置き場を指定できる
