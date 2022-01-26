@@ -24,14 +24,8 @@ Overview => [https://docs.github.com/en/codespaces/overview](https://docs.github
 
 ## サンプルコードを発見
 
-Node.js sample project: Try a Node.js project with a custom dev container
+Node.js sample project => [https://github.com/microsoft/vscode-remote-try-node](https://github.com/microsoft/vscode-remote-try-node)
 
-[https://github.com/microsoft/vscode-remote-try-node](https://github.com/microsoft/vscode-remote-try-node)
+Python sample project => [https://github.com/microsoft/vscode-remote-try-python](https://github.com/microsoft/vscode-remote-try-python)
 
-Python sample project: Try a Python project with a custom dev container
-
-[https://github.com/microsoft/vscode-remote-try-python](https://github.com/microsoft/vscode-remote-try-python)
-
-Go sample project: Try a Go project with a custom dev container
-
-[https://github.com/microsoft/vscode-remote-try-go](https://github.com/microsoft/vscode-remote-try-go)
+Go sample project => [https://github.com/microsoft/vscode-remote-try-go](https://github.com/microsoft/vscode-remote-try-go)
