@@ -1,6 +1,8 @@
 # docker コマンド一覧
 
-作成日 2021/06/13
+作成日 2021/06/13、更新日 2022/01/27
+
+## イメージの取得
 
 ```bash
 # イメージを引っ張ってくる
@@ -8,7 +10,11 @@ docker pull alpine
 
 # タグを使ってバージョンを指定する
 docker pull alpine:latest
+```
 
+## コンテナの起動
+
+```bash
 # コンテナに名前をつけて起動して、シェルを開く
 docker run -it --name shell1 alpine /bin/sh
 
@@ -21,6 +27,18 @@ docker run -it -v c:/tmp:/tmp alpine /bin/sh
 # バックグランドで起動する
 docker run -d -p 8080:80 --name web1 nginx
 
+# コンテナ内のPID 1のプロセスに対して接続する
+# コンテナ実行時に-itオプションしている必要がある
+docker attach <container>
+
+# コンテナ内に新しいプロセスを追加して実行する
+# コンテナ実行時に-dオプションをしていても大丈夫
+docker exec -it <container> bash
+```
+
+## コンテナの管理
+
+```bash
 # 起動したコンテナの一覧を表示する
 docker ps
 
@@ -38,7 +56,11 @@ docker rm <container>
 
 # 停止しているコンテナをすべて削除する
 docker rm $(docker ps -aq)
+```
 
+## イメージの管理
+
+```bash
 # イメージの一覧を表示する
 docker images
 
@@ -47,12 +69,4 @@ docker rmi <image>
 
 # 全イメージを削除する
 docker rmi $(docker images -aq)
-
-# コンテナ内のPID 1のプロセスに対して接続する
-# コンテナ実行時に-itオプションしている必要がある
-docker attach <container>
-
-# コンテナ内に新しいプロセスを追加して実行する
-# コンテナ実行時に-dオプションをしていても大丈夫
-docker exec -it <container> bash
 ```

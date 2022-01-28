@@ -10,8 +10,7 @@
 
 ## 02. トラブル発生
 
-Docker Desktop をインストールしたユーザーではない別のユーザーで同じ PC にログインし、インストール済みの Docker
-Desktop を起動したら以下のエラーが表示された
+Docker Desktop をインストールしたユーザーではない別のユーザーで同じ PC にログインし、インストール済みの Docker Desktop を起動したら以下のエラーが表示された
 
 > You are not allowed to use Docker\
 > You must be in the "docker-users" group

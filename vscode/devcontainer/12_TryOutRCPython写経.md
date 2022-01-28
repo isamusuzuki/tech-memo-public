@@ -21,8 +21,8 @@ docker --version
 ```
 
 - `Remote - Containers` 拡張機能をインストールする
-- VSCode の新しいウィンドウを開く
-- 左下の緑部分をクリックすると、コマンドバーが登場する
+- VSCode で、新しいウィンドウを開く
+- 左下の緑部分をクリックすると、コマンドパレットが登場する
 
 > - Open Folder in Container...
 > - Clone Repository in Container Volume...
@@ -38,6 +38,8 @@ Try を選択すると、言語別のサンプルコードが選べる。Python 
 左下の緑部分には、`Dev Container: Python 3` と表示された
 
 ターミナルには、`vscode -> /workspaces/vscode-remote-try-python (main) $` と表示された
+
+## Things to try
 
 ```bash
 pwd
@@ -57,7 +59,7 @@ python --version
 ```text
 --vscode-remote-try-python
     |--.devcontainer/
-    |   |--devcontainers.json
+    |   |--devcontainer.json
     |   `--Dockerfile
     |--.vscode
     |   `--launch.json
@@ -73,7 +75,7 @@ F5 キー（デバッグの開始）を押す ＞ ブラウザで `localhost:900
 
 `Ctrl+C`でデバッグを終了する
 
-## .devcontainers/devcontainers.json を見てみる
+## devcontainer.json を見てみる
 
 ```json
 {
