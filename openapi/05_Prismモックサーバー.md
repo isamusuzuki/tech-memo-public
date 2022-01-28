@@ -26,6 +26,8 @@ npx prism mock ./petstore.yaml
 
 [https://meta.stoplight.io/docs/prism/docs/guides/01-mocking.md#dynamic-response-generation](https://meta.stoplight.io/docs/prism/docs/guides/01-mocking.md#dynamic-response-generation)
 
+`x-faker`キーバリューを挟む
+
 ```yaml
 Pet:
   type: object
@@ -44,12 +46,12 @@ Pet:
         x-faker: image.imageUrl
 ```
 
-有効にするには、リクエストヘッダーに呪文を入れる
+自動データ生成機能を有効にするには、リクエストヘッダーに呪文を入れる
 
 ```bash
 GET http://localhost:4010/pets HTTP/1.1
 
-###
+# 自動データ生成機能を有効にする
 GET http://localhost:4010/pets HTTP/1.1
 Prefer: dynamic=true
 ```
