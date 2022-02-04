@@ -1,12 +1,12 @@
 # VS Code Remote Containers の記事を読む
 
-作成日 2022/01/03
+作成日 2022/01/03、更新日 2022/02/04
 
 ## Docker と VS Code Remote Containers を用いたフロントエンド開発環境構築
 
-[https://zenn.dev/leftletter/articles/0969dcef061ff8](https://zenn.dev/leftletter/articles/0969dcef061ff8)
+記事 => [https://zenn.dev/leftletter/articles/0969dcef061ff8](https://zenn.dev/leftletter/articles/0969dcef061ff8)
 
-[https://github.com/LeftLetter/vscode-compose-template](https://github.com/LeftLetter/vscode-compose-template)
+リポジトリ => [https://github.com/LeftLetter/vscode-compose-template](https://github.com/LeftLetter/vscode-compose-template)
 
 ```text
 vcode-compose-template/
@@ -24,7 +24,7 @@ vcode-compose-template/
     `--docker-compose.yml
 ```
 
-### devconteriner.json とは
+## devconteriner.json とは
 
 Visual Studio Code が採用した設定ファイル
 
