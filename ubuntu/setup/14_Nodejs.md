@@ -1,6 +1,6 @@
 # Ubuntu に Node.js をインストールする
 
-作成日 2021/01/17
+作成日 2021/01/17、更新日 2022/03/25
 
 ## 01. 最新の LTS のバージョンを調べる
 
@@ -40,4 +40,17 @@ npx -v
 npm list -g --depth=0
 # => /usr/lib
 # => └──npm@6.14.11
+```
+
+## 03. Node.js をアンインストールする
+
+[How to remove nodejs from nodesource.com? - Ask Ubuntu](https://askubuntu.com/questions/629315/how-to-remove-nodejs-from-nodesource-com)
+
+```bash
+sudo apt purge nodejs
+
+cd /etc/apt/sources.list.d
+sudo rm nodesource.list
+
+sudo reboot
 ```
