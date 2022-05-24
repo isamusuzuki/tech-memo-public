@@ -1,12 +1,14 @@
 # ALTER TABLE 構文
 
-作成日 2020/11/10、更新日 2021/06/30
+作成日 2020/11/10、更新日 2022/05/20
 
 ## 01. ALTER TABLE table ADD column
 
 後からカラムを追加することが可能
 
 `AFTER` を使うと、カラム位置を指定することが可能
+
+既存データにはデフォルト値が入るので、デフォルト値の設定は不可欠
 
 ```sql
 ALTER TABLE
@@ -19,7 +21,7 @@ AFTER
 ALTER TABLE
     m_suppliers
 ADD
-    cutoff_date varchar(255) DEFAULT NULL COMMENT '締め日'
+    cutoff_date varchar(255) DEFAULT '' COMMENT '締め日'
 AFTER
     follow_days;
 ```
