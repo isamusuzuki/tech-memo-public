@@ -231,7 +231,7 @@ $ python
 ここに自分のプロジェクトのルートフォルダがないのが問題\
 => PYTHONPATH 環境変数に追加すると、自動的に sys.path に追加される
 
-### 05-3. 解決策その 1
+### 05-3. 解決策
 
 .vscode/settings.json に以下を追加すると、ターミナルを起動したときに\
 自動的に PYTHONPATH 環境変数が追加される
@@ -242,19 +242,4 @@ $ python
     "PYTHONPATH": "/home/YOURNAME/PROJECTNAME"
   }
 }
-```
-
-### 05-4. 解決策 その 2
-
-`venv/bin/activate`ファイルに以下を追加しておく\
-仮想環境を有効にしたときに PYTHONPATH 環境変数が追加される
-
-```bash
-deactivate () {
-    # この中の最後尾
-    unset PYTHONPATH
-}
-# スクリプトの最後尾
-PYTHONPATH=/home/USER-NAME/PROJECT-NAME
-export PYTHONPATH
 ```
