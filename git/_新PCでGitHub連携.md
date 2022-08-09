@@ -1,6 +1,6 @@
 # 新しい PC で GitHub を使えるように連携する
 
-作成日 2021/07/18
+作成日 2021/07/18、更新日 2022/08/09
 
 ## 00. 前提条件
 
@@ -58,9 +58,9 @@ less .ssh/id_rsa.pub
 
 GitHub のページを開いてログインする ＞ ページ右上にある自分のアイコンをクリック ＞ Settings メニュー
 
-Your Profile ページ ＞ 左枠 ＞ Account Settings ＞ SSH and GPG keys
+Your Profile ページ ＞ 左枠 ＞ Access コーナー ＞ SSH and GPG keys
 
-SSH Keys ページ ＞ 右枠 ＞ "New SSH key"ボタン
+SSH Keys ページ ＞ 右上 ＞ "New SSH key"ボタン
 
 - Title に新しい PC を指し示す名前を適当に入力する
 - Key にコピペした公開鍵をそのまま貼りつける
@@ -108,7 +108,7 @@ ssh git@github.com
 - GitHubの目的のリポジトリのページを開く
 - ページの真ん中よりも右上寄りにある "Code" ボタンをクリック
 - ダイアログ登場 ＞ Clone コーナー
-- HTTPS, SSH, GitHub CLI の中の SSH を選ぶ
+- HTTPS, SSH, GitHub CLI のタブから SSH をクリック
 - テキストボックスに表示されている呪文をコピーする
 - `git clone` コマンドの後にその呪文を貼り付けて、実行する
 
