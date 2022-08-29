@@ -12,6 +12,8 @@
 =WEBSERVICE("http://api.excelapi.org/post/address?zipcode=1000014")
 ```
 
+=> ブラウザでこのURLを叩いてみたら、最初はいつまでも返事がなく、Bad Gateway が出てくるようになったと思ったら、「東京都千代田区永田町」をテキストで戻すようになった
+
 [郵便番号から住所を取得 | ExcelAPI](https://excelapi.org/docs/post/address/)
 
 ## 外部サイトを取り込むための機能を発見
@@ -25,4 +27,4 @@
 =WEBSERVICE("https://api.excelapi.org/convert/json2plain?url="&ENCODEURL($A2)&"&target="&ENCODEURL($B2))
 ```
 
-Excel形式を理解できて、それを返すようにサイトを開発できるなら、こんな機能は不要なのでは？
+=> 平文を返すサイトを開発できるなら、こんな機能は不要では？
