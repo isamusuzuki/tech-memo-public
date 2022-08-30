@@ -1,73 +1,14 @@
-# 単体テストを使いこなす
+# 単体テストで mock を使う
 
-作成日 2019/11/30、更新日 2021/01/25
+作成日 2019/11/30、更新日 2022/08/30
 
-## 01. unittest のサンプルコード
-
-ディレクトリ構造
-
-```text
---avocado/
-    |--apps/
-    |   |--__init__.py
-    |   `--util.py
-    |
-    `--tests/
-        |--__init__.py
-        `--test_util.py
-```
-
-`tests/test_util.py`ファイル
-
-```python
-import unittest
-from apps.util import getParams
-
-class TestUtil(unittest.TestCase):
-    def test_getParams(self):
-        data = {}
-        result = getParams(data)
-        self.assertTrue(result['gotParams'])
-
-    def test_getParams2(self):
-        result = getParams(data)
-        self.assertEqual(result['value'], 'abc')
-
-if __name__ == '__main__':
-    unittest.main()
-```
-
-単体テストの実行
-
-```bash
-cd avocado
-unittest discover tests
-```
-
-### 例外があがることをテストする
-
-```python
-import unittest
-from apps.util import getParams
-
-class TestUtil(unittest.TestCase):
-    def test_getParams3(self):
-        with self.assertRaises(Exception):
-            result = getParams(bad_data)
-
-if __name__ == '__main__':
-    unittest.main()
-```
-
-## 02. mock のサンプルコード
-
-### mock の使い方
+## mock の使い方
 
 mock は、1 つの関数に対して、1 つのオブジェクトだけを偽装する\
 つまり、1 つの関数は、1 つのオブジェクトだけを持つべきである\
 そもそも、2 つ以上のオブジェクトに依存している関数を書いてはいけない
 
-### mock で環境変数を置き換える
+## mock で環境変数を置き換える
 
 tests/test_util.py
 
@@ -94,7 +35,7 @@ if __name__ == '__main__':
     unittest.main()
 ```
 
-### mock で urlrequest を置き換える
+## mock で urlrequest を置き換える
 
 まずは patch で、urllib.request.urlopen メソッドを偽装する\
 urlopen は実行されているのだから、`.return_value`をつける\
@@ -173,6 +114,6 @@ def test_Foo(self, mock_foo):
     mock_foo.return_value.__enter__.return_value = mock_f
 ```
 
-### mock で MySQL connect を置き換える
+## mock で MySQL connect を置き換える
 
 [Mock a MySQL database in Python \- Stack Overflow](https://stackoverflow.com/questions/28431452/mock-a-mysql-database-in-python)
