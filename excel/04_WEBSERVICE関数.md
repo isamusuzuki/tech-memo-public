@@ -27,4 +27,4 @@
 =WEBSERVICE("https://api.excelapi.org/convert/json2plain?url="&ENCODEURL($A2)&"&target="&ENCODEURL($B2))
 ```
 
-=> 平文を返すサイトを開発できるなら、こんな機能は不要では？
+=> 複数の値を別のセルに書き込むにはどうする？
