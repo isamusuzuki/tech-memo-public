@@ -1,6 +1,6 @@
 # Ubuntu に Python 開発環境を用意する
 
-作成日 2020/05/18、更新日 2020/10/28
+作成日 2020/05/18、更新日 2022/08/31
 
 ## 01. グローバル環境での作業
 
@@ -43,15 +43,12 @@ source venv/bin/activate
 
 requirements.txt の例
 
-waitress は Windows で動かすため\
-gunicorn は Linux 専用なので別途インストールする
-
 ```text
 autopep8
 flake8
 flake8-import-order
 Flask
-waitress
+gunicorn
 ```
 
 一括インストール
@@ -68,9 +65,6 @@ pip freeze > constraints.txt
 
 # 2回目以降
 pip install -r requirements.txt -c constraints.txt
-
-# Linuxだけ
-pip install gunicorn
 ```
 
 ### vscode の設定
@@ -89,16 +83,12 @@ pip install gunicorn
   "python.formatting.autopep8Path": "venv/bin/autopep8",
   "editor.formatOnSave": true,
   "terminal.integrated.env.linux": {
-    "PYTHONPATH": "/home/YOURNAME/PROJECTNAME"
+    "PYTHONPATH": "/home/{{YOURNAME}}/{{PROJECTNAME}}"
   }
 }
 ```
 
-最終行は、トラブル避けのおまじない
-
 ## 03. Flask の設定
-
-Windows でも動くようにする
 
 server.py
 
@@ -107,8 +97,6 @@ import sys
 
 from flask import Flask, render_template
 from flask.logging import create_logger
-
-from waitress import serve
 
 # デバッグモード？
 IS_DEBUG = False
@@ -126,11 +114,6 @@ lggr = create_logger(app)
 @app.route('/')
 def index():
     return render_template('index.html')
-
-
-if __name__ == "__main__":
-    print(f'DEBUG = {IS_DEBUG}')
-    serve(app, host='0.0.0.0', port=5000)
 ```
 
 wsgi.py
@@ -170,10 +153,6 @@ templates/index.html
 ### Flask アプリの起動
 
 ```bash
-# Windowsの場合
-python server.py debug
-
-# Linuxの場合
 python wsgi.py debug
 ```
 
@@ -239,7 +218,7 @@ $ python
 ```json
 {
   "terminal.integrated.env.linux": {
-    "PYTHONPATH": "/home/YOURNAME/PROJECTNAME"
+    "PYTHONPATH": "/home/{{YOURNAME}}/{{PROJECTNAME}}"
   }
 }
 ```
