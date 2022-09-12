@@ -1,6 +1,6 @@
 # CREATE TABLE 構文
 
-作成日 2020/11/10
+作成日 2020/11/10、更新日 2022/09/12
 
 ## 01. 基本形
 
@@ -70,4 +70,29 @@ SET
 WHERE
     id = 1;
 -- UPDATEしても値が変わっていない場合は、更新日時も変わらない
+```
+
+## 03. テーブル作成時に、外部キーも設定する
+
+```sql
+CREATE TABLE `m_suppliers` (
+    `supplier_code` int NOT NULL COMMENT '仕入先コード',
+    `supplier_name` varchar(100) NOT NULL COMMENT '仕入先名称',
+    `supplier_status` ENUM('正常', '取引停止', '保留中') NOT NULL COMMENT '取引状況',
+    `is_deleted` tinyint DEFAULT '0' COMMENT '削除フラグ(0:生き,1:削除)',
+    `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新日時',
+    `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '作成日時',
+    PRIMARY KEY (`supplier_code`)
+);
+
+CREATE TABLE `m_items` (
+    `item_code` varchar(30) NOT NULL COMMENT '商品コード',
+    `supplier_code` int NOT NULL COMMENT '仕入先コード',
+    `shiire_type` varchar(30) NOT NULL COMMENT '仕入タイプ',
+    `is_deleted` tinyint DEFAULT '0' COMMENT '削除フラグ(0:否,1:削除)',
+    `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新日時',
+    `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '作成日時',
+    PRIMARY KEY (`item_code`),
+    CONSTRAINT `fk_m_items_m_suppliers` FOREIGN KEY (`supplier_code`) REFERENCES `m_suppliers` (`supplier_code`)
+);
 ```
