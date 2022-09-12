@@ -1,6 +1,6 @@
 # INSERT 構文
 
-作成日 2020/11/10、更新日 2020/12/16
+作成日 2020/11/10、更新日 2022/09/12
 
 ## 01. 基本形
 
@@ -68,10 +68,10 @@ WHERE
 
 ```sql
 INSERT INTO
-    sku_images (sku_code, 
-        file_name, 
-        gsurl, 
-        updated_at, 
+    sku_images (sku_code,
+        file_name,
+        gsurl,
+        updated_at,
         created_at)
 VALUES
     (
@@ -94,6 +94,26 @@ UPDATE
     gsurl = VALUES(gsurl),
     overwrite_times = overwrite_times + 1,
     updated_at = VALUES(updated_at);
+```
+
+### MySQL 8.0 でインサートアップデートを使ったら、警告が出るようになった
+
+```text
+'VALUES function' is deprecated and will be removed in a future release. Please use an alias (INSERT INTO ... VALUES (...) AS alias) and replace VALUES(col) in the ON DUPLICATE KEY UPDATE clause with alias.col instead
+```
+
+今までの書き方
+
+```sql
+INSERT INTO foo (bar, baz) VALUES (1,2)
+ON DUPLICATE KEY UPDATE baz=VALUES(baz);
+```
+
+新しい書き方
+
+```sql
+INSERT INTO foo (bar, baz) VALUES (1,2) AS new_foo
+ON DUPLICATE KEY UPDATE baz=new_foo.baz;
 ```
 
 ## 05. よくあるエラー
