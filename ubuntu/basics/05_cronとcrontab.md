@@ -1,6 +1,6 @@
 # cron と crontab
 
-作成日 2020/02/26、更新日 2020/09/08
+作成日 2020/02/26、更新日 2022/10/18
 
 ## 01. cron の注意点
 
@@ -59,3 +59,17 @@ GOOGLE_APPLICATION_CREDENTIALS=/home/ubuntu/credentials.json
 - `0 9 * * 1` ... 毎週月曜日の朝 9 時
 - `*/5 9-17 * * 1-5` ... 平日 9:00 から 17:55 の間、5 分おき（5 で割り切れる数）
 - `3,23,43 9-21 * * *` ... 毎日 9:03 から 21:43 の間、20 分おき
+
+## 04. タイムゾーンについて
+
+システムのタイムゾーンを変更する
+
+```bash
+sudo timedatectl set-timezone Asia/Tokyo
+```
+
+その後、cronを再起動する
+
+```bash
+sudo systemctl restart cron
+```
