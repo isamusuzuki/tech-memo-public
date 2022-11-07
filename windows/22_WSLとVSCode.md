@@ -41,9 +41,9 @@ WSL (Windows Subsystem for Linux) 上のフォルダを Visual Studio Code で�
 - "Remote-WSL: Show Log" を実行する
 - ログを読んでいろいろな情報を知る
 
-## 04. Remote WSL トラブルシューティング
+## 03. Remote WSL トラブルシューティング
 
-### 04-1. Web サーバーに Windows 側から localhost で接続できなくなった
+### 03-1. Web サーバーに Windows 側から localhost で接続できなくなった
 
 Windows 側で設定が必要
 
