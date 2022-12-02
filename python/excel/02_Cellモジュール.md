@@ -43,20 +43,3 @@ ws.cell(row=j, column=10).hyperlink = rankingUrl
 ws.cell(row=j, column=10).font = \
     Font(underline='single', color='FF0563c1')
 ```
-
-## 03. 計算式を入力する
-
-cell の指定に番号を使ったとしても、計算式の中でのセルの指定は、A1 形式を使う
-
-```python
-ws.cell(row=current, column=15).value = \
-    f'=IF(M{current} < F{current}, TRUE, FALSE)'
-```
-
-## 04. 日付を入力する
-
-```python
-from datetime import date
-
-ws.cell(row=1, column=15).value = date(2022, 12, 2)
-```
