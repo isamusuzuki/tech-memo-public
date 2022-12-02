@@ -1,6 +1,8 @@
 # Cell モジュール
 
-作成日 2019/11/28、更新日 2021/09/28
+作成日 2019/11/28、更新日 2022/12/02
+
+## 01. Cell モジュールとは
 
 [openpyxl\.cell\.cell module — openpyxl 3\.0\.1 documentation](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.cell.cell.html)
 
@@ -9,7 +11,7 @@
 - cell.value ... セルに値を設定する、もしくは値を得る
 - cell.hyperlink ... セルにハイパーリンクを設定する、もしくは値を得る
 
-## styles パッケージ
+## 02. styles パッケージ
 
 [openpyxl\.styles package — openpyxl 3\.0\.1 documentation](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.styles.html)
 
@@ -42,11 +44,19 @@ ws.cell(row=j, column=10).font = \
     Font(underline='single', color='FF0563c1')
 ```
 
-## 計算式を入力する
+## 03. 計算式を入力する
 
 cell の指定に番号を使ったとしても、計算式の中でのセルの指定は、A1 形式を使う
 
 ```python
 ws.cell(row=current, column=15).value = \
     f'=IF(M{current} < F{current}, TRUE, FALSE)'
+```
+
+## 04. 日付を入力する
+
+```python
+from datetime import date
+
+ws.cell(row=1, column=15).value = date(2022, 12, 2)
 ```

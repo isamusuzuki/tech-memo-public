@@ -1,14 +1,16 @@
-# openpyxl
+# openpyxl パッケージ
 
-作成日 2019/11/28、更新日 2021/09/28
+作成日 2019/11/28、更新日 2022/12/02
 
-## 01. openpyxl とは
+## 01. openpyxl パッケージとは
+
+PyPI ページ => [https://pypi.org/project/openpyxl/](https://pypi.org/project/openpyxl/)
 
 ドキュメント => [https://openpyxl.readthedocs.io/en/stable/](https://openpyxl.readthedocs.io/en/stable/)
 
 インストール => `pip install openpyxl`
 
-最新バージョン => 3.0.9 (2021/09/23)
+最新バージョン => 3.0.10 (2022/05/24)
 
 ## 02. 既存の Excel ファイルを読む
 
@@ -17,7 +19,8 @@ from openpyxl import load_workbook
 
 # 読み取り専用でエクセルファイルを開く
 wb = load_workbook(filename=file_path, read_only=True)
-# 決め打ちで1枚目のシートを読む
+
+# 1枚目のシートを読む
 ws = wb.worksheets[0]
 
 # セルの場所も決め打ちで読む
@@ -25,7 +28,7 @@ result.data['namae_onchu'] = ws['B2'].value
 result.data['order_no'] = ws['C6'].value
 
 # ファイル名を指定して別ファイルに保存可能
-wb.save(EXCEL_FILE)
+wb.save(excel_file)
 ```
 
 ## 03. Excel ファイルを作成する
@@ -33,36 +36,39 @@ wb.save(EXCEL_FILE)
 ### もっとも簡単な例
 
 ```python
-import openpyxl as excel
+import openpyxl as xl
 
-wb = excel.Workbook()
+wb = xl.Workbook()
 ws = wb.active
 
-ws['A1'] = 'こんにちは'
-wb.save(EXCEL_FILE)
+ws['A1'].value = 'こんにちは'
+
+wb.save(excel_file)
 ```
 
 ### cell()メソッドを使った簡単な例
 
 ```python
-import openpyxl as excel
+import openpyxl as xl
 
-wb = excel.Workbook()
+wb = xl.Workbook()
 ws = wb.active
+
 for i in range(1, 10):
     for j in range(1, 10):
         v = i * j
         ws.cell(column=j, row=i, value=v)
-wb.save(EXCEL_FILE)
+
+wb.save(excel_file)
 ```
 
 ### cell()メソッドを使った応用例
 
 ```python
-import openpyxl as excel
+import openpyxl as xl
 from openpyxl.styles.alignment import Alignment
 
-wb = excel.Workbook()
+wb = xl.Workbook()
 ws = wb.active
 
 # 列幅を設定する
@@ -87,5 +93,5 @@ ws.cell(row=2, column=3).value = 'タイトルタイトル'
 ws.cell(row=2, column=4).value = 5678
 ws.cell(row=2, column=4).number_format = '#,##0'
 
-wb.save(EXCEL_FILE)
+wb.save(excel_file)
 ```
