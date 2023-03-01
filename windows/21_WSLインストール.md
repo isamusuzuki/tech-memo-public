@@ -1,6 +1,6 @@
 # WSL をインストールする
 
-作成日 2021/11/15、更新日 2022/11/07
+作成日 2021/11/15、更新日 2023/03/01
 
 ## 01. インストール
 
@@ -33,6 +33,9 @@ sudo visudo
 ## 02. WSL 管理コマンド
 
 ```powershell
+# バージョン番号を表示する
+wsl --version
+
 # WSL の状態を示す
 wsl --status
 
@@ -50,4 +53,10 @@ wsl --list -v
 
 # もしインストールしたディストリビューションがWSL2でなければ変更する
 wsl --set-version Ubuntu 2
+
+# 指定したディストリビューションを終了する
+wsl --terminate Ubuntu
+
+# Linux用Windowsサブシステムの最新バージョンをインストールする
+wsl --update
 ```
