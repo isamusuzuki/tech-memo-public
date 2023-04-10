@@ -1,6 +1,6 @@
 # Flask+Gunicorn 設定
 
-作成日 2021/11/03
+作成日 2021/11/03、更新日 2023/04/10
 
 ## 01. 目的
 
@@ -19,7 +19,7 @@
 
 ```bash
 python3 --version
-# => Python 3.8.5
+# => Python 3.8.10
 
 # 追加モジュールをインストールする
 sudo apt install -y python3-pip python3-venv
@@ -32,7 +32,6 @@ cd avocado
 # venv 仮想環境を作成する
 python3 -m venv venv
 source venv/bin/activate
-pip install wheel
 
 # FlaskとGunicornをインストールする
 pip install Flask gunicorn
@@ -51,9 +50,9 @@ app.config['JSON_SORT_KEYS'] = False
 
 @app.route('/')
 def index():
-return jsonify({
-  'status': 200, 'message': 'オーケー、成功！'
-})
+    return jsonify({
+        'status': 200, 'message': 'オーケー、成功！'
+    })
 ```
 
 ~/avocado/wsgi.py

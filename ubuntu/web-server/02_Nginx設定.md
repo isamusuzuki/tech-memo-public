@@ -1,6 +1,6 @@
 # Nginx 設定
 
-作成日 2021/11/03
+作成日 2021/11/03、更新日 2023/04/10
 
 ## 01. 目的
 
@@ -28,7 +28,7 @@ nginx -v
 
 ### Nginx 設定ファイルの編集
 
-Certbot (Let's Encrypt のツール) がスムーズに進行するように、最低限の編集を行う
+後の Certbot (Let's Encrypt のツール) がスムーズに進行するように、最低限の編集を行う
 
 ```bash
 sudo vi /etc/nginx/sites-available/default
@@ -45,28 +45,3 @@ server {
     server_name avocado.example.com;  # この行を追加する
 }
 ```
-
-## 03. Certbot のインストール
-
-[Certbot \- Ubuntufocal Nginx](https://certbot.eff.org/lets-encrypt/ubuntufocal-nginx)
-
-```bash
-sudo snap install --classic certbot
-```
-
-### certbot の実行
-
-```bash
-sudo certbot --nginx
-# => Enter email address: 自分のメルアドを入力する
-# => Please read the Terms of Service: チェックを入れる
-# => Would you share your email: 了解する
-# => Which names for HTTPS: avocado.example.comが候補に登場するのでそれを選ぶ
-
-# 自動的にSSL証明書が更新されるか、ドライランを行う
-sudo certbot renew --dry-run
-```
-
-Certbot は Nginx の設定ファイル (`/etc/nginx/sites-available/default`) を更新する
-
-ブラウザで `https://avocado.example.com` にアクセスすると、Nginx のデフォルトページが表示される
