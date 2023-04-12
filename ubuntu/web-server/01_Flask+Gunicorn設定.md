@@ -1,13 +1,13 @@
 # Flask+Gunicorn 設定
 
-作成日 2021/11/03、更新日 2023/04/10
+作成日 2021/11/03、更新日 2023/04/12
 
 ## 01. 目的
 
 下記の構成で、Web サーバーを構築する
 
-- OS ... Ubuntu 20.04 LTS
-- 言語 ... Python 3.8
+- OS ... Ubuntu 22.04 LTS
+- 言語 ... Python 3.10
 - Web フレームワーク ... Flask
 - WSGI サーバー ... Gunicorn
 
@@ -19,7 +19,7 @@
 
 ```bash
 python3 --version
-# => Python 3.8.10
+# => Python 3.10.6
 
 # 追加モジュールをインストールする
 sudo apt install -y python3-pip python3-venv
