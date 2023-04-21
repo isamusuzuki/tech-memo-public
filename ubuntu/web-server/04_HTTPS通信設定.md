@@ -1,10 +1,10 @@
-# HTTPS通信設定
+# HTTPS 通信設定
 
-作成日 2023/04/10
+作成日 2023/04/10、更新日 2023/04/21
 
 ## 01. Certbot のインストール
 
-[Certbot \- Ubuntufocal Nginx](https://certbot.eff.org/lets-encrypt/ubuntufocal-nginx)
+[Certbot Instructions | Certbot](https://certbot.eff.org/instructions)
 
 ```bash
 sudo snap install --classic certbot
