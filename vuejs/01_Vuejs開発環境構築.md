@@ -2,7 +2,7 @@
 
 作成日 2022/12/15
 
-## 新規プロジェクト作成
+## 01. 新規プロジェクト作成
 
 - まっさらな状態から開発環境を構築する
 - Node.jsはインストールされているものとする
@@ -24,7 +24,7 @@ cd avocado
 npm init -y
 ```
 
-## TypeScript 導入
+## 02. TypeScript 導入
 
 ```bash
 npm i -D typescript
@@ -51,7 +51,7 @@ npx tsc --init
 }
 ```
 
-## ESLint 導入
+## 03. ESLint 導入
 
 ※ 前提として、VSCode の拡張機能としての ESLint はインストールしない
 
@@ -105,7 +105,7 @@ npx eslint --init
   pnpm
 ```
 
-## Webpack 導入
+## 04. Webpack 導入
 
 ```bash
 npm i -D webpack webpack-cli webpack-dev-server
@@ -113,7 +113,7 @@ npm i -D ts-loader
 npm i -D css-loader style-loader
 ```
 
-## Vue.js 導入
+## 05. Vue.js 導入
 
 ```bash
 npm i -D vue
