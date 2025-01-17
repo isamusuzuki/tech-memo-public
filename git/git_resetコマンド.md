@@ -17,7 +17,7 @@ git reset --hard HEAD^
 
 # リモートにまでプッシュしていた場合は
 # 強制的に同調させる
-git push -f origin master
+git push -f origin main
 ```
 
 ## ローカルをリモートに強制一致させる
@@ -27,5 +27,5 @@ git push -f origin master
 git fetch origin
 
 # ローカル内で状態を動かす
-git reset --hard origin/master
+git reset --hard origin/main
 ```

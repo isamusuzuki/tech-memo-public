@@ -8,5 +8,5 @@
 
 ```bash
 git checkout dev
-git rebase master
+git rebase main
 ```

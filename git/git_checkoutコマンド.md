@@ -7,20 +7,20 @@
 ```bash
 # ブランチの一覧を表示する
 git branch
-#=> *master
+#=> *main
 
 # issue1というブランチを作成する
 git branch issue1
 
 # ブランチの一覧を表示する
 git branch
-#=> *master
+#=> *main
 #=>  issue1
 
 # ブランチを切り替える
 git checkout issue1
 
 git branch
-#=>  master
+#=>  main
 #=> *issue1
 ```

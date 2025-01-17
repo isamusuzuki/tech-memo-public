@@ -14,29 +14,29 @@
 ```bash
 # ブランチの一覧を表示する
 git branch
-#=> *master 
+#=> *main 
 
 # issue1というブランチを作成する
 git branch issue1
 
 # ブランチの一覧を表示する
 git branch
-#=> *master
+#=> *main
 #=>  issue1
 
 # ブランチを切り替える
 git checkout issue1
 
 git branch
-#=>  master
+#=>  main
 #=> *issue1
 ```
 
 ## あるブランチで行った変更履歴を別のブランチに取り込ませる
 
 ```bash
-# issue1で行った変更をmasterに取り込ませる
-git checkout master
+# issue1で行った変更をmainに取り込ませる
+git checkout main
 git merge issue1
 
 # ブランチを削除する

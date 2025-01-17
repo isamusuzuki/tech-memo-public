@@ -5,6 +5,6 @@
 - `git pull {remote} {branch}` ... リモートブランチの変更内容を取り込む
 
 ```bash
-# origin/master ブランチの変更履歴を取り込む
-git pull origin master
+# origin/main ブランチの変更履歴を取り込む
+git pull origin main
 ```
