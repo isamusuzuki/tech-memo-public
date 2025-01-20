@@ -1,6 +1,6 @@
 # git stash コマンド
 
-作成日 2023/01/31、更新日 2025/01/17
+作成日 2023/01/31、更新日 2025/01/20
 
 ## 変更を退避させる
 
@@ -9,13 +9,13 @@
 git stash
 git stash push
 
-# メッセージをつけて退避させる
-git stash "message"
-git stash push "message"
-
 # 追跡対象に含まれていない新規作成ファイルも含めて、退避させる
 git stash -u
 git stash push -u
+
+# さらにメッセージをつけて、退避させる
+git stash -u -m "message"
+git stash push -u -m "message"
 ```
 
 ## 退避させたものを確認する
@@ -23,6 +23,13 @@ git stash push -u
 ```bash
 # 退避させた一覧を見る
 git stash list
+
+# 直近に退避させたファイルの一覧を表示する
+git stash show
+
+# 直近に退避させたファイルの一覧を、
+# 追跡対象に含まれていないものも含めて表示する
+git stash show -u
 
 # N番目に退避させたファイルの一覧を表示する
 git stash show stash@{N}
