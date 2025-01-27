@@ -4,7 +4,7 @@
 
 ## 01. TCP/IP モデルの 4 階層
 
-Layer              | Protocols                                                                        |
+| Layer              | Protocols                                                                        |
 | ------------------ | -------------------------------------------------------------------------------- |
 | アプリケーション層 | DHCP, DNS, FTP, HTTP, IMAP, IRC, LDAP, POP, SMTP, SNMP, SSH, TFTP, TLS/SSL, XMPP |
 | トランスポート層   | TCP, UDP                                                                         |
