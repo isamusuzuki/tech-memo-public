@@ -16,5 +16,5 @@ b = list(duplicates(a))
 # => [A', 'B', 'C', 'A']
 
 c = list(unique_everseen(duplicates(a)))
-# => ['A], 'B', 'C']
+# => ['A', 'B', 'C']
 ```
