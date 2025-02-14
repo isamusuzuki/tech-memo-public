@@ -4,9 +4,9 @@
 
 ## 参考記事を写経する
 
-[Ubuntu 20\.04へのPostgreSQLのインストールおよび使用方法 \| DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-20-04-ja)
+[Ubuntu 20\.04 への PostgreSQL のインストールおよび使用方法 \| DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-20-04-ja)
 
-### ステップ1— PostgreSQLのインストール
+### ステップ 1 — PostgreSQL のインストール
 
 ```bash
 # OSのバージョンを確認する
@@ -28,7 +28,7 @@ psql --version
 # => psql (PostgreSQL) 12.7 (Ubuntu 12.7-0Ubuntu0.20.04.1)
 ```
 
-### ステップ2 — PostgreSQLのロールとデータベースの使用
+### ステップ 2 — PostgreSQL のロールとデータベースの使用
 
 ```bash
 # ログインしてみる
@@ -47,28 +47,28 @@ sudo -i -u postgres
 psql
 # => psql (PostgreSQL) 12.7 (Ubuntu 12.7-0Ubuntu0.20.04.1)
 # => Type "help" for help.
-# => 
+# =>
 # => postgres=#
 
 # ユーザー切り替えを終了する
 exit
 ```
 
-- `\q`で、PostgreSQLプロンプトを終了できる
-- 一連の流れを1回のコマンドで実行できる
+- `\q`で、PostgreSQL プロンプトを終了できる
+- 一連の流れを 1 回のコマンドで実行できる
 
 ```bash
 # ログインする
 sudo -u postgres psql
 # => psql (PostgreSQL) 12.7 (Ubuntu 12.7-0Ubuntu0.20.04.1)
 # => Type "help" for help.
-# => 
+# =>
 # => postgres=#
 ```
 
-### ステップ3 — 新しいロールの作成
+### ステップ 3 — 新しいロールの作成
 
-postgresユーザーの時だけ使えるコマンドがある
+postgres ユーザーの時だけ使えるコマンドがある
 
 ```bash
 sudo -i -u postgres
@@ -78,7 +78,7 @@ createuser --interactive
 # => Shall the new role be a superuser? (y/n): y
 ```
 
-### ステップ4 — 新しいデータベースの作成
+### ステップ 4 — 新しいデータベースの作成
 
 ロールはデフォルトで同じ名前のデータベースへの接続を試行する
 
@@ -88,14 +88,14 @@ sudo -i -u postgres
 createdb focaldb
 ```
 
-### ステップ5 — 新しいロールでPostgresプロンプトを開く
+### ステップ 5 — 新しいロールで Postgres プロンプトを開く
 
-- Postgresロール、データベースと同じ名前のLinuxユーザーが必要
-- postgresユーザーはsudo 権限を持たない
+- Postgres ロール、データベースと同じ名前の Linux ユーザーが必要
+- postgres ユーザーは sudo 権限を持たない
 - sudo 権限を持つユーザーで以下を実行する
 
 ```bash
-sudo adduser　focaldb
+sudo adduser focaldb
 # => New password: focalpasswd
 # => Retype new password: focalpasswd
 ```
@@ -110,6 +110,6 @@ focaldb=# \conninfo
 # => You are connected to database "focaldb" as user "focaldb" via socket in "/var/run/postgresql" at port "5432".
 ```
 
-### ステップ6 — テーブルの作成と削除
+### ステップ 6 — テーブルの作成と削除
 
 TBF
