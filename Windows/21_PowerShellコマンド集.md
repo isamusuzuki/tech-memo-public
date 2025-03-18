@@ -1,6 +1,6 @@
 # PowerShell コマンド集
 
-作成日 2025/01/29、更新日 2025/02/18
+作成日 2025/01/29、更新日 2025/03/18
 
 ## 1. バージョン確認
 
@@ -19,4 +19,25 @@ Get-ChildItem env:
 
 ```bash
 $env:someValue = "test"
+```
+
+## 4. 隠しファイルを表示する
+
+```bash
+# ls -a ではない
+ls -Force
+
+Get-ChildItem -Force
+```
+
+## 5. ディレクトリを削除する
+
+```bash
+Remove-Item target-dir
+
+# 強制的に削除する
+Remove-Item target-dir -Force
+
+# 再帰的に削除する
+Remove-Item target-dir -Recurse
 ```
