@@ -1,0 +1,38 @@
+package com.example.lessons;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+public class HelloWorld {
+    public static void main(String[] args) {
+        String filename = "./temp/HelloWorld.xlsx";
+        try (
+            FileOutputStream os = new FileOutputStream(filename);
+            Workbook workbook = new XSSFWorkbook();
+        ) {
+            Sheet sheet = workbook.createSheet("Sheet 1");
+            Row row = sheet.createRow(0);
+            Cell cell = row.createCell(0);
+            cell.setCellValue("Hello POI");
+            workbook.write(os);
+        } catch (IOException e) {
+            log.error(e.getClass().getName());
+            log.error(e.getMessage());
+            e.printStackTrace();
+        } catch (Exception e) {
+            log.error(e.getClass().getName());
+            log.error(e.getMessage());
+            e.printStackTrace();
+        }
+        log.info("DONE => {}", filename);
+    }
+}
