@@ -31,10 +31,7 @@ columns.add("備考");
 問題解決
 
 ```java
-List<String> columns = new ArrayList<>();
-for (String column : List.of("曜日", "時間", "実習内容", "担当教官", "場所")) {
-    columns.add(column);
-}
+List<String> columns = new ArrayList<String>(Arrays.asList("曜日", "時間", "実習内容", "担当教官", "場所"));
 
 columns.add("備考");
 ```
