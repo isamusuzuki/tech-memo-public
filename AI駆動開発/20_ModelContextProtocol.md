@@ -1,6 +1,6 @@
 # Model Context Protocol (MCP)
 
-作成日 2025/03/24、更新日 2025/03/27
+作成日 2025/03/24、更新日 2025/03/28
 
 ## 1. MCPとは
 
@@ -16,9 +16,9 @@
 
 ## 2. Figma MCP Server
 
-[Cursor】FigmaにアクセスしてUIコードを自動生成！](https://zenn.dev/oke331/articles/97d5de75f06fb3)
+ソースコード => [GLips/Figma-Context-MCP: MCP server to provide Figma layout information to AI coding agents like Cursor](https://github.com/GLips/Figma-Context-MCP)
 
-[GLips/Figma-Context-MCP: MCP server to provide Figma layout information to AI coding agents like Cursor](https://github.com/GLips/Figma-Context-MCP)
+紹介記事 => [【Cursor】FigmaにアクセスしてUIコードを自動生成！](https://zenn.dev/oke331/articles/97d5de75f06fb3)
 
 ## 3. playwright-mcp
 
@@ -30,7 +30,7 @@
 
 紹介記事 => [ClaudeでPlaywright MCPを使う（Windows）](https://zenn.dev/coco9122/articles/claude-playwright-mcp-coco9122)
 
-> WindowsでClaude Desktopを使ってPlaywright MCPを使う際に少しハマったので、その解決方法をまとめます。\
+> WindowsでClaude Desktopを使ってPlaywright MCPを使う際に少しハマったので、その解決方法をまとめます。
 >
 >- Claude Desktopのインストール
 >- Playwright MCPのリポジトリのクローン
