@@ -1,24 +1,26 @@
 # Model パート（サンプルコードから）
 
-作成日 2025/03/07
+作成日 2025/03/07、更新日 2025/04/03
 
 - `@Schema` ... description, example
 
 ## src/main/kotlin/com/example/demo/model/ErrorResponse.kt
 
-```kotlin
-package com.example.demo.model
+※ Javaコードに変換済み
 
-import io.swagger.v3.oas.annotations.media.Schema
+```java
+package com.example.demo.model;
 
-data class ErrorResponse(
+import io.swagger.v3.oas.annotations.media.Schema;
+
+public class ErrorResponse {
     @Schema(description = "エラーコード", example = "NOT_FOUND")
-    val code: String,
+    public String code;
 
     @Schema(description = "エラーメッセージ", example = "指定されたリソースが見つかりません")
-    val message: String,
+    public String message;
 
     @Schema(description = "エラーの詳細情報", example = "ユーザーID: 12345 は存在しません")
-    val details: String?
-)
+    public String details;
+}
 ```

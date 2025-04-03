@@ -1,6 +1,6 @@
 # Controller パート（サンプルコードから）
 
-作成日 2025/03/07、更新日 2025/03/14
+作成日 2025/03/07、更新日 2025/04/03
 
 - `@Tag` ... Swagger-UI のコーナータイトル name, description
 - `@Operation` ... URL とメソッド summary, description
@@ -11,7 +11,7 @@
 
 ## src/main/kotlin/com/example/demo/controller/UserController.kt
 
-※ Java に変換済み
+※ Javaコードに変換済み
 
 ```java
 package com.example.demo.controller;
@@ -50,12 +50,12 @@ class UserController {
         }
     )
     @GetMapping("/{id}")
-    private fun getUser(
+    public ResponseEntity<UserResponse> getUser(
         @Parameter(description = "ユーザーID", required = true, example = "12345")
-        @PathVariable id: Int
-    ): ResponseEntity<UserResponse> {
-        val user = UserResponse(id, "ユーザー$id", 30)
-        return ResponseEntity.ok(user)
+        @PathVariable int id
+    ) {
+        UserResponse user = new UserResponse(id, "ユーザー$id", 30);
+        return ResponseEntity.ok(user);
     }
 }
 ```

@@ -1,13 +1,13 @@
 # Aplication パート（サンプルコードから）
 
-作成日 2025/03/07、更新日 2025/03/14
+作成日 2025/03/07、更新日 2025/04/03
 
 - `@OpenAPIDefinition` ... Swagger-UI のページタイトル
 - `@Info` ... title, version, description
 
 ## src/main/kotlin/com/example/demo/DemoApplication.kt
 
-※ Java に変換済み
+※ Javaコードに変換済み
 
 ```java
 package com.example.demo;
