@@ -1,4 +1,4 @@
-# Model Context Protocol (MCP)
+# MCP (Model Context Protocol)
 
 作成日 2025/03/24、更新日 2025/04/03
 
