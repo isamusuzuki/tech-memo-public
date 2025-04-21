@@ -1,8 +1,8 @@
 # Type と Interface の違い
 
-作成日 2021/05/12、更新日 2021/05/28
+作成日 2021/05/12、更新日 2025/04/21
 
-## 解説記事を読む
+## 1. 解説記事を読む
 
 解説記事 => [TypeScript の Interface と Type Alias の違い \- Qiita](https://qiita.com/sotszk/items/efe32e07e52dce329653)
 
@@ -33,7 +33,52 @@ MappedType という Enum っぽいものもある
 type Fruits = 'Apple' | 'Orange' | 'WaterMelon';
 ```
 
-## 自分なりのまとめ
+## 2. 自分なりのまとめ
 
 - Type は、TypeScript が生まれた後に、すぐに生まれた補助役。型のまとめ役
 - Interface は、インスタンス化できないクラス。C# からの継承
+
+## 3. Interfaceは継承が可能
+
+参照サイト => [インターフェースの継承](https://typescriptbook.jp/reference/object-oriented/interface/interface-inheritance)
+
+プロパティを追加する
+
+```javascript
+interface Person {
+  name: string;
+  age: number;
+}
+ 
+interface Student extends Person {
+  grade: number; // 学年
+}
+ 
+interface Teacher extends Person {
+  students: Student[]; // 生徒
+}
+ 
+const studentA: Student = {
+  name: "花子",
+  age: 10,
+  grade: 3,
+};
+ 
+const teacher: Teacher = {
+  name: "太郎",
+  age: 30,
+  students: [studentA],
+};
+```
+
+ユニオン型から選ぶ
+
+```javascript
+interface Person {
+  age: number | undefined;
+}
+ 
+interface Student extends Person {
+  age: number;
+}
+```
