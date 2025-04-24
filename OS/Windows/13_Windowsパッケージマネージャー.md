@@ -1,6 +1,12 @@
-# wingetコマンド
+# Windowsパッケージマネージャー
 
-作成日 2025/03/18、更新日 2025/04/11
+作成日 2025/04/24
+
+## 1. Windowsパッケージマネージャー
+
+公式ガイド => [Windows パッケージ マネージャー](https://learn.microsoft.com/ja-jp/windows/package-manager/)
+
+## 2. wingetコマンド
 
 インストールプログラムのダウンロードと起動までをコマンドラインで実行できる
 
