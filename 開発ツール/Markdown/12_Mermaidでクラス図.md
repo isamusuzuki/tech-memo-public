@@ -1,0 +1,41 @@
+# Mermaidでクラス図を書く
+
+作成日 2025/04/28
+
+ユーザーガイド（英語） => [Class diagrams](https://mermaid.js.org/syntax/classDiagram.html)
+
+```mermaid
+classDiagram
+class iSeprogram
+<<interface>> iSeprogram
+iSeprogram : +List~iSeprogramRow~ seprogramRows
+iSeprogram <-- iSeprogramRow
+
+class iSeprogramRow {
+    <<interface>>
+    +number id
+    +string dispOrder
+    +string checkLabel
+    +boolean checkModel
+    +boolean hasRadio
+    +List~string~ radioValues
+    +string radioModel
+}
+```
+
+## クラス図で使う記号
+
+Visibility
+
+Type | Description
+----|------
+`+` | Public
+`-` | Private
+
+Relation
+
+Type | Description
+----|------
+`-->` | Association (※)
+
+※ 直接アソシエーション: オブジェクトがフィールドにある別のオブジェクトを含む場合に限る
