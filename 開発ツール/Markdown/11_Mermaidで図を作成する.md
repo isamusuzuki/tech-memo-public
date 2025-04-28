@@ -1,10 +1,10 @@
 # Mermaid で図を作成する
 
-作成日 2025/02/06
+作成日 2025/02/06、更新日 2025/04/26
 
 ## 1. Mermaid とは
 
-作図のためのスクリプト言語で、「フローチャート」「シーケンス図」「ガントチャート」の 3 つに特化している
+公式サイト（英語） => [Mermaid | Diagramming and charting tool](https://mermaid.js.org/)
 
 ```text
 graph LR
@@ -19,8 +19,6 @@ A{チョキ} --> B((パー))
 B --> C[グー]
 C --> A
 ```
-
-公式サイト => [https://mermaid.js.org/](https://mermaid.js.org/)
 
 ## 2. Mermaid の文法
 
