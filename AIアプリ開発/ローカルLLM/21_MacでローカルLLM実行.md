@@ -50,3 +50,76 @@ Ollamaからhuggingface上のファイルを簡単にダウンロードできる
 ```bash
 ollama run huggingface.co/elyza/Llama-3-ELYZA-JP-8B-GGUF
 ```
+
+### 1c. huggingfaceに公開されているSafetensorsファイルをGGUFファイルに変換して使う
+
+Ollamaで利用できるようにするには、(1) GGUF形式のファイル、(2) Ollama Modelfile、の2つが必要です。
+
+llama.cppと言うLLMのライブラリをセットアップします。
+
+```bash
+git clone https://github.com/ggerganov/llama.cpp.git
+cd llama.cpp
+cmake -B build
+cmake --build build --config Release
+```
+
+Safetensorsファイル（transformerモデル）のダウンロード
+
+```bash
+# GitLFSをインストールしていない場合は、事前にインストールする
+brew install git-lfs
+
+# 以下のコマンドでファイルをダウンロードする。
+# 時間がかかる上にインジケーターが表示されないので心配になるが、
+# ダウンロードが完了するまで待つ。
+cd ../
+mkdir models
+cd models
+git lfs install
+git clone https://huggingface.co/elyza/Llama-3-ELYZA-JP-8B
+```
+
+GGUFモデルに変換
+
+```bash
+cd ../
+python3 -m venv venv
+source venv/bin/activate
+python -m pip install -r ./llama.cpp/requirements.txt 
+
+python ./llama.cpp/convert_hf_to_gguf.py ./models/Llama-3-ELYZA-JP-8B/ --outtype f16 --outfile ./models/Llama-3-ELYZA-JP-8B-f16.gguf
+
+# Ollama Modelfileを作成する
+cd models
+nano Modelfile_Llama-3-ELYZA-JP-8B-f16.txt
+```
+
+```bash
+FROM ./Llama-3-ELYZA-JP-8B-f16.gguf
+TEMPLATE """{{ if .System }}<|start_header_id|>system<|end_header_id|>
+
+{{ .System }}<|eot_id|>{{ end }}{{ if .Prompt }}<|start_header_id|>user<|end_header_id|>
+
+{{ .Prompt }}<|eot_id|>{{ end }}<|start_header_id|>assistant<|end_header_id|>
+
+{{ .Response }}<|eot_id|>"""
+PARAMETER stop "<|start_header_id|>"
+PARAMETER stop "<|end_header_id|>"
+PARAMETER stop "<|eot_id|>"
+PARAMETER stop "<|reserved_special_token"
+```
+
+Ollamaのモデルを作成
+
+```bash
+ollama create Llama-3-ELYZA-JP-8B-f16.gguf -f Modelfile_Llama-3-ELYZA-JP-8B-f16.txt
+
+# 新モデルを確認
+ollama list
+# NAME
+# Llama-3-ELYZA-JP-8B-f16.gguf:latest
+
+# 実行
+ollama run Llama-3-ELYZA-JP-8B-f16.gguf:latest
+```
