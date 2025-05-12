@@ -8,7 +8,7 @@
 
 ソースコード => [ggml-org/llama.cpp: LLM inference in C/C++](https://github.com/ggml-org/llama.cpp)
 
-## 2. ローカルLLMを発開に利用する
+## 2. ローカルLLMを開発に利用する
 
 ## 2a. ContinueというVSCode機能拡張あり
 
