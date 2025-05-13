@@ -1,4 +1,4 @@
-# MacでローカルLLMを実行する
+# Ollamaを使う
 
 作成日 2025/05/12
 
@@ -14,7 +14,7 @@ OllamaでLLMを動かすには3種類のパターンがあります。上から�
 2. huggingfaceに公開されているGGUFファイルを使う
 3. huggingfaceに公開されているSafetensorsファイルをGGUFファイルに変換して使う
 
-### 1a. Ollamaのインストール
+## 2. Ollamaのインストール
 
 まずは以下のページからインストーラをダウンロードして実行します。
 
@@ -41,7 +41,7 @@ ollama list
 ollama rm gemma:2b
 ```
 
-### 1b. huggingfaceに公開されているGGUFファイルを使う
+## 3. huggingfaceに公開されているGGUFファイルを使う
 
 Ollamaからhuggingface上のファイルを簡単にダウンロードできるようになっているため、操作自体は簡単です。
 
@@ -51,7 +51,7 @@ Ollamaからhuggingface上のファイルを簡単にダウンロードできる
 ollama run huggingface.co/elyza/Llama-3-ELYZA-JP-8B-GGUF
 ```
 
-### 1c. huggingfaceに公開されているSafetensorsファイルをGGUFファイルに変換して使う
+## 4. huggingfaceに公開されているSafetensorsファイルをGGUFファイルに変換して使う
 
 Ollamaで利用できるようにするには、(1) GGUF形式のファイル、(2) Ollama Modelfile、の2つが必要です。
 
