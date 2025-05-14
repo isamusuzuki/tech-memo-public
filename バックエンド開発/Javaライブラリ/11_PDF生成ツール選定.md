@@ -14,7 +14,7 @@
 ## 候補 2. [iText](https://itextpdf.com/)
 
 - No.2 & 3 in PDF Libraries of Maven Repository
-- iText is dual licensed as AGPL/Commercial software. => `ソフトウェアライセンス/11_AGPL.md`を参照のこと
+- iText is dual licensed as AGPL/Commercial software. => `コンセプト/dソフトウェアライセンス/11_AGPL.md`を参照のこと
 - 最新バージョン(iText Core/Community) => 9.0.0 at 2024-11-18
 - ソースコード => [https://github.com/itext/itext-java](https://github.com/itext/itext-java)
 - ナレッジベース => [https://kb.itextpdf.com/](https://kb.itextpdf.com/)
