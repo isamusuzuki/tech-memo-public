@@ -1,10 +1,10 @@
-# setupSelect()メソッドを使ってテーブルを結合させる
+# setupSelect()メソッドを使って外部テーブルを結合させる
 
-作成日 2024/12/24、更新日 2024/12/27
+作成日 2024/12/24、更新日 2025/06/05
 
 参照サイト => [SetupSelect(Relation)](https://dbflute.seasar.org/ja/manual/function/ormapper/conditionbean/setupselect/index.html)
 
-## サンプルコード
+## 1. サンプルコード
 
 ```java
 public class DemoApplication {
@@ -27,4 +27,21 @@ public class DemoApplication {
 }
 ```
 
-- ConditionBean を設定している箇所でも`setupSelect()`を使って外部テーブルを呼び出すし、さらに実際の値を取り出すコードでも、外部テーブルを呼び出す。これが DBFlute の流儀
+- ConditionBean を設定している箇所でも`setupSelect`を使って外部テーブルを呼び出すし、さらに実際の値を取り出すコードでも、外部テーブルを呼び出す。これが DBFlute の流儀
+
+## 2. 外部テーブルの外部テーブルを結合させる
+
+- `setupSelect`に続けて、`with`を使うと、外部テーブルの外部テーブルを結合させることが可能
+- `with`をチェーンさせると、さらにその先の外部テーブルという意味になってしまう
+- 同じ階層にある複数の外部テーブルは以下のように、複数回`setupSelect`する必要がある
+
+```java
+ListResultBean<Entity> list = tableBhv.selectList(cb -> {
+    cb.query().queryMstTableByMstId().setCode_Equal(code);
+
+    cb.setupSelect_MstTableByMstId();
+    cb.setupSelect_RelatedTable().withRelated2();
+    cb.setupSelect_RelatedTable().withRelated3();
+    cb.setupSelect_RelatedTable().withRelated4();
+});
+```
