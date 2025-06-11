@@ -4,9 +4,9 @@
 
 [graphql-codegen を使って GraphQL スキーマからフロントエンドのコードを自動生成してみた](https://zenn.dev/sky/articles/47b86d3387389d)
 
-> フロントエンド(NuxtJS)と BFF(GraphQL サーバ)の間に差が出ないように、スキーマファイルからコードを自動生成し開発しています。
+> フロントエンド(NuxtJS)とBFF(GraphQLサーバ)の間に差が出ないように、スキーマファイルからコードを自動生成し開発しています。
 >
-> ソースコードを自動生成しているライブラリが便利だったので、使い方を紹介していきます。使用しているライブラリは graphql-code-generator です。
+> ソースコードを自動生成しているライブラリが便利だったので、使い方を紹介していきます。使用しているライブラリはgraphql-code-generatorです。
 
 ## 1. 必要なライブラリとインストール
 
@@ -28,7 +28,7 @@ $npm install graphql-request
 
 ## 2. 設定ファイル
 
-`npx graphql-codegen`を実行すると TypeScript ファイルが自動で生成されます。
+`npx graphql-codegen`を実行するとTypeScriptファイルが自動で生成されます。
 
 フィールド説明
 
