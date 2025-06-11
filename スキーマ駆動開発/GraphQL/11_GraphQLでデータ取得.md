@@ -16,12 +16,12 @@ query ExampleQuery {
 }
 ```
 
-- `operation type` ... query, mutation, subscription. queryの時は省略可
+- `operation type` ... [query,mutation,subscription] queryの時は省略可
 - `operation name` ... 省略可
 
 ```text
 query 名前 {
-    サーバーURL (引数キーバリュー)
+    サーバーエンドポイント (引数キーバリュー)
     { 欲しい値 }
 }
 ```
