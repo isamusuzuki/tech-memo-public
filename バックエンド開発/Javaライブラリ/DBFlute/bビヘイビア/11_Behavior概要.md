@@ -1,5 +1,5 @@
 
-# [Behavior](https://dbflute.seasar.org/ja/manual/function/ormapper/behavior/index.html)
+# [Behavior](https://dbflute.seasar.org/ja/manual/function/ormapper/behavior/index.html)概要
 
 作成日 2025/06/10
 

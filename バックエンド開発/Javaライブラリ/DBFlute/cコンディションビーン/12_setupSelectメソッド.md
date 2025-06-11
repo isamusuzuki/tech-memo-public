@@ -2,7 +2,7 @@
 
 作成日 2024/12/24、更新日 2025/06/05
 
-参照サイト => [SetupSelect(Relation)](https://dbflute.seasar.org/ja/manual/function/ormapper/conditionbean/setupselect/index.html)
+公式サイト => [SetupSelect(Relation)](https://dbflute.seasar.org/ja/manual/function/ormapper/conditionbean/setupselect/index.html)
 
 ## 1. サンプルコード
 

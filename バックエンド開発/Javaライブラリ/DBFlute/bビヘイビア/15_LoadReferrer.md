@@ -1,19 +1,17 @@
-# LoadReferrer
+# LoadReferrerで関連する子テーブルのデータを取得する
 
 作成日 2024/12/26、更新日 2024/12/27
 
-参照サイト => [LoadReferrer](https://dbflute.seasar.org/ja/manual/function/ormapper/behavior/select/loadreferrer.html)
+公式サイト => [LoadReferrer](https://dbflute.seasar.org/ja/manual/function/ormapper/behavior/select/loadreferrer.html)
 
-関連する子テーブルのデータを取得する
+## 1. LoadReferrerの基本概念
 
-## LoadReferrer の基本概念
+- まず、ConditionBeanを使って、基点テーブルのデータ一覧を取得する
+- 次に、LoadReferrerを使って、基点テーブルのデータに関連する全ての子テーブルのデータを一括取得する
+- 取得後、LoadReferrerの処理の中で、基点テーブルのデータと子テーブルのデータをマッピングして、DomainEntityのオブジェクトグラフを構築する
+- SQLの合計は、「基点テーブルの検索 1 回＋子テーブルの数」となる
 
-- まず、ConditionBean を使って、基点テーブルのデータ一覧を取得する
-- 次に、LoadReferrer を使って、基点テーブルのデータに関連する全ての子テーブルのデータを一括取得する
-- 取得後、LoadReferrer の処理の中で、基点テーブルのデータと子テーブルのデータをマッピングして、DomainEntity のオブジェクトグラフを構築する
-- SQL の合計は、「基点テーブルの検索 1 回＋子テーブルの数」となる
-
-## サンプルコード
+## 2. サンプルコード
 
 ```java
 public class DemoApplication {

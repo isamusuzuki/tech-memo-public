@@ -1,4 +1,4 @@
-# DBFlute が生成する SQL クエリーをログで確認する
+# DBFluteが生成するSQLクエリーをログで確認する
 
 作成日 2024/12/24、更新日 2024/12/27
 
@@ -28,4 +28,4 @@
 - `org.dbflute.system.QLog`は、クエリログ(表示用 SQL の実行ログ)を出力するクラス
 - `org.dbflute.system.XLog`は、実行ステータスログを出力するクラス
 
-参照サイト => [DBFlute ランタイム](https://dbflute.seasar.org/ja/manual/function/ormapper/runtime/index.html)
+参照サイト => [DBFluteランタイム](https://dbflute.seasar.org/ja/manual/function/ormapper/runtime/index.html)

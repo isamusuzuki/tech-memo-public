@@ -1,14 +1,14 @@
-# DBFlute を自分のプロジェクトにインストールする
+# DBFluteを自分のプロジェクトにインストールする
 
 作成日 2024/12/24、更新日 2025/02/18
 
-参照サイト => [Maven によるセットアップ](https://dbflute.seasar.org/ja/environment/setup/maven.html)
+参照サイト => [Mavenによるセットアップ](https://dbflute.seasar.org/ja/environment/setup/maven.html)
 
 ## 1. 手動作業
 
-- Spring Boot + Maven のプロジェクトが、すでに用意されているものとする
+- Spring Boot + Mavenのプロジェクトが、すでに用意されているものとする
 - `pom.xml`を開く
-- dependencies タグに以下を追加する
+- dependenciesタグに以下を追加する
 
 ```xml
 <dependency>
@@ -18,7 +18,7 @@
 </dependency>
 ```
 
-- plugins タグに以下を追加する
+- pluginsタグに以下を追加する
 
 ```xml
 <plugin>
@@ -32,12 +32,12 @@
 </plugin>
 ```
 
-## 2. DBFlute エンジンのダウンロード
+## 2. DBFluteエンジンのダウンロード
 
 - ターミナルを開いて、`./mvnw -e dbflute:download`を実行する
 - `demo/mydbflute`フォルダが作成された
 
-## 3. DBFlute クライアントの作成
+## 3. DBFluteクライアントの作成
 
 - ターミナルを開いて、`./mvnw -e dbflute:create-client`を実行する
 - `demo/dbflute-demo`フォルダが作成された
@@ -53,7 +53,7 @@
     `--schema/
 ```
 
-## 4. DBFlute プロパティの基本設定
+## 4. DBFluteプロパティの基本設定
 
 `basicInfoMap.dfprop`
 
@@ -102,11 +102,11 @@ map: {
 import org.springframework.jdbc.datasource.DataSourceUtils;
 ```
 
-DBFlute は PostgresSQL ドライバーを内包しているので、DB 接続情報を入力するだけだったが、\
-自分のプロジェクトに、まだ JDBC ドライバーがインストールされていなかった
+DBFluteはPostgresSQLドライバーを内包しているので、DB接続情報を入力するだけだったが、\
+自分のプロジェクトに、まだJDBCドライバーがインストールされていなかった
 
 - `pom.xml`を開く
-- dependencies タグに以下を追加する
+- dependenciesタグに以下を追加する
 
 ```xml
 <dependency>
@@ -120,10 +120,10 @@ DBFlute は PostgresSQL ドライバーを内包しているので、DB 接続�
 </dependency>
 ```
 
-- Visual Studio Code が「ビルドファイルが更新された。Java のクラスパス/設定と同期させたいか？」と尋ねてくるので、イエスと答える
+- VSCodeが「ビルドファイルが更新された。Java のクラスパス/設定と同期させたいか？」と尋ねてくるので、イエスと答える
 - 問題解決
 
-## 6. 自分のプロジェクトに DB 接続情報を書き込む
+## 6. 自分のプロジェクトにDB接続情報を書き込む
 
 `src/main/resources/application.properties`
 

@@ -1,4 +1,4 @@
-# OptionalEntity クラス
+# OptionalEntityクラス
 
 作成日 2025/02/20
 

@@ -2,11 +2,9 @@
 
 作成日 2024/12/26、更新日 2024/12/27
 
-参照サイト => [selectList(cb)](https://dbflute.seasar.org/ja/manual/function/ormapper/behavior/select/selectlist.html)
+公式サイト => [selectList(cb)](https://dbflute.seasar.org/ja/manual/function/ormapper/behavior/select/selectlist.html)
 
-## サンプルコード 1
-
-for ループでリストからエンティティを取り出す
+## 1. forループでリストからエンティティを取り出すサンプルコード
 
 ```java
 public class DemoApplication {
@@ -33,11 +31,9 @@ public class DemoApplication {
 ```
 
 - `ListResultBean`は、`java.util.List`の実装クラス
-- 検索結果が一件もない場合でも、null は戻らず、空のリストが戻る
+- 検索結果が一件もない場合でも、nullは戻らず、空のリストが戻る
 
-## サンプルコード 2
-
-外部テーブルを結合させ、for ループで外部テーブルの値も取り出す
+## 2. 外部テーブルを結合させ、forループで外部テーブルの値も取り出すサンプルコード
 
 ```java
 public class DemoApplication {
@@ -80,4 +76,4 @@ public class DemoApplication {
 }
 ```
 
-- ConditionBean を設定している箇所でも`setupSelect()`を使って外部テーブルを呼び出すし、さらに実際の値を取り出すコードでも、外部テーブルを呼び出す。これが DBFlute の流儀
+- ConditionBeanを設定している箇所でも`setupSelect()`を使って外部テーブルを呼び出すし、さらに実際の値を取り出すコードでも、外部テーブルを呼び出す。これがDBFluteの流儀

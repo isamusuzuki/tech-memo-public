@@ -18,8 +18,10 @@
 
 [DBFlute の最新バージョン](https://dbflute.seasar.org/ja/environment/newest.html)
 
-dependency => 1.2.8 at 2024/03/19
+dependency => 1.2.9 at 2025/05/23
 
-[Maven によるセットアップ](https://dbflute.seasar.org/ja/environment/setup/maven.html)
+~~dependency => 1.2.8 at 2024/03/19~~
+
+[DBFlute Maven Plugin](https://dbflute.seasar.org/ja/manual/function/helper/maven/index.html)
 
 Maven Plugin => 1.1.0

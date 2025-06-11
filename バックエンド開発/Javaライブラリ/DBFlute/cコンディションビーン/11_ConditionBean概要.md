@@ -1,4 +1,4 @@
-# [ConditionBean](https://dbflute.seasar.org/ja/manual/function/ormapper/conditionbean/index.html)
+# [ConditionBean](https://dbflute.seasar.org/ja/manual/function/ormapper/conditionbean/index.html)概要
 
 作成日 2025/06/10
 

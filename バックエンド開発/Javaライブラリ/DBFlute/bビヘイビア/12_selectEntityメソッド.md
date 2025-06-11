@@ -1,8 +1,8 @@
-# selectEntity()メソッドを使ってデータを 1 件取得する
+# selectEntity()メソッドを使ってデータを1件取得する
 
 作成日 2024/12/24、更新日 2024/12/26
 
-参照サイト => [selectEntity(cb)](https://dbflute.seasar.org/ja/manual/function/ormapper/behavior/select/selectentity.html)
+公式サイト => [selectEntity(cb)](https://dbflute.seasar.org/ja/manual/function/ormapper/behavior/select/selectentity.html)
 
 ## サンプルコード 1
 
