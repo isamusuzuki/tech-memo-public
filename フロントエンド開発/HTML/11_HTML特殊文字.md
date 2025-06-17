@@ -1,4 +1,4 @@
-# HTML 特殊文字
+# HTML特殊文字
 
 作成日 2021/03/20
 
@@ -15,6 +15,5 @@
 
 ## リンク
 
-[特殊文字リファレンス](http://www.htmq.com/text/)
-
-[HTML 特殊文字コード表](http://www.shurey.com/js/labo/character.html)
+- [特殊文字リファレンス](http://www.htmq.com/text/)
+- [HTML特殊文字コード表](http://www.shurey.com/js/labo/character.html)
