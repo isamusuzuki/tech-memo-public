@@ -1,15 +1,15 @@
-# ResponseEntity
+# ResponseEntityクラス
 
 作成日 2025/02/12
 
-## javadoc を読む
+## 1. javadocを読む
 
 [クラス ResponseEntity\<T\>](https://spring.pleiades.io/spring-framework/docs/current/javadoc-api/org/springframework/http/ResponseEntity.html)
 
 - `org.springframework.http.ResponseEntity<T>`
-- HttpStatusCode ステータスコードを追加する HttpEntity の拡張。RestTemplate および @Controller メソッドで使用されます。
+- HttpStatusCodeステータスコードを追加するHttpEntityの拡張。RestTemplateおよび@Controllerメソッドで使用されます。
 
-## 参照サイトを読む 1
+## 2. 参照サイトを読む
 
 [ResponseEntity クラスについて](https://qiita.com/kaede25/items/704832692e0db702c435)
 
@@ -31,7 +31,7 @@ public ResponseEntity<String> getResponseUsingBuilder() {
 }
 ```
 
-## 参照サイトを読む 2
+## 3. 参照サイト2を読む
 
 [[Java&SpringBoot] いろいろアノテーションと ResponseEntity](https://note.com/commonerd/n/nbf44acd9e14f)
 
@@ -50,7 +50,7 @@ public class StudentController {
 }
 ```
 
-## 自分で確認したこと
+## 4. 自分で確認したこと
 
 確かに何も指定しなくても`Content-Type: application/json`でデータが送られてきた
 

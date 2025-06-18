@@ -1,10 +1,10 @@
-# MockMVC を使ったコントローラーの単体テスト
+# MockMVCを使ったコントローラーの単体テスト
 
 作成日 2025/03/04、更新日 2025/03/06
 
 参照書籍 => P.290 「第 28 章 Controller のユニットテスト」 from 『プロになるための Spring 入門』
 
-## 1. MockMVC とは
+## 1. MockMVCとは
 
 - Controller に疑似的なリクエストを送信することができる
 - Spring のテストサポート機能が提供する仕組み
@@ -170,7 +170,7 @@ class WebMockTest {
 }
 ```
 
-- テストクラスに`@WebMvcTest`を付ける。このアノテーションは DI コンテナを自動で生成する
-- その DI コンテナは、`@Service`, `@Repository`のアノテーションがついたクラスの Bean 定義を無効にする
-- 括弧の中で、テスト対象の Controller クラスを指定する
-- Mockito が提供する`@Mock`ではなく、Spring が提供する`@MockBean`を使う
+- テストクラスに`@WebMvcTest`を付ける。このアノテーションはDIコンテナを自動で生成する
+- そのDIコンテナは、`@Service`, `@Repository`のアノテーションがついたクラスのBean定義を無効にする
+- 括弧の中で、テスト対象のControllerクラスを指定する
+- Mockitoが提供する`@Mock`ではなく、Springが提供する`@MockBean`を使う
