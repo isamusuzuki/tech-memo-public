@@ -1,8 +1,8 @@
 # Ollama
 
-作成日 2025/04/14
+作成日 2025/04/14、更新日 2025/06/19
 
-## 1. Ollamaとは
+## 1. 概要
 
 ホームページ => [Ollama](https://ollama.com/)
 
@@ -10,24 +10,124 @@
 
 > 「Ollama」はllama.cppをバックエンドにしたオープンソースソフトウェア（OSS）です。
 
-## 2. モデルの選び方
+## 2. 参照記事を読む
 
-参照サイト => [Ollama を試すためのModelに関する知識と選び方](https://ishikawa-pro.hatenablog.com/entry/2025/02/12/103919)
+[M3mac環境】llama.cppを使ったGGUF変換からOllamaで実行までの手順](https://zenn.dev/k_zumi_dev/articles/1c752e21c6406f)
 
-> Ollama では GGUF という形式の、 Model を扱うためのファイルを利用します。GGUF はバイナリファイルで、モデルの重みや、\
-> さまざまなメタデータや、量子化に関する情報を持っています。基本的には、 Ollama の公式ページに公開されている GGUF 形式の\
-> Model を Pull して利用することになります。
+MacでOllamaを使ってローカルLLMを動作させる
 
-パラメーター数
+OllamaでLLMを動かすには3種類のパターンがあります。上から順に試してみましょう。
 
-> パラメーター数は多いほど頭がいいです。しかし、パラメーター数が多ければ多いほど、必要な VRAM (GPU のメモリ) も多くなります。\
-> したがって、Local LLM では自分が利用している VRAM のサイズを理解し、VRAM に乗り切るサイズの Model を使うことが重要です。
+1. ollamaのModelsに公開されているモデルをダウンロードして使う
+2. huggingfaceに公開されているGGUFファイルを使う
+3. huggingfaceに公開されているSafetensorsファイルをGGUFファイルに変換して使う
 
-量子化
+### 2-1. Ollamaのインストールとモデルの利用
 
-> 量子化とは、機械学習モデルの計算精度（数値のビット数）を減らして、メモリ使用量を削減し、計算速度を向上させる手法です。\
-> 普通のニューラルネットワークは32ビット浮動小数点を利用しますが、量子化ではモデルの数値表現を 整数（INT8, INT4 など）\
-> に変換します。そうすることでメモリ使用量を削減し、計算速度を向上させることができます。\
-> また、Model を FP16（半精度浮動小数点) に変換して数値精度の削減がされたモデルもあります。 FP16 は量子化とは違い、\
-> 整数化せずに計算精度を落とします。なぜ FP16 にするといいのかというと、最近のGPUには FP16 の計算に特化したコアが別途搭載されており、\
-> FP16 で計算することでVRAMの使用量を削減しつつ、比較的高精度な計算を高速にすることができるからです。
+まずは以下のページからインストーラをダウンロードして実行します。
+
+[Download Ollama](https://ollama.com/download)
+
+実行できたらmacの上部のバーにラマのアイコンが表示されます。特にウィンドウは立ち上がりません。
+
+ターミナルを開き、以下のコマンドを打ってみましょう。
+
+```bash
+ollama --version
+
+# OllamaのHPのモデルの一覧から好きなモデルを探す
+# モデルのダウンロードが終わるまで待つと、メッセージ入力欄が現れる
+ollama run gemma:2b
+
+# 入力待機状態を終了する
+/bye
+
+# インストール済みのモデル一覧を表示する
+ollama list
+
+# モデルを削除する
+ollama rm gemma:2b
+```
+
+### 2-2. huggingfaceに公開されているGGUFファイルを使う
+
+Ollamaからhuggingface上のファイルを簡単にダウンロードできるようになっているため、操作自体は簡単です。
+
+実行時のコマンドのモデル名のところに、モデルの公開ページからURLをコピーして「https://」をはずしてペーストするだけです。
+
+```bash
+ollama run huggingface.co/elyza/Llama-3-ELYZA-JP-8B-GGUF
+```
+
+### 2-3. huggingfaceに公開されているSafetensorsファイルをGGUFファイルに変換して使う
+
+Ollamaで利用できるようにするには、(1) GGUF形式のファイル、(2) Ollama Modelfile、の2つが必要です。
+
+llama.cppと言うLLMのライブラリをセットアップします。
+
+```bash
+git clone https://github.com/ggerganov/llama.cpp.git
+cd llama.cpp
+cmake -B build
+cmake --build build --config Release
+```
+
+Safetensorsファイル（transformerモデル）のダウンロード
+
+```bash
+# GitLFSをインストールしていない場合は、事前にインストールする
+brew install git-lfs
+
+# 以下のコマンドでファイルをダウンロードする。
+# 時間がかかる上にインジケーターが表示されないので心配になるが、
+# ダウンロードが完了するまで待つ。
+cd ../
+mkdir models
+cd models
+git lfs install
+git clone https://huggingface.co/elyza/Llama-3-ELYZA-JP-8B
+```
+
+GGUFモデルに変換
+
+```bash
+cd ../
+python3 -m venv venv
+source venv/bin/activate
+python -m pip install -r ./llama.cpp/requirements.txt 
+
+python ./llama.cpp/convert_hf_to_gguf.py ./models/Llama-3-ELYZA-JP-8B/ --outtype f16 --outfile ./models/Llama-3-ELYZA-JP-8B-f16.gguf
+
+# Ollama Modelfileを作成する
+cd models
+nano Modelfile_Llama-3-ELYZA-JP-8B-f16.txt
+```
+
+```bash
+FROM ./Llama-3-ELYZA-JP-8B-f16.gguf
+TEMPLATE """{{ if .System }}<|start_header_id|>system<|end_header_id|>
+
+{{ .System }}<|eot_id|>{{ end }}{{ if .Prompt }}<|start_header_id|>user<|end_header_id|>
+
+{{ .Prompt }}<|eot_id|>{{ end }}<|start_header_id|>assistant<|end_header_id|>
+
+{{ .Response }}<|eot_id|>"""
+PARAMETER stop "<|start_header_id|>"
+PARAMETER stop "<|end_header_id|>"
+PARAMETER stop "<|eot_id|>"
+PARAMETER stop "<|reserved_special_token"
+```
+
+Ollamaのモデルを作成
+
+```bash
+ollama create Llama-3-ELYZA-JP-8B-f16.gguf -f Modelfile_Llama-3-ELYZA-JP-8B-f16.txt
+
+# 新モデルを確認
+ollama list
+# NAME
+# Llama-3-ELYZA-JP-8B-f16.gguf:latest
+
+# 実行
+ollama run Llama-3-ELYZA-JP-8B-f16.gguf:latest
+```

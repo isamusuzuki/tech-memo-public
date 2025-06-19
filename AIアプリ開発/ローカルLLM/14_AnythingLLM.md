@@ -2,9 +2,13 @@
 
 作成日 2025/05/04
 
+## 1. 概要
+
 公式サイト（英語） => [AnythingLLM | The all-in-one AI application for everyone](https://anythingllm.com/)
 
-参照サイト => [Snapdragon XのNPUをフル稼働してLLMを動かせる「AnythingLLM」](https://forest.watch.impress.co.jp/docs/serial/usecopilotpc/2010080.html)
+## 2. 参照記事を読む
+
+[Snapdragon XのNPUをフル稼働してLLMを動かせる「AnythingLLM」](https://forest.watch.impress.co.jp/docs/serial/usecopilotpc/2010080.html)
 
 > NPUを使ってLLMを動かす方法が少しずつ増えてきている。今回紹介する「AnythingLLM」は、最も簡単に導入できるNPU対応LLMツールの1つだ。
 >
