@@ -9,7 +9,7 @@
 
 [ソースコード](https://github.com/Huachao/vscode-restclient)
 
-## 参照サイトを読む
+## 参考記事を読む
 
 [【VSCode】効率的に API 開発をする Tips](https://zenn.dev/akkie1030/articles/vscode-rest-api)
 

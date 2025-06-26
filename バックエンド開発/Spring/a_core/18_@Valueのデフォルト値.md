@@ -2,7 +2,7 @@
 
 作成日 2025/02/12
 
-## 参照サイトを読む
+## 参考記事を読む
 
 [Spring の@Value で String 型のデフォルト値を null にする方法](https://qiita.com/kazuki43zoo/items/e60eda11980e04ac61b3)
 

@@ -9,7 +9,7 @@
 - Core (Pay as you go) ... Devin IDE, Devin Search, Devin Wiki
 - Team ($500/month) ... Core plus: Devin API
 
-## 2. 参照サイトを読む
+## 2. 参考記事を読む
 
 [ZennチームにもDevinがジョインしました。そしてAIコーディング時代におけるエンジニアの役割について](https://zenn.dev/team_zenn/articles/devin-joined-to-zenn-team)
 
@@ -29,7 +29,7 @@
 >
 > **パソコンを使わずにプログラミング**：スマホからdevinに作業を指示することで、パソコンを使わずにプログラミングができるようになってしまいます。隙間時間や就寝時間帯に作業を指示することができますが、一日中作業ができるとQOLが下がるかもしれないという危機感があります。
 
-## 3. 別の参照サイトを読む
+## 3. 別の参考記事を読む
 
 [Devinによって変化したエンジニアリングの現場](https://zenn.dev/dely_jp/articles/ddcdf550cd501f)
 

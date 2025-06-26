@@ -22,7 +22,7 @@
 - ObjectOutputStream
 - PipedOutputStream
 
-## 参照サイトを読む
+## 参考記事を読む
 
 [今更ながら Java の I/O ストリームを整理する](https://zenn.dev/kawakawaryuryu/articles/8924849b88590cda4e22)
 

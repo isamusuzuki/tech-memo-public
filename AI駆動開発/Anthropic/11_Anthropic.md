@@ -21,6 +21,6 @@ Anthropicが提供する一番新しいモデル
 
 公式サイト（英語） => [Claude 3.7 Sonnet \ Anthropic](https://www.anthropic.com/claude/sonnet)
 
-### 2a. 参照サイトを読む
+### 2a. 参考記事を読む
 
 [Cline+Claudeでの開発を試してみた感想](https://zenn.dev/razokulover/articles/768337f838a110)

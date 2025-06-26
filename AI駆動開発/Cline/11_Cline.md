@@ -14,6 +14,6 @@ Clineは、VSCodeの機能拡張で、多くのLLMとAPI接続して利用でき
 
 ホームページ => [Cline - AI Autonomous Coding Agent for VS Code](https://cline.bot/)
 
-## 2. 参照サイトを読む
+## 2. 参考記事を読む
 
 [Clineに全部賭ける前に　〜Clineの動作原理を深掘り〜](https://zenn.dev/codeciao/articles/6d0a83e234a34a)

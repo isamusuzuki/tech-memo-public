@@ -9,7 +9,7 @@
 - `org.springframework.http.ResponseEntity<T>`
 - HttpStatusCodeステータスコードを追加するHttpEntityの拡張。RestTemplateおよび@Controllerメソッドで使用されます。
 
-## 2. 参照サイトを読む
+## 2. 参考記事を読む
 
 [ResponseEntity クラスについて](https://qiita.com/kaede25/items/704832692e0db702c435)
 

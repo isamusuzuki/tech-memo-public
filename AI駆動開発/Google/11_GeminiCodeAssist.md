@@ -12,7 +12,7 @@
 
 [Gemini Code Assist - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=Google.geminicodeassist)
 
-## 3. 参照サイトを読む
+## 3. 参考記事を読む
 
 [Gemini Code AssistantsをVSCodeに導入してみた](https://qiita.com/tsk_39/items/df42c83fe8ce2d54bd3f)
 

@@ -17,7 +17,7 @@ OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader clas
 
 > Starting from Java 21, the JDK restricts the ability of libraries to attach a Java agent to their own JVM. As a result, the inline-mock-maker might not be able to function without an explicit setup to enable instrumentation, and the JVM will always display a warning.
 
-## 2. 参照サイトを読む
+## 2. 参考記事を読む
 
 [Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK](https://stackoverflow.com/questions/79278490/mockito-is-currently-self-attaching-to-enable-the-inline-mock-maker-this-will-n)
 

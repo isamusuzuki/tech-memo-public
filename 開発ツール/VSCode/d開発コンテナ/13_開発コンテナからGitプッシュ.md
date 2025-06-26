@@ -2,7 +2,7 @@
 
 作成日 2025/03/25
 
-## 1. 参照サイトを読む
+## 1. 参考記事を読む
 
 参照サイト（日本語） => [devcontainer内でgitを使いたい](https://qiita.com/pappy/items/16dba1469a0d97ce0be6)
 

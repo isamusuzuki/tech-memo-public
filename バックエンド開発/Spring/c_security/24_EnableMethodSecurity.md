@@ -14,7 +14,7 @@ public class SecurityServiceApplication {
 }
 ```
 
-## 参照サイトを読む
+## 参考記事を読む
 
 [Spring の@EnableGlobalMethodSecurity を完全ガイド！初心者でもわかるメソッドセキュリティ設定](https://star-school.jp/spring/180)
 

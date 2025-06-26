@@ -2,7 +2,7 @@
 
 作成日 2025/05/21
 
-## 参照サイトを読む
+## 参考記事を読む
 
 [WSL2上でローカルLLMを使ってClineを使ってみる](https://qiita.com/abemaru/items/089f7c257124688440ba)
 

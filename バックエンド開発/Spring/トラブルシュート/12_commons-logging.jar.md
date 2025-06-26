@@ -8,7 +8,7 @@
 Standard Commons Logging discovery in action with spring-jcl: please remove commons-logging.jar from classpath in order to avoid potential conflicts
 ```
 
-## 2. 参照サイトを読む
+## 2. 参考記事を読む
 
 [Standard Commons Logging discovery in action with spring-jcl](https://stackoverflow.com/questions/76706612/standard-commons-logging-discovery-in-action-with-spring-jcl)
 
