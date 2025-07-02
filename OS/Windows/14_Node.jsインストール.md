@@ -1,6 +1,6 @@
 # Node.jsインストール
 
-作成日 2025/04/24
+作成日 2025/04/24、更新日 2025/07/02
 
 ## 1. Voltaコマンドとは
 
@@ -19,20 +19,12 @@ volta install node@21.1.0
 volta install npm@10.2.1
 ```
 
-## 3. 特定のバージョンのNode.jsをアンインストールする
-
-voltaコマンドでアンインストールすることはできない
+## 3. インストール済みのバージョンを一覧表示する
 
 ```bash
-volta uninstall node@21.1.0
-# error: Uninstalling node is not supported yet.
+volta list node
+volta list npm
 ```
-
-エクスプローラーを開く
-
-`{HOME}\AppData\Local\Volta\tools\image\node\`
-
-バージョン番号のディレクトリを手動で削除する
 
 ## 4. プロジェクトで使用するNode.jsのバージョンを固定する
 
@@ -62,3 +54,18 @@ package.jsonに書き込まれる
 ```bash
 npm install
 ```
+
+## 5. 特定のバージョンのNode.jsをアンインストールする
+
+voltaコマンドでアンインストールすることはできない
+
+```bash
+volta uninstall node@21.1.0
+# error: Uninstalling node is not supported yet.
+```
+
+エクスプローラーを開く
+
+`{HOME}\AppData\Local\Volta\tools\image\node\`
+
+バージョン番号のディレクトリを手動で削除する
