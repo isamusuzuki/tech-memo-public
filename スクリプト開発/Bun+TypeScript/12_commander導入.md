@@ -1,6 +1,6 @@
 # commander導入
 
-作成日 2025/05/01
+作成日 2025/05/01、更新日 2025/07/03
 
 ## 1. commanderとは
 
@@ -8,11 +8,11 @@ Node.js で、CLI プログラムを完成させるための便利ツール
 
 公式 => [tj/commander.js: node.js command-line interfaces made easy](https://github.com/tj/commander.js)
 
-インストール => `npm install --save commander`
+インストール => `bun add commander`
 
 ## 2. commanderサンプルコード
 
-src/index.ts
+index.ts
 
 ```javascript
 import { Command } from 'commander';
@@ -78,9 +78,9 @@ program.parse(process.argv);
 ## 3. コード実行
 
 ```bash
-npx tsx src/index.ts check {01,02,03...}
-npx tsx src/index.ts make --type sql {01,02,03...}
-npx tsx src/index.ts make --type json {01,02,03...}
-npx tsx src/index.ts count
-npx tsx src/index.ts delete
+bun run index.ts check {01,02,03...}
+bun run index.ts make --type sql {01,02,03...}
+bun run index.ts make --type json {01,02,03...}
+bun run index.ts count
+bun run index.ts delete
 ```
