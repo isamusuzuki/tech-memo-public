@@ -1,10 +1,16 @@
 # Bun導入
 
-作成日 2025/07/02
+作成日 2025/07/02、更新日 2025/07/04
+
+## 1. Bunとは
 
 公式サイト => [Bun — A fast all-in-one JavaScript runtime](https://bun.sh/)
 
-## 1. Windowsにインストールする
+Bunは、Node.js+npmとの100%互換を掲げてはいるものの、依存も利用もしていない
+
+TypeScriptを直接走らせることができるところが気に入った
+
+## 2. Windowsにインストールする
 
 ```bash
 powershell -c "irm bun.sh/install.ps1 | iex"
@@ -20,7 +26,7 @@ bun --version
 # 1.2.17
 ```
 
-## 2. 新規プロジェクトを開始する
+## 3. 新規プロジェクトを開始する
 
 ```bash
 mkdir new-project
@@ -35,7 +41,7 @@ bun init
 # + tsconfig.json (for editor autocomplete)
 # + README.md
 #
-#To get started, run:
+#　To get started, run:
 #
 #    bun run index.ts
 
@@ -56,7 +62,7 @@ bun run index.ts
     `--tsconfig.json
 ```
 
-## 3. よく使うコマンド
+## 4. よく使うコマンド
 
 ```bash
 # package.jsonのscripts項目に書いてあるコマンドを実行する
@@ -65,4 +71,18 @@ bun run start
 # パッケージをインストールする
 bun add figlet
 bun add -d @types/figlet
+```
+
+## 5. `.env`ファイルの中身を環境変数に組み込む
+
+[Environment variables – Runtime | Bun Docs](https://bun.sh/docs/runtime/env)
+
+> Bun reads your .env files automatically and provides idiomatic ways to read and write your environment variables programmatically.
+
+`.env`ファイルを用意しておけば勝手に読んでくれるようである
+
+> Bun supports `--env-file` to override which specific `.env` file to load. You can use `--env-file` when running scripts in bun's runtime, or when running package.json scripts.
+
+```bash
+bun --env-file=.env.abc --env-file=.env.def run build
 ```
