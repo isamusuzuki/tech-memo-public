@@ -1,15 +1,6 @@
-# 音声生成API
+# VOICEVOX
 
 作成日 2025/07/02
-
-## 1. にじボイス
-
-公式サイト => [にじボイス | AIによる感情豊かな音声生成サービス](https://nijivoice.com/)
-
-- API利用 ... プリペイド式。1万文字あたり825円
-- API仕様 ... [にじボイスAPI](https://docs.nijivoice.com/docs/getting-started)
-
-## 2. VOICEVOX
 
 公式サイト => [VOICEVOX | 無料のテキスト読み上げ・歌声合成ソフトウェア](https://voicevox.hiroshiba.jp/)
 
