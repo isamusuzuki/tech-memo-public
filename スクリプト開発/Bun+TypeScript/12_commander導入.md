@@ -1,10 +1,10 @@
 # commander導入
 
-作成日 2025/05/01、更新日 2025/07/03
+作成日 2025/05/01、更新日 2025/07/07
 
 ## 1. commanderとは
 
-Node.js で、CLI プログラムを完成させるための便利ツール
+Node.jsで、CLIプログラムを完成させるための便利ツール
 
 公式 => [tj/commander.js: node.js command-line interfaces made easy](https://github.com/tj/commander.js)
 
@@ -78,9 +78,30 @@ program.parse(process.argv);
 ## 3. コード実行
 
 ```bash
-bun run index.ts check {01,02,03...}
-bun run index.ts make --type sql {01,02,03...}
-bun run index.ts make --type json {01,02,03...}
+bun run index.ts check sample
+bun run index.ts make sample --type sql
+bun run index.ts make -t json sample
 bun run index.ts count
 bun run index.ts delete
+```
+
+## 4. package.jsonのscript項目に書いた場合
+
+```json
+{
+  "scripts": {
+    "start": "bun run index.ts"
+  },
+}
+
+```
+
+コマンド、引数、オプションいずれも問題なく動作する。ダブルダッシュ（`--` これ以降は呼ばれたプログラムのほうの引数であることを示す）は不要
+
+```bash
+bun run start check sample
+bun run start make sample --type sql
+bun run start make -t json sample
+bun run start count
+bun run start delete
 ```
