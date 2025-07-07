@@ -1,8 +1,8 @@
-# Mermaid で図を作成する
+# Mermaidで作図する
 
-作成日 2025/02/06、更新日 2025/04/26
+作成日 2025/02/06、更新日 2025/07/07
 
-## 1. Mermaid とは
+## 1. Mermaidとは
 
 公式サイト（英語） => [Mermaid | Diagramming and charting tool](https://mermaid.js.org/)
 
@@ -20,7 +20,7 @@ B --> C[グー]
 C --> A
 ```
 
-## 2. Mermaid の文法
+## 2. Mermaidの文法
 
 ### 冒頭の宣言
 
@@ -50,11 +50,11 @@ C --> A
 - `end` ... 背景を描き終わる
 - `;` ... 一行を分けるときに使う、文末は不要
 
-## 3. VSCode と Mermaid
+## 3. VSCodeとMermaid
 
-コードブロックの言語指定を`mermaid`にすると、Markdown Preview Enhanced のプレビュー画面で図が表示される
+コードブロックの言語指定を`mermaid`にすると、Markdown Preview Enhancedのプレビュー画面で図が表示される
 
-## 4. Mermaid 作品集
+## 4. Mermaid作品集
 
 ### API
 

@@ -1,6 +1,6 @@
 # Mermaidでクラス図を書く
 
-作成日 2025/04/28
+作成日 2025/04/28、更新日 2025/07/07
 
 ユーザーガイド（英語） => [Class diagrams](https://mermaid.js.org/syntax/classDiagram.html)
 
@@ -27,15 +27,15 @@ class iSeprogramRow {
 
 Visibility
 
-Type | Description
-----|------
-`+` | Public
-`-` | Private
+| Type | Description |
+| ---- | ----------- |
+| `+`  | Public      |
+| `-`  | Private     |
 
 Relation
 
-Type | Description
-----|------
-`-->` | Association (※)
+| Type  | Description     |
+| ----- | --------------- |
+| `-->` | Association (※) |
 
 ※ 直接アソシエーション: オブジェクトがフィールドにある別のオブジェクトを含む場合に限る
