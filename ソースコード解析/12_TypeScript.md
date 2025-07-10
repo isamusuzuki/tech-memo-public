@@ -23,12 +23,3 @@ const ast = parse(code, {
 ## 2. TypeScriptのASTの型定義を調べる
 
 `node_modules/@typescript-eslint/types/dist/generated/ast-spec.d.ts`
-
-- ArrowFunctionExpressionはbodyを持ち、それはBlockStatementかExpression
-- BlockStatementはbodyを持ち、それはStatement[]
-- IfStatementはalternateを持ち、それはStatement | null
-- IfStatementはconsequentを持ち、それはStatement
-- IfStatementはStatementである
-- WhileStatement,WithStatement,DoWhileStatement,ForStatement,LabeledStatementはbodyを持ち、それはStatement
-- CatchClause,FunctionExpressionはbodyを持ち、それはBlockStatement
-- ExpressionStatementはbodyを持たない
