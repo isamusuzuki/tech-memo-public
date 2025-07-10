@@ -1,6 +1,6 @@
 # TypeScriptを構文解析する
 
-作成日 2025/07/02
+作成日 2025/07/02、更新日 2025/07/10
 
 ## 1. typescript-eslintを試す
 
@@ -8,16 +8,19 @@
 
 > The underlying code used by `@typescript-eslint/parser` that converts TypeScript source code into an ESTree-compatible form
 
+インストール => `bun add @typescript-eslint/typescript-estreer`
+
 ```javascript
 import { parse } from '@typescript-eslint/typescript-estree'
 
+// TypeScriptのASTを生成する
 const ast = parse(code, {
     loc: true,
     range: false,
 });
 ```
 
-## 2. ASTの型定義を調べる
+## 2. TypeScriptのASTの型定義を調べる
 
 `node_modules/@typescript-eslint/types/dist/generated/ast-spec.d.ts`
 
