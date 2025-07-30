@@ -71,6 +71,9 @@ bun run start
 # パッケージをインストールする
 bun add figlet
 bun add -d @types/figlet
+
+# パッケージをアンインストールする
+bun remove figlet @types/figlet
 ```
 
 ## 5. `.env`ファイルの中身を環境変数に組み込む

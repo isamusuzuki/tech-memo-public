@@ -37,3 +37,35 @@ cat people.json | jq '.results[] | select( .gender == "male") | .name'
 - JSONPath expression => `$.store.book[0].title`
 
 解説記事 => [JSONPath 使い方まとめ](https://qiita.com/takkii1010/items/0ce1c834d3a73496ccef)
+
+## 3. JSONPath Plus
+
+[jsonpath-plus - npm](https://www.npmjs.com/package/jsonpath-plus)
+
+> Analyse, transform, and selectively extract data from JSON documents (and JavaScript objects).
+
+```javascript
+import { readFileInTemp } from "../utils/readFile";
+import { JSONPath } from "jsonpath-plus";
+
+export async function job13(): Promise<void> {
+    const sample: any = JSON.parse(await readFileInTemp('', 'sample.json'));
+    const books = JSONPath({ path: '$..book[?(@.price<10)]', json: sample });
+
+    if (Array.isArray(books) && books.length > 0) {
+        console.log("Books found:");
+        books.forEach(book => {
+            console.log(`Title: ${book.title}, Price: ${book.price}`);
+        });
+    } else {
+        console.log("No books found.");
+    }
+}
+```
+
+### 3a. path解説
+
+- `$..book` ... All books (Array of book object)
+- `$..book[2]` ... The third book (book object)
+- `$..book[?(@.isbn)]` ... Filter all books with ISBN number
+- `$..book[?(@.price<10)]` ... Filter all books cheaper than 10
