@@ -1,6 +1,6 @@
 # JSONデータ解析
 
-作成日 2025/07/20
+作成日 2025/07/20、更新日 2025/07/31
 
 ## 1. jq
 
@@ -63,9 +63,23 @@ export async function job13(): Promise<void> {
 }
 ```
 
-### 3a. path解説
+### 3a. path文法解説
 
 - `$..book` ... All books (Array of book object)
 - `$..book[2]` ... The third book (book object)
 - `$..book[?(@.isbn)]` ... Filter all books with ISBN number
 - `$..book[?(@.price<10)]` ... Filter all books cheaper than 10
+
+### 3b. JSONPath Plusを試した感想
+
+```javascript
+const pathStr = '$..callee[?(@.name=="pagingRequestIterator")]';
+const iterators = JSONPath({ path: pathStr, json: data });
+```
+
+- ここでの括弧の意味は、calleeオブジェクトが配列であることを示している
+- 残念ながら、calleeは配列ではなく、単一のオブジェクトである
+- この書き方では、nameプロパティが"pagingRequestIterator"のcalleeオブジェクトを探すことができない
+- 条件に沿う単一オブジェクトを探す書き方がわからない
+
+JSONPathは、ASTの解析に不向きである
