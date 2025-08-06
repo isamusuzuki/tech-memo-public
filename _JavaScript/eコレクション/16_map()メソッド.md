@@ -2,7 +2,13 @@
 
 作成日 2025/08/06
 
-## 1. 配列のmapメソッドで、async/awaitを使う
+## 1. Array.prototype.map()
+
+[Array.prototype.map() - JavaScript | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+
+> `map()`はArrayインスタンスのメソッドで、与えられた関数を配列のすべての要素に対して呼び出し、その結果からなる新しい配列を生成します。
+
+## 2. 配列のmapメソッドで、async/awaitを使う
 
 - mapメソッドで呼び出す関数には、`async`をつける
 - これで、その関数の中では、`await`が使える
@@ -18,7 +24,7 @@ const result_list = await Promise.all(
 );
 ```
 
-## 2. 二次元配列の縦横を入れ替える
+## 3. 二次元配列の縦横を入れ替える
 
 ```js
 const transpose = (x) => {

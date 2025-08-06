@@ -2,7 +2,13 @@
 
 作成日 2025/08/06
 
-## 配列のreduceメソッドを使う
+## 1. Array.prototype.reduce()
+
+[Array.prototype.reduce() - JavaScript | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce)
+
+> `reduce()`はArrayインターフェイスのメソッドで、配列のそれぞれの要素に対して、ユーザーが提供した「縮小」コールバック関数を呼び出します。その際、直前の要素の計算結果の返値を渡します。配列のすべての要素に対して「縮小」コールバック関数を実行した最終結果は、単一の値となります。
+
+## 2. 配列のreduceメソッドを使う
 
 ```js
 // 配列の左から右へ、2つの値に対して同時に関数を適用し、最後に単一の値にする
