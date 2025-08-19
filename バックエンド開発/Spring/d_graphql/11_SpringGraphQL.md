@@ -21,4 +21,4 @@ Spring GraphQLアプリケーションは、起動時に定義されたスキー
 
 ### 2b. HTTP and WebSocket
 
-デフォルトでは、GraphQL HTTPのエンドポイントは`/grapql`である（HTTPメソッドはPOST）。このパスは、`spring.graphql.http.path`でカスタマイズ可能である
+デフォルトでは、GraphQL HTTPのエンドポイントは`/graphql`である（HTTPメソッドはPOST）。このパスは、`spring.graphql.http.path`でカスタマイズ可能である
