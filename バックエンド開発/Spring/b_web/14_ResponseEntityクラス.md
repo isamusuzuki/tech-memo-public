@@ -11,13 +11,13 @@
 
 ## 2. 参考記事を読む
 
-[ResponseEntity クラスについて](https://qiita.com/kaede25/items/704832692e0db702c435)
+[ResponseEntityクラスについて](https://qiita.com/kaede25/items/704832692e0db702c435)
 
-ResponseEntity の要素
+ResponseEntityの要素
 
-1. HTTP ステータスコード
-1. レスポンスボディ（任意のオブジェクト）=> JSON や XML に変換される
-1. HTTP ヘッダー
+1. HTTPステータスコード
+1. レスポンスボディ（任意のオブジェクト）=> JSONやXMLに変換される
+1. HTTPヘッダー
 
 ビルダーパターンを使ったレスポンス構築
 
