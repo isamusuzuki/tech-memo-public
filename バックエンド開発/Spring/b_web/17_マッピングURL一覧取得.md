@@ -49,8 +49,8 @@ public class ZuluController {
             for ( Map.Entry<RequestMappingInfo, HandlerMethod> entry : handlerMethodMap.entrySet() ) {
                 RequestMappingInfo info = entry.getKey();
                 HandlerMethod method = entry.getValue();
-                lines.add(info + "," + method.getMethod().getDeclaringClass().getName() + "," + method.getMethod().getName());
-            }            
+                lines.add("\"" + info + "\"," + method.getMethod().getDeclaringClass().getName() + "," + method.getMethod().getName());
+            }
             StringJoiner sj = new StringJoiner("\n");
             sj.add("RequestMapping,ClassName,MethodName");
             lines.stream().sorted().forEach(sj::add);
