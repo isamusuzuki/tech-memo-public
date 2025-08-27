@@ -1,6 +1,16 @@
-# マッピングされているURLの一覧を取得する
+# RequestMappingの一覧を取得する
 
-作成日 2025/08/26
+作成日 2025/08/26、更新日 2025/08/27
+
+## 1. 概要
+
+- `RequestMappingHandlerMapping`クラス ... `@RequestMapping`アノテーションから`RequestMappinpInfo`インスタンスを作成する
+- `RequestMappingInfo`クラス ... リクエストマッピング情報（HTTPメソッドとパスの分解は、データ分析で実行する）
+- `HandlerMethod`クラス ... メソッドとBeanで構成されるハンドラーメソッドに関する情報をカプセル化する
+
+## 2. サンプルコード
+
+※ Spring Framework 2.7のシステムで書いたので、インポートに`javax`が登場する
 
 ```java
 package com.example.controllers;
@@ -22,7 +32,7 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 
 @Controller
 public class ZuluController {
-    RequestMappingHandlerMapping requestMappingHandlerMapping;
+    private final RequestMappingHandlerMapping requestMappingHandlerMapping;
 
     public ZuluController(@Qualifier("requestMappingHandlerMapping") RequestMappingHandlerMapping requestMappingHandlerMapping) {
         this.requestMappingHandlerMapping = requestMappingHandlerMapping;
@@ -30,15 +40,15 @@ public class ZuluController {
 
     @GetMapping("/zulu")
     public void zulu(HttpServletResponse response) throws IOException {
-        response.addHeader("Content-Disposition", "attachment; filename=\"mapping.csv\"");
+        response.addHeader("Content-Disposition", "attachment; filename=\"requestMapping.csv\"");
         Map<RequestMappingInfo, HandlerMethod> handlerMethodMap = this.requestMappingHandlerMapping.getHandlerMethods();
                 try (OutputStream os = response.getOutputStream()) {
             StringJoiner sj = new StringJoiner("\n");
-            sj.add("RequestMapping,HandlerMethod");
+            sj.add("RequestMapping,ClassName,MethodName");
             for ( Map.Entry<RequestMappingInfo, HandlerMethod> entry : handlerMethodMap.entrySet() ) {
                 RequestMappingInfo info = entry.getKey();
                 HandlerMethod method = entry.getValue();
-                sj.add(info + "," + method.getMethod().getDeclaringClass().getName() + "#" + method.getMethod().getName());
+                sj.add(info + "," + method.getMethod().getDeclaringClass().getName() + "," + method.getMethod().getName());
             }
             os.write(sj.toString().getBytes(StandardCharsets.UTF_8));
             os.flush();
