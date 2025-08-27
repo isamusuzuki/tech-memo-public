@@ -1,4 +1,4 @@
-# QueryMappingの一覧を取得する
+# マッピングURLの一覧を取得する
 
 作成日 2025/08/27
 
@@ -7,6 +7,7 @@
 - ActuatorのMappingsエンドポイントは、`@RequestMapping`のパスのリストしか表示しない
 - Actuatorのエンドポイントに、GraphQLの項目はない
 - Springアプリケーションに登録されている全てのBeanを管理する`ApplicationContext`から情報を取得する
+- `@QueryMapping`と`@MutationMapping`の一覧を、それぞれ別のCSVファイルに保存する
 
 ## 2. サンプルコード
 
@@ -29,6 +30,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.core.MethodIntrospector;
 import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -68,6 +70,44 @@ public class ZuluController {
                             queryName = method.getName();
                         }
                         sj.add(queryName + "," + targetClass.getName() + "," + method.getName());
+                    });                    
+                }   
+            });
+            os.write(sj.toString().getBytes(StandardCharsets.UTF_8));
+            os.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @GetMapping("/zulu2")
+    public void zulu2(HttpServletResponse response) throws IOException {
+        response.addHeader("Content-Disposition", "attachment; filename=\"mutationMapping.csv\"");
+        Map<String, Object> controllers = context.getBeansWithAnnotation(Controller.class);
+        
+        try (OutputStream os = response.getOutputStream()) {
+            StringJoiner sj = new StringJoiner("\n");
+            sj.add("MutationName,ClassName,MethodName");
+            controllers.forEach((beanName, beanInstance) -> {
+                // AOPプロキシを考慮して、元のクラスを取得
+                final Class<?>  targetClass = AopUtils.getTargetClass(beanInstance);
+
+                // クラス内のメソッドを探索し、@MutationMappingアノテーションを持つメソッドを取得
+                Map<Method, MutationMapping> annotatedMethods = MethodIntrospector.selectMethods(
+                    targetClass, 
+                    (MethodIntrospector.MetadataLookup<MutationMapping>) method -> 
+                    AnnotatedElementUtils.findMergedAnnotation(method, MutationMapping.class)
+                );
+                
+                if (!annotatedMethods.isEmpty()) {
+                    annotatedMethods.forEach((method, mutationMapping) -> {
+                        // @MutationMappingのname属性（GraphQLフィールド名）を取得
+                        // name属性が未指定の場合はメソッド名が使われる
+                        String mutationName = mutationMapping.name();
+                        if (mutationName.isEmpty()) {
+                            mutationName = method.getName();
+                        }
+                        sj.add(mutationName + "," + targetClass.getName() + "," + method.getName());
                     });                    
                 }   
             });
