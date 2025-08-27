@@ -18,6 +18,8 @@ package com.example.controllers;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 
@@ -42,14 +44,16 @@ public class ZuluController {
     public void zulu(HttpServletResponse response) throws IOException {
         response.addHeader("Content-Disposition", "attachment; filename=\"requestMapping.csv\"");
         Map<RequestMappingInfo, HandlerMethod> handlerMethodMap = this.requestMappingHandlerMapping.getHandlerMethods();
-                try (OutputStream os = response.getOutputStream()) {
-            StringJoiner sj = new StringJoiner("\n");
-            sj.add("RequestMapping,ClassName,MethodName");
+        try (OutputStream os = response.getOutputStream()) {
+            List<String> lines = new ArrayList<>();
             for ( Map.Entry<RequestMappingInfo, HandlerMethod> entry : handlerMethodMap.entrySet() ) {
                 RequestMappingInfo info = entry.getKey();
                 HandlerMethod method = entry.getValue();
-                sj.add(info + "," + method.getMethod().getDeclaringClass().getName() + "," + method.getMethod().getName());
-            }
+                lines.add(info + "," + method.getMethod().getDeclaringClass().getName() + "," + method.getMethod().getName());
+            }            
+            StringJoiner sj = new StringJoiner("\n");
+            sj.add("RequestMapping,ClassName,MethodName");
+            lines.stream().sorted().forEach(sj::add);
             os.write(sj.toString().getBytes(StandardCharsets.UTF_8));
             os.flush();
         } catch (Exception e) {

@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 
@@ -48,8 +50,7 @@ public class ZuluController {
         Map<String, Object> controllers = context.getBeansWithAnnotation(Controller.class);
         
         try (OutputStream os = response.getOutputStream()) {
-            StringJoiner sj = new StringJoiner("\n");
-            sj.add("QueryName,ClassName,MethodName");
+            List<String> lines = new ArrayList<>();
             controllers.forEach((beanName, beanInstance) -> {
                 // AOPプロキシを考慮して、元のクラスを取得
                 final Class<?>  targetClass = AopUtils.getTargetClass(beanInstance);
@@ -69,10 +70,13 @@ public class ZuluController {
                         if (queryName.isEmpty()) {
                             queryName = method.getName();
                         }
-                        sj.add(queryName + "," + targetClass.getName() + "," + method.getName());
+                        lines.add(queryName + "," + targetClass.getName() + "," + method.getName());
                     });                    
                 }   
             });
+            StringJoiner sj = new StringJoiner("\n");
+            sj.add("QueryName,ClassName,MethodName");
+            lines.stream().sorted().forEach(sj::add);
             os.write(sj.toString().getBytes(StandardCharsets.UTF_8));
             os.flush();
         } catch (Exception e) {
@@ -86,8 +90,7 @@ public class ZuluController {
         Map<String, Object> controllers = context.getBeansWithAnnotation(Controller.class);
         
         try (OutputStream os = response.getOutputStream()) {
-            StringJoiner sj = new StringJoiner("\n");
-            sj.add("MutationName,ClassName,MethodName");
+            List<String> lines = new ArrayList<>();
             controllers.forEach((beanName, beanInstance) -> {
                 // AOPプロキシを考慮して、元のクラスを取得
                 final Class<?>  targetClass = AopUtils.getTargetClass(beanInstance);
@@ -107,10 +110,13 @@ public class ZuluController {
                         if (mutationName.isEmpty()) {
                             mutationName = method.getName();
                         }
-                        sj.add(mutationName + "," + targetClass.getName() + "," + method.getName());
+                        lines.add(mutationName + "," + targetClass.getName() + "," + method.getName());
                     });                    
                 }   
             });
+            StringJoiner sj = new StringJoiner("\n");
+            sj.add("MutationName,ClassName,MethodName");
+            lines.stream().sorted().forEach(sj::add);
             os.write(sj.toString().getBytes(StandardCharsets.UTF_8));
             os.flush();
         } catch (Exception e) {
