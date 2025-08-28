@@ -10,7 +10,7 @@ Node.jsで、CLIプログラムを完成させるための便利ツール
 
 インストール => `bun add commander`
 
-## 2. commanderサンプルコード
+## 2. サンプルコード
 
 index.ts
 
