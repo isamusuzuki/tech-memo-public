@@ -15,16 +15,18 @@ JavaScriptとTypeScript向けの新しいロギングライブり。Bunをサポ
 test.ts
 
 ```javascript
+import { getFileSink } from '@logtape/file';
 import { configure, getConsoleSink, getLogger, getTextFormatter } from '@logtape/logtape';
 
 import { program } from 'commander';
 
 await configure({
     sinks: {
-        console: getConsoleSink({ formatter: getTextFormatter({timestamp: "time-tz", level: "full"}) })
+        console: getConsoleSink({ formatter: getTextFormatter({ timestamp: "time-tz", level: "full" }) }),
+        file: getFileSink("logs/test.log"),
     },
     loggers: [
-        { category: 'test', lowestLevel: 'info', sinks: ['console'] },
+        { category: 'test', lowestLevel: 'info', sinks: ['console', 'file'] },
         { category: ['logtape', 'meta'], lowestLevel: 'error', sinks: ['console'] }
     ]
 });
