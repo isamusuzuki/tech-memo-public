@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ハロー、ワールド！</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <p><button id="button1">押してみて</button></p>
+    <h1 id="hiddenMessage" style="display: none;">ハロー、ワールド！</h1>
+    <script>
+        $('#button1').on("click", function (event) {
+            $('#hiddenMessage').show();
+            setTimeout(() => {
+                $('#hiddenMessage').hide();
+            }, 3000);
+        })
+    </script>
+</body>
+
+</html>
