@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <title>DataTablesサンプル</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.3/css/dataTables.dataTables.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/2.3.3/js/dataTables.js"></script>
+</head>
+
+<body>
+    <h1>DataTablesサンプル</h1>
+    <p>
+        <a id="filter01">1. 管理者ツール</a>,&nbsp;
+        <a id="filter02">2. 管理システム</a>,&nbsp;
+        <a id="filter03">3. 実行システム</a>
+    </p>
+    <table id="tasks" class="display">
+        <thead>
+            <tr>
+                <th>機能項目</th>
+                <th>タスク名</th>
+                <th>担当</th>
+                <th>ステータス</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.category }}</td>
+                <td><a href="{{ item.href }}" target="_blank">{{ item.name }}</a></td>
+                <td>{{ item.assignee }}</td>
+                <td>{{ item.status }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script type="module">
+        $(document).ready( function () {
+            $('#tasks').DataTable({ lengthMenu: [25, 50, 100, -1] });
+        } );
+        $('#filter01').on('click', function () {
+            $('#tasks').DataTable().column(0).search('1. 管理者用ツール').draw();
+        });
+        $('#filter02').on('click', function () {
+            $('#tasks').DataTable().column(0).search('2. 管理システム').draw();
+        });
+        $('#filter03').on('click', function () {
+            $('#tasks').DataTable().column(0).search('3. 実行システム').draw();
+        });
+    </script>
+</body>
+
+</html>
