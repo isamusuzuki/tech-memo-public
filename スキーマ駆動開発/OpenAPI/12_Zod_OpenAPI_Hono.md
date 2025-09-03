@@ -75,3 +75,9 @@ registry.registerPath({
 GitHubリポジトリ => [honojs/middleware/zod-openapi](https://github.com/honojs/middleware/tree/main/packages/zod-openapi)
 
 Zodを使って値と型をバリデーションしつつ、OpenAPIのドキュメントを生成できる
+
+## 5. Drizzleとは？
+
+公式サイト（英語） => [Drizzle ORM - next gen TypeScript ORM.](https://orm.drizzle.team/)
+
+[drizzle-zod](https://orm.drizzle.team/docs/zod)というプラグインを使うと、DrizzleスキーマからZodスキーマを生成できる
