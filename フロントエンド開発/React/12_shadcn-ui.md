@@ -1,4 +1,4 @@
-# shadcn-ui
+# shadcn/ui
 
 作成日 2025/05/22
 
