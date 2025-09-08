@@ -81,3 +81,9 @@ Zodを使って値と型をバリデーションしつつ、OpenAPIのドキュ�
 公式サイト（英語） => [Drizzle ORM - next gen TypeScript ORM.](https://orm.drizzle.team/)
 
 [drizzle-zod](https://orm.drizzle.team/docs/zod)というプラグインを使うと、DrizzleスキーマからZodスキーマを生成できる
+
+## 6. Orvalとは？
+
+公式サイト（英語） => [orval - Restful client generator](https://orval.dev/)
+
+OpenAPIスキーマから、TypeScriptのAPIクライアントを自動生成するツール
