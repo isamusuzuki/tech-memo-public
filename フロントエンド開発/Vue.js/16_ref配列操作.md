@@ -24,7 +24,7 @@
         }
     }
     const clearFruits = () => {
-        // fruits.value = []
+        // fruits.value = [] 今までのやりかた
         fruits.value.splice(0)
     }
 </script>
