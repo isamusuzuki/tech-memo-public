@@ -22,3 +22,11 @@
 - Workers KV ... Key-Value Store
 - Cloudflare Pages ... JAMstackプラットフォーム
 - R2 ... オブジェクトストレージ
+
+## 2. プロジェクトを開始する
+
+[Get started - CLI · Cloudflare Workers docs](https://developers.cloudflare.com/workers/get-started/guide/)
+
+```bash
+npm create cloudflare@latest
+```
