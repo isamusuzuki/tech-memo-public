@@ -1,0 +1,24 @@
+# Cloudflare Workersとは
+
+作成日 2025/09/10
+
+## 1. 公式サイトを読む
+
+[Cloudflare Workers | サーバーレスアプリケーションを構築 | Cloudflare](https://www.cloudflare.com/ja-jp/developer-platform/products/workers/)
+
+> Cloudflareのグローバルネットワークの全世界330か所以上のデータセンターへのグローバルにデプロイ時にインフラの設定や保守は無用でサーバーレス機能やアプリケーションを構築。
+>
+>- Cloudflare WorkersはコンテナではなくV8分離で稼働
+>- 起動時にインスタンスへのランタイム読み込みを待つ遅延が一切ない
+>- 瞬時のスタートアップタイムが実現
+>- 必要なのは呼び出し時に読み込まれるコードのみ
+>- 実質的にリクエスト時のコールドスタートが存在しない
+
+### 1a. サービスラインアップ
+
+無料枠で利用可能
+
+- Cloudflare Workers ... サーバーレスコードをデプロイ
+- Workers KV ... Key-Value Store
+- Cloudflare Pages ... JAMstackプラットフォーム
+- R2 ... オブジェクトストレージ
