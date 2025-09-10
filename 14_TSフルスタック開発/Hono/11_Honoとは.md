@@ -8,9 +8,9 @@
 
 > Fast, lightweight, built on Web Standards. Support for any JavaScript runtime.
 
-Node.jsに縛られないWebサーバー
+Node.jsに縛られない、マルチランタイム対応の、Webフレームワーク
 
-## 2. 参照サイトを読む
+## 2. 紹介記事を読む
 
 [Honoで始める高速Webアプリ開発入門！TypeScriptフレームワークの特徴と実装例](https://tasukehub.com/articles/hono-typescript-web-framework-guide/)
 
