@@ -14,12 +14,40 @@
 >- 必要なのは呼び出し時に読み込まれるコードのみ
 >- 実質的にリクエスト時のコールドスタートが存在しない
 
-## 2. プロジェクトを開始する
+## 2. 新しいプロジェクトを開始する
 
 [Get started - CLI · Cloudflare Workers docs](https://developers.cloudflare.com/workers/get-started/guide/)
 
 ```bash
-npm create cloudflare@latest -- my-first-worker
-cd my-first-worker
-npx wrangler dev # Open browser to http://localhost:8787
+npm create cloudflare@latest -- avocado
+# Need to install the following packages:
+# create-cloudflare@2.51.6
+# Ok to proceed? (y) y
+
+# Create an application with Cloudflare Step 1 of 3
+#
+# In which directory do you want to create your application?
+# dir ./avocado
+#
+# What would you like to start with?
+# category Hello World example
+#
+# Which template would you like to use?
+# type SSR / full-stack app
+#
+# Which language do you want to use?
+# lang TypeScript
+#
+# 中略
+#
+# Do you want to use git for version control?
+# no git
+# 
+# Do you want to deploy your application?
+# no deploy via `npm run deploy`
+#
+# Done
+
+cd avocado
+npm run dev #=> Open browser to http://localhost:5173/
 ```
