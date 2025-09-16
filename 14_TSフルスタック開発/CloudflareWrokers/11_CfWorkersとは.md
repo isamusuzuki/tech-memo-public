@@ -1,6 +1,6 @@
 # Cloudflare Workersとは
 
-作成日 2025/09/10
+作成日 2025/09/10、更新日 2025/09/16
 
 ## 1. 公式サイトを読む
 
@@ -14,19 +14,12 @@
 >- 必要なのは呼び出し時に読み込まれるコードのみ
 >- 実質的にリクエスト時のコールドスタートが存在しない
 
-### 1a. サービスラインアップ
-
-無料枠で利用可能
-
-- Cloudflare Workers ... サーバーレスコードをデプロイ
-- Workers KV ... Key-Value Store
-- Cloudflare Pages ... JAMstackプラットフォーム
-- R2 ... オブジェクトストレージ
-
 ## 2. プロジェクトを開始する
 
 [Get started - CLI · Cloudflare Workers docs](https://developers.cloudflare.com/workers/get-started/guide/)
 
 ```bash
-npm create cloudflare@latest
+npm create cloudflare@latest -- my-first-worker
+cd my-first-worker
+npx wrangler dev # Open browser to http://localhost:8787
 ```
