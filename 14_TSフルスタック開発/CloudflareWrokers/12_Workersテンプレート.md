@@ -10,6 +10,8 @@
 
 ## 2. vite-react-template
 
+Cloudflare DocsのFramework guidesにある[Honoのページ](https://developers.cloudflare.com/workers/framework-guides/web-apps/more-web-frameworks/hono/)を開くと、このテンプレートが紹介されている
+
 [templates/vite-react-template](https://github.com/cloudflare/templates/tree/main/vite-react-template)
 
 > React + Vite + Hono + Cloudflare Workers
