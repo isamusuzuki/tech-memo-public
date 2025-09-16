@@ -25,7 +25,8 @@ npm init @eslint/config@latest
 # √ Which package manager do you want to use? · npm
 ```
 
-- eslint.config.tsファイルが出来る
+- eslint.config.tsファイルが出来る（v9から導入された新しい設定ファイル）
+- .eslintrcファイルはレガシーとなった（8.57未満の古いバージョン用）
 - Jitiは、Node.js上でTypeScriptを直接実行するユーティリティ
 
 ```javascript
