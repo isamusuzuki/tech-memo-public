@@ -2,7 +2,7 @@
 
 作成日 2021/01/26
 
-インストール `npm install --save mysql`
+インストール => `npm install --save mysql`
 
 ## 01. 基本形
 

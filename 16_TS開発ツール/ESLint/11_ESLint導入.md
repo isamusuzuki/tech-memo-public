@@ -8,7 +8,7 @@
 
 [Getting Started with ESLint - ESLint - Pluggable JavaScript Linter](https://eslint.org/docs/latest/use/getting-started)
 
-## 2. Vite-Vueのプロジェクトにインストールしてみる
+## 2. Vite+VueのプロジェクトにESLintをインストールしてみる
 
 ```bash
 # すでにpackage.jsonがあるフォルダで実行する
@@ -78,6 +78,8 @@ C:\Users\{username}\workspaces\vite-vue-dojo\app\src\App.vue
 >- Finds the violation for Vue.js Style Guide.
 >
 > ESLint editor integrations are useful to check your code in real-time.
+
+## 4. Vue.jsスタイルガイド
 
 Vue.jsにはスタイルガイドが定められていた
 
