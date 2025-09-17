@@ -6,7 +6,7 @@
 
 ## 1. テキスト(text)の場合
 
-- `message`の型は、String
+- `message`の型はString
 
 ```html
 <input type="text" v-model="message">
@@ -17,7 +17,7 @@
 
 ### 2a. チェック項目が「一つ」の場合
 
-- `check`の型は、Boolean
+- `check`の型はBoolean
 
 ```html
 <label for="">
@@ -43,7 +43,7 @@
 
 ## 3. ラジオボタン(radio)の場合
 
-- `check`の型は、String。valueの値が入る
+- `check`の型はString、valueの値が入る
 - 【注意】グループ内でラジオボタンは、1つしか同時に選択することができない
 
 ```html
