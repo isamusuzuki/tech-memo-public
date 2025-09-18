@@ -49,5 +49,39 @@ npm create cloudflare@latest -- avocado
 # Done
 
 cd avocado
-npm run dev #=> Open browser to http://localhost:5173/
+npm run dev #=> Open browser to http://localhost:8787/
+```
+
+## 3. サンプルアプリのファイル＆フォルダ構造
+
+Hello World example, SSR/full-stack app,TypeScriptを選択した結果
+
+```text
+--avocado/
+    |--public/
+    |   `--index.html  ... スタティックファイル
+    |--src/
+    |   `--index.ts  ... Workerファイル
+    |--worker-configuration.d.ts ... Workerファイルのための型定義
+    `--wrangler.jsonc
+```
+
+wrangler.jsonc
+
+```json
+{
+    "$schema": "node_modules/wrangler/config-schema.json",
+    "name": "avocado",
+    "main": "src/index.ts",
+    "compatibility_date": "2025-09-13",
+    "compatibility_flags": [
+        "global_fetch_strictly_public"
+    ],
+    "assets": {
+        "directory": "./public"
+    },
+    "observability": {
+        "enabled": true
+    }
+}
 ```
