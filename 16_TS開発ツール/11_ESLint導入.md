@@ -1,6 +1,6 @@
 # ESLint導入
 
-作成日 2025/09/16
+作成日 2025/09/16、更新日 2025/09/18
 
 ## 1. 公式サイト（英語）を読む
 
@@ -8,10 +8,11 @@
 
 [Getting Started with ESLint - ESLint - Pluggable JavaScript Linter](https://eslint.org/docs/latest/use/getting-started)
 
-## 2. Vite+VueのプロジェクトにESLintをインストールしてみる
+## 2. Vite+VueのプロジェクトにESLintを追加してみる
+
+すでにpackage.jsonがあるフォルダで実行する
 
 ```bash
-# すでにpackage.jsonがあるフォルダで実行する
 npm init @eslint/config@latest
 # √ What do you want to lint? · javascript
 # √ How would you like to use ESLint? · problems
@@ -25,7 +26,7 @@ npm init @eslint/config@latest
 # √ Which package manager do you want to use? · npm
 ```
 
-- eslint.config.tsファイルが出来る（v9から導入された新しい設定ファイル）
+- eslint.config.tsファイルが作成される（v9から導入された新しい設定スタイル）
 - .eslintrcファイルはレガシーとなった（8.57未満の古いバージョン用）
 - Jitiは、Node.js上でTypeScriptを直接実行するユーティリティ
 
@@ -37,15 +38,22 @@ import pluginVue from "eslint-plugin-vue";
 import { defineConfig } from "eslint/config";
 
 export default defineConfig([
-  { files: ["**/*.{js,mjs,cjs,ts,mts,cts,vue}"], plugins: { js }, extends: ["js/recommended"], languageOptions: { globals: globals.browser } },
+  { 
+    files: ["**/*.{js,mjs,cjs,ts,mts,cts,vue}"], 
+    plugins: { js }, 
+    extends: ["js/recommended"], 
+    languageOptions: { globals: globals.browser } 
+  },
   tseslint.configs.recommended,
   pluginVue.configs["flat/essential"],
-  { files: ["**/*.vue"], languageOptions: { parserOptions: { parser: tseslint.parser } } },
+  { 
+    files: ["**/*.vue"], 
+    languageOptions: { parserOptions: { parser: tseslint.parser } }
+  },
 ]);
 ```
 
-`pluginVue.configs["flat/essential"],`を`pluginVue.configs["flat/recomended"],`に変更したら、
-警告が出るようになった
+`pluginVue.configs["flat/essential"],`を`pluginVue.configs["flat/recomended"],`に変更したら、warningが出るようになった
 
 ```bash
 npx eslint src/App.vue
@@ -79,8 +87,6 @@ C:\Users\{username}\workspaces\vite-vue-dojo\app\src\App.vue
 >
 > ESLint editor integrations are useful to check your code in real-time.
 
-## 4. Vue.jsスタイルガイド
-
 Vue.jsにはスタイルガイドが定められていた
 
 [Style Guide | Vue.js](https://vuejs.org/style-guide/)
@@ -89,3 +95,19 @@ Vue.jsにはスタイルガイドが定められていた
 - Priority B: Strongly Recommended
 - Priority C: Recommended
 - Priority D: Use with Caution
+
+eslint-plugin-vueも、スタイルガイドに合わせた設定が用意されていた
+
+- 'flat/essential'
+- 'flat/strongly-recommended'
+- 'flat/recommended'
+
+ここでのflatとは、ESLint v9で採用されたフラットコンフィグのこと
+
+## 4. 目にしたルールを調べる
+
+- [vue/max-attributes-per-line](https://eslint.vuejs.org/rules/max-attributes-per-line.html)
+- [vue/attribute-hyphenation](https://eslint.vuejs.org/rules/attribute-hyphenation.html)
+- [vue/v-on-event-hyphenation](https://eslint.vuejs.org/rules/v-on-event-hyphenation.html)
+- [vue/singleline-html-element-content-newline](https://eslint.vuejs.org/rules/singleline-html-element-content-newline.html)
+- [vue/attributes-order](https://eslint.vuejs.org/rules/attributes-order.html)

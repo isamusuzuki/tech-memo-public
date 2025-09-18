@@ -1,4 +1,4 @@
-# npm CLI
+# npm勉強
 
 作成日 2025/09/17
 
@@ -8,6 +8,7 @@
 - npm init ... package.jsonを生成する
 - npm install ... パッケージをインストールする
 - npm run ... scripts項目に書かれたコマンドを実行する
+- npm test ... scripts項目のtestコマンドを実行する
 - npx ... npmパッケージのコマンドを実行する
 
 ## 2. [scripts](https://docs.npmjs.com/cli/v11/using-npm/scripts)
