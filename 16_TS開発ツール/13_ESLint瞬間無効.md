@@ -1,13 +1,13 @@
-# ESLintを一瞬無効にする
+# ESLintを瞬間無効にする
 
 作成日 2025/09/22
 
 公式サイト（英語） => [Disabling Rules](https://eslint.org/docs/latest/use/configure/rules#disabling-rules)
 
-## そのファイルだけ、特定のルールを無効にする
+## 1. そのファイルだけ、特定のルールを無効にする
 
 - ファイルの先頭に以下のコメントを書く
-- `eslint-disable` だけを書くとすべてのルールが無効になるので、これはNG
+- `eslint-disable` だけを書くとすべてのルールが無効になるので、これは非推奨
 - 必ず無効にしたいルールを書き込むことを推奨する
 
 ```javascript
@@ -21,7 +21,7 @@
 /* eslint @typescript-eslint/no-explicit-any: 0 */
 ```
 
-## 特定の行だけ、ルールを無効にする
+## 2. 特定の行だけ、ルールを無効にする
 
 - 探しにくくなるので、非推奨
 
@@ -31,7 +31,7 @@
 // eslint-disable-line no-unused-vars
 ```
 
-## 次の1行だけ、ルールを無効にする
+## 3. 次の1行だけ、ルールを無効にする
 
 - 探しにくくなるので、非推奨
 
