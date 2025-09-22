@@ -1,6 +1,10 @@
 # ESLint導入
 
-作成日 2025/09/16、更新日 2025/09/18
+作成日 2025/09/16、更新日 2025/09/22
+
+- v9からフラットコンフィグが導入された
+- v9からの設定ファイル名は、`eslint.config.{js,mjs,ts}`
+- .eslintrcファイルはレガシーとなった（8.57未満の古いバージョン用）
 
 ## 1. 公式サイト（英語）を読む
 
@@ -26,8 +30,6 @@ npm init @eslint/config@latest
 # √ Which package manager do you want to use? · npm
 ```
 
-- eslint.config.tsファイルが作成される（v9から導入された新しい設定スタイル）
-- .eslintrcファイルはレガシーとなった（8.57未満の古いバージョン用）
 - Jitiは、Node.js上でTypeScriptを直接実行するユーティリティ
 
 ```javascript
@@ -72,42 +74,3 @@ C:\Users\{username}\workspaces\vite-vue-dojo\app\src\App.vue
 ✖ 9 problems (0 errors, 9 warnings)
   0 errors and 7 warnings potentially fixable with the `--fix` option.
 ```
-
-## 3. eslint-plugin-vue
-
-[Introduction | eslint-plugin-vue](https://eslint.vuejs.org/)
-
-> Official ESLint plugin for Vue.js.
->
-> This plugin allows us to check the `<template>` and `<script>` of `.vue` files with ESLint, as well as Vue code in `.js` files.
->
->- Finds syntax errors.
->- Finds the wrong use of Vue.js Directives.
->- Finds the violation for Vue.js Style Guide.
->
-> ESLint editor integrations are useful to check your code in real-time.
-
-Vue.jsにはスタイルガイドが定められていた
-
-[Style Guide | Vue.js](https://vuejs.org/style-guide/)
-
-- Priority A: Essential
-- Priority B: Strongly Recommended
-- Priority C: Recommended
-- Priority D: Use with Caution
-
-eslint-plugin-vueも、スタイルガイドに合わせた設定が用意されていた
-
-- 'flat/essential'
-- 'flat/strongly-recommended'
-- 'flat/recommended'
-
-ここでのflatとは、ESLint v9で採用されたフラットコンフィグのこと
-
-## 4. 目にしたルールを調べる
-
-- [vue/max-attributes-per-line](https://eslint.vuejs.org/rules/max-attributes-per-line.html)
-- [vue/attribute-hyphenation](https://eslint.vuejs.org/rules/attribute-hyphenation.html)
-- [vue/v-on-event-hyphenation](https://eslint.vuejs.org/rules/v-on-event-hyphenation.html)
-- [vue/singleline-html-element-content-newline](https://eslint.vuejs.org/rules/singleline-html-element-content-newline.html)
-- [vue/attributes-order](https://eslint.vuejs.org/rules/attributes-order.html)
