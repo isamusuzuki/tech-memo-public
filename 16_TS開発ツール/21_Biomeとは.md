@@ -1,6 +1,6 @@
 # Biomeとは
 
-作成日 2025/09/19
+作成日 2025/09/19、更新日 2025/09/22
 
 ## 1. 解説記事を読む
 
@@ -40,3 +40,15 @@ Biomeの特長
 > Prettierのようにコードをフォーマット、しかも高速
 
 [はじめる | Biome](https://biomejs.dev/ja/guides/getting-started/)
+
+## 3. Vueのサポート状況
+
+[HTML拡張言語のサポート](https://biomejs.dev/ja/internals/language-support/#html%E6%8B%A1%E5%BC%B5%E8%A8%80%E8%AA%9E%E3%81%AE%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88)
+
+`Vue`のサポート状況は「一部サポート」でいくつか注意ありとなっている
+
+> `.vue` ファイルでは、`<script>`タグ部分のみがサポートされています。
+>
+> `.vue` ファイルをフォーマットする際、JavaScript/TypeScriptコードのインデントは最初から始まります。
+>
+> `.vue` ファイルを静的解析する際、コンパイラエラーを防ぐためにいくつかのルールをオフにすることをお勧めします。
