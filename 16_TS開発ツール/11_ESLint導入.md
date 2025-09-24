@@ -1,6 +1,6 @@
 # ESLint導入
 
-作成日 2025/09/16、更新日 2025/09/22
+作成日 2025/09/16、更新日 2025/09/24
 
 - v9からフラットコンフィグが導入された
 - v9からの設定ファイル名は、`eslint.config.{js,mjs,ts}`
@@ -73,4 +73,36 @@ C:\Users\{username}\workspaces\vite-vue-dojo\app\src\App.vue
 
 ✖ 9 problems (0 errors, 9 warnings)
   0 errors and 7 warnings potentially fixable with the `--fix` option.
+```
+
+## 3. よく使う設定
+
+### [no-irregular-whitespace](https://eslint.org/docs/latest/rules/no-irregular-whitespace)
+
+デフォルトではオプションが設定されていないので、自分で追加してスキップするオプションを追加する必要がある
+
+```javascript
+{
+  rules: {
+    "no-irregular-whitespace": [
+      "warn",
+      {
+        skipStrings: true,
+        skipComments: true,
+        skipTemplates: true,
+        skipRegExps: true
+      }],
+}
+```
+
+### [indent](https://eslint.org/docs/latest/rules/indent)
+
+自分が徹底したいほうを書き込む。以下の設定はインデント2文字を強制している
+
+```javascript
+{
+  rules: {
+    "indent": ["error", 2]
+  }
+}
 ```
