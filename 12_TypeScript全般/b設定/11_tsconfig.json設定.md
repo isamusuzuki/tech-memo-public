@@ -1,6 +1,6 @@
 # tsconfig.json設定
 
-作成日 2025/09/09、更新日 2025/09/17
+作成日 2025/09/09、更新日 2025/09/24
 
 ## 1. 解説記事を読む
 
@@ -19,30 +19,62 @@ compilerOptions項目
 - `rootDir`
 - `strict`
 
-## 2. typeRoots
+## 2. compilerOptions > typeRoots
 
 型定義ファイル(d.ts)を置くフォルダを指定する
+
+tsconfig.jsonからの相対パスを書く
 
 ```json
 {
     "compilorOptions" {
         "typeRoots": [
-            "node_modules/@types",
-            "src/@types"
+            "./@types"
+            "./node_modules/@types",
         ]
     }
 }
 ```
 
-## 3. rootDirとbaseUrl
+TypeScriptファイルでは、相対パスを書く必要がなくなる
+
+```javascript
+// @types/instruction.d.tsファイルを指定するとき
+import type { Instruction } from 'instruction';
+```
+
+## 3. compilerOptions > paths
+
+[tsconfig.json の paths](https://zenn.dev/hayato94087/articles/9f3bf702543431)
+
+> paths を利用することでエイリアスを利用しファイルへアクセスできます。
+
+```json
+{
+    "compilorOptions" {
+        "paths": {
+            "@ast/*": ["./ast/*"],
+            "@utils/*": ["./utils/*"],
+    }
+    }
+}
+```
+
+TypeScriptファイルでは、相対パスを書く必要がなくなる
+
+```javascript
+import { readFileInGakumu } from '@utils/readFile.ts';
+```
+
+## 4. rootDirとbaseUrl
 
 [tsconfig.jsonのrootDirとbaseUrlに関するメモ](https://qiita.com/Nekonecode/items/09b26deec21a5f83adb1)
 
-### rootDir
+rootDir
 
 - TypeScriptのソースコードがあるディレクトリを指定する
 - 指定したディレクトリの外にあるソースコードは参照できなくなる
 
-### baseUrl
+baseUrl
 
 - 絶対パス指定じゃない場合、どこを基準のフォルダにするか？というパラメータ
