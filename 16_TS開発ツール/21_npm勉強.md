@@ -1,10 +1,10 @@
 # npm勉強
 
-作成日 2025/09/17、更新日 2025/09/24
+作成日 2025/09/17、更新日 2025/09/25
 
 ## 1. [CLI Commands](https://docs.npmjs.com/cli/v11/commands)
 
-- npm ci ... clean-installのアリアスで、package.jsonを変更しない
+- npm ci ... クリーンインストールの意味で、package.jsonを変更しない
 - npm init ... package.jsonを生成する
 - npm install ... パッケージをインストールする
 - npm run ... scripts項目に書かれたコマンドを実行する
@@ -16,6 +16,14 @@
 特定の状況で発生するライフサイクルスクリプトがある
 
 - prepare ... ローカルの引数なしの`npm install`の後に走る
+
+### 2a. [Life Cycle Operation Order](https://docs.npmjs.com/cli/v11/using-npm/scripts#life-cycle-operation-order)
+
+preinstallとprepareのコマンドをスクリプト項目に書き`npm ci`を実行したら、そのフォルダのnode_modulesへのインストールが先に起こって、そのあとに、preinstall, prepareの順番でスクリプトが実行された
+
+> These all run after the actual installation of modules into `node_modules`, in order, with no internal actions happening in between
+
+これらはnode_modulesへのモジュールの実際のインストールの後に走ると書いてあったので、それが正解なのだと思う。ここに書かれているinstallは、npm installのことではなく、installというコマンド名なのだと理解した
 
 ## 3. npmコマンドを複数フォルダで同時に実行する
 
