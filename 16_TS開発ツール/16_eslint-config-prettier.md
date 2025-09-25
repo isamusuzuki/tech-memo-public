@@ -1,8 +1,8 @@
 # eslint-config-prettier
 
-作成日 2025/09/24
+作成日 2025/09/24、更新日 2025/09/25
 
-## 公式サイト（英語）を読む
+## 1. 公式サイト（英語）を読む
 
 [eslint-config-prettier - npm](https://www.npmjs.com/package/eslint-config-prettier)
 
@@ -25,3 +25,13 @@ export default [
   eslintConfigPrettier,
 ];
 ```
+
+## 2. 具体的には、どんな働きをしているのか？
+
+[eslint-config-prettier - Code](https://www.npmjs.com/package/eslint-config-prettier?activeTab=code)
+
+- index.jsを開く
+- semiを検索すると、20個のセミコロン関連のルールがオフにされていることがわかる
+- indentを検索すると、16個のインデント関連のルールがオフにされていることがわかる
+
+Prettierで設定するべき項目については、ESLintがしゃしゃりでてこないようにしていることがわかった
