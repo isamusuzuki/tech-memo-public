@@ -1,6 +1,6 @@
-# TypeScriptでREST APIを作成する
+# REST APIを作成する
 
-作成日 2025/09/10
+作成日 2025/09/10、更新日 2025/09/26
 
 解説動画を更新しつつ写経する => [【Cloudflare Workers】HonoとCloudflare D1を使って20分でREST APIを作成する](https://www.youtube.com/watch?v=XyjACmtXqj0)
 
