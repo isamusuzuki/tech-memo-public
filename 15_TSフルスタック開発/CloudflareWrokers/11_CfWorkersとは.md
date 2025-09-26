@@ -19,34 +19,13 @@
 [Get started - CLI · Cloudflare Workers docs](https://developers.cloudflare.com/workers/get-started/guide/)
 
 ```bash
-npm create cloudflare@latest -- avocado
-# Need to install the following packages:
-# create-cloudflare@2.51.6
-# Ok to proceed? (y) y
-
-# Create an application with Cloudflare Step 1 of 3
-#
-# In which directory do you want to create your application?
+npm create cloudflare@latest
 # dir ./avocado
-#
-# What would you like to start with?
 # category Hello World example
-#
-# Which template would you like to use?
 # type SSR / full-stack app
-#
-# Which language do you want to use?
 # lang TypeScript
-#
-# 中略
-#
-# Do you want to use git for version control?
 # no git
-# 
-# Do you want to deploy your application?
 # no deploy via `npm run deploy`
-#
-# Done
 
 cd avocado
 npm run dev #=> Open browser to http://localhost:8787/
@@ -82,6 +61,18 @@ wrangler.jsonc
     },
     "observability": {
         "enabled": true
+    }
+}
+```
+
+## 4. つまづいた所
+
+cloudflare-workersの管理ツールであるwranglerは、開発サーバーも兼ねているが、開発コンテナの中で開発サーバーを利用するためには、Viteの時と同じように、開発コンテナの外からのアクセスを許可する必要がある
+
+```json
+{
+    "dev": {
+        "ip": "0.0.0.0"
     }
 }
 ```
