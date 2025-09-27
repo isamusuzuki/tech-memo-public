@@ -2,9 +2,9 @@
 
 作成日 2025/09/10、更新日 2025/09/26
 
-解説動画を更新しつつ写経する => [【Cloudflare Workers】HonoとCloudflare D1を使って20分でREST APIを作成する](https://www.youtube.com/watch?v=XyjACmtXqj0)
+解説動画を写経する => [【Cloudflare Workers】HonoとCloudflare D1を使って20分でREST APIを作成する](https://www.youtube.com/watch?v=XyjACmtXqj0)
 
-## 1. プロジェクト開始
+## 1. 新規プロジェクト開始
 
 ```bash
 npm create cloudflare@latest
@@ -26,11 +26,11 @@ npx wrangler d1 create todoapi
 ```
 
 - 開発コンテナを使っていると、ブラウザからのOAuthトークンの受け渡しがうまくいかない
-- 打開策は、APIトークンを使用すること
+- 代わりに、APIトークンを使用する
 - ダッシュボード ＞ アカウントの管理 ＞ アカウントAPIトークン ＞ トークンを作成する ＞ D1編集の権限を追加したトークンを作成する
 - .envファイルに、`CLOUDFLARE_API_TOKEN=xxx`を書き込む
-- wrangler.jsoncファイルに、`"account_id": "xxx"`を書き込む
 - ダッシュボード ＞ アカウントホーム ＞ アカウント名の右横にある縦3個ドットをクリック ＞ アカウントIDをコピー
+- wrangler.jsoncファイルに、`"account_id": "xxx"`を書き込む
 
 schema.sqlを作成する
 
@@ -62,7 +62,7 @@ npx wrangler d1 execute todoapi --local --command='SELECT * FROM todos'
 npm install hono
 ```
 
-src/index.tsを上書きする
+src/index.tsを全面上書きする
 
 ```javascript
 import { Hono } from "hono";
@@ -74,6 +74,34 @@ app.get("/", (c) => c.json({ message: "Hello Cloudflare Workers!"}));
 export default app;
 ```
 
-thunder clientで、テストする
+## 4. クエリー系のAPIを作成する
 
-7:45まで
+src/index.ts
+
+```javascript
+import { Hono } from "hono";
+
+export interface Env {
+    todoapi: D1Database;
+}
+
+const app = new Hono<{ Bindings: Env }>().basePath("/api");
+
+app.get("/todos/:id", async (c) => {
+    const id = c.req.param("id");
+    try {
+        const { results } = await c.env.todoapi.prepare(
+            "SELECT * FROM todos WHERE id = ?"
+        )
+            .bind(id)
+            .all();
+        return c.json(results);
+    } catch (e) {
+        return c.json({ err: e }, 500);
+    }
+});
+
+export default app;
+```
+
+11:25まで

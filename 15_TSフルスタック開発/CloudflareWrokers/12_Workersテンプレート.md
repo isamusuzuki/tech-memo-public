@@ -8,6 +8,8 @@
 
 > This repository contains a collection of starter templates for building full-stack applications on Workers.
 
+このリポジトリにはワーカーで動作するフルスタックアプリケーションを構築するためのスターターテンプレート集が含まれている
+
 ## 2. vite-react-template
 
 Cloudflare DocsのFramework guidesにある[Honoのページ](https://developers.cloudflare.com/workers/framework-guides/web-apps/more-web-frameworks/hono/)を開くと、このテンプレートが紹介されている
@@ -21,8 +23,7 @@ Cloudflare DocsのFramework guidesにある[Honoのページ](https://developers
 ```bash
 npm create cloudflare@latest -- --template=cloudflare/templates/vite-react-template
 npm install
-npm run dev
-# => http://localhost:5173 を開く
+npm run dev # => http://localhost:5173 を開く
 ```
 
 - 開発サーバーは、Wranglerではなく、Viteを使う
