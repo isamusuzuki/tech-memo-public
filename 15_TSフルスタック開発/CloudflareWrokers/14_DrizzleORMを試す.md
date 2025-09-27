@@ -12,14 +12,13 @@
 mkdir todo-api-drizzle
 cd todo-api-drizzle
 npm create cloudflare@latest .
-# dir ./.
 # category Hello World example
 # type Worker only
 # lang TypeScript
 # no git
 # no deploy via 'npm run deploy'
 
-npx wrangler d1 create todo-api-drizzle
+npx wrangler d1 create todoapi-driz
 # wrangler.jsoncファイルにD1データベースの識別子が書き込まれる
 ```
 
@@ -57,8 +56,8 @@ pacakge.jsonファイルのscript項目に追加する
 ```json
 {
     "scripts": {
-        "generate": "drizzle-kit generate:sqlite",
-        "migrate": "wrangler d1 migrations apply todo-api-drizzle --local"
+        "generate": "drizzle-kit generate",
+        "migrate": "wrangler d1 migrations apply todoapi-driz --local"
     }
 }
 ```
@@ -74,7 +73,7 @@ export const todos = sqliteTable("todos", {
     todo: text("todo").notNull(),
     score: integer("score", { mode: "number" }).default(0),
     isDone: integer("is_done", { mode: "boolean" }).default(false),
-    createdAt: text("created_at").default(sql"CURRENT_TIMESTAMP"),
+    createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`),
 });
 ```
 
@@ -95,7 +94,7 @@ INSERT INTO todos (todo) VALUES ("タスク1"), ("タスク2"), ("タスク3");
 ```
 
 ```bash
-npx wrangler d1 execute todo-api-drizzle --local --file=./db/dummy-data.sql
+npx wrangler d1 execute todoapi-driz --local --file=./db/dummy-data.sql
 ```
 
 ## 4. Honoを導入して、APIを作成する
@@ -113,7 +112,7 @@ import { Hono } from "hono";
 import { todos } from "../db/schema";
 
 export interface Env {
-    todo-api-drizzle: D1Database;
+    todoapi_driz: D1Database;
 }
 
 const app = new Hono<{ Bindings: Env }>().basePath("/api");
@@ -121,7 +120,7 @@ const app = new Hono<{ Bindings: Env }>().basePath("/api");
 // 全件取得
 app.get("/todos", async (c) => {
     try {
-        const db = drizzle(c.env.todo-api-drizzle);
+        const db = drizzle(c.env.todoapi_driz);
         // 全てのカラムを表示する場合
         // const results = await db.select().from(todos);
         // 表示するカラムを指定する場合
@@ -136,19 +135,19 @@ app.get("/todos", async (c) => {
 app.get("/todos/:id", async (c) => {
     const id = parseInt(c.req.param("id"));
     try {
-        const db = drizzle(c.env.todo-api-drizzle);
+        const db = drizzle(c.env.todoapi_driz);
         const results = await db.select().from(todos).where(eq(todos.id, id));
         return c.json(results);
     } catch (e) {
         return c.json({ err: e }, 500);
     }
-})
+});
 
 // 1件登録
 app.post("/todos", async (c) => {
     const todo = await c.req.json<typeof todos.$inferInsert>();
     try {
-        const db = drizzle(c.env.todo-api-drizzle);
+        const db = drizzle(c.env.todoapi_driz);
         await db.insert(todos).values(todo);
         return c.json({ message: "success" }, 201);
     } catch (e) {
@@ -160,7 +159,7 @@ app.post("/todos", async (c) => {
 app.delete("/todos/:id", async (c) => {
     const id = parseInt(c.req.param("id"));
     try {
-        const db = drizzle(c.env.todo-api-drizzle);
+        const db = drizzle(c.env.todoapi_driz);
         await db.delete(todos).where(eq(todos.id, id));
         return c.json({ message: "success" }, 200);
     } catch (e) {
@@ -173,7 +172,7 @@ app.put("/todos/:id", async (c) => {
     const id = parseInt(c.req.param("id"));
     const { todo, score, isDone } = await c.req.json<typeof todos.$inferInsert>();
     try {
-        const db = drizzle(c.env.todo-api-drizzle);
+        const db = drizzle(c.env.todoapi_driz);
         await db.update(todos).set({ todo, score, isDone }).where(eq(todos.id, id));
         return c.json({ message: "success" }, 200);
     } catch (e) {
@@ -187,8 +186,8 @@ export default app;
 ## 5. Cloudflareにデプロイする
 
 ```bash
-npx wrangler d1 migrations apply todo-api-drizzle --remote
-npx wrangler d1 execute todo-api-drizzle --remote --file=./db/dummy-data.sql
+npx wrangler d1 migrations apply todoapi-driz --remote
+npx wrangler d1 execute todoapi-driz --remote --file=./db/dummy-data.sql
 npm run deploy
 # 成功するとURLが表示される
 ```
