@@ -13,3 +13,7 @@
 ## 2. Vue.js公式サイトのSSRページを写経する
 
 [サーバーサイドレンダリング（SSR） | Vue.js](https://ja.vuejs.org/guide/scaling-up/ssr)
+
+## 3. Vite公式サイトのSSRページを写経する
+
+[サーバーサイドレンダリング（SSR） | Vite](https://ja.vite.dev/guide/ssr)
