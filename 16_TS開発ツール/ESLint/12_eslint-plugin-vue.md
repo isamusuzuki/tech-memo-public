@@ -2,7 +2,7 @@
 
 作成日 2025/09/22
 
-## 1. 公式サイトを読む
+## 1. 公式サイト（英語）を読む
 
 [Introduction | eslint-plugin-vue](https://eslint.vuejs.org/)
 
