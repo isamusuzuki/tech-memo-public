@@ -4,7 +4,7 @@
 
 ## 1. 公式ドキュメント（英語）を読む
 
-[scripts](https://docs.npmjs.com/cli/v11/using-npm/scripts)
+[scripts | npm Docs](https://docs.npmjs.com/cli/v11/using-npm/scripts)
 
 特定の状況で発生するライフサイクルスクリプトがある
 
