@@ -1,6 +1,6 @@
 # Zodを試す
 
-作成日 2025/09/28
+作成日 2025/09/28、更新日 2025/09/29
 
 ## 1. 解説動画を写経する
 
@@ -8,7 +8,7 @@
 
 ## 2. 新規プロジェクトを作成する
 
-`ban create hono@latest`は未検証であるが、少なくとも`npm create hono@latest`はTypeScriptがインストールされず、Cloudflareサービス群の型定義ファイルも欠けていて、問題がある。代わりに`npm create cloudflare@latest`を使う
+【変更点】`ban create hono@latest`は未検証であるが、少なくとも`npm create hono@latest`はTypeScriptがインストールされず、Cloudflareサービス群の型定義ファイルも欠けていて、続行できない。代わりに`npm create cloudflare@latest`を使う
 
 ```bash
 npm create cloudflare@latest stock-trade-api
@@ -18,6 +18,7 @@ npm create cloudflare@latest stock-trade-api
 # no git
 # no deploy via 'npm run deploy'
 
+# Honoを導入
 npm install hono
 ```
 
@@ -45,7 +46,7 @@ npm install drizzle-orm
 npm install -D drizzle-kit
 ```
 
-drizzle.config.tsを新規作成する
+drizzle.config.tsを作成する
 
 ```javascript
 import { defineConfig } from "drizzle-kit";
@@ -93,18 +94,27 @@ npx wrangler d1 migrations apply stock-db --local
 src/index.ts
 
 ```javascript
+import { Hono } from 'hono';
+import stock from './stock';
+
+const app = new Hono().basePath("/api");
+
+app.route("stocks", stock);
+
+export default app;
+```
+
+src/stock/index.ts
+
+```javascript
 import { eq } from 'drizzle-orm';
 import { drizzle } from 'drizzle-orm/d1';
 import { Hono } from 'hono';
-import { stockTable } from "../db/schema";
+import { stockTable } from "../../db/schema";
 
-export interface Env {
-    stock_db: D1Database;
-}
+const stock = new Hono<{ Bindings: { stock_db: D1Database } }>();
 
-const app = new Hono<{ Bindings: Env }>();
-
-app
+stock
     .get("/", async (c) => {
         const db = drizzle(c.env.stock_db);
         const res = await db.select().from(stockTable);
@@ -121,7 +131,99 @@ app
         return c.json(res);
     });
 
-export default app;
+export default stock;
 ```
 
-12:43まで
+## 5. Zodを導入する
+
+```bash
+npm i zod
+npm i @hono/zod-validator
+```
+
+db/validationSchema/stock-schema.ts
+
+```javascript
+import { z } from "zod";
+
+export const codeRule = "([1][3-9ACDF-HJ-NPR-UW-Y][0-9][0-9ACDF-HJ-NPR-UW-Y]|[2-9][0-9ACDF-HJ-NPR-UW-Y][0-9][0-9ACDF-HJ-NPR-UW-Y])";
+
+const codeRegex = new RegExp(codeRule);
+ 
+export const stockSchema = z.object({
+    code: z.string().regex(codeRegex),
+    stockName: z.string().trim().min(2).max(128),
+    market: z.enum(["プライム", "スタンダード", "グロース"]),
+});
+```
+
+src/stock/index.ts
+
+```javascript
+import { eq } from 'drizzle-orm';
+import { drizzle } from 'drizzle-orm/d1';
+import { Hono } from 'hono';
+import { stockTable } from "../../db/schema";
+import { stockSchema, codeRule } from "../../db/validationSchema/stock-schema";
+import { zValidator } from '@hono/zod-validator';
+
+const stock = new Hono<{ Bindings: { stock_db: D1Database } }>();
+
+stock
+    .get("/", async (c) => {
+        try {
+            const db = drizzle(c.env.stock_db);
+            const res = await db.select().from(stockTable);
+            if (res.length === 0) {
+                return c.json({ error: "登録データがありません" }, 404)
+            }
+            return c.json(res);
+        } catch (e) {
+            return c.json({ error: e }, 500);
+        }
+    }).post("/", zValidator("json", stockSchema), async (c) => {
+        const stock = c.req.valid("json");
+        try {
+            const db = drizzle(c.env.stock_db);
+            await db.insert(stockTable).values(stock);
+            return c.json({ message: "登録しました" }, 201);
+        } catch (e) {
+            return c.json({ error: "すでに登録されています" }, 500);
+        }
+    }).get(`/:code{${codeRule}}`, async (c) => {
+        const code = c.req.param("code");
+        try {
+            const db = drizzle(c.env.stock_db);
+            const res = await db.select().from(stockTable).where(eq(stockTable.code, code));
+            if (res.length === 0) {
+                return c.json({ error: "登録データがありません" }, 404)
+            }
+            return c.json(res);
+        } catch (e) {
+            return c.json({ error: e }, 500);
+        }
+    }).put(`/:code{${codeRule}}`, zValidator("json", stockSchema), async (c) => {
+        const code = c.req.param("code");
+        const stock = c.req.valid("json");
+        try {
+            const db = drizzle(c.env.stock_db);
+            await db.update(stockTable).set(stock).where(eq(stockTable.code, code));
+            return c.json({ message: "更新しました" }, 200);
+        } catch (e) {
+            return c.json({ error: e }, 500);
+        }
+    }).delete(`/:code{${codeRule}}`, async (c) => {
+        const code = c.req.param("code");
+        try {
+            const db = drizzle(c.env.stock_db);
+            await db.delete(stockTable).where(eq(stockTable.code, code));
+            return c.json({ message: "削除しました" }, 200);
+        } catch (e) {
+            return c.json({ error: e }, 500);
+        }
+    });
+
+export default stock;
+```
+
+26:56まで
