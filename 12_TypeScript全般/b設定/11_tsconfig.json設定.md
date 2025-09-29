@@ -55,7 +55,7 @@ import type { Instruction } from 'instruction';
         "paths": {
             "@ast/*": ["./ast/*"],
             "@utils/*": ["./utils/*"],
-    }
+        }
     }
 }
 ```
