@@ -86,6 +86,7 @@ export const stockTable = sqliteTable("stock_table", {
 # マイグレーションファイルを生成する
 npx drizzle-kit generate
 
+# データベースにテーブルを追加する
 npx wrangler d1 migrations apply stock-db --local
 ```
 
