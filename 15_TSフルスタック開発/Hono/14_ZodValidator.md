@@ -4,7 +4,7 @@
 
 ## バリデータがエラーだったときの対処
 
-[15_Zodを試す](../Zod/15_Zodを試す.md) 160行目のsrc/stock/index.tsのコードで、Zod Validatorが登場する
+[12_Zodを試すa](../Zod/12_Zodを試すa.md) 160行目のsrc/stock/index.tsのコードで、Zod Validatorが登場する
 
 ```javascript
 import { drizzle } from 'drizzle-orm/d1';
