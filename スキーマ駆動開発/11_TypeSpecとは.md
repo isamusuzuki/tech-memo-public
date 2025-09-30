@@ -1,4 +1,4 @@
-# TypeSpec概要
+# TypeSpecとは
 
 作成日 2025/04/25
 

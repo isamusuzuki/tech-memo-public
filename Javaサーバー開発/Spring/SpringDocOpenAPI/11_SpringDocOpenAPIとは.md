@@ -1,4 +1,4 @@
-# SpringDoc OpenAPI
+# SpringDoc OpenAPIとは
 
 作成日 2025/02/12、更新日 2025/03/14
 

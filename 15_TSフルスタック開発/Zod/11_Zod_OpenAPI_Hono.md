@@ -2,13 +2,15 @@
 
 作成日 2025/09/02
 
-## 1. 参照記事を読む
+## 1. 解説記事を読む
 
 [少人数で3つのWebアプリを支える技術 - Hono × Cloudflare で実現する最高のDeveloper Experience](https://zenn.dev/miravy/articles/d5c59c27f01b4e)
 
 > バックエンドもフロントエンドもTypeScriptで統一することで、全体の開発効率を高めたいと考えていました。
 >
-> HonoとTypeScriptで統一した理由: TypeScriptの型定義が充実しており、開発体験が素晴らしかったこと。そして、zod-openapiとの統合により、OpenAPIスキーマから型を自動生成できることが魅力的でした。
+> 様々なサービスを検討した結果、Cloudflare Workers + Hono + TypeScriptモノレポという組み合わせにたどり着きました。
+>
+> HonoとTypeScriptで統一した理由: HonoはTypeScriptの型定義が充実しており、開発体験が素晴らしかったこと。そして、zod-openapiとの統合により、OpenAPIスキーマから型を自動生成できることが魅力的でした。
 
 ## 2. Zodとは？
 
@@ -34,9 +36,9 @@ console.log(data.name);
 
 ## 3. Zod to OpenAPIとは？
 
-GitHubリポジトリ => [asteasolutions/zod-to-openapi](https://github.com/asteasolutions/zod-to-openapi)
+[zod-openapi - npm](https://www.npmjs.com/package/zod-openapi)
 
-> A library that generates OpenAPI (Swagger) docs from Zod schemas
+> A TypeScript library which uses Zod schemas to generate OpenAPI v3.x documentation.
 
 ZodスキーマからダイレクトにOpenAPI仕様書を生成することで、SSoT(Single Source of Truth)を実現する
 

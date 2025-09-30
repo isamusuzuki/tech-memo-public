@@ -1,6 +1,18 @@
-# graphql-codegen参照記事a
+# graphql-codegenとは
 
-作成日 2025/01/07
+作成日 2025/09/30
+
+## 1. 公式サイト（英語）を読む
+
+[GraphQL Codegen](https://the-guild.dev/graphql/codegen)
+
+> Effortlessly generate comprehensive code from GraphQL schemas and operations, streamlining development across your tech stack.]
+
+[Introduction to GraphQL Code Generator](https://the-guild.dev/graphql/codegen/docs/getting-started)
+
+> GraphQL Code Generator is a plugin-based tool that helps you get the best out of your GraphQL stack.
+
+## 2. 解説記事aを読む
 
 [graphql-codegen を使って GraphQL スキーマからフロントエンドのコードを自動生成してみた](https://zenn.dev/sky/articles/47b86d3387389d)
 
@@ -8,7 +20,7 @@
 >
 > ソースコードを自動生成しているライブラリが便利だったので、使い方を紹介していきます。使用しているライブラリはgraphql-code-generatorです。
 
-## 1. 必要なライブラリとインストール
+### 必要なライブラリとインストール
 
 ```bash
 # @graphql-codegen/cli
@@ -26,7 +38,7 @@ $npm install graphql-request
 
 必要なライブラリを用意した後は設定ファイルとスキーマファイルが必要になります
 
-## 2. 設定ファイル
+### 設定ファイル
 
 `npx graphql-codegen`を実行するとTypeScriptファイルが自動で生成されます。
 
@@ -36,11 +48,11 @@ $npm install graphql-request
 - `documents` ... クライアントから発行するクエリファイル
 - `generates` ... 生成に関するオプション。キーが生成ファイル名。バリューがそのファイルに対するオプション
 
-## 3. スキーマファイル
+### スキーマファイル
 
 サンプルコード => [https://raw.githubusercontent.com/marmelab/GraphQL-example/master/schema.graphql](https://raw.githubusercontent.com/marmelab/GraphQL-example/master/schema.graphql)
 
-## 4. 生成ファイル
+### 生成ファイル
 
 2 つのスキーマファイルを用意した上で`npx graphql-codegen`を実行すると`client/types.ts`が生成されます。
 
@@ -55,3 +67,24 @@ const BASE_GRAPHQL_ENDPOINT = 'http://127.0.0.1:xxxx/graphql';
 const graphQLClient = new GraphQLClient(BASE_GRAPHQL_ENDPOINT);
 const sampleClient = getSdk(graphQLClient);
 ```
+
+## 3. 解説記事bを読む
+
+[GraphQL のスキーマ定義やクエリから型定義、自動生成できまっせ](https://qiita.com/yoshii0110/items/b461e608dc0cff78982e)
+
+> GraphQL を使用する際に GraphQL のスキーマやクエリから TypeScript の型定義を自動生成する方法について記事にしていきます。
+>
+> - GraphQL Code Generator というのは、GraphQL のスキーマ定義を使用して型定義を自動生成するためのツールです。
+> - このスキーマ定義の型定義を作成することで、クライアントサイドからの GraphQL のリクエストとレスポンスに型をつけることができます。
+> - さまざまなフレームワーク、ライブラリに対応しているので、用途にあったプラグインを組み合わせて使用します。
+> - また、フロントエンドで GraphQL を使用する場合とバックエンドで GraphQL を使用する場合、それぞれプラグインや実装方法が異なるので、注意が必要です。
+
+## 4. Schema Stitching と Apollo Federation
+
+[Schema Stitching と Apollo Federation の比較](https://zenn.dev/yuta_ura/articles/compare-schema-stitching-and-apollo-federation)
+
+> GraphQLを利用してマイクロサービスを作成する方法として代表的なものにSchema StitchingとApollo Federationがある。この2つが達成したいことは基本的には同じではあるものの、アプローチの仕方などには差がある
+
+共通のコンセプト = スキーマのマージ
+
+Stitch = （動詞の場合）「縫う」「縫い合わせる」
