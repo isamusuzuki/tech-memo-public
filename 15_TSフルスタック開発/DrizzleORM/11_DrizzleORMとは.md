@@ -8,7 +8,7 @@
 
 ## 2. 生のSQL文を使う
 
-フルのクエリー文を使うことができるという意味ではなくて、SQLの関数を紛れ込ませることができるという意味
+フルのSQLクエリー文を使うことができるという意味ではなくて、SQLの関数を紛れ込ませることができるということ
 
 [Drizzle ORM - Magic sql`` operator](https://orm.drizzle.team/docs/sql)
 
