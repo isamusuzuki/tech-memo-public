@@ -35,6 +35,7 @@ export const stockSchema = z.object({
 db/schema.ts -> drizzle/schema.ts
 
 ```javascript
+import { relations } from "drizzle-orm";
 import { integer, real, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 export const stockTable = sqliteTable("stock_table", {
@@ -55,6 +56,24 @@ export const tradeTable = sqliteTable("trade_table", {
   buySell: text("buy_sell", { enum: ["買", "売"] }).notNull(),
   tradingDate: text("trading_date").notNull(),
 });
+
+export const stockRelations = relations(stockTable, ({ many }) => ({
+  trades: many(tradeTable),
+}));
+
+export const tradeRelations = relations(tradeTable, ({ one }) => ({
+  stock: one(stockTable, {
+    fields: [tradeTable.code],
+    references: [stockTable.code],
+  }),
+}));
+
+export const schema = {
+  stockTable,
+  tradeTable,
+  stockRelations,
+  tradeRelations,
+};
 ```
 
 drizzle.config.ts
@@ -103,7 +122,7 @@ src/trade/index.ts
 import { eq } from 'drizzle-orm';
 import { drizzle } from 'drizzle-orm/d1';
 import { Hono } from 'hono';
-import { tradeTable } from "../../drizzle/schema";
+import { tradeTable, schema } from "../../drizzle/schema";
 import { createTradeSchema } from "../../lib/validations/trade";
 import { zValidator } from '@hono/zod-validator';
 
@@ -112,8 +131,10 @@ const trade = new Hono<{ Bindings: { stock_db: D1Database } }>();
 trade
     .get("/", async (c) => {
         try {
-            const db = drizzle(c.env.stock_db);
-            const res = await db.select().from(tradeTable);
+            const db = drizzle(c.env.stock_db, { schema });
+            const res = await db.query.tradeTable.findMany({
+                with: { stock: true },
+            });
             if (res.length === 0) {
                 return c.json({ error: "登録データがありません" }, 404)
             }
@@ -127,15 +148,23 @@ trade
             const db = drizzle(c.env.stock_db);
             await db.insert(tradeTable).values(trade);
             return c.json({ message: "登録しました" }, 201);
-        } catch (e) {
-            return c.json({ error: e }, 500);
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                return c.json({ error: e.message }, 500);
+            } else {
+                return c.json({ error: e }, 500);
+            }
         }
     }).get(`/:id`, async (c) => {
         const id = parseInt(c.req.param("id"));
         try {
-            const db = drizzle(c.env.stock_db);
-            const res = await db.select().from(tradeTable).where(eq(tradeTable.id, id));
-            if (res.length === 0) {
+            const db = drizzle(c.env.stock_db, { schema });
+            const res = await db.query.tradeTable.findFirst({
+                columns: { code: true, shares: true, price: true },
+                with: { stock: { columns: { stockName: true, market: true } } },
+                where: eq(tradeTable.id, id),
+            });
+            if (!res) {
                 return c.json({ error: "登録データがありません" }, 404)
             }
             return c.json(res);
@@ -208,4 +237,10 @@ npx wrangler d1 execute stock-db --local --file=./drizzle/dummy-data.sql
 npm run dev
 ```
 
-37:22 まで
+本番環境にデプロイする
+
+```bash
+npm run deploy
+
+npx wrangler d1 migrations apply stock-db --remote
+```
