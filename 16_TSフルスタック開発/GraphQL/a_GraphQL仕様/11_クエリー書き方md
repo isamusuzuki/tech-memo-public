@@ -1,10 +1,12 @@
-# GraphQLでデータ取得
+# クエリーの書き方
 
-作成日 2025/01/21、更新日 2025/03/18
+作成日 2025/01/21、更新日 2025/10/01
 
-参照サイト: [今更GraphQL：Query書き方基礎の基礎](https://zenn.dev/soma3134/articles/cb6b9de2564fb6)
+## 解説記事を読む
 
-## queryの書き方
+[今更GraphQL：Query書き方基礎の基礎](https://zenn.dev/soma3134/articles/cb6b9de2564fb6)
+
+queryの書き方
 
 ```javascript
 query ExampleQuery {
@@ -19,14 +21,16 @@ query ExampleQuery {
 - `operation type` ... [query,mutation,subscription] queryの時は省略可
 - `operation name` ... 省略可
 
+構文
+
 ```text
 query 名前 {
-    サーバーエンドポイント (引数キーバリュー)
-    { 欲しい値 }
+  サーバーエンドポイント (引数キーバリュー)
+  { 欲しい値 }
 }
 ```
 
-## 2. 戻り値
+戻り値
 
 ```json
 {
