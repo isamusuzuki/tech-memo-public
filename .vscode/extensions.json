@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "davidanson.vscode-markdownlint",
+        "esbenp.prettier-vscode",
+        "shd101wyy.markdown-preview-enhanced",
+        "yzhang.markdown-all-in-one"
+    ]
+}
