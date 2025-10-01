@@ -1,6 +1,6 @@
 # tsconfig.json設定
 
-作成日 2025/09/09、更新日 2025/09/24
+作成日 2025/09/09、更新日 2025/10/01
 
 ## 1. 解説記事を読む
 
@@ -21,7 +21,7 @@ compilerOptions項目
 
 ## 2. compilerOptions > typeRoots
 
-型定義ファイル(d.ts)を置くフォルダを指定する
+型定義ファイル(*.d.ts)を置くフォルダを指定する
 
 tsconfig.jsonからの相対パスを書く
 
@@ -53,17 +53,20 @@ import type { Instruction } from 'instruction';
 {
     "compilorOptions" {
         "paths": {
-            "@ast/*": ["./ast/*"],
-            "@utils/*": ["./utils/*"],
+            "@/*": ["./*"]
         }
     }
 }
 ```
 
-TypeScriptファイルでは、相対パスを書く必要がなくなる
+- TypeScriptファイルでは、相対パスを書く必要がなくなる
+- 細かくフォルダを羅列せず、`@/*`1個ですべてをまかなう
+- `@logtape/logtape`のようなnpmパッケージとの違いを出す
 
 ```javascript
-import { readFileInGakumu } from '@utils/readFile.ts';
+import type { Logger } from '@logtape/logtape';
+import { readFileInGakumu } from '@/utils/readFile.ts';
+import { writeTableText } from '@/ast/writeTableText.ts';
 ```
 
 ## 4. rootDirとbaseUrl
