@@ -8,17 +8,12 @@
 
 - ファイルの先頭に以下のコメントを書く
 - `eslint-disable` だけを書くとすべてのルールが無効になるので、これは非推奨
-- 必ず無効にしたいルールを書き込むことを推奨する
+- 無効にしたいルールを書き込むことを推奨する
 
 ```javascript
 /* eslint-disable */
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
-// 以下の書き方も同じ効果あり
-
-/* eslint @typescript-eslint/no-explicit-any: off */
-/* eslint @typescript-eslint/no-explicit-any: 0 */
 ```
 
 ## 2. 特定の行だけ、ルールを無効にする
