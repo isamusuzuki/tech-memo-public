@@ -1,14 +1,14 @@
-# Zodを試す
+# Zod を試す
 
 作成日 2025/09/28、更新日 2025/09/29
 
 ## 1. 解説動画を写経する
 
-[【Cloudflare Workers】誰でも簡単に始められる！Hono+Cloudflare D1+Drizzle ORMで株式投資取引APIを作る](https://www.youtube.com/watch?v=nVuZiBAXJo0)
+[【Cloudflare Workers】誰でも簡単に始められる！Hono+Cloudflare D1+Drizzle ORM で株式投資取引 API を作る](https://www.youtube.com/watch?v=nVuZiBAXJo0)
 
 ## 2. 新規プロジェクトを作成する
 
-【変更点】`ban create hono@latest`は未検証であるが、少なくとも`npm create hono@latest`はTypeScriptがインストールされず、Cloudflareサービス群の型定義ファイルも欠けていて、続行できない。代わりに`npm create cloudflare@latest`を使う
+【変更点】`ban create hono@latest`は未検証であるが、少なくとも`npm create hono@latest`は TypeScript がインストールされず、Cloudflare サービス群の型定義ファイルも欠けていて、続行できない。代わりに`npm create cloudflare@latest`を使う
 
 ```bash
 npm create cloudflare@latest stock-trade-api
@@ -25,18 +25,18 @@ npm install hono
 src/index.ts
 
 ```javascript
-import { Hono } from 'hono';
+import { Hono } from "hono";
 
 const app = new Hono();
 
-app.get('/', (c) => {
-  return c.json({ ok: true, message: 'Hello Hono!'});
+app.get("/", (c) => {
+  return c.json({ ok: true, message: "Hello Hono!" });
 });
 
 export default app;
 ```
 
-## 3.  D1データベースを用意して、drizzleを導入する
+## 3. D1 データベースを用意して、drizzle を導入する
 
 ```bash
 npx wrangler d1 create stock-db
@@ -46,25 +46,25 @@ npm install drizzle-orm
 npm install -D drizzle-kit
 ```
 
-drizzle.config.tsを作成する
+drizzle.config.ts を作成する
 
 ```javascript
 import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
-    dialect: "sqlite",
-    schema: "./db/schema.ts",
-    out: "./drizzle/migrations",
+  dialect: "sqlite",
+  schema: "./db/schema.ts",
+  out: "./drizzle/migrations",
 });
 ```
 
-wrangler.jsoncファイルのd1_databases項目に追加する
+wrangler.jsonc ファイルの d1_databases 項目に追加する
 
 ```json
 {
-    "d1_databases": {
-        "migrations_dir" : "drizzle/migrations"
-    }
+  "d1_databases": {
+    "migrations_dir": "drizzle/migrations"
+  }
 }
 ```
 
@@ -74,13 +74,13 @@ db/schema.ts
 import { sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 export const stockTable = sqliteTable("stock_table", {
-    code: text("code", { length: 4 }).primaryKey(),
-    stockName: text("stock_name").notNull(),
-    market: text("market").notNull(),
+  code: text("code", { length: 4 }).primaryKey(),
+  stockName: text("stock_name").notNull(),
+  market: text("market").notNull(),
 });
 ```
 
-デバッグ用のデータベースを作成する
+開発用データベースにテーブルを作成する
 
 ```bash
 # マイグレーションファイルを生成する
@@ -90,13 +90,13 @@ npx drizzle-kit generate
 npx wrangler d1 migrations apply stock-db --local
 ```
 
-## 4. APIを作成する
+## 4. API を作成する
 
 src/index.ts
 
 ```javascript
-import { Hono } from 'hono';
-import stock from './stock';
+import { Hono } from "hono";
+import stock from "./stock";
 
 const app = new Hono().basePath("/api");
 
@@ -135,7 +135,7 @@ stock
 export default stock;
 ```
 
-## 5. Zodを導入する
+## 5. Zod を導入する
 
 ```bash
 npm i zod
@@ -147,14 +147,15 @@ db/validationSchema/stock-schema.ts
 ```javascript
 import { z } from "zod";
 
-export const codeRule = "([1][3-9ACDF-HJ-NPR-UW-Y][0-9][0-9ACDF-HJ-NPR-UW-Y]|[2-9][0-9ACDF-HJ-NPR-UW-Y][0-9][0-9ACDF-HJ-NPR-UW-Y])";
+export const codeRule =
+  "([1][3-9ACDF-HJ-NPR-UW-Y][0-9][0-9ACDF-HJ-NPR-UW-Y]|[2-9][0-9ACDF-HJ-NPR-UW-Y][0-9][0-9ACDF-HJ-NPR-UW-Y])";
 
 const codeRegex = new RegExp(codeRule);
- 
+
 export const stockSchema = z.object({
-    code: z.string().regex(codeRegex),
-    stockName: z.string().trim().min(2).max(128),
-    market: z.enum(["プライム", "スタンダード", "グロース"]),
+  code: z.string().regex(codeRegex),
+  stockName: z.string().trim().min(2).max(128),
+  market: z.enum(["プライム", "スタンダード", "グロース"]),
 });
 ```
 
@@ -227,4 +228,4 @@ stock
 export default stock;
 ```
 
-26:56まで
+26:56 まで

@@ -1,19 +1,20 @@
-# Zodを試す
+# Zod を試す
 
 作成日 2025/09/30
 
 ## 1. 解説動画を写経する（続き）
 
-[【Cloudflare Workers】誰でも簡単に始められる！Hono+Cloudflare D1+Drizzle ORMで株式投資取引APIを作る](https://www.youtube.com/watch?v=nVuZiBAXJo0)
+[【Cloudflare Workers】誰でも簡単に始められる！Hono+Cloudflare D1+Drizzle ORM で株式投資取引 API を作る](https://www.youtube.com/watch?v=nVuZiBAXJo0)
 
-26:57から
+26:57 から
 
 ## 2. テーブルを追加する
 
 config/regex.ts
 
 ```javascript
-export const codeRule = "([1][3-9ACDF-HJ-NPR-UW-Y][0-9][0-9ACDF-HJ-NPR-UW-Y]|[2-9][0-9ACDF-HJ-NPR-UW-Y][0-9][0-9ACDF-HJ-NPR-UW-Y])";
+export const codeRule =
+  "([1][3-9ACDF-HJ-NPR-UW-Y][0-9][0-9ACDF-HJ-NPR-UW-Y]|[2-9][0-9ACDF-HJ-NPR-UW-Y][0-9][0-9ACDF-HJ-NPR-UW-Y])";
 
 export const codeRegex = new RegExp(codeRule);
 ```
@@ -22,12 +23,12 @@ db/validationSchema/stock-schema.ts -> lib/validations/stock.ts
 
 ```javascript
 import { z } from "zod";
-import { coreRegex } from '../../config/regex';
- 
+import { codeRegex } from "../../config/regex";
+
 export const stockSchema = z.object({
-    code: z.string().regex(codeRegex),
-    stockName: z.string().trim().min(2).max(128),
-    market: z.enum(["プライム", "スタンダード", "グロース"]),
+  code: z.string().regex(codeRegex),
+  stockName: z.string().trim().min(2).max(128),
+  market: z.enum(["プライム", "スタンダード", "グロース"]),
 });
 ```
 
@@ -37,22 +38,38 @@ db/schema.ts -> drizzle/schema.ts
 import { integer, real, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 export const stockTable = sqliteTable("stock_table", {
-    code: text("code", { length: 4 }).primaryKey(),
-    stockName: text("stock_name").notNull(),
-    market: text("market", {
-        enum: ["プライム", "スタンダード", "グロース"]
-    }).notNull(),
+  code: text("code", { length: 4 }).primaryKey(),
+  stockName: text("stock_name").notNull(),
+  market: text("market", {
+    enum: ["プライム", "スタンダード", "グロース"],
+  }).notNull(),
 });
 
 export const tradeTable = sqliteTable("trade_table", {
-    id: integer("id").primaryKey({ autoIncrement: true }),
-    code: text("code", { length: 4 }).references(() => stockTable.code).notNull(),
-    shares: integer("shares").notNull(),
-    price: real("price").notNull(),
-    buySell: text("buy_sell", { enum: ["買", "売"] }).notNull(),
-    tradingDate: text("trading_date").notNull(),
-})
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  code: text("code", { length: 4 })
+    .references(() => stockTable.code)
+    .notNull(),
+  shares: integer("shares").notNull(),
+  price: real("price").notNull(),
+  buySell: text("buy_sell", { enum: ["買", "売"] }).notNull(),
+  tradingDate: text("trading_date").notNull(),
+});
 ```
+
+drizzle.config.ts
+
+```javascript
+import { defineConfig } from "drizzle-kit";
+
+export default defineConfig({
+  dialect: "sqlite",
+  schema: "./drizzle/schema.ts",
+  out: "./drizzle/migrations",
+});
+```
+
+開発用データベースにテーブルを作成する
 
 ```bash
 # マイグレーションファイルを生成する
@@ -66,32 +83,95 @@ lib/validations/trade.ts
 
 ```javascript
 import { z } from "zod";
-import { coreRegex } from '../../config/regex';
- 
+import { codeRegex } from "../../config/regex";
+
 export const tradeSchema = z.object({
-    id: z.number().int().nonnegative(),
-    code: z.string().regex(codeRegex),
-    shares: z.number().nonnegative(),
-    price: z.number().nonnegative(),
-    buySell: z.enum(["買", "売"]),
-    tradingDate: z.string().date(),
+  id: z.number().int().nonnegative(),
+  code: z.string().regex(codeRegex),
+  shares: z.number().nonnegative(),
+  price: z.number().nonnegative(),
+  buySell: z.enum(["買", "売"]),
+  tradingDate: z.string().date(),
 });
 
-export const createTradeSchema=tradeSchema.omit({ id: true });
+export const createTradeSchema = tradeSchema.omit({ id: true });
 ```
 
 src/trade/index.ts
 
 ```javascript
+import { eq } from 'drizzle-orm';
+import { drizzle } from 'drizzle-orm/d1';
+import { Hono } from 'hono';
+import { tradeTable } from "../../drizzle/schema";
+import { createTradeSchema } from "../../lib/validations/trade";
+import { zValidator } from '@hono/zod-validator';
 
+const trade = new Hono<{ Bindings: { stock_db: D1Database } }>();
+
+trade
+    .get("/", async (c) => {
+        try {
+            const db = drizzle(c.env.stock_db);
+            const res = await db.select().from(tradeTable);
+            if (res.length === 0) {
+                return c.json({ error: "登録データがありません" }, 404)
+            }
+            return c.json(res);
+        } catch (e) {
+            return c.json({ error: e }, 500);
+        }
+    }).post("/", zValidator("json", createTradeSchema), async (c) => {
+        const trade = c.req.valid("json");
+        try {
+            const db = drizzle(c.env.stock_db);
+            await db.insert(tradeTable).values(trade);
+            return c.json({ message: "登録しました" }, 201);
+        } catch (e) {
+            return c.json({ error: e }, 500);
+        }
+    }).get(`/:id`, async (c) => {
+        const id = parseInt(c.req.param("id"));
+        try {
+            const db = drizzle(c.env.stock_db);
+            const res = await db.select().from(tradeTable).where(eq(tradeTable.id, id));
+            if (res.length === 0) {
+                return c.json({ error: "登録データがありません" }, 404)
+            }
+            return c.json(res);
+        } catch (e) {
+            return c.json({ error: e }, 500);
+        }
+    }).put(`/:id`, zValidator("json", createTradeSchema), async (c) => {
+        const id = parseInt(c.req.param("id"));
+        const trade = c.req.valid("json");
+        try {
+            const db = drizzle(c.env.stock_db);
+            await db.update(tradeTable).set(trade).where(eq(tradeTable.id, id));
+            return c.json({ message: "更新しました" }, 200);
+        } catch (e) {
+            return c.json({ error: e }, 500);
+        }
+    }).delete(`/:id`, async (c) => {
+        const id = parseInt(c.req.param("id"));
+        try {
+            const db = drizzle(c.env.stock_db);
+            await db.delete(tradeTable).where(eq(tradeTable.id, id));
+            return c.json({ message: "削除しました" }, 200);
+        } catch (e) {
+            return c.json({ error: e }, 500);
+        }
+    });
+
+export default trade;
 ```
 
 src/index.ts
 
 ```javascript
-import { Hono } from 'hono';
-import stock from './stock';
-import trade from './trade';
+import { Hono } from "hono";
+import stock from "./stock";
+import trade from "./trade";
 
 const app = new Hono().basePath("/api");
 
@@ -123,6 +203,9 @@ VALUES
 
 ```bash
 npx wrangler d1 execute stock-db --local --file=./drizzle/dummy-data.sql
+
+# 検証する
+npm run dev
 ```
 
-36:25まで
+37:22 まで
