@@ -8,8 +8,10 @@
 
 サーバーサイドでAPIを書く
 
+server/index.ts
+
 ```javascript
-import { Hono } fromn 'hono'
+import { Hono } from 'hono'
 import { z } from 'zod'
 import { zValidate } from '@hono/zod-validator'
 
@@ -34,6 +36,8 @@ export default app
 ```
 
 クライアントはサーバーから型をインポートする
+
+client/index.ts
 
 ```javascript
 import { hc } from 'hono/client'
