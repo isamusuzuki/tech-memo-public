@@ -15,12 +15,14 @@ type Foo = {
 }
 
 const foo1 = {
-    bar: "1" // => barはstring型
+    bar: "1"
 } satisfies Foo
+// => foo1.barはstring型。現場優先
 
 const foo2: Foo = {
-    bar: "1" // => barはnumber | string型
+    bar: "1"
 }
+// => foo2.barはnumber | string型。定義優先
 
 foo1.bar = 2 // エラーになる
 foo1.bar = 2 // エラーにならない
