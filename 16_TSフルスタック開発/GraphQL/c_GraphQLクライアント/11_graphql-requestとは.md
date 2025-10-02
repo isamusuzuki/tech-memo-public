@@ -1,8 +1,8 @@
-# graphql-request
+# graphql-requestとは
 
 作成日 2025/10/02
 
-## 1. 公式サイトを読む
+## 公式サイトを読む
 
 [graphql-request - npm](https://www.npmjs.com/package/graphql-request)
 
