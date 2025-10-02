@@ -32,7 +32,7 @@ export const schema = createSchema({
   `,
   resolvers: {
     Query: {
-      hello: () => 'world'
+      hello: () => 'Hello, world'
     }
   }
 })
