@@ -1,4 +1,4 @@
-# GraphQLサーバーの種類
+# GraphQLサーバーとは
 
 作成日 2025/10/02
 
@@ -22,7 +22,10 @@ GraphQLサーバー
 
 HTTPサーバー for GraphQLサーバー
 
-- @apollo/serverについているstandaloneserver
+- node:httpのcreateServer ... routerがなくて素朴すぎ
+- @apollo/server/standaloneのstandaloneserver ... routerがなくて素朴すぎ
+- express
+- fastify
 - Hono
 
 スキーマ定義

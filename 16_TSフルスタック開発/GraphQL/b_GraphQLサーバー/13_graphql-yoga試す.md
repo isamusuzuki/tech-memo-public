@@ -2,7 +2,7 @@
 
 作成日 2025/10/02
 
-## 公式ドキュメントのクイックスタートを写経する
+## 公式ドキュメントのQuick startを写経する
 
 [Quick start | Yoga](https://the-guild.dev/graphql/yoga-server/docs)
 
@@ -15,9 +15,9 @@ npm init -y
 npm i graphql-yoga graphql
 ```
 
-package.jsonを変更 => `{"type": "modules"}`
+package.jsonを変更 => `{"type": "module"}`
 
-### スキーマの設定
+### スキーマの定義
 
 schema.js
 
@@ -63,7 +63,7 @@ package.jsonを変更 => `{"scripts": {"dev": "node index.js"}}`
 
 スクリプト実行 => `npm run dev`
 
-`http://localhost:4000/graphql`を開いたら、GraphiQLの画面が登場した
+`http://localhost:4000/graphql`を開いたら、Yoga GraphiQLが登場した
 
 左枠
 
@@ -73,7 +73,7 @@ query HelloQuery {
 }
 ```
 
-右枠
+ボタンをクリック => 右枠
 
 ```json
 {
