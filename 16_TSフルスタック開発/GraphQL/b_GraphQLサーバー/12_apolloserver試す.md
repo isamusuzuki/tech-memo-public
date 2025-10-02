@@ -4,7 +4,7 @@
 
 ## 公式ドキュメントのGet Startedを写経する
 
-[Quick start | Yoga](https://the-guild.dev/graphql/yoga-server/docs)
+[Get Started with Apollo Server](https://www.apollographql.com/docs/apollo-server/getting-started)
 
 ### セットアップ
 
