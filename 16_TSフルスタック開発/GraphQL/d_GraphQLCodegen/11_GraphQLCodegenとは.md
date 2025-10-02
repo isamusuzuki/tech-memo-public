@@ -23,17 +23,9 @@
 ### 必要なライブラリとインストール
 
 ```bash
-# @graphql-codegen/cli
-# @graphql-codegen/import-types-preset
-# @graphql-codegen/typescript-graphql-request
-# @graphql-codegen/typescript-operations
-# @graphql-codegen/near-operation-file-preset
-# @graphql-codegen/add
-# graphql-request
+npm install -D @graphql-codegen/typescript @graphql-codegen/typescript-graphql-request @graphql-codegen/typescript-operations
 
-$npm install -D @graphql-codegen/typescript @graphql-codegen/typescript-graphql-request @graphql-codegen/typescript-operations
-
-$npm install graphql-request
+npm install graphql-request
 ```
 
 必要なライブラリを用意した後は設定ファイルとスキーマファイルが必要になります
@@ -78,13 +70,3 @@ const sampleClient = getSdk(graphQLClient);
 > - このスキーマ定義の型定義を作成することで、クライアントサイドからの GraphQL のリクエストとレスポンスに型をつけることができます。
 > - さまざまなフレームワーク、ライブラリに対応しているので、用途にあったプラグインを組み合わせて使用します。
 > - また、フロントエンドで GraphQL を使用する場合とバックエンドで GraphQL を使用する場合、それぞれプラグインや実装方法が異なるので、注意が必要です。
-
-## 4. Schema Stitching と Apollo Federation
-
-[Schema Stitching と Apollo Federation の比較](https://zenn.dev/yuta_ura/articles/compare-schema-stitching-and-apollo-federation)
-
-> GraphQLを利用してマイクロサービスを作成する方法として代表的なものにSchema StitchingとApollo Federationがある。この2つが達成したいことは基本的には同じではあるものの、アプローチの仕方などには差がある
-
-共通のコンセプト = スキーマのマージ
-
-Stitch = （動詞の場合）「縫う」「縫い合わせる」
