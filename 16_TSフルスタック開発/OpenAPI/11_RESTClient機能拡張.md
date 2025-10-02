@@ -1,15 +1,14 @@
-# REST Client
+# REST Client機能拡張
 
 作成日 2025/02/19
 
+## 1. 公式サイト（英語）を読む
+
 [マーケットプレース](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
 
-- オーナー: Huachao Mao
-- 識別子: humao.rest-client
+識別子: humao.rest-client
 
-[ソースコード](https://github.com/Huachao/vscode-restclient)
-
-## 参考記事を読む
+## 解説記事を読む
 
 [【VSCode】効率的に API 開発をする Tips](https://zenn.dev/akkie1030/articles/vscode-rest-api)
 
