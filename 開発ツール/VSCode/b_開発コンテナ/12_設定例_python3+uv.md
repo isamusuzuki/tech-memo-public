@@ -20,7 +20,15 @@
     },
     "customizations": {
         "vsocode": {
-            "settings": {
+            "extensions": [
+                "ms-python.python",
+                "charliermarsh.ruff",
+                "njpwerner.autodocstring",
+                "shardulm94.trailing-spaces",
+                "oderwat.indent-rainbow",
+                "mechatroner.rainbow-csv"
+          ],
+          "settings": {
                 "autoDocstring.docstringFormat": "numpy",
                 "[python]": {
                     "editor.defaultFormatter": "charliermarsh.ruff",
@@ -38,15 +46,7 @@
                     "${containerWorkspaceFolder}/.venv/lib/python3.12/site-packages/"
                 ],
                 "python.analysis.typeCheckingMode": "standard"
-            },
-            "extensions": [
-                "ms-python.python",
-                "charliermarsh.ruff",
-                "njpwerner.autodocstring",
-                "shardulm94.trailing-spaces",
-                "oderwat.indent-rainbow",
-                "mechatroner.rainbow-csv"
-            ]
+            }
         }
     }
 }
