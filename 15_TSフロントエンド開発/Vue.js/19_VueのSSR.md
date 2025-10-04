@@ -1,0 +1,181 @@
+# VueのSSR
+
+作成日 2025/10/04
+
+## 1. 公式サイトを写経する
+
+[サーバーサイドレンダリング（SSR） | Vue.js](https://ja.vuejs.org/guide/scaling-up/ssr)
+
+### セットアップ
+
+npm workspaces機能を採用する
+
+```bash
+node -v
+# v22.16.0
+npm -v
+# 10.9.2
+
+npm init -w anpan -y
+# anapanフォルダが作成され、その中にpackage.jsonが生成される
+# package.jsonに追加 => {"type": "module" }
+```
+
+### vueのインストール
+
+```bash
+npm install vue -w anpan
+```
+
+anpan/example.js
+
+```javascript
+import { createSSRApp } from "vue";
+import { renderToString } from "vue/server-renderer";
+
+const app = createSSRApp({
+    data: () => ({ count: 1 }),
+    template: '<button @click="count++">{{ count }}</button>',
+});
+
+renderToString(app).then((html) => {
+    console.log(html);
+});
+```
+
+スクリプト実行
+
+```bash
+cd anpan
+node example.js
+# => <button>1</button>
+```
+
+### expressのインストール
+
+```bash
+# anpanフォルダの中で実行してもワークスペース体制は崩れない
+node install express
+```
+
+anpan/server.js
+
+```javascript
+import express from "express";
+import { createSSRApp } from "vue";
+import { renderToString } from "vue/server-renderer";
+
+const server = express();
+
+server.get("/", (req, res) => {
+    const app = createSSRApp({
+        data: () => ({ count: 1 }),
+        template: '<button @click="count++">{{ count }}</button>',
+    });
+
+    renderToString(app).then((html) => {
+        res.send(`
+            <!DOCTYPE html>
+            <html>
+                <head>
+                    <title>Vue SSR Example</title>
+                </head>
+                <body>
+                    <div id="app">${html}</div>
+                </body>
+            </html>
+        `);
+    });
+});
+
+server.listen(3000, () => {
+    console.log("ready");
+});
+```
+
+スクリプト実行
+
+```bash
+cd anpan
+node server.js
+# open browser to http://localhost:3000
+```
+
+### ハイドレーション
+
+ハイドレーションとは、サーバーで実行されたのと同じVueアプリケーションを作成し、各コンポーネントを制御するDOMノードにマッチさせ、DOMイベントリスナーをアタッチすること
+
+サーバーと同じVueアプリケーションの実装を再利用する必要がある => ユニバーサルコードをサーバーとクライアントの間で共有する
+
+クライアントは、ユニバーサルコードをインポートしてアプリケーションを作成し、マウントを実行する
+
+サーバーは、リクエストハンドラーで同じアプリケーション作成ロジックを使用する
+
+anpan/app.js
+
+```javascript
+import { createSSRApp } from "vue";
+
+export function createApp() {
+    return createSSRApp({
+        data: () => ({ count: 1 }),
+        template: `<div @click="count++">{{ count }}</div>`,
+    });
+}
+```
+
+anpan/client.js
+
+```javascript
+import { createApp } from "./app.js";
+
+createApp().mount("#app");
+```
+
+anpan/server.js
+
+```javascript
+import express from "express";
+import { renderToString } from "vue/server-renderer";
+import { createApp } from "./app.js";
+
+const server = express();
+
+server.get("/", (req, res) => {
+    const app = createApp();
+
+    renderToString(app).then((html) => {
+        res.send(`
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>Vue SSR Example</title>
+        <script type="importmap">
+          {
+            "imports": {
+              "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+            }
+          }
+        </script>
+        <script type="module" src="/client.js"></script>
+      </head>
+      <body>
+        <div id="app">${html}</div>
+      </body>
+    </html>
+    `);
+    });
+});
+
+server.use(express.static("."));
+
+server.listen(3000, () => {
+    console.log("ready");
+});
+```
+
+### importmapとは
+
+[&lt;script type="importmap"&gt; - HTML | MDN](https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/script/type/importmap)
+
+> インポートマップは、JavaScript モジュールをインポートする際に、ブラウザーがモジュール指定子を解決する方法を開発者が制御できるようにするための JSON オブジェクトです。
