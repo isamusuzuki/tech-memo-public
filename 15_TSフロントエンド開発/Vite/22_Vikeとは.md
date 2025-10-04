@@ -10,10 +10,6 @@
 
 [vite-plugin-ssr](https://vite-plugin-ssr.com/)
 
-## 2. Vue.js公式サイトのSSRページを写経する
+## 2. テンプレートを写経する
 
-[サーバーサイドレンダリング（SSR） | Vue.js](https://ja.vuejs.org/guide/scaling-up/ssr)
-
-## 3. Vite公式サイトのSSRページを写経する
-
-[サーバーサイドレンダリング（SSR） | Vite](https://ja.vite.dev/guide/ssr)
+[create-vike-core/boilerpalte-vue](https://github.com/vikejs/vike/tree/main/packages/create-vike-core/boilerplate-vue)
