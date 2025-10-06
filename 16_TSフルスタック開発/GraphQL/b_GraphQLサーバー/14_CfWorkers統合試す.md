@@ -37,6 +37,23 @@ cd cacao
 npm ci
 ```
 
+### ファイル＆フォルダ構成
+
+```text
+--cacao/
+    |--src/
+    |   |--generated/
+    |   |   `--graphql.ts ... TypeScriptの型定義をエクスポートする
+    |   |--handlers/
+    |   |   `--apollo.ts ... Apolloサーバーを立てる w/typeDefs,Resolvers
+    |   `--utils/
+    |       `--pokeapi.ts ... 外部サービスからデータをfetchする
+    |--index.ts ... Honoサーバーを立てる
+    |--resolvers.ts ... Resolversを生成する（graphql.tsを利用）
+    |--schema.graphql ... GraphQLスキーマ
+    `--codegen.ts ... src/generated/graphql.tsを生成する
+```
+
 ### GraphQLCodegenを走らせる
 
 ```bash
@@ -84,7 +101,7 @@ query GetPokemon {
 }
 ```
 
-### このテンプレートを再現しようとしてみてわかったこと
+## 3. このテンプレートを再現しようとしてみてわかったこと
 
 - `npm i @apollo/server`を実行すると、リリースされたばかりのv5がインストールされる。Cloudflare Workers統合のパッケージは、まだこのバージョンに対応していない
 - Apollo Server v4の最終バージョンは`4.12.2`である。v4系は2026年1月に引退する

@@ -9,8 +9,8 @@
 ### セットアップ
 
 ```bash
-mkdir banana
-cd banana
+mkdir anpan
+cd anpan
 npm init -y
 npm i graphql-yoga graphql
 ```

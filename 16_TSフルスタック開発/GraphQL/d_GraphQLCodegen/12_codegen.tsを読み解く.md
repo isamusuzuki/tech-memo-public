@@ -24,6 +24,6 @@ const config: CodegenConfig = {
 export default config
 ```
 
-- `schema` (required) ... GraphQLエンドポイントのURL、または `.graphql`ファイルのローカルパス
-- `documents` ... `gql`タグ付きかもしくはプレーンの文字列である、GraphQLドキュメント
+- `schema` (required) ... GraphQLエンドポイントのURL、または`.graphql`ファイルのローカルパス
+- `documents` ... `gql`タグ付きか、もしくはプレーンの文字列のGraphQLクエリードキュメント
 - `generates` (required) ... 生成したコードを出力する先

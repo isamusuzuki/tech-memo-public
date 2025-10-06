@@ -9,8 +9,8 @@
 ### セットアップ
 
 ```bash
-mkdir apple
-cd apple
+mkdir bacon
+cd bacon
 npm init -y
 npm i @apollo/server graphql
 npm i -D typescript @types/node
@@ -19,24 +19,25 @@ npx tsc --init
 
 package.jsonを変更 => `{"type": "module"}`
 
-tsconfig.jsonを変更 => 3行追加、types変更
+tsconfig.jsonを変更
 
 ```json
 {
   "compilerOptions": {
-      "rootDir": "./src",
-      "outDir": "./dist",
-      "lib": ["esnext"],
-      "types": ["node"],
+      "rootDir": "./src",  // 追加
+      "outDir": "./dist",  // 追加
+      "lib": ["esnext"],   // 追加
+      "types": ["node"],   // 変更
   }
 }
 ```
 
-### スキーマの設定
+### スキーマ・データ・Resolverの設定
 
 src/index.ts
 
 ```javascript
+// スキーマ
 const typeDefs = `
   type Book {
     title: String
@@ -46,19 +47,13 @@ const typeDefs = `
     books: [Book]
   }
 `
-```
 
-### データの設定
-
-```javascript
+// データ
 const books = {
   // 略
 }
-```
 
-### Resolverの設定
-
-```javascript
+// Resolver
 const resolvers = {
   Query: {
     books: () => books,
@@ -67,6 +62,8 @@ const resolvers = {
 ```
 
 ### サーバーの設定
+
+src/index.ts
 
 ```javascript
 import { ApolloServer } from '@apollo/server';
@@ -86,13 +83,13 @@ console.log(`🚀  Server ready at: ${url}`);
 
 ### デバッグする
 
-package.jsonを変更 => scripts項目に2行追加
+package.jsonを変更
 
 ```json
 {
   "scripts": {
-    "compile": "tsc",
-    "start": "npm run compile && node ./dist/index.js"
+    "compile": "tsc",  // 追加
+    "start": "npm run compile && node ./dist/index.js"  // 追加
   }
 }
 ```
@@ -101,7 +98,7 @@ package.jsonを変更 => scripts項目に2行追加
 
 `http://localhost:4000/`を開いたら、Studio Sandboxが登場した
 
-左枠
+左枠（型定義が効いていた）
 
 ```javascript
 query GetBooks {
