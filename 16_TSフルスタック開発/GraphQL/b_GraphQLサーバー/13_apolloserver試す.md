@@ -24,10 +24,11 @@ tsconfig.jsonを変更
 ```json
 {
   "compilerOptions": {
-      "rootDir": "./src",  // 追加
-      "outDir": "./dist",  // 追加
-      "lib": ["esnext"],   // 追加
-      "types": ["node"],   // 変更
+      "rootDir": "./src",  // コメント外す
+      "outDir": "./dist",  // コメント外す
+      // "types": [],      // コメントアウト
+      "lib": ["esnext"],   // コメント外す
+      "types": ["node"],   // コメント外す
   }
 }
 ```

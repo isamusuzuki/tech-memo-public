@@ -13,11 +13,27 @@ mkdir daikon
 cd daikon
 npm init -y
 npm i graphql graphql-request
+npm i -D typescript @types/node
+npx tsc --init
 ```
 
 package.jsonを変更 => `{"type": "module"}`
 
-index.js
+tsconfig.jsonを変更
+
+```json
+{
+  "compilerOptions": {
+      "rootDir": "./src",  // コメント外す
+      "outDir": "./dist",  // コメント外す
+      // "types": [],      // コメントアウト
+      "lib": ["esnext"],   // コメント外す
+      "types": ["node"],   // コメント外す
+  }
+}
+```
+
+src/index.ts
 
 ```javascript
 import { gql, GraphQLClient } from 'graphql-request';
@@ -40,7 +56,18 @@ const result = await client.request(document);
 console.log(result);
 ```
 
-スクリプトを実行 => `node index.js`
+package.jsonを変更
+
+```json
+{
+  "scripts": {
+    "compile": "tsc",  // 追加
+    "start": "npm run compile && node ./dist/index.js"  // 追加
+  }
+}
+```
+
+スクリプトを実行 => `npm start`
 
 成功
 
