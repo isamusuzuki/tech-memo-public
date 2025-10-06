@@ -6,7 +6,7 @@
 
 [GraphQL Codegen](https://the-guild.dev/graphql/codegen)
 
-> Effortlessly generate comprehensive code from GraphQL schemas and operations, streamlining development across your tech stack.]
+> Effortlessly generate comprehensive code from GraphQL schemas and operations, streamlining development across your tech stack.
 
 [Introduction to GraphQL Code Generator](https://the-guild.dev/graphql/codegen/docs/getting-started)
 
