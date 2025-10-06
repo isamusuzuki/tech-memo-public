@@ -1,4 +1,4 @@
-# クエリー内の変数
+# Variables
 
 作成日 2025/10/02
 
@@ -10,4 +10,25 @@
 
 1. クエリー内の固定値を`$variableName`に置き換える
 2. `$variableName`はクエリー内で使える変数の1つとして宣言する（引数として？）
-3. 別個のJSONファイルに、`variableName: value`を書き込む
+3. クエリーとは別に用意したJSONに、`variableName: value`変数辞書を書き込む
+
+Operation
+
+```javascript
+query HeroNameAndFriends($episode: Episode) {
+  hero(episode: $episode) {
+    name
+    friends {
+      name
+    }
+  }
+}
+```
+
+Variables
+
+```json
+{
+  "episode": "JEDI"
+}
+```
