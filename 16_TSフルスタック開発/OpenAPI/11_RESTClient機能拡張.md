@@ -8,7 +8,7 @@
 
 識別子: humao.rest-client
 
-## 解説記事を読む
+## 2. 解説記事を読む
 
 [【VSCode】効率的に API 開発をする Tips](https://zenn.dev/akkie1030/articles/vscode-rest-api)
 
