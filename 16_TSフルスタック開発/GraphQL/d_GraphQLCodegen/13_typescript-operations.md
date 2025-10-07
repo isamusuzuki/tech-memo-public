@@ -9,6 +9,7 @@
 ### インストール
 
 ```bash
+npm i -D @graphql-codegen/typescript
 npm i -D @graphql-codegen/typescript-operations
 ```
 
