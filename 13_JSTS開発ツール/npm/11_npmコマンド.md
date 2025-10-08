@@ -1,6 +1,6 @@
 # npmコマンド
 
-作成日 2025/09/29
+作成日 2025/09/29、更新日 2025/10/08
 
 ## 1. 公式ドキュメント（英語）を読む
 
@@ -26,3 +26,11 @@
 ```bash
 npm explain inflight@1.0.6
 ```
+
+## 4. npm installコマンド
+
+[npm-install | npm Docs](https://docs.npmjs.com/cli/v11/commands/npm-install)
+
+- `npm install`コマンドは、デフォルトで、`dependencies`にパッケージを保存する
+- `-D, --save-dev` パッケージは`devDependencies`に現れる
+- `-E, --save-exact` semverレンジオペレーターは使わず、指定したバージョンで保存する
