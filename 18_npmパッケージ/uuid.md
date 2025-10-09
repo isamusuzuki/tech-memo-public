@@ -4,7 +4,7 @@
 
 RFC4122 の UUID（汎用一意識別子）を作成する
 
-インストール => `npm install --save uuid`
+インストール => `npm i uuid`
 
 ```javascript
 const uuidv1 = require('uuid/v1');

@@ -4,7 +4,7 @@
 
 公式サイト => [http://jwt.io/](http://jwt.io/)
 
-インストール => `npm install --save jsonwebtoken`
+インストール => `npm i jsonwebtoken`
 
 - トークンは 3 つの文字列をピリオドで繋いだ形として登場する
 - `<header>.<payload>.<signature>`
