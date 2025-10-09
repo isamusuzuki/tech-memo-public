@@ -1,23 +1,33 @@
 # tsconfig.json設定
 
-作成日 2025/09/09、更新日 2025/10/01
+作成日 2025/09/09、更新日 2025/10/09
 
-## 1. 解説記事を読む
+## 1. includeとrootDirの違い
 
-[なんとなく使うtsconfig.jsonをやめる](https://zenn.dev/uniformnext/articles/e2106ba4d995b1)
+解説記事1 => [なんとなく使うtsconfig.jsonをやめる](https://zenn.dev/uniformnext/articles/e2106ba4d995b1)
 
-ルート項目
+解説記事2 => [[TypeScript] error TS6059: File is not under 'rootDir'. の対処法](https://qiita.com/masato_makino/items/bf640a253d56b708fe0b)
 
-- `include` ... コンパイル対象とするファイルやフォルダを指定
-- `exclude` ... コンパイルから除外するファイルやフォルダを指定
+以下のように指定することで、コンパイルしたときに、`src -> dist`とフォルダ構造が保たれるようになる
 
-compilerOptions項目
+```json
+{
+    "compilerOptions": {
+        "rootDir": "./src",
+        "outDir": "./dist",
+    }
+}
+```
 
-- `target` ... `ESNext`,`ES2020`,`ES5`
-- `module` ... `ESNext`,`CommonsJS`,`ES6`
-- `outDir` ... コンパイル後のファイルの出力先
-- `rootDir`
-- `strict`
+しかし、rootDirの外に`.ts`ファイルがあると、tscがエラーを出す
+
+以下のように指定すると、rootDirの外にある`.ts`ファイルを無視するようになる
+
+```json
+{
+    "include": ["src"]
+}
+```
 
 ## 2. compilerOptions > typeRoots
 
@@ -47,7 +57,7 @@ import type { Instruction } from 'instruction';
 
 [tsconfig.json の paths](https://zenn.dev/hayato94087/articles/9f3bf702543431)
 
-> paths を利用することでエイリアスを利用しファイルへアクセスできます。
+> paths を利用することでエイリアスを利用してファイルへアクセスできます。
 
 ```json
 {
@@ -68,16 +78,3 @@ import type { Logger } from '@logtape/logtape';
 import { readFileInGakumu } from '@/utils/readFile.ts';
 import { writeTableText } from '@/ast/writeTableText.ts';
 ```
-
-## 4. rootDirとbaseUrl
-
-[tsconfig.jsonのrootDirとbaseUrlに関するメモ](https://qiita.com/Nekonecode/items/09b26deec21a5f83adb1)
-
-rootDir
-
-- TypeScriptのソースコードがあるディレクトリを指定する
-- 指定したディレクトリの外にあるソースコードは参照できなくなる
-
-baseUrl
-
-- 絶対パス指定じゃない場合、どこを基準のフォルダにするか？というパラメータ
