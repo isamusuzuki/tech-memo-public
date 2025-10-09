@@ -17,3 +17,20 @@
 ```
 
 バージョンによって動きが違うのではなく、このプリセットは、出力先はディレクトリであるべきだという信念に基づき、この設定をイキにしているのだと理解した
+
+## 3. どんなプラグインが含まれているのか？
+
+node_modules/@graphql-codegen/client-preset/package.json
+
+```json
+{
+    "dependencies":{
+        "@graphql-codegen/add": "^6.0.0",
+        "@graphql-codegen/typescript": "^5.0.2",
+        "@graphql-codegen/typescript-operations": "^5.0.2",
+        "@graphql-typed-document-node/core": "3.2.0",
+    }
+}
+```
+
+`@graphql-codegen/typescript-graphql-request`以外は含まれていることがわかった。おそらく含まれていないものだけを追加でインストールすればいいはず
