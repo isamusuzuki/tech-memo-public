@@ -10,9 +10,7 @@
 
 このリポジトリにはワーカーで動作するフルスタックアプリケーションを構築するためのスターターテンプレート集が含まれている
 
-## 2. vite-react-templateテンプレート
-
-Cloudflare DocsのFramework guidesにある[Honoのページ](https://developers.cloudflare.com/workers/framework-guides/web-apps/more-web-frameworks/hono/)を開くと、このテンプレートが紹介されている
+Cloudflare DocsのFramework guidesにある[Honoのページ](https://developers.cloudflare.com/workers/framework-guides/web-apps/more-web-frameworks/hono/)を開くと、次のテンプレートが紹介されている
 
 [templates/vite-react-template](https://github.com/cloudflare/templates/tree/main/vite-react-template)
 
@@ -20,7 +18,7 @@ Cloudflare DocsのFramework guidesにある[Honoのページ](https://developers
 >
 > This template provides a minimal setup for building a React application with TypeScript and Vite, designed to run on Cloudflare Workers. It features hot module replacement, ESLint integration, and the flexibility of Workers deployments.
 
-## 3. vite-react-templateを試す
+## 2. vite-react-templateを試す
 
 ### プロジェクトの開始
 
@@ -34,7 +32,7 @@ npm create cloudflare@latest -- --template=cloudflare/templates/vite-react-templ
 ### 微修正
 
 - `.vscode/setting.json`の内容を、開発コンテナの設定に書き写す
-- `wrangler.json`に、`server: { host: true }`を追加する
+- `wrangler.json`に、`server: { host: true }`を追加する（開発コンテナを使っているため）
 - `worker-configuration.d.ts`の2行目に`// @ts-nocheck`を追加する
 
 ### デバッグを開始
@@ -49,7 +47,7 @@ npm run dev # open browser to http://localhost:5173/
 - 開発サーバーは、Workers runtimeも稼働させる
 - Viteの環境変数を、ViteとWorkers runtimeで共用する
 
-### ファイル＆フォルダ構成
+### ファイル＆フォルダ構成を確認する
 
 ```text
 --avocado/
@@ -80,3 +78,17 @@ wrangler.json
     }
 }
 ```
+
+### Cloudflareにデプロイしてみる
+
+- .envファイルに、`CLOUDFLARE_API_TOKEN=xxx`を書き込む
+- wrangler.jsonファイルに、`"account_id": "xxx"`を書き込む
+
+デプロイ作業は、distフォルダにあるwrangler.jsonを利用して行われる。あらかじめビルドしておく必要があった
+
+```bash
+npm run build
+npm run deploy
+```
+
+成功！
