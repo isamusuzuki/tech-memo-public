@@ -1,6 +1,6 @@
 # Cloudflare Workersとは
 
-作成日 2025/09/10、更新日 2025/10/02
+作成日 2025/09/10、更新日 2025/10/10
 
 ## 1. 公式サイトを読む
 
@@ -22,6 +22,7 @@
 - [D1を試す](./13_D1を試す.md)
 - [DrizzleORMを試す](../DrizzleORM/13_DrizzleORMを試す.md)
 - [Zodを試すa](../Zod/12_Zodを試すa.md) + [Zodを試すb](../Zod/13_Zodを試すb.md)
+- [vite-create-template](./12_vite-react-template.md)
 
 ## 3. つまづいた所
 
