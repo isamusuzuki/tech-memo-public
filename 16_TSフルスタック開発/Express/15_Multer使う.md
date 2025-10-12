@@ -1,21 +1,21 @@
-# Multer を使う
+# Multerを使う
 
 作成日 2021/01/17
 
-POST 受信で取得した `application/x-www-form-urlencoded` 形式のデータを扱う
+POST受信で取得した`application/x-www-form-urlencoded`形式のデータを扱う
 
 公式サイト => [https://github.com/expressjs/multer](https://github.com/expressjs/multer)
 
-インストール => `npm install --save multer`
+インストール => `npm i multer`
 
-src/main.ts
+src/server.ts
 
 ```javascript
 import express from 'express'
 import multer from 'multer'
 
-const app: express.Express = express()
-const upload: multer.Multer = multer({ dest: 'temp/' })  // ルートからの相対パス
+const app = express()
+const upload = multer({ dest: 'temp/' })  // ルートからの相対パス
 
 app.post('/upload', upload.single('file1'), function(req, res) {
   // ファイルを添付しないで送信してきたらエラー
@@ -28,7 +28,7 @@ app.post('/upload', upload.single('file1'), function(req, res) {
 }
 ```
 
-## Multer ファイルオブジェクト
+## Multerファイルオブジェクト
 
 下記のフィールドを持つ JSON オブジェクトが request オブジェクトに渡る
 

@@ -1,20 +1,20 @@
-# Morgan を使う
+# Morganを使う
 
 作成日 2021/01/17
 
-HTTP リクエストロガー
+HTTPリクエストロガー
 
 公式サイト => [https://github.com/expressjs/morgan](https://github.com/expressjs/morgan)
 
-インストール => `npm install --save morgan`
+インストール => `npm i morgan`
 
-src/main.ts
+src/server.ts
 
 ```js
 import express from 'express'
 import morgan from 'morgan'
 
-const app: express.Express = express()
+const app = express()
 app.use(morgan('combined'))
 ```
 

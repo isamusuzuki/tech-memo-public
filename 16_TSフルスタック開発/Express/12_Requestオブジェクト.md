@@ -1,13 +1,13 @@
-# Request オブジェクトを使う
+# Requestオブジェクトを使う
 
 作成日 2021/01/17
 
 [http://expressjs.com/en/api.html#req](http://expressjs.com/en/api.html#req)
 
-Request オブジェクトを使って情報を収集する
+Requestオブジェクトを使って情報を収集する
 
 ```javascript
-app.get('/info', (req: express.Request, res: express.Response) => {
+app.get('/info', (req, res) => {
   const info = {
     hostname: req.hostname,
     ip: req.ip,
@@ -21,7 +21,7 @@ app.get('/info', (req: express.Request, res: express.Response) => {
 });
 ```
 
-`http://localhost:8080/info?foo=bar` をブラウザで開いてみたときの表示
+`http://localhost:3080/info?foo=bar`をブラウザで開いてみたときの表示
 
 ```json
 {

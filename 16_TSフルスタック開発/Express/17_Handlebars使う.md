@@ -1,43 +1,38 @@
-# Handlebars をテンプレートエンジンとして使う
+# Handlebarsをテンプレートエンジンとして使う
 
 作成日 2021/01/24
 
-## 01. Handlebars とは
+## 1. Handlebarsとは
 
-Express 用のテンプレートエンジン
+Express用のテンプレートエンジン
 
 公式サイト => [https://github.com/express-handlebars/express-handlebars](https://github.com/express-handlebars/express-handlebars)
 
-インストール
+インストール => `npm i express-handlebars`
 
-```bash
-npm install --save express-handlebars
-npm install --save-dev @types/express-handlebars
-```
+## 2. Expressサーバーに組み込む
 
-## 02. Express サーバーに組み込む
-
-main.js
+src/server.ts
 
 ```javascript
 import express from 'express'
 import handlebars from 'express-handlebars'
 
-const app: express.Express = express()
+const app = express()
 
 app.engine('.hbs', handlebars({ extname: '.hbs', defaultLayout: 'main' }))
 app.set('view engine', '.hbs');
 
-app.get('/', (req: express.Request, res: express.Response) => {
+app.get('/', (req, res) => {
   res.render('home')
 })
 
 app.listen(8080, () => {
-  console.log('app listening on port 8080.')
+  console.log('🚀 Server ready at: http://localhost:3000')
 })
 ```
 
-## 03. テンプレートファイルの書き方
+## 3. テンプレートファイルの書き方
 
 layoutsDir のデフォルトは `views/layouts/` となっている
 
@@ -88,7 +83,7 @@ views/home.hbs
 </html>
 ```
 
-## 04. partials 機能を使う
+## 4. partials機能を使う
 
 ```text
 --PROJECT-FOLDER/
@@ -96,7 +91,7 @@ views/home.hbs
     |   |--layouts/
     |   |   `--main.hbs
     |   |--partials/
-    |   |   `--list.hbs      
+    |   |   `--list.hbs
     |   `--home.hbs
     `--main.js
 ```

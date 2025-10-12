@@ -1,39 +1,37 @@
 # Express
 
-作成日 2021/01/17
+作成日 2021/01/17、更新日 2025/10/12
 
-## 01. Express とは
+## 1. Expressとは
 
 Node.js 環境におけるデフォルトの Web サーバー
 
 公式サイト => [https://expressjs.com/](https://expressjs.com/)
 
-最新バージョンは `v4.17.1`
+インストール => `npm i express`
 
-インストール => `npm install --save express`
+## 2. Expressを使う
 
-## 02. Express を使う
-
-src/main.ts
+src/server.ts
 
 ```javascript
 import express from 'express'
 import path from 'path'
 
-const app: express.Express = express()
+const app = express()
 
 app.use(express.static(path.join(__dirname, 'static')))
 
-app.get('/', (req: express.Request, res: express.Response) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'templates/index.html'))
 })
 
-app.get('*', (req: express.Request, res: express.Response) => {
+app.get('*', (req, res) => {
   res.status(404).send('404 Not Found')
 })
 
-app.listen(8080, () => {
-  console.log('app listening on port 8080.')
+app.listen(3000, () => {
+  console.log('🚀 Server ready at: http://localhost:3000')
 })
 ```
 
@@ -42,5 +40,5 @@ tsc コマンドでコンパイルしてから使う
 ```bash
 npx tsc
 
-node main.js
+node dist/server.js
 ```

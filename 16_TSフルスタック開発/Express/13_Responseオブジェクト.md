@@ -1,10 +1,10 @@
-# Response オブジェクトを使う
+# Responseオブジェクトを使う
 
 作成日 2021/01/17
 
 [http://expressjs.com/en/api.html#res](http://expressjs.com/en/api.html#res)
 
-Reponse オブジェクトを使って返事をする
+Reponseオブジェクトを使って返事をする
 
 ```javascript
 res.send('Hello, World!')
