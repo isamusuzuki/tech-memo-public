@@ -17,4 +17,4 @@ Install and configure shadcn/ui for Vite.
 
 [Vite - shadcn/ui](https://ui.shadcn.com/docs/installation/vite)
 
-ざっくりと言うと、`npx shadcn@latest add button`と叩くと、`import { Button } from "@/components/ui/button"`と書けるようになる。自分のコンポーネントとして、自分のプロジェクトに追加していくものだと理解した
+ざっくり言うと、`npx shadcn@latest add button`と叩くと、`import { Button } from "@/components/ui/button"`と書けるようになる。自分のコンポーネントとして、自分のプロジェクトに追加していくものだと理解した
