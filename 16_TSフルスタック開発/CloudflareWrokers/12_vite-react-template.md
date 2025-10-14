@@ -1,6 +1,6 @@
 # vite-react-template
 
-作成日 2025/09/16、更新日 2025/10/10
+作成日 2025/09/16、更新日 2025/10/14
 
 ## 1. リポジトリを見る
 
@@ -23,6 +23,11 @@ Cloudflare DocsのFramework guidesにある[Honoのページ](https://developers
 ### プロジェクトの開始
 
 ```bash
+node -v
+# v22.14.0
+npm -v
+# 11.4.2
+
 npm create cloudflare@latest -- --template=cloudflare/templates/vite-react-template
 # dir ./avocado
 # no git
@@ -31,9 +36,12 @@ npm create cloudflare@latest -- --template=cloudflare/templates/vite-react-templ
 
 ### 微修正
 
-- `.vscode/setting.json`の内容を、開発コンテナの設定に書き写す
-- `wrangler.json`に、`server: { host: true }`を追加する（開発コンテナを使っているため）
 - `worker-configuration.d.ts`の2行目に`// @ts-nocheck`を追加する
+
+開発コンテナを使っている場合
+
+- `.vscode/setting.json`の内容を、開発コンテナの設定に書き写す
+- `wrangler.json`に、`server: { host: true }`を追加する
 
 ### デバッグを開始
 
