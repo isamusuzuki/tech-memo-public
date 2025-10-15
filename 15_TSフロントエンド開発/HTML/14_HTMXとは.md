@@ -1,6 +1,6 @@
 # HTMXとは
 
-作成日 2025/10/09、更新日 2025/10/14
+作成日 2025/10/09、更新日 2025/10/15
 
 ## 1. 解説記事を読む
 
@@ -17,7 +17,7 @@
 <button hx-get="https://jsonplaceholder.typicode.com/posts/1" hx-target="#target" hx-trigger="click">クリック</button>
 ```
 
-## 2. SpringBoot+ThymeleafにHTMLXを組み合わせた解説記事をいくつか読む
+## 2. SpringBoot+ThymeleafにHTMXを組み合わせた解説記事をいくつか読む
 
 [htmxをSpringBoot Thymeleafで試してみる(1) - エキサイト TechBlog.](https://tech.excite.co.jp/entry/2023/02/02/181451)
 
@@ -32,3 +32,27 @@
 > 「実行中の非同期処理」と、「非同期処理の結果」で分割し、さらにこの画面全体を呼び出す実装を行うControllerに変更します。
 >
 > モーダルダイアログの表示や内容の切り替えも、htmxで簡単に置き換えができ、さらに実装も簡素にできます。
+
+## 3. 公式サイト（英語）を読む
+
+[</> htmx - high power tools for html](https://htmx.org/)
+
+> htmx gives you access to AJAX, CSS Transitions, WebSockets and Server Sent Events directly in HTML, using attributes, so you can build modern user interfaces with the simplicity and power of hypertext
+>
+> htmx is small (~16k min.gz’d), dependency-free, extendable & has reduced code base sizes by 67% when compared with react
+
+[</> htmx ~ Examples](https://htmx.org/examples/)
+
+## 4. Hotwire vs. htmx
+
+[</> htmx ~ Hotwire / Turbo ➡️ htmx Migration Guide](https://htmx.org/migration-guide-hotwire-turbo/)
+
+このガイドの目的は、htmxが持つHotwireと同等の機能を紹介することである
+
+## 5. Hono + HTMXのサンプルコードを発見する
+
+[Hono + htmx + Cloudflareでアプリケーションを実装してみる](https://zenn.dev/aoito/articles/dc111b83212c0b)
+
+[Hono + htmx + Cloudflareは新しいスタック](https://zenn.dev/yusukebe/articles/e8ff26c8507799)
+
+[yusukebe/hono-htmx: Hono+htmx stack](https://github.com/yusukebe/hono-htmx)
