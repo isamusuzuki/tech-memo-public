@@ -1,6 +1,6 @@
 # no-control-regex
 
-作成日 2025/10/14
+作成日 2025/10/14、更新日 2025/10/15
 
 ## 1. 公式サイト（英語）を読む
 
@@ -20,6 +20,8 @@
 - Unicode character escapes from \u0000 to \u001F.
 - Unicode code point escapes from \u{0} to \u{1F}.
 - Unescaped raw characters from U+0000 to U+001F.
+
+## 2. 制御文字の一覧
 
 ```text
 \u0000: NULL (NUL)
