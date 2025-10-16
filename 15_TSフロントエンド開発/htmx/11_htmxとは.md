@@ -1,4 +1,4 @@
-# HTMXとは
+# htmxとは
 
 作成日 2025/10/09、更新日 2025/10/15
 
@@ -49,7 +49,7 @@
 
 このガイドの目的は、htmxが持つHotwireと同等の機能を紹介することである
 
-## 5. Hono + HTMXのサンプルコードを発見する
+## 5. Hono + htmxのサンプルコードを発見する
 
 [Hono + htmx + Cloudflareでアプリケーションを実装してみる](https://zenn.dev/aoito/articles/dc111b83212c0b)
 
