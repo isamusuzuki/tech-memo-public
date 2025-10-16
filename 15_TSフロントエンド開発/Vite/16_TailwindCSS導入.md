@@ -7,8 +7,7 @@
 Tailwind CSSをインストールする
 
 ```bash
-cd target-project/app
-npm install -D tailwindcss @tailwindcss/vite
+npm i -D tailwindcss @tailwindcss/vite
 ```
 
 vite.config.tsファイルを編集する
@@ -22,11 +21,7 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss()
-  ],
-  server: {
-    port: 3000,
-    host: true,
-  }
+  ]
 })
 ```
 
