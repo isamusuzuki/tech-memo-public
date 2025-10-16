@@ -48,11 +48,3 @@
 [</> htmx ~ Hotwire / Turbo ➡️ htmx Migration Guide](https://htmx.org/migration-guide-hotwire-turbo/)
 
 このガイドの目的は、htmxが持つHotwireと同等の機能を紹介することである
-
-## 5. Hono + htmxのサンプルコードを発見する
-
-[Hono + htmx + Cloudflareでアプリケーションを実装してみる](https://zenn.dev/aoito/articles/dc111b83212c0b)
-
-[Hono + htmx + Cloudflareは新しいスタック](https://zenn.dev/yusukebe/articles/e8ff26c8507799)
-
-[yusukebe/hono-htmx: Hono+htmx stack](https://github.com/yusukebe/hono-htmx)

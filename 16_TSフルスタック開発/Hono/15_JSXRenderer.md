@@ -1,6 +1,6 @@
 # JSX Renderer
 
-作成日 2025/10/15
+作成日 2025/10/15、更新日 2025/10/16
 
 ビルトインのミドルウェア
 
@@ -37,9 +37,9 @@ app.get('/page/about', (c) => {
 export default app;
 ```
 
-## 2. JSXの型定義を探る
+## 2. JSXの型定義とその設定方法
 
-マウスをホバーすると、型定義が表示される
+マウスをホバーすると型定義が表示される
 
 - html => (property) JSX.IntrinsicElements.html: HtmlHTMLAttributes
 - body => (property) JSX.IntrinsicElements.body: JSX.HTMLAttributes
@@ -62,16 +62,77 @@ export declare namespace JSX {
 }
 ```
 
-## 3. 正しい設定方法
+node_modules\hono\dist\types\jsx\index.d.ts
+
+```typescript
+export type { JSX } from './intrinsic-elements';
+```
+
+node_modules\hono\package.json
+
+```json
+{
+    "name": "hono",
+    "types": "dist/types/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/types/index.d.ts",
+        },
+        "./jsx": {
+            "types": "./dist/types/jsx/index.d.ts",
+        }
+    }
+}
+```
+
+正しい設定方法
 
 tsconfig.json
 
 ```json
 {
     "compilerOptions": {
-        "jsx": "react-jsx",            // このまま
+        "jsx": "react-jsx",            // この行はそのまま
         "jsxImportSource": "hono/jsx", // この行を追加する
     },
     "include": ["src/**/*.tsx"] // 拡張子.tsxを追加する
 }
+```
+
+## 3. DOCTYPEだけJSXの型定義がない
+
+解決方法1: html関数で文字列を包む（おそらく古いやり方）
+
+```typescript
+import { html } from 'hono/html';
+
+import { jsxRenderer } from 'hono/jsx-renderer';
+
+export const renderer = jsxRenderer(({ children }) => {
+    return html`<!DOCTYPE html>
+        <html lang="ja">
+            <head>
+            </head>
+            <body>
+            </body>
+        </html> `;
+});
+```
+
+解決方法2: docTypeオプションを使う
+
+```typescript
+export const renderer = jsxRenderer(
+    ({ children }) => {
+        return (
+            <html lang="ja">
+                <head>
+                </head>
+                <body>
+                </body>
+            </html>
+        );
+    },
+    { docType: '<!DOCTYPE html>' }
+);
 ```
