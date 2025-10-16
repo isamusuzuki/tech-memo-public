@@ -37,15 +37,20 @@ src/main.tsx
 
 ```javascript
 import ReactDOM from "react-dom/client";
+// import { StrictMode } from 'react';
 import { BrowserRouter } from 'react-router';
 import App from "./app";
 
 const root = document.getElementById('root')!;
 
 ReactDOM.createRoot(root).render(
+    // <StrictMode>
+    //     <App />
+    // </StrictMode>
     <BrowserRouter>
         <App />
     </BrowserRouter>
+
 );
 ```
 
