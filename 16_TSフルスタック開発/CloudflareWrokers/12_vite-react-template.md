@@ -34,11 +34,7 @@ npm create cloudflare@latest -- --template=cloudflare/templates/vite-react-templ
 # no deploy
 ```
 
-### 微修正
-
-- `worker-configuration.d.ts`の2行目に`// @ts-nocheck`を追加する
-
-開発コンテナを使っている場合
+### 開発コンテナを使っている場合
 
 - `.vscode/setting.json`の内容を、開発コンテナの設定に書き写す
 - `wrangler.json`に、`server: { host: true }`を追加する
