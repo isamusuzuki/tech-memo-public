@@ -60,10 +60,4 @@ export const auth = (env: CloudflareBindings) => {
 };
 ```
 
-コードはシンプルでサーバーサイドしかない
-
-## 3. Next.js向けの解説記事とサンプルコードを発見
-
-[better-authで実現する！フレームワーク非依存の爆速認証機能実装ガイド](https://zenn.dev/eju_labs/articles/2bd20ff92dc801)
-
-ソースコード => [bleevv/auth-experimental](https://github.com/bleevv/auth-experimental)
+コードはシンプルでサーバーサイドしかない。クライアントサイドのコードも見たい
