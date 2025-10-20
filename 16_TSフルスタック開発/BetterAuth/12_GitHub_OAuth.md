@@ -16,7 +16,7 @@ OAuth Apps ＞ New OAuth Appボタン
 
 | Key                        | Value                   |
 | -------------------------- | ----------------------- |
-| Application name           | OLocalhost 5173         |
+| Application name           | Localhost 5173          |
 | Homepage URL               | `http://localhost:5173` |
 | Application description    | For local Development   |
 | Authorization callback URL | `http://localhost:5173` |
