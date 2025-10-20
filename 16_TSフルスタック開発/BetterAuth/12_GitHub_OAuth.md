@@ -1,6 +1,6 @@
 # GitHub OAuthトークン
 
-作成日 2025/10/17
+作成日 2025/10/17、更新日 2025/10/20
 
 ## 1. 解説記事を2つ読む
 
@@ -12,7 +12,7 @@
 
 GitHubの設定画面 ＞ Developer Settings ＞ GitHub Apps,OAuth Apps,Personal access tokens
 
-OAuth Apps ＞ New OAuth Appボタン
+OAuth Apps ＞ New OAuth appボタン
 
 | Key                        | Value                   |
 | -------------------------- | ----------------------- |
@@ -20,6 +20,7 @@ OAuth Apps ＞ New OAuth Appボタン
 | Homepage URL               | `http://localhost:5173` |
 | Application description    | For local Development   |
 | Authorization callback URL | `http://localhost:5173` |
+| Enable Device Flow         | Stay check off          |
 
 Client IDをメモする
 
@@ -27,15 +28,17 @@ Client Secretを生成してメモする（二度と表示されない）
 
 ## 3. OAuthの流れを理解する
 
-GitHubログイン画面に遷移する
+以下のURLをクリックして、GitHubログイン画面に遷移する
 
 `http://github.com/login/oauth/authorize?client_id={YOUR_CLIENT_ID}&scope=read:user`
 
+Authorize {Owner}ボタンを押す
+
 リダイレクト先のページに飛ぶ。一時コード付き
 
-`http://localhost:5173/?code={GIVEN_CODE}}`
+`http://localhost:5173/?code={GIVEN_CODE}`
 
-POSTリクエストしてアクセストークンを取得する
+REST CLIENT機能拡張を使って、POSTリクエストを送信する
 
 ```text
 POST https://github.com/login/oauth/access_token HTTP/1.1
@@ -49,12 +52,14 @@ Accept: application/json
 }
 ```
 
-アクセストークンが返ってくる
+アクセストークン入りのレスポンスを得る
 
 ```json
+HTTP/1.1 200 OK
+
 {
- "access_token": "{GIVEN_ACCESS_TOKEN}",
- "scope": "read:user",
- "token_type": "bearer"
+  "access_token": "{GIVEN_ACCESS_TOKEN}",
+  "token_type": "bearer",
+  "scope": "read:user"
 }
 ```
