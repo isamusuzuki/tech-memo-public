@@ -1,4 +1,4 @@
-# vitest + React
+# Vitest + React
 
 作成日 2025/10/22
 
