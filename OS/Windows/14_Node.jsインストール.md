@@ -1,6 +1,6 @@
 # Node.jsインストール
 
-作成日 2025/04/24、更新日 2025/07/02
+作成日 2025/04/24、更新日 2025/10/22
 
 ## 1. Voltaコマンドとは
 
@@ -24,6 +24,10 @@ volta install npm@10.2.1
 ```bash
 volta list node
 volta list npm
+
+# defaultを変更したい場合は、installコマンドを使う
+volta install node@22.20.0
+volta install npm@11.6.2
 ```
 
 ## 4. プロジェクトで使用するNode.jsのバージョンを固定する
@@ -34,8 +38,8 @@ volta list npm
 
 ```bash
 cd target-project
-volta pin node@22.14.0
-volta pin npm@10.9.2
+volta pin node@22.20.0
+volta pin npm@11.6.2
 ```
 
 package.jsonに書き込まれる
@@ -43,8 +47,8 @@ package.jsonに書き込まれる
 ```json
 {
   "volta": {
-    "node": "22.14.0",
-    "npm": "10.9.2"
+    "node": "22.20.0",
+    "npm": "11.6.2"
   }
 }
 ```
@@ -67,5 +71,7 @@ volta uninstall node@21.1.0
 エクスプローラーを開く
 
 `{HOME}\AppData\Local\Volta\tools\image\node\`
+
+`{HOME}\AppData\Local\Volta\tools\image\npm\`
 
 バージョン番号のディレクトリを手動で削除する
