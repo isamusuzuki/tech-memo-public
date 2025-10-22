@@ -2,7 +2,7 @@
 
 作成日 2025/10/21
 
-## 1. 解説記事を読む
+## 解説記事を読む
 
 [TypeScript 5.0 で追加された verbatimModuleSyntax とは何か？](https://zenn.dev/teppeis/articles/2023-04-typescript-5_0-verbatim-module-syntax)
 
