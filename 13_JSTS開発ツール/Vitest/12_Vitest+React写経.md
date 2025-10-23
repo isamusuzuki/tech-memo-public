@@ -1,8 +1,8 @@
-# Vitest写経
+# Vitest+React写経
 
-作成日 2025/10/22
+作成日 2025/10/22、更新日 2025/10/23
 
-## 解説記事を写経する
+## 1. 解説記事を写経する
 
 [React×TypeScriptではじめるVitest](React×TypeScriptではじめるVitest)
 
@@ -71,3 +71,30 @@ npx vitest
 なぜか失敗する。node_modules/@testing-library/jest-dom/dist/index.mjsにあるexpectが定義されていない
 
 jestをインストールしても解決しない
+
+## 2. 公式サイトを読む
+
+[@testing-library/jest-dom - npm](https://www.npmjs.com/package/@testing-library/jest-dom)
+
+With Vitest
+
+もしvitestを使っているならば、このモジュールはそのまま動作するはずであるが、テスト・セットアップ・ファイルで別のインポートを行う必要があるだろう。vitestの設定ファイルの`setupFi9les`プロパティにファイルが追加されるはずだ
+
+```typescript
+import '@testing-library/jest-dom/vitest'
+
+setupFiles: ['./vitest-setup.js']
+```
+
+ローカルのセットアップによるが、tsconfig.jsonを更新する必要があるかもしれない
+
+```json
+{
+    "compilerOptions": {
+        "types": ["vitest/globals", "@testing-library/jest-dom"]
+    },
+    "include": [
+        "./vitest-setup.js"
+    ]
+}
+```
