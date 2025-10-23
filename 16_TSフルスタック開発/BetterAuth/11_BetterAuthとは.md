@@ -25,7 +25,7 @@
 
 src/index.ts
 
-```typescript
+```javascript
 import { Hono } from 'hono';
 import { auth } from './lib/better-auth';
 
@@ -40,7 +40,7 @@ export default app;
 
 src/lib/better-auth/index.ts
 
-```typescript
+```javascript
 import { neon } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-http';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';

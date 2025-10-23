@@ -27,7 +27,7 @@ npm run dev # open browser to http://localhost:5173/
 
 src/worker/index.ts
 
-```typescript
+```javascript
 import { Hono } from "hono";
 import { basicAuth } from "hono/basic-auth";
 

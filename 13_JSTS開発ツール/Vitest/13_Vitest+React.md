@@ -31,7 +31,7 @@ npm i -D jsdom @testing-library/react @testing-library/jest-dom
 
 vitest.config.ts
 
-```typescript
+```javascript
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
@@ -46,7 +46,7 @@ export default defineConfig({
 
 tests/App.test.tsx
 
-```typescript
+```javascript
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { expect, test } from 'vitest';
@@ -79,7 +79,7 @@ With Vitest
 
 もしvitestを使っているならば、このモジュールはそのまま動作するはずであるが、テスト・セットアップ・ファイルで別のインポートを行う必要があるだろう。vitestの設定ファイルの`setupFi9les`プロパティにファイルが追加されるはずだ
 
-```typescript
+```javascript
 import '@testing-library/jest-dom/vitest'
 
 setupFiles: ['./vitest-setup.js']

@@ -12,17 +12,20 @@ npm create vite@latest
 # Select a framework: React
 # Select a variant: TypeScript
 # Use rolldown-vite: No
-# Install with npm and start: Yes
-
+# Install with npm and start now: No
 cd banana
-code .
+npm install
+npm run dev # Open browser to http://localhost:5173/
 ```
 
-## 1. UseState
+## 1. useState
+
+- count変数を用意しただけでは、その値が変わっても、画面の再描画は行われない
+- setCount関数を使うことで、新しい値をセットした時に、画面の再描画が行われるようになる
 
 banana/src/App.tsx
 
-```typescript
+```javascript
 import { useState } from 'react';
 import './App.css';
 
@@ -35,7 +38,7 @@ function App() {
 
     return (
         <>
-            <h1>UseState</h1>
+            <h1>useState</h1>
             <button onClick={handleClick}>+</button>
             <p>{count}</p>
         </>
@@ -45,12 +48,16 @@ function App() {
 export default App;
 ```
 
-- count変数があるだけでは、その値が変わっても、画面の再描画は行われない
-- setCount関数を使うことで、新しい値をセットした時に、画面の再描画が行われるようになる
+## 2. useEffect
 
-## 2. UseEffect
+- useEffectの第2引数が空配列の場合、マウント時に（第1引数の）コールバック関数が実行される
+- StrictModeで、かつデバッグの場合、コールバック関数は2回実行される
+- 第2引数に`count`を入れると、count変数が変更になる度に、コールバック関数が実行されるようになる
+- 第2引数に`count`を入れて、コールバック関数の中でsetCountを使うと無限ループが発生する。要注意
 
-```typescript
+banana/src/App.tsx
+
+```javascript
 import { useEffect } from 'react';
 
 function App() {
@@ -61,7 +68,7 @@ function App() {
 
     return (
         <>
-            <h1>UseEffect</h1>
+            <h1>useEffect</h1>
         </>
     );
 }
@@ -69,9 +76,128 @@ function App() {
 export default App;
 ```
 
-- useEffectの第2引数が空配列の場合、マウントされた時にコールバック関数が実行される
-- StrictModeかつデバッグの時、useEffectのコールバック関数は2回実行される
-- 第2引数に`count`を入れると、count変数が変更になる度に、コールバック関数が実行されるようになる
-- 第2引数に`count`が入った状態で、コールバック関数でsetCountを使うと無限ループが発生する。要注意
+## 3. useContext
 
-ここまで14:20
+- propsを使わずに、親から子へ孫へ、データを渡すことができる
+- Reduxよりも使い方が簡単
+
+banana/src/main.tsx
+
+```javascript
+import { createContext, StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App.tsx';
+import './index.css';
+
+const personalInfo = {
+    name: 'Ichiro',
+    age: 51,
+};
+
+const PersonalInfoContext = createContext(personalInfo);
+
+createRoot(document.getElementById('root')!).render(
+    <PersonalInfoContext.Provider value={personalInfo}>
+        <StrictMode>
+            <App />
+        </StrictMode>
+    </PersonalInfoContext.Provider>
+);
+
+export default PersonalInfoContext;
+```
+
+banana/src/App.tsx
+
+```javascript
+import { useContext } from 'react';
+import './App.css';
+import PersonalInfoContext from './main';
+
+function App() {
+    const personalInfo = useContext(PersonalInfoContext);
+
+    return (
+        <>
+            <h1>useContext</h1>
+            <p>{personalInfo.name}</p>
+            <p>{personalInfo.age}</p>
+        </>
+    );
+}
+
+export default App;
+```
+
+## 4.useRef
+
+- useRefは参照を保持するためのフック。Refオブジェクトは`{ current: initialValue }`を生成し、参照可能とする
+- 圧倒的に多い使い方が、HTML要素のref属性にuseRefの値を渡して、HTML要素を参照すること
+
+banana/src/App.tsx
+
+```javascript
+import { useRef } from 'react';
+import './App.css';
+
+function App() {
+    const inputElement = useRef<HTMLInputElement>(null);
+
+    const handleRef = () => {
+        console.log(inputElement.current?.value);
+        console.log(inputElement.current?.offsetHeight);
+        inputElement.current?.focus();
+    };
+
+    return (
+        <>
+            <h1>useRef</h1>
+            <input type="text" ref={inputElement} />
+            <button onClick={handleRef}>UseRef</button>
+        </>
+    );
+}
+
+export default App;
+```
+
+## 5. useReducer
+
+- useStateよりも、複雑な状態プロパティをまとめて扱う場合に適している
+- Reduxのシンプルな代替
+- [React Hook FormをやめてuseReducerを使用した話](https://zenn.dev/makumattun/articles/a1a4477a1a5e6c)
+
+```javascript
+import { useReducer } from 'react';
+import './App.css';
+
+const reducer = (state: number, action: { type: string }): number => {
+    switch (action.type) {
+        case 'increment':
+            return state + 1;
+        case 'decrement':
+            return state - 1;
+        default:
+            return state;
+    }
+};
+
+function App() {
+    const [state, dispatch] = useReducer(reducer, 0);
+
+    return (
+        <>
+            <h1>useReducer</h1>
+            <p>カウント: {state}</p>
+            <button onClick={() => dispatch({ type: 'increment' })}>+</button>
+            <button onClick={() => dispatch({ type: 'decrement' })}>-</button>
+        </>
+    );
+}
+
+export default App;
+```
+
+## 6. useMemo
+
+32:08以降

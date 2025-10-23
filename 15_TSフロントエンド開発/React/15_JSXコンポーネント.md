@@ -14,7 +14,7 @@
 
 practice.tsx
 
-```typescript
+```javascript
 export const Practice = () => (
     <div className="component">
       </h3>コンポーネント</h3>

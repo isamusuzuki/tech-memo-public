@@ -10,7 +10,7 @@
 
 src/index.tsx
 
-```typescript
+```javascript
 import { Hono } from 'hono';
 import { jsxRenderer } from 'hono/jsx-renderer';
 
@@ -50,7 +50,7 @@ export default app;
 
 node_modules\hono\dist\types\jsx\intrinsic-elements.d.ts
 
-```typescript
+```javascript
 export declare namespace JSX {
     //600行
     export interface IntrinsicElements {
@@ -64,7 +64,7 @@ export declare namespace JSX {
 
 node_modules\hono\dist\types\jsx\index.d.ts
 
-```typescript
+```javascript
 export type { JSX } from './intrinsic-elements';
 ```
 
@@ -103,7 +103,7 @@ tsconfig.json
 
 解決方法1: html関数で文字列を包む（おそらく古いやり方）
 
-```typescript
+```javascript
 import { html } from 'hono/html';
 
 import { jsxRenderer } from 'hono/jsx-renderer';
@@ -121,7 +121,7 @@ export const renderer = jsxRenderer(({ children }) => {
 
 解決方法2: docTypeオプションを使う
 
-```typescript
+```javascript
 export const renderer = jsxRenderer(
     ({ children }) => {
         return (

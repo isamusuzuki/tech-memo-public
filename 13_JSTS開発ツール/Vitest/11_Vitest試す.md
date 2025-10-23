@@ -5,7 +5,6 @@
 ## 1. Viteのプロジェクトを新規作成
 
 ```bash
-cd ts-monorepo-dojo
 npm create vite@latest
 # Project name: daikon
 # Select a framework: Vue
@@ -27,7 +26,7 @@ npm i -D vitest
 
 src/helpers.ts
 
-```typescript
+```javascript
 export function increment(current: number, max: number = 10): number {
     if (current < max) {
         return current + 1;
@@ -38,7 +37,7 @@ export function increment(current: number, max: number = 10): number {
 
 src/helpers.test.ts
 
-```typescript
+```javascript
 import { describe, expect, test } from 'vitest';
 import { increment } from './helpers';
 
