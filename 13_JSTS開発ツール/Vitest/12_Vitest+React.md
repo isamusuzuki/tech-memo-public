@@ -1,10 +1,10 @@
-# Vitest+React写経
+# Vitest+React
 
 作成日 2025/10/22、更新日 2025/10/23
 
 ## 1. 解説記事を写経する
 
-[React×TypeScriptではじめるVitest](React×TypeScriptではじめるVitest)
+[React×TypeScriptではじめるVitest](https://zenn.dev/yskn_sid25/articles/b79d97a8f921d6)
 
 ### 新規プロジェクトを作成する
 
@@ -14,11 +14,10 @@ npm create vite@latest
 # Select a framework: React
 # Select a variant: TypeScript
 # Use rolldown-vite: No
-# Install with npm and start: Yes
-# => http://localhost:5173/
-
+# Install with npm and start now: No
 cd bacon
-code .
+npm install
+npm run dev # Open browser to http://localhost:5173/
 ```
 
 ### Vitestのインストール
