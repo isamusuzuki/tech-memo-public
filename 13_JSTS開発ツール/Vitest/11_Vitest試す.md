@@ -66,11 +66,17 @@ npx vitest
 #       Tests  3 passed (3)
 #    Start at  16:00:54
 #    Duration  1.54s
+```
 
+## 5. テスト・カバレッジを報告させる
+
+```bash
+# とりあえずコマンドを叩くと、必要なパッケージのインストールが始まる
 npx vitest --coverage
 # √ Do you want to install @vitest/coverage-v8? ... yes
 # Package @vitest/coverage-v8@3.2.4 installed, re-run the command to start.
 
+# もう一度コマンドを叩く
 npx vitest --coverage
 # % Coverage report from v8
 #-----------------|---------|----------|---------|---------|-------------------
@@ -86,4 +92,4 @@ npx vitest --coverage
 #-----------------|---------|----------|---------|---------|-------------------
 ```
 
-coverageフォルダにHTMLファイル群が生成されていた
+プロジェクトのルートにcoverageフォルダが作成され、カバレッジレポートがHTMLで生成されていた
