@@ -27,7 +27,6 @@ banana/src/App.tsx
 
 ```javascript
 import { useState } from 'react';
-import './App.css';
 
 function App() {
     const [count, setCount] = useState(0);
@@ -87,7 +86,6 @@ banana/src/main.tsx
 import { createContext, StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
-import './index.css';
 
 const personalInfo = {
     name: 'Ichiro',
@@ -111,7 +109,6 @@ banana/src/App.tsx
 
 ```javascript
 import { useContext } from 'react';
-import './App.css';
 import PersonalInfoContext from './main';
 
 function App() {
@@ -138,7 +135,6 @@ banana/src/App.tsx
 
 ```javascript
 import { useRef } from 'react';
-import './App.css';
 
 function App() {
     const inputElement = useRef<HTMLInputElement>(null);
@@ -171,7 +167,6 @@ banana/src/App.tsx
 
 ```javascript
 import { useReducer } from 'react';
-import './App.css';
 
 const reducer = (state: number, action: { type: string }): number => {
     switch (action.type) {
@@ -209,7 +204,6 @@ banana/src/App.tsx
 
 ```javascript
 import { useMemo, useState } from 'react';
-import './App.css';
 
 function App() {
     const [count01, setCount01] = useState(0);
@@ -240,4 +234,52 @@ export default App;
 
 ## 7. useCallback
 
-45:21以降
+- useMemoに似ている。メモリに保存するものが違うだけ
+
+## 8. カスタムフック
+
+banana/src/useLocalStorge.tsx
+
+```javascript
+import { useEffect, useState } from 'react';
+
+const useLocalStorage = (key: string, defaultValue: number) => {
+    const [value, setValue] = useState(() => {
+        const jsonValue = window.localStorage.getItem(key);
+        if (jsonValue !== null) {
+            return JSON.parse(jsonValue);
+        }
+        return defaultValue;
+    });
+
+    useEffect(() => {
+        window.localStorage.setItem(key, JSON.stringify(value));
+    }, [key, value]);
+
+    return [value, setValue];
+};
+
+export default useLocalStorage;
+```
+
+banana/src/App.tsx
+
+```javascript
+import useLocalStorage from './useLocalStorage';
+
+function App() {
+    const [age, setAge] = useLocalStorage('age', 24);
+
+    return (
+        <>
+            <h1>カスタムフック</h1>
+            <div>{age}</div>
+            <button onClick={() => { setAge(80); }}>年齢をセット</button>
+        </>
+    );
+}
+
+export default App;
+```
+
+Chromeのデベロッパーツール ＞ Application ＞ 左枠 ＞ Storage ＞ Local storage
