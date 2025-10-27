@@ -6,7 +6,7 @@
 
 [Rolldown](https://rolldown.rs/)
 
-> Fast Rust-based bundler for JavaScript with Rollup-campatible API
+> Fast Rust-based bundler for JavaScript with Rollup-compatible API
 >
 > Brought to you by void(0)
 
