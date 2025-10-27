@@ -12,10 +12,9 @@
 >
 > 仕様駆動開発はこの関係を逆転させます。仕様書が唯一の真実であり、コードはその仕様を実装したものであるという考え方です。
 
-### 1. Spec Kitのインストール
+### 2. Spec Kitのインストール
 
-- 
-- 以下のコマンドで Spec Kit を使用してプロジェクトを初期化する
+以下のコマンドで Spec Kit を使用してプロジェクトを初期化する
 
 ```bash
 # Spec Kit のインストールには uv が必要
@@ -30,7 +29,7 @@ uvx --from git+https://github.com/github/spec-kit.git specify init <PROJECT_NAME
 # 以下は、コーディングエージェントを起動してからの作業
 ```
 
-## 2. 公式サイトを読む
+## 3. 公式サイトを読む
 
 [github/spec-kit](https://github.com/github/spec-kit)
 
