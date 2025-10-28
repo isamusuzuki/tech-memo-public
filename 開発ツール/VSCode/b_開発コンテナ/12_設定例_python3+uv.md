@@ -27,8 +27,8 @@
                 "shardulm94.trailing-spaces",
                 "oderwat.indent-rainbow",
                 "mechatroner.rainbow-csv"
-          ],
-          "settings": {
+            ],
+            "settings": {
                 "autoDocstring.docstringFormat": "numpy",
                 "[python]": {
                     "editor.defaultFormatter": "charliermarsh.ruff",
