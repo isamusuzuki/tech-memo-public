@@ -11,7 +11,7 @@ Opinionated = 独断的な
 ## 2. インストール
 
 ```bash
-npm install --save-dev --save-exact prettier
+npm i -D --save-exact prettier
 
 bun add --dev --exact prettier
 ```
