@@ -75,17 +75,23 @@ jestをインストールしても解決しない
 
 [@testing-library/jest-dom - npm](https://www.npmjs.com/package/@testing-library/jest-dom)
 
-With Vitest
+Vitestでの使い方
 
-もしvitestを使っているならば、このモジュールはそのまま動作するはずであるが、テスト・セットアップ・ファイルで別のインポートを行う必要があるだろう。vitestの設定ファイルの`setupFi9les`プロパティにファイルが追加されるはずだ
+もしvitestを使っているならば、このモジュールはそのまま動作するはずであるが、テスト・セットアップ・ファイルで、（jestの時とは）別のインポートを行う必要があるだろう。vitestの設定ファイルの`setupFiles`項目にそのファイルをが追加する必要がある
+
+vitest-setup.js
 
 ```javascript
-import '@testing-library/jest-dom/vitest'
+import '@testing-library/jest-dom/vitest';
+```
 
+vitest.config.js
+
+```javascript
 setupFiles: ['./vitest-setup.js']
 ```
 
-ローカルのセットアップによるが、tsconfig.jsonを更新する必要があるかもしれない
+ローカルのセットアップ状況によるが、tsconfig.jsonを更新する必要があるかもしれない
 
 ```json
 {
