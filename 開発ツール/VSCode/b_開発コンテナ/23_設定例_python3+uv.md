@@ -1,4 +1,4 @@
-# 開発コンテナ設定例 python3+uv編
+# 開発コンテナ 設定例 python3+uv
 
 作成日 2025/10/01
 
@@ -78,3 +78,7 @@ ENV PATH="/root/.local/bin/:$PATH"
 # タイムゾーンをJSTに変更する
 RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 ```
+
+## 4. Dockerイメージ調査
+
+[python - Official Image | Docker Hub](https://hub.docker.com/_/python)

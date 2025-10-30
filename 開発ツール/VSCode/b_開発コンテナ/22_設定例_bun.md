@@ -1,6 +1,6 @@
-# 開発コンテナ設定例 typescript+bun編
+# 開発コンテナ 設定例 bun
 
-作成日 2025/10/01
+作成日 2025/10/01、更新日 2025/10/30
 
 ## 1. ファイル＆フォルダ構成
 
@@ -10,7 +10,7 @@
     `--Dockerfile
 ```
 
-## devcontainer.json
+## 2. devcontainer.json
 
 ```json
 {
@@ -25,12 +25,12 @@
         "editorconfig.editorconfig",
         "esbenp.prettier-vscode"
       ],
-    "settings": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode",
-      "editor.formatOnSave": true,
-      "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": "explicit",
-        "source.organizeImports": "explicit"
+      "settings": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": "explicit",
+          "source.organizeImports": "explicit"
         },
       },
     }
@@ -41,7 +41,7 @@
 ## 3. Dockerfile
 
 ```bash
-FROM oven/bun:1.2.23-slim
+FROM oven/bun:1.3-slim
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
@@ -52,3 +52,7 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
 USER bun
 ```
+
+## 4. Dockerイメージ調査
+
+[oven/bun - Docker Image | Docker Hub](https://hub.docker.com/r/oven/bun)
