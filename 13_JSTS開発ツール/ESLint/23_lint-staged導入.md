@@ -1,6 +1,6 @@
 # lint-staged導入
 
-作成日 2025/09/17、更新日 2025/09/18
+作成日 2025/09/17、更新日 2025/10/30
 
 ## 1. 解説記事を読む
 
@@ -36,3 +36,18 @@ lint-stagedの設定例（package.jsonに追加）
 Gitのステージされたファイルに対してフォーマッターやリンターのようなタスクを走らせて、コードベースにウンコを紛れこませないようにする
 
 インストール => `npm install --save-dev lint-staged`
+
+### タスクの同時実行性
+
+"Table of Contents" > "Configuration" > "Task Concurrency"
+
+デフォルトでは、lint-stagedは、タスクが同時に実行されるように設定されている
+
+同じファイルに対して、複数のコマンドを実行したい場合、配列シンタックスを使うと、コマンドが順番に走るようになる
+
+```json
+{
+  "*.ts": ["prettier --list-different", "eslint"],
+  "*.md": "prettier --list-different"
+}
+```
