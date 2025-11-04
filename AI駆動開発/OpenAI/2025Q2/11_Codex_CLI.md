@@ -19,7 +19,7 @@ Quick Start
 npm install -g @openai/codex
 
 # Authenticate:
-export OPEN_API_KEY="<OAI KEY"
+export OPEN_API_KEY="<OAI KEY>"
 
 # Run in Sugggest mode:
 # プロジェクトのルートで、codexとタイプして命令する
