@@ -70,7 +70,7 @@ USER node
 
 [node - Official Image | Docker Hub](https://hub.docker.com/_/node)
 
-[docker-node/22/bookworm-slim/Dockerfile at bf78d7603fbea92cd3652edb3b2edadd6f5a3fe8 · nodejs/docker-node](https://github.com/nodejs/docker-node/blob/bf78d7603fbea92cd3652edb3b2edadd6f5a3fe8/22/bookworm-slim/Dockerfile)
+[docker-node/22/bookworm-slim/Dockerfile](https://github.com/nodejs/docker-node/blob/bf78d7603fbea92cd3652edb3b2edadd6f5a3fe8/22/bookworm-slim/Dockerfile)
 
 ```bash
 # 4行目

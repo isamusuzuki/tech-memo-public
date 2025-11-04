@@ -82,3 +82,7 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 ## 4. Dockerイメージ調査
 
 [python - Official Image | Docker Hub](https://hub.docker.com/_/python)
+
+[python/3.12/slim-bookworm/Dockerfile](https://github.com/docker-library/python/blob/e4ab0fe5ef4df797ed09883becf983a56ab97eca/3.12/slim-bookworm/Dockerfile)
+
+useraddはしていない => rootユーザーを使うのが正解らしい
