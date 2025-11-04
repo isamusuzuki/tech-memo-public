@@ -56,3 +56,12 @@ USER bun
 ## 4. Dockerイメージ調査
 
 [oven/bun - Docker Image | Docker Hub](https://hub.docker.com/r/oven/bun)
+
+[bun/dockerhub/debian-slim/Dockerfile](https://github.com/oven-sh/bun/blob/main/dockerhub/debian-slim/Dockerfile)
+
+bunユーザーを使う証拠を発見
+
+```bash
+# 76行目
+RUN useradd bun --uid 1000 --gid bun --shell /bin/sh --create-home
+```

@@ -72,6 +72,8 @@ USER node
 
 [docker-node/22/bookworm-slim/Dockerfile](https://github.com/nodejs/docker-node/blob/bf78d7603fbea92cd3652edb3b2edadd6f5a3fe8/22/bookworm-slim/Dockerfile)
 
+nodeユーザーを使う証拠を発見
+
 ```bash
 # 4行目
 RUN useradd --uid 1000 --gid node --shell /bin/bash --create-home node
