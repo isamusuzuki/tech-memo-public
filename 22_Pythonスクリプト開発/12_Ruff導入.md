@@ -15,6 +15,12 @@
 {
     "customizations": {
         "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "charliermarsh.ruff",
+                // "ms-python.autopep8",
+                // "ms-python.isort",
+            ],
             "settings": {
                 "[python]": {
                     "editor.defaultFormatter": "charliermarsh.ruff",
@@ -23,14 +29,8 @@
                         "source.fixAll": "explicit",
                         "source.organizeImports": "explicit"
                     }
-                },
-            },
-            "extensions": [
-                "ms-python.python",
-                "charliermarsh.ruff",
-                // "ms-python.autopep8",
-                // "ms-python.isort",
-            ]
+                }
+            }
         }
     }
 }

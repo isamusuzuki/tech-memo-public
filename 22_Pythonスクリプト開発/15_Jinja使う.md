@@ -2,7 +2,7 @@
 
 作成日 2020/02/13、更新日 2025/08/28
 
-## 1. Jinja とは
+## 1. Jinjaとは
 
 HTMLテンプレートエンジン
 
@@ -59,8 +59,8 @@ template = env.get_template('template1.html')
 html_txt = template.render({'name': 'Taro Okamoto'})
 ```
 
-- FileSystemLoader を使うと、テンプレートファイルの置き場を指定できる
-- select_autoescape と使うと、ファイルの拡張子でオートエスケープのオン・オフを設定できる
+- FileSystemLoaderを使うと、テンプレートファイルの置き場を指定できる
+- select_autoescapeを使うと、ファイルの拡張子でオートエスケープのオン・オフを設定できる
 
 ## 4. テンプレートを継承させる
 
