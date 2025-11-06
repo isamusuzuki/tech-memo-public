@@ -1,4 +1,4 @@
-# tech-memo-public とは
+# tech-memo-publicとは
 
 作成日 2020/05/23
 
