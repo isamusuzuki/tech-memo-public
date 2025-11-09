@@ -25,7 +25,7 @@ const foo2: Foo = {
 // => foo2.barはnumber | string型。定義優先
 
 foo1.bar = 2 // エラーになる
-foo1.bar = 2 // エラーにならない
+foo2.bar = 2 // エラーにならない
 ```
 
 satisfies演算子は型を検証して実際にその型を満たしているかを確認し、かつ値の型推論結果を保持する
