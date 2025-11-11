@@ -1,8 +1,8 @@
-# TypeSpecとは
+# TypeSpec
 
-作成日 2025/04/25
+作成日 2025/04/25、更新日 2025/11/11
 
-## 1. 参考記事を読む
+## 1. 解説記事aを読む
 
 [4万行超のopenapi.yamlをTypeSpecに移行した話](https://zenn.dev/yuta_takahashi/articles/migrate-to-typespec)
 
@@ -20,7 +20,22 @@
 >
 > この撤退のしやすさにより、短期間で移行に踏み切る意思決定ができました。
 
-## 2. 公式サイト（英語）を読む
+## 2. 解説記事bを読む
+
+[YAMLで病むる人への処方箋【TypeSpec】](https://zenn.dev/kitamago/articles/b71399388965c0)
+
+> 私の常駐先では、API開発はOpenAPIのSpecファイル(yaml)を作成し、これに基づきOrvalで生成された型情報を用いてフロントエンドとバックエンドを同時に開発しています。
+>
+> TypeSpecとは、TypeScriptライクな書き心地で Open API Spec がかけるDSL（安心安全のマイクロソフト謹製）で、プログラミング言語のような書き心地でコード分割・再利用ができる。
+
+使てみてよかった点
+
+- VSCodeの拡張機能を入れれば、自動補完が効くし、フォーマッター・リンターがデフォルトで存在する（ありがたい）。シンプルに開発体験が良い。
+- `@visibility`を使うことでCRUD別のプロパティの切り替えを簡単に実現できる
+
+[TypeSpec - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=typespec.typespec-vscode)
+
+## 3. 公式サイト（英語）を読む
 
 [typespec.io](https://typespec.io/)
 
