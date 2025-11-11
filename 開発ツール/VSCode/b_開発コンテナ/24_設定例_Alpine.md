@@ -1,6 +1,6 @@
 # 開発コンテナ 設定例 Alpine
 
-作成日 2025/11/05
+作成日 2025/11/05、更新日 2025/11/11
 
 ## 1. ファイル＆フォルダ構成
 
@@ -38,6 +38,18 @@
 
 ```bash
 FROM node:22-alpine
+
+RUN apk update && apk add --no-cache \
+    git \
+    postgresql16-client \
+    tzdata \
+    && rm -rf /var/cache/apk/*
+
+# タイムゾーンをJSTに変更する
+RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+
+# npmを最新に更新
+RUN npm install -g npm@latest
 
 USER node
 ```
