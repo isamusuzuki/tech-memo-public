@@ -26,3 +26,7 @@
 ## 3. サンプルコードを覗く
 
 [mswjs/examples: Examples of Mock Service Worker usage with various frameworks and libraries.](https://github.com/mswjs/examples)
+
+## 4. v2で大きな変更がある
+
+[MSW（Mock Service Worker）をv2.0.0にアップグレードする](https://zenn.dev/keitakn/scraps/2ca70305a71847)
