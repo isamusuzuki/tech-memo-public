@@ -1,4 +1,4 @@
-# TanStack Query
+# TanStack Queryとは
 
 作成日 2025/09/03、更新日 2025/11/12
 
@@ -49,29 +49,4 @@ const { isPending, isError, data, error } = useQuery({
     </ul>
   </div>
 </template>
-```
-
-## 4. queryKeyとは何か？
-
-[Queries > Query Basics](https://tanstack.com/query/latest/docs/framework/vue/guides/queries#query-basics)
-
-コンポーネントもしくはカスタムフックでクエリーを登録したい場合は、`useQuery`フックを呼ぶ。その時必要なものは、(1) そのクエリーのユニークなキー、(2) Promiseを返す関数の２つである
-
-```javascript
-import { useQuery } from '@tanstack/vue-query'
-
-const result = useQuery({ queryKey: ['todos'], queryFn: fetchTodoList })
-```
-
-resultオブジェクトには、状態と、その状態によって取得可能なプロパティが含まれる
-
-- 状態: `isPending`, `isError`, `isSuccess`
-- `error`: `isError`の時だけ取得可能
-- `data`: `isSuccess`の時だけ取得可能
-
-```javascript
-const { isPending, isError, data, error } = useQuery({
-  queryKey: ['todos'],
-  queryFn: fetchTodoList,
-})
 ```
