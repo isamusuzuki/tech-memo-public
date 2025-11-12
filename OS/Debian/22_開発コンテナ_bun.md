@@ -57,6 +57,13 @@ USER bun
 
 [oven/bun - Docker Image | Docker Hub](https://hub.docker.com/r/oven/bun)
 
+Variants
+
+- debian
+- slim
+- alpine
+- distroless
+
 [bun/dockerhub/debian-slim/Dockerfile](https://github.com/oven-sh/bun/blob/main/dockerhub/debian-slim/Dockerfile)
 
 bunユーザーを使う証拠を発見
