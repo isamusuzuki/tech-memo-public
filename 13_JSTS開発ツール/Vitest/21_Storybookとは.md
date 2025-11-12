@@ -1,4 +1,4 @@
-# Storybook
+# Storybookとは
 
 作成日 2025/11/11
 
@@ -15,6 +15,7 @@
 > Use the Storybook CLI to install it in a single command. Run this inside your project’s root directory
 
 ```bash
+# 既存のプロジェクトに対して追加インストールする
 cd {your-project}
 npm create storybook@latest
 ```
