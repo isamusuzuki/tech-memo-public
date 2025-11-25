@@ -47,6 +47,7 @@ type ButtonNode = {
 
 export function findButtonNodes(node: JsonNode, results: ButtonNode[] = []): ButtonNode[] {
     if (Array.isArray(node)) {
+        // リストの場合はその要素を探索
         for (const item of node) {
             findButtonNodes(item, results);
         }
@@ -60,7 +61,7 @@ export function findButtonNodes(node: JsonNode, results: ButtonNode[] = []): But
         }
         // 子要素を再帰的に探索
         if (node.content) {
-            findAlButtonNodes(node.content, results);
+            findButtonNodes(node.content, results);
         }
     }
     return results;

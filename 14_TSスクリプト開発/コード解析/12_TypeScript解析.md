@@ -2,7 +2,7 @@
 
 作成日 2025/07/02、更新日 2025/07/23
 
-## 1. typescript-eslintを試す
+## 1. typescript-eslint/parserを試す
 
 [@typescript-eslint/typescript-estree](https://typescript-eslint.io/packages/typescript-estree/)
 
