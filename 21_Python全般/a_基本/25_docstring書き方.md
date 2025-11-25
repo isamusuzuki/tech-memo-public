@@ -10,8 +10,7 @@
 
 ```python
 def get_fruit_price(fruit_id, location_id):
-    """
-    果物の値段を取得する。
+    """果物の値段を取得する。
 
     Parameters
     ----------
