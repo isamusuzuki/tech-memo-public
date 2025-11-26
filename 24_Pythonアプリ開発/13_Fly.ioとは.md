@@ -17,3 +17,7 @@ Fly.ioは、Pythonアプリケーションをラウンチさせるのに最高�
 - Run a FastAPI app
 - Run a Flask App
 - Run a Streamlit app
+
+## 3. Fletアプリのホスト先としてFly.ioが挙げられていた
+
+[Fly.io | Flet](https://flet.dev/docs/publish/web/dynamic-website/hosting/fly-io)
