@@ -2,7 +2,9 @@
 
 作成日 2025/07/01
 
-## 1. Webアプリを簡単に生成するツール
+どちらも、Webアプリを簡単に生成するツール
+
+## 1. Streamlit
 
 [Streamlit • A faster way to build and share data apps](https://streamlit.io/)
 
@@ -15,6 +17,8 @@ Hello *world!*
 """)
 ```
 
+## 2. Gradio
+
 [Gradio](https://www.gradio.app/)
 
 ```python
@@ -24,10 +28,10 @@ def greet(name):
     return "Hello " + name + "!"
 
 demo = gr.Interface(fn=greet, inputs="text", outputs="text")
-demo.launch() 
+demo.launch()
 ```
 
-## 2. 比較記事を読む
+## 3. 比較記事を読む
 
 [Streamlit vs Gradio: Pythonダッシュボードの究極の対決](https://myscale.com/blog/ja/streamlit-vs-gradio-ultimate-showdown-python-dashboards/)
 
