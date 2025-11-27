@@ -27,6 +27,10 @@
 - Data ... ローディング、アクション、待ちの状態などの機能を提供する
 - Framework ... VitaプラグインでDataモードをラップして、全ての機能を提供する
 
+### 2a. 日本語訳を発見
+
+[React Router v7 ドキュメント 日本語訳](https://react-router-docs-ja.techtalk.jp/)
+
 ## 3. まずはDeclarativeモードを勉強する
 
 ### [Installation](https://reactrouter.com/start/declarative/installation)
