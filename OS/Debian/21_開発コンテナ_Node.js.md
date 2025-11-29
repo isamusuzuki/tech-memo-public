@@ -1,6 +1,6 @@
 # 開発コンテナ 設定例 Node.js
 
-作成日 2025/10/30
+作成日 2025/10/30、更新日 2025/11/29
 
 ## 1. ファイル＆フォルダ構成
 
@@ -37,7 +37,7 @@
 ## 3. Dockerfile
 
 ```bash
-FROM node:22-bookworm-slim
+FROM node:24-trixie-slim
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
@@ -56,7 +56,7 @@ USER node
 
 [node - Official Image | Docker Hub](https://hub.docker.com/_/node)
 
-[docker-node/22/bookworm-slim/Dockerfile](https://github.com/nodejs/docker-node/blob/bf78d7603fbea92cd3652edb3b2edadd6f5a3fe8/22/bookworm-slim/Dockerfile)
+[docker-node/24/trixie-slim/Dockerfile](https://github.com/nodejs/docker-node/blob/a364e16a23fb97ea9768e5adbae36f1de63f44e9/24/trixie-slim/Dockerfile)
 
 nodeユーザーを使う証拠を発見
 
