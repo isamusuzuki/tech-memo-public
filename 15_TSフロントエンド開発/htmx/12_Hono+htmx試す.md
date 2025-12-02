@@ -1,8 +1,8 @@
-# Hono + htmxを試す
+# Hono+htmxを試す
 
 作成日 2025/10/16
 
-## Hono + htmxのサンプルコードを発見する
+## Hono+htmxのサンプルコードを発見する
 
 [Hono + htmx + Cloudflareでアプリケーションを実装してみる](https://zenn.dev/aoito/articles/dc111b83212c0b)
 
