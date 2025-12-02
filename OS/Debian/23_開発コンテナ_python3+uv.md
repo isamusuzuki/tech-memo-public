@@ -19,7 +19,7 @@
         "dockerfile": "./Dockerfile"
     },
     "customizations": {
-        "vsocode": {
+        "vscode": {
             "extensions": [
                 "ms-python.python",
                 "charliermarsh.ruff",

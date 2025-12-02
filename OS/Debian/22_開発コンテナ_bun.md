@@ -19,7 +19,7 @@
     "dockerfile": "./Dockerfile"
   },
   "customizations": {
-    "vsocode": {
+    "vscode": {
       "extensions": [
         "dbaeumer.vscode-eslint",
         "editorconfig.editorconfig",

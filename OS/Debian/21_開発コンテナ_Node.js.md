@@ -20,7 +20,11 @@
     },
     "customizations": {
         "vscode": {
-            "extensions": ["dbaeumer.vscode-eslint", "editorconfig.editorconfig", "esbenp.prettier-vscode"],
+            "extensions": [
+                "dbaeumer.vscode-eslint",
+                "editorconfig.editorconfig",
+                "esbenp.prettier-vscode"
+            ],
             "settings": {
                 "editor.defaultFormatter": "esbenp.prettier-vscode",
                 "editor.formatOnSave": true,
