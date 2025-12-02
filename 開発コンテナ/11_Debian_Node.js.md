@@ -1,16 +1,8 @@
-# 開発コンテナ 設定例 Node.js
+# 開発コンテナ 設定例 Debian Node.js
 
-作成日 2025/10/30、更新日 2025/11/29
+作成日 2025/10/30、更新日 2025/12/03
 
-## 1. ファイル＆フォルダ構成
-
-```text
---.devcontainer/
-    |--devcontainer.json
-    `--Dockerfile
-```
-
-## 2. devcontainer.json
+## .devcontainer/devcontainer.json
 
 ```json
 {
@@ -38,7 +30,7 @@
 }
 ```
 
-## 3. Dockerfile
+## .devcontainer/Dockerfile
 
 ```bash
 FROM node:24-trixie-slim
@@ -56,7 +48,7 @@ RUN npm install -g npm@latest
 USER node
 ```
 
-## 4. Dockerイメージ調査
+## Dockerイメージ調査
 
 [node - Official Image | Docker Hub](https://hub.docker.com/_/node)
 

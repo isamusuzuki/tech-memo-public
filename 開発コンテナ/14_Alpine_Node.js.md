@@ -1,16 +1,8 @@
-# 開発コンテナ 設定例 Alpine
+# 開発コンテナ 設定例 Alpine Node.js
 
-作成日 2025/11/05、更新日 2025/11/11
+作成日 2025/11/05、更新日 2025/12/03
 
-## 1. ファイル＆フォルダ構成
-
-```text
---.devcontainer/
-    |--devcontainer.json
-    `--Dockerfile
-```
-
-## 2. devcontainer.json
+## .devcontainer/devcontainer.json
 
 ```json
 {
@@ -20,7 +12,11 @@
     },
     "customizations": {
         "vscode": {
-            "extensions": ["dbaeumer.vscode-eslint", "editorconfig.editorconfig", "esbenp.prettier-vscode"],
+            "extensions": [
+                "dbaeumer.vscode-eslint",
+                "editorconfig.editorconfig",
+                "esbenp.prettier-vscode"
+            ],
             "settings": {
                 "editor.defaultFormatter": "esbenp.prettier-vscode",
                 "editor.formatOnSave": true,
@@ -34,7 +30,7 @@
 }
 ```
 
-## 3. Dockerfile
+## .devcontainer/Dockerfile
 
 ```bash
 FROM node:22-alpine

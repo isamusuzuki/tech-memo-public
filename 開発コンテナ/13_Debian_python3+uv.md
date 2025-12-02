@@ -1,16 +1,8 @@
-# 開発コンテナ 設定例 python3+uv
+# 開発コンテナ 設定例 Debian python3+uv
 
-作成日 2025/10/01
+作成日 2025/10/01、更新日 2025/12/03
 
-## 1. ファイル＆フォルダ構成
-
-```text
---.devcontainer/
-    |--devcontainer.json
-    `--Dockerfile
-```
-
-## devcontainer.json
+## .devcontainer/devcontainer.json
 
 ```json
 {
@@ -52,7 +44,7 @@
 }
 ```
 
-## 3. Dockerfile
+## .devcontainer/Dockerfile
 
 ```bash
 FROM python:3.12-slim-bookworm
@@ -79,7 +71,7 @@ ENV PATH="/root/.local/bin/:$PATH"
 RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 ```
 
-## 4. Dockerイメージ調査
+## Dockerイメージ調査
 
 [python - Official Image | Docker Hub](https://hub.docker.com/_/python)
 
