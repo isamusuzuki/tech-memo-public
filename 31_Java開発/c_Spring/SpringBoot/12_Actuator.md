@@ -13,9 +13,7 @@
 </dependency>
 ```
 
-```text
-http://localhost:8080/actuator/health
-```
+`http://localhost:8080/actuator/health`
 
 ## 2. 公式リファレンスを読む
 
@@ -26,11 +24,12 @@ http://localhost:8080/actuator/health
 - bean ... アプリケーション内のすべての`Spring Bean`の完全なリストを表示します。
 - env ... `ConfigurableEnvironment`サブジェクトのプロパティをサニタイズに公開します。
 - health ... アプリケーションの正常性情報を表示します。
+- info ... 任意のアプリケーション情報を表示します。
 - mappings ... すべての`@RequestMapping`パスの照合リストを表示します。
 
 ※ GraphQLの`@QueryMapping`パスの照合リストを表示するエンドポイントはない
 
-## 3. mappintsを試す
+## 3. actuatorを試す
 
 application.properties
 
@@ -38,6 +37,14 @@ application.properties
 management.endpoints.web.exposure.include=*
 ```
 
-```text
-http://localhost:8080/actuator/mappings
+application.yml
+
+```yaml
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,loggers,threaddump
 ```
+
+`http://localhost:8080/actuator/info`
