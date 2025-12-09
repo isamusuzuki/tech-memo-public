@@ -19,7 +19,7 @@
 | Dependencies     | "Spring Web"を追加する |
 
 - GENERATEボタンをクリックすると、`demo.zip`がダウンロードされる
-- 解凍して、Visual Studio Codeでフォルダを開く
+- 解凍してdemoフォルダを取り出し、Visual Studio Codeで開く
 - `src/main/java/com/example/demo/DemoApplication.java`ファイルを編集する
 
 ```java
@@ -27,7 +27,7 @@ package com.example.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-// importを3行追加。最後のクラス名を書けば候補が登場する
+// import文を3行追加
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,7 +41,7 @@ public class DemoApplication {
   SpringApplication.run(DemoApplication.class, args);
  }
 
- // GetMappingアノテーションを追加するとメソッドが自動追加される
+ // GetMappingアノテーションを追加
  @GetMapping("/hello")
  public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
   return String.format("Hello %s!" , name);
@@ -50,5 +50,5 @@ public class DemoApplication {
 ```
 
 - ターミナルを開いて、`./mnvw spring-boot:run`
-- ブラウザを開いて、[http://localhost:8080/hello](http://localhost:8080/hello)
-- リクエストパラメーターを追加する、[http://localhost:8080/hello?name=John](http://localhost:8080/hello?name=John)
+- ブラウザを開いて、`http://localhost:8080/hello`
+- リクエストパラメーターを追加して、`http://localhost:8080/hello?name=John`
