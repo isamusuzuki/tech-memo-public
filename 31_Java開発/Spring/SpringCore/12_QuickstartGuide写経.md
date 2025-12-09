@@ -1,24 +1,25 @@
-# Spring Quickstart Guide を写経する
+# Spring Quickstart Guideを写経する
 
-作成日 2024/12/24
+作成日 2024/12/24、更新日 2025/12/09
 
 ## [英語ホームページ](https://spring.io/quickstart)を写経する
 
 - ブラウザで[Spring Initializer](https://start.spring.io/)を開く
 - 次の設定に変更する
 
-| Key              | Value                   |
-| ---------------- | ----------------------- |
-| Project          | Maven                   |
-| Language         | Java                    |
-| Spring Boot      | 3.4.1                   |
-| Project Metadata | (初期値のまま)          |
-| Packaging        | Jar                     |
-| Java             | 21                      |
-| Dependencies     | "Spring Web" を追加する |
+| Key              | Value                  |
+| ---------------- | ---------------------- |
+| Project          | Maven                  |
+| Language         | Java                   |
+| Spring Boot      | 3.5.8                  |
+| Project Metadata | (初期値のまま)         |
+| Packaging        | Jar                    |
+| Configuration    | Properties             |
+| Java             | 21                     |
+| Dependencies     | "Spring Web"を追加する |
 
-- GENERATE ボタンをクリックすると、`demo.zip`がダウンロードされる
-- 解凍して、Visual Studio Code でフォルダを開く
+- GENERATEボタンをクリックすると、`demo.zip`がダウンロードされる
+- 解凍して、Visual Studio Codeでフォルダを開く
 - `src/main/java/com/example/demo/DemoApplication.java`ファイルを編集する
 
 ```java
