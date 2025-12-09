@@ -1,6 +1,6 @@
-# 開発コンテナ 設定例 Alpine Node.js
+# 開発コンテナ例 Node.js Alpine
 
-作成日 2025/11/05、更新日 2025/12/03
+作成日 2025/11/05、更新日 2025/12/10
 
 ## .devcontainer/devcontainer.json
 

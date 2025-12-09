@@ -1,6 +1,6 @@
-# DockerfileでJava開発環境を用意する
+# 開発コンテナ例 Java&Postgres
 
-作成日 2025/02/11、更新日 2025/12/03
+作成日 2025/02/11、更新日 2025/12/10
 
 ## 1. 概要
 
@@ -18,10 +18,6 @@
     |   |--devcontainer.json
     |   |--docker-compose.yml
     |   `--Dockerfile
-    |--db_setup/
-    |   |--data1.sql
-    |   |--data2.csv
-    |   `--schema.sql
     `--demo
         |--src/main/java/com/example/
         |   `--Main.java

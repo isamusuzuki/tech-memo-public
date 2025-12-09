@@ -1,6 +1,6 @@
-# 開発コンテナ 設定例 Debian Node.js
+# 開発コンテナ例 Node.js
 
-作成日 2025/10/30、更新日 2025/12/03
+作成日 2025/10/30、更新日 2025/12/10
 
 ## .devcontainer/devcontainer.json
 

@@ -1,6 +1,6 @@
-# 開発コンテナ 設定例 Debian python3+uv
+# 開発コンテナ例 python3+uv
 
-作成日 2025/10/01、更新日 2025/12/03
+作成日 2025/10/01、更新日 2025/12/10
 
 ## .devcontainer/devcontainer.json
 
