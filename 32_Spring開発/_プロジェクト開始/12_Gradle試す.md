@@ -89,9 +89,9 @@ public class DemoApplication {
     "configurations": [
         {
             "type": "java",
-            "name": "Demo2Application",
+            "name": "DemoApplication",
             "request": "launch",
-            "mainClass": "com.example.demo.Demo2Application",
+            "mainClass": "com.example.demo.DemoApplication",
             "projectName": "demo",
             "args": "--port=8080",
             "vmArgs": "-Dspring.profiles.active=dev",
