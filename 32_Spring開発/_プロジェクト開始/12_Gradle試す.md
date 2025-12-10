@@ -47,7 +47,7 @@
 
 ## 2. Javaコードを編集する
 
-- `src/main/java/com/example/demo/DemoApplication.java`ファイルを編集する
+src/main/java/com/example/demo/DemoApplication.java
 
 ```java
 package com.example.demo;
