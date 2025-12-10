@@ -137,10 +137,14 @@ ts-morphでの変更は以下の手順で行う
 2. 全ての変更が成功したことを確認
 3. `project.save()`で一括保存
 
-## 3. 公式サイト（英語）を読む
+## 3. npmサイト（英語）を読む
 
 [ts-morph - npm](https://www.npmjs.com/package/ts-morph)
 
 > TypeScript Compiler API wrapper. Provides an easier way to programmatically navigate and manipulate TypeScript and JavaScript code.
 
 インストール => `npm i ts-morph`
+
+GitHub => [dsherret/ts-morph: TypeScript Compiler API wrapper for static analysis and programmatic code changes.](https://github.com/dsherret/ts-morph)
+
+公式サイト => [ts-morph - Documentation](https://ts-morph.com/)
