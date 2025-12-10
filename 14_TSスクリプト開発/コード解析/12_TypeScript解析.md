@@ -8,7 +8,7 @@
 
 > The underlying code used by `@typescript-eslint/parser` that converts TypeScript source code into an ESTree-compatible form
 
-インストール => `bun add @typescript-eslint/typescript-estreer`
+インストール => `bun add @typescript-eslint/typescript-estree`
 
 ```javascript
 import { parse } from '@typescript-eslint/typescript-estree'
