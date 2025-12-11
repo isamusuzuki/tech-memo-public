@@ -14,8 +14,8 @@ TypeScriptを直接走らせることができるところが気に入った
 
 ```bash
 powershell -c "irm bun.sh/install.ps1 | iex"
-# Bun 1.2.17 was installed successfully!
-# The binary is located at C:\Users\{username}\.bun\bin\bun.exe
+# Bun 1.3.4 was installed successfully!
+# The binary is located at C:\Users\isuzuki\.bun\bin\bun.exe
 # To get started, restart your terminal/editor, then type "bun"
 ```
 
@@ -25,6 +25,8 @@ PowerShellを再起動してから
 bun --version
 # 1.2.17
 ```
+
+アップデートも同じスクリプトを使う
 
 ## 3. 新規プロジェクトを開始する
 
