@@ -8,7 +8,7 @@ Node.jsのバージョン管理を行うコマンドラインツール
 
 公式サイト（英語） => [Volta - The Hassle-Free JavaScript Tool Manager](https://volta.sh/)
 
-参照サイト（日本語） => [Windows で Node.js のバージョン管理](https://note.com/rurai/n/n47a3fb9c4508)
+参照サイト（日本語） => [WindowsでNode.jsのバージョン管理](https://note.com/rurai/n/n47a3fb9c4508)
 
 wingetコマンドを使ってインストールできる
 

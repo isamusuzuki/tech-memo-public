@@ -8,7 +8,7 @@
 Get-ChildItem -Force
 
 ls -Force
-# ls -a ではない
+# ls -aではない
 ```
 
 ## 2. 環境変数の一覧表示
