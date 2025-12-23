@@ -1,6 +1,6 @@
 # 開発コンテナ例 Java
 
-作成日 2025/02/11、更新日 2025/12/10
+作成日 2025/02/11、更新日 2025/12/23
 
 ## 1. 概要
 
@@ -45,3 +45,7 @@ devcontainer.json
     }
 }
 ```
+
+## 3. Dockerイメージ調査
+
+[Microsoft Artifact Registry - Java Development Container Images](https://mcr.microsoft.com/en-us/artifact/mar/devcontainers/java)
