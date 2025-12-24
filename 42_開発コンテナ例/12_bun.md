@@ -1,6 +1,6 @@
 # 開発コンテナ例 bun
 
-作成日 2025/10/01、更新日 2025/12/10
+作成日 2025/10/01、更新日 2025/12/24
 
 ## .devcontainer/devcontainer.json
 
@@ -49,12 +49,7 @@ USER bun
 
 [oven/bun - Docker Image | Docker Hub](https://hub.docker.com/r/oven/bun)
 
-Variants
-
-- debian
-- slim
-- alpine
-- distroless
+Variants = [debian, slim, alpine, distroless]
 
 [bun/dockerhub/debian-slim/Dockerfile](https://github.com/oven-sh/bun/blob/main/dockerhub/debian-slim/Dockerfile)
 
@@ -64,3 +59,7 @@ bunユーザーを使う証拠を発見
 # 76行目
 RUN useradd bun --uid 1000 --gid bun --shell /bin/sh --create-home
 ```
+
+bunユーザーは、デフォルトのシェルがbashではなくてshであった
+
+ターミナルで`bash`と叩けば、bashに変更することができる
