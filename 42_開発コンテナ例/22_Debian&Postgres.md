@@ -1,12 +1,12 @@
 # 開発コンテナ例 Devian&Postgres
 
-作成日 2025/02/11、更新日 2025/12/10
+作成日 2025/02/11、更新日 2025/12/24
 
 ## 1. 概要
 
 - PostgreSQLデータベースをコンテナで用意する
 - もうひとつのコンテナからデータベースを操作する
-- `perl: warning: Setting locale failed.`警告を出さないように設定する
+- psqlコマンドで、`perl: warning: Setting locale failed.`警告が出ないように設定する
 
 ## 2. ファイル＆フォルダ構造
 
@@ -26,7 +26,7 @@ devcontainer.json
 
 ```json
 {
-    "name": "App with Database",
+    "name": "App w/ DB",
     "dockerComposeFile": "./docker-compose.yml",
     "service": "app",
     "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}"
@@ -38,7 +38,7 @@ docker-compose.yml
 ```yaml
 services:
   app:
-    container_name: debiandev
+    container_name: debian
     build:
       context: .
       dockerfile: Dockerfile
@@ -63,17 +63,23 @@ volumes:
 Dockerfile
 
 ```dockerfile
-FROM debian:bookworm-slim
+FROM debian:trixie-slim
+
+# パッケージのインストール
 RUN apt-get update && apt-get install -y \
-  postgresql-client \
   git \
   locales \
+  postgresql-client \
   && rm -rf /var/lib/apt/lists/*
 
+# ロケール設定
 RUN sed -i -E 's/# (ja_JP.UTF-8)/\1/' /etc/locale.gen \
   && locale-gen \
   && update-locale LANG=ja_JP.UTF-8
 ENV LANG=ja_JP.UTF-8 LANGUAGE=ja_JP:ja LC_ALL=ja_JP.UTF-8
+
+# タイムゾーンをJSTに変更
+RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 ```
 
 data1.sql
@@ -107,19 +113,27 @@ create table myfriends (
 ```bash
 # インストールの確認
 psql --version
-
-# 環境変数の確認
-printenv | more
+# psql (PostgreSQL) 17.6
 
 # DB接続
 psql -h postgresdb -p 5432 -U postgres postgres
+# Password for user postgres: (postgres)
+
+# サーバーのバージョンチェック
+select * from version();
+# PostgreSQL 18.1
 
 # SQLファイルの実行
 \i db_setup/schema.sql
+# CREATE TABLE
+
 \i db_setup/data1.sql
+# INSERT 0 1
+# INSERT 0 1
 
 # CSVファイルのインポート
 \copy myfriends from db_setup/data2.csv with DELIMITER ',' CSV header
+# COPY 2
 
 # テーブルの中身を表示
 select * from myfriends;

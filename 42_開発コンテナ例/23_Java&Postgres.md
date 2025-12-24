@@ -18,6 +18,7 @@
     |   |--devcontainer.json
     |   |--docker-compose.yml
     |   `--Dockerfile
+    |--db_setup/
     `--demo
         |--src/main/java/com/example/
         |   `--Main.java
@@ -28,7 +29,7 @@ devcontainer.json
 
 ```json
 {
-    "name": "Java with Database",
+    "name": "Java w/ DB",
     "dockerComposeFile": "docker-compose.yml",
     "service": "app",
     "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
@@ -48,7 +49,7 @@ docker-compose.yml
 ```yaml
 services:
   app:
-    container_name: javadev
+    container_name: java
     build:
       context: .
       dockerfile: Dockerfile
@@ -78,21 +79,30 @@ volumes:
 Dockerfile
 
 ```dockerfile
-FROM maven:3.9.9-amazoncorretto-21-debian-bookworm
+FROM maven:3.9.12-amazoncorretto-21-debian-trixie
 
+# パッケージのインストール
 RUN apt-get update && apt-get install -y \
-  postgresql-client \
   git \
   locales \
+  postgresql-client \
   && rm -rf /var/lib/apt/lists/*
 
+# ロケール設定
 RUN sed -i -E 's/# (ja_JP.UTF-8)/\1/' /etc/locale.gen \
   && locale-gen \
   && update-locale LANG=ja_JP.UTF-8
 ENV LANG=ja_JP.UTF-8 LANGUAGE=ja_JP:ja LC_ALL=ja_JP.UTF-8
+
+# タイムゾーンをJSTに変更
+RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 ```
 
-## 3. Javaコード
+## 3. ターミナル操作
+
+[22_Debian&Postgres.md](./22_Debian&Postgres.md)を参照
+
+## 4. Javaコード
 
 pom.xmlを編集して、PostgreSQL JDBC Driverをインストールする
 
