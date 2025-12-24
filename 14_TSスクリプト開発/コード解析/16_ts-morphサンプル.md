@@ -37,9 +37,9 @@ logger.info(`${name}: added import declaration successfully.`);
 - `.getImportDeclarations()`        ... 全てのインポート宣言を取得
 - `.getChildIndex()`                ... 親から見た自分（子）のインデックスを取得
 - `.insertImportDeclaration(0, {})` ... 新しいインポート宣言を追加
-- `{namedImports:L ['xxx'], moduleSpecifier: 'zzz'}` ... インポート宣言を構築
+- `{namedImports: ['xxx'], moduleSpecifier: 'zzz'}` ... インポート宣言を構築
 
-## 2. 特定の変数宣言の内部にlog.info文を追加する
+## 2. 特定の変数宣言の内部にlog.info()文を追加する
 
 ```javascript
 import { Project, SyntaxKind } from 'ts-morph';
@@ -83,12 +83,12 @@ logger.info(`${name}: added log info successfully.`);
 - `.getInitializer()` ... 初期化子を取得（変数宣言なので、そこは初期値のポジション）
 - `.getKind()`        ... 種類を取得
 - `SyntaxKind.ArrowFunction`     ... （種類）アロー関数
-- `.asKind()`         ... 種類の変換
+- `.asKind(xxx)`      ... 種類の変換
 - `.getBody()`        ... 関数のボディを取得
 - `SyntaxKind.Block`  ... （種類）ブロック
-- `.insertStatements(0,'xxx')`   ... ステートメントを追加
+- `.insertStatements(0,'xxx')`   ... 文を差し込む
 
-## 3. 特定の関数宣言の内部にlog.info文を追加する
+## 3. 特定の関数宣言の内部にlog.info()文を追加する
 
 ```javascript
 import { Project, SyntaxKind } from 'ts-morph';
@@ -100,7 +100,7 @@ const sourceFile = project.addSourceFileAtPath(tsFilepath);
 // 特定の関数宣言を取得する
 const targetFunction = sourceFile.getFunctionOrThrow(eventName);
 const functionBody = targetFunction.getBodyOrThrow();
-// 関数宣言内部の先頭にlog.info文を追加する
+// 関数宣言内部の先頭にlog.info('button clicked');を追加する
 if (!functionBody || functionBody.getKind() !== SyntaxKind.Block) {
     throw new Error(`${name}: ${eventName}関数の本体が見つかりません`);
 } else {
@@ -121,7 +121,7 @@ logger.info(`${name}: added log info successfully.`);
 - `.getFunctionOrThrow(xxx)` ... 名前で関数宣言を取得
 - `.getBodyOrThrow()` ... 関数宣言のボディを取得
 
-## 4. onMounted()にlog.info文を追加する
+## 4. onMounted()にlog.info()文を追加する
 
 ```javascript
 import { Project, SyntaxKind } from 'ts-morph';
@@ -193,4 +193,4 @@ await sourceFile.save();
 logger.info(`${name}: added log info successfully.`);
 ```
 
-- `.addStatements(xxx)` ... 文を追加する
+- `.addStatements(xxx)` ... 文を追加
