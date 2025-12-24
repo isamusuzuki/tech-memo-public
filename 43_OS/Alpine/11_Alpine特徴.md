@@ -19,7 +19,7 @@
 [Alpineを理解したい](https://zenn.dev/tkomatsu/articles/bf26e569cb70e9c34ad9)
 
 - めちゃくちゃ軽いLinuxディストリビューション
-- Alpine にはsudoもない。root以外のユーザーで色々試すには管理者権限が必要
+- Alpineにはsudoもない。root以外のユーザーで色々試すには管理者権限が必要
 - Alpineではashが標準のシェルになる
 
 ## 3. apkコマンド
