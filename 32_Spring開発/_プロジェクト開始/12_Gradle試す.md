@@ -124,4 +124,10 @@ public class DemoApplication {
 
 # テストタスクを実行する
 ./gradlew test
+
+# ビルドする
+./gradlew build
+
+# アプリケーションを起動する
+./gradlew bootRun
 ```
