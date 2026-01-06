@@ -24,10 +24,10 @@
 - `npm create cloudflare@latest`コマンド実行
 - cloudflareをインストールするか？ にYesと答える
 - サブフォルダ名（＝サーバー名）を決める
-- Hello World example > static only
+- Hello World example > Static site
 - wrangler.jsoncファイルに、`{dev: {ip: "0.0.0.0"}}`を追加する（開発コンテナを使っているため）
-- `npm run dev`コマンド実行 => ブラウザで`http://127.0.0.1:8787`を開く
-- publicフォルダの中のhtmlファイルをデバッグしつつ、開発する
+- `npm run dev`コマンド実行 => ブラウザで`http://localhost:8787`を開く
+- publicフォルダの中のhtmlファイルを開発していく
 
 ## 4. Cloudflareにデプロイする
 
