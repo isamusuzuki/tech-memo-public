@@ -2,7 +2,7 @@
 
 作成日 2025/12/03
 
-## 1. 公式サイト（英語）を読む
+## 1. 公式サイトを読む
 
 [Homebrew — The Missing Package Manager for macOS (or Linux)](https://brew.sh/)
 
