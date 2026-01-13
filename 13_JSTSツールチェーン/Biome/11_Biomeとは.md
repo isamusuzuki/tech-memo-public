@@ -1,6 +1,6 @@
 # Biomeとは
 
-作成日 2025/09/19、更新日 2025/09/22
+作成日 2025/09/19、更新日 2026/01/13
 
 ## 1. 解説記事を読む
 
@@ -14,16 +14,11 @@ npm install --save-dev --save-exact @biomejs/biome
 npx @biomejs/biome init
 # => biome.jsonが出来上がる
 
-# ESLint, Prettierからの移行
-npx @biomejs/biome migrate eslint --write
-npx @biomejs/biome migrate prettier --write
-# => biome.jsonが書き換わっている
-
 # ./src配下のファイルを整形する
-npx @biomejs/biome --write format ./src
+npx @biomejs/biome format --write ./src
 
 # ./src配下のファイルをリントする
-npx @biomejs/biome --write lint ./src
+npx @biomejs/biome lint --write ./src
 ```
 
 Biomeの特長
@@ -36,7 +31,7 @@ Biomeの特長
 
 [Biome、Webのためのツールチェーン](https://biomejs.dev/ja/)
 
-> フォーマット、リントなどが一瞬で完了します！\
+> フォーマット、リントなどが一瞬で完了します！
 > Prettierのようにコードをフォーマット、しかも高速
 
 [はじめる | Biome](https://biomejs.dev/ja/guides/getting-started/)
