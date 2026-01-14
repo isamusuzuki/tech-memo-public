@@ -1,6 +1,5 @@
 {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true,
+    "files.eol": "\n",
     "[markdown]": {
         "editor.defaultFormatter": "yzhang.markdown-all-in-one",
         "editor.codeActionsOnSave": {
@@ -9,7 +8,10 @@
     },
     "markdownlint.config": {
         "MD033": {
-            "allowed_elements": ["br", "img"]
+            "allowed_elements": [
+                "br",
+                "img"
+            ]
         }
     }
 }
