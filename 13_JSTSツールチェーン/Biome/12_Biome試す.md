@@ -5,7 +5,7 @@
 ## 1. 既存プロジェクトにインストールする
 
 ```bash
-npm install --save-dev --save-exact @biomejs/biome
+npm i -D --save-exact @biomejs/biome
 
 npx @biomejs/biome init
 # => biome.jsonが生成される
