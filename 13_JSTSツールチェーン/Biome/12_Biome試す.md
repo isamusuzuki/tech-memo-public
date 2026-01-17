@@ -8,6 +8,7 @@
 npm install --save-dev --save-exact @biomejs/biome
 
 npx @biomejs/biome init
+# => biome.jsonが生成される
 ```
 
 ## 2. package.jsonのscripts項目に追記する
@@ -21,7 +22,9 @@ npx @biomejs/biome init
 }
 ```
 
-スクリプトを実行する
+対象のディレクトリが複数ある場合は、空白を入れながら書き足していく
+
+### スクリプトを実行する
 
 ```bash
 npm run lint

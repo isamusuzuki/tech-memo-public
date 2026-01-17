@@ -1,8 +1,46 @@
 # 開発コンテナ例 Node.js
 
-作成日 2025/10/30、更新日 2025/12/10
+作成日 2025/10/30、更新日 2026/01/17
 
-## .devcontainer/devcontainer.json
+## 1. ファイル＆ディレクトリ構成
+
+```text
+--{project}/
+    `--.devcontainer/
+        |--devcontainer.json
+        `--Dockerfile
+```
+
+## 2. devcontainer.json
+
+### Biomeを利用する場合
+
+```json
+{
+    "name": "Node.js",
+    "build": {
+        "dockerfile": "./Dockerfile"
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "biomejs.biome"
+            ],
+            "settings": {
+                "editor.defaultFormatter": "biomejs.biome",
+                "editor.formatOnSave": true,
+                "editor.codeActionsOnSave": {
+                    "quickfix.biome": "explicit",
+                    "source.fixAll.biome": "explicit",
+                    "source.sortImports.biome": "explicit"
+                }
+            }
+        }
+    }
+}
+```
+
+### ESLint+Prettierを利用する場合
 
 ```json
 {
@@ -30,7 +68,7 @@
 }
 ```
 
-## .devcontainer/Dockerfile
+## 3. Dockerfile
 
 ```bash
 FROM node:24-trixie-slim
@@ -48,7 +86,7 @@ RUN npm install -g npm@latest
 USER node
 ```
 
-## Dockerイメージ調査
+### Dockerイメージ調査
 
 [node - Official Image | Docker Hub](https://hub.docker.com/_/node)
 

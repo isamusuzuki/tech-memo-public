@@ -1,8 +1,46 @@
 # 開発コンテナ例 bun
 
-作成日 2025/10/01、更新日 2025/12/24
+作成日 2025/10/01、更新日 2026/01/17
 
-## .devcontainer/devcontainer.json
+## 1. ファイル＆ディレクトリ構成
+
+```text
+--{project}/
+    `--.devcontainer/
+        |--devcontainer.json
+        `--Dockerfile
+```
+
+## 2. devcontainer.json
+
+### Biomeを利用する場合
+
+```json
+{
+    "name": "bun",
+    "build": {
+        "dockerfile": "./Dockerfile"
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "biomejs.biome"
+            ],
+            "settings": {
+                "editor.defaultFormatter": "biomejs.biome",
+                "editor.formatOnSave": true,
+                "editor.codeActionsOnSave": {
+                    "quickfix.biome": "explicit",
+                    "source.fixAll.biome": "explicit",
+                    "source.sortImports.biome": "explicit"
+                }
+            }
+        }
+    }
+}
+```
+
+### ESLint+Prettierを利用する場合
 
 ```json
 {
@@ -30,7 +68,7 @@
 }
 ```
 
-## .devcontainer/Dockerfile
+## 3. Dockerfile
 
 ```bash
 FROM oven/bun:1.3-slim
@@ -45,7 +83,7 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 USER bun
 ```
 
-## Dockerイメージ調査
+### Dockerイメージ調査
 
 [oven/bun - Docker Image | Docker Hub](https://hub.docker.com/r/oven/bun)
 
