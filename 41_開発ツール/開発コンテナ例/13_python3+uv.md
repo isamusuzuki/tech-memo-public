@@ -1,6 +1,6 @@
 # 開発コンテナ例 python3+uv
 
-作成日 2025/10/01、更新日 2025/12/10
+作成日 2025/10/01、更新日 2026/01/20
 
 ## .devcontainer/devcontainer.json
 
@@ -46,7 +46,7 @@
 
 ## .devcontainer/Dockerfile
 
-```bash
+```dockerfile
 FROM python:3.12-slim-trixie
 
 # The installer requires curl (and certificates) to download the release archive

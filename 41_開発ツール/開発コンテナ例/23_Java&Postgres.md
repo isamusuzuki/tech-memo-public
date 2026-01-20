@@ -1,6 +1,6 @@
 # 開発コンテナ例 Java&Postgres
 
-作成日 2025/02/11、更新日 2025/12/10
+作成日 2025/02/11、更新日 2026/01/20
 
 ## 1. 概要
 
@@ -83,8 +83,10 @@ FROM maven:3.9.12-amazoncorretto-21-debian-trixie
 
 # パッケージのインストール
 RUN apt-get update && apt-get install -y \
+  ca-certificates \
   git \
   locales \
+  openssh-client \
   postgresql-client \
   && rm -rf /var/lib/apt/lists/*
 

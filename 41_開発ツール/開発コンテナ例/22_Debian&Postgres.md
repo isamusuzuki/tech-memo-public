@@ -1,6 +1,6 @@
 # 開発コンテナ例 Devian&Postgres
 
-作成日 2025/02/11、更新日 2025/12/24
+作成日 2025/02/11、更新日 2026/01/20
 
 ## 1. 概要
 
@@ -67,8 +67,10 @@ FROM debian:trixie-slim
 
 # パッケージのインストール
 RUN apt-get update && apt-get install -y \
+  ca-certificates \
   git \
   locales \
+  openssh-client \
   postgresql-client \
   && rm -rf /var/lib/apt/lists/*
 

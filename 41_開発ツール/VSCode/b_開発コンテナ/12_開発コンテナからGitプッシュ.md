@@ -1,6 +1,6 @@
 # 開発コンテナからGitプッシュする
 
-作成日 2025/03/25
+作成日 2025/03/25、更新日 2026/01/20
 
 ## 1. 解説記事を読む
 
@@ -60,6 +60,20 @@ Get-Service ssh-agent
 ```bash
 ssh-add
 # Identity added: C:\Users\{User}/.ssh/id_rsa
+```
+
+## 3. 開発コンテナ内で必要なパッケージをインストールする
+
+Dockerfile
+
+```Dockerfile
+FROM node:24-trixie-slim
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates \
+    git \
+    openssh-client \
+    && rm -rf /var/lib/apt/lists/*
 ```
 
 これで開発コンテナでもGitプッシュができるようになった

@@ -1,6 +1,6 @@
 # 開発コンテナ例 bun
 
-作成日 2025/10/01、更新日 2026/01/17
+作成日 2025/10/01、更新日 2026/01/20
 
 ## 1. ファイル＆ディレクトリ構成
 
@@ -70,11 +70,13 @@
 
 ## 3. Dockerfile
 
-```bash
+```dockerfile
 FROM oven/bun:1.3-slim
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates \
     git \
+    openssh-client \
     && rm -rf /var/lib/apt/lists/*
 
 # タイムゾーンをJSTに変更する
