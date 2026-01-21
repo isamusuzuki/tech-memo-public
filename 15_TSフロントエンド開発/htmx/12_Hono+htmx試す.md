@@ -2,7 +2,7 @@
 
 作成日 2025/10/16
 
-## Hono+htmxのサンプルコードを発見する
+## 1. Hono+htmxのサンプルコードを発見する
 
 [Hono + htmx + Cloudflareでアプリケーションを実装してみる](https://zenn.dev/aoito/articles/dc111b83212c0b)
 
@@ -14,4 +14,14 @@
 
 > JSXをサーバーサイドのテンプレートとして使う技術スタックを紹介します。これはつまりReactなしでJSXを使うということです。
 
-リポジトリ => [yusukebe/hono-htmx: Hono+htmx stack](https://github.com/yusukebe/hono-htmx)
+サンプルコードのリポジトリ => [yusukebe/hono-htmx: Hono+htmx stack](https://github.com/yusukebe/hono-htmx)
+
+## 2. サンプルコードのファイル＆ディレクトリ構造
+
+```text
+--hono-htmx/
+    |--src/
+    |   |--components.tsx ... ファンクション3つ renderer(),AddTodo(),Item()
+    |   `--index.tsx ... Honoサーバーの定義3つ GET "/", POST "/todo", DELETE "/todo/:id"
+    `--todo.sql ... D1データベース用のテーブル定義
+```
