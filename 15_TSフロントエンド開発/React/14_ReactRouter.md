@@ -1,6 +1,6 @@
 # React Router
 
-作成日 2025/10/13
+作成日 2025/10/13、更新日 2026/01/27
 
 ## 1. 解説記事を読む
 
@@ -41,20 +41,18 @@ src/main.tsx
 
 ```javascript
 import ReactDOM from "react-dom/client";
-// import { StrictMode } from 'react';
+import { StrictMode } from 'react';
 import { BrowserRouter } from 'react-router';
 import App from "./app";
 
 const root = document.getElementById('root')!;
 
 ReactDOM.createRoot(root).render(
-    // <StrictMode>
-    //     <App />
-    // </StrictMode>
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>
-
+    <StrictMode>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </StrictMode>
 );
 ```
 
